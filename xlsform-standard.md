@@ -43,7 +43,7 @@ XLSForm supports a number of simple question types. These are just some of the o
 | datetime      | Accepts a date and a time input.      | 
 | audio         | Take an audio recording.      | 
 | video         | Take a video recording.      | 
-| calculate     | Perform a calculation; see the [Calculations](*calculations) section below.      | 
+| calculate     | Perform a calculation; see the [Calculations] (#calculations) section below.      | 
 
 To collect the name and gps coordinates of a store use the following Excel file:
 
