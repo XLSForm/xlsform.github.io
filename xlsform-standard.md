@@ -228,6 +228,50 @@ It’s easy to add multiple languages to a survey. You simply have to name your 
 
 Adding a hint in a different language in a hint, or adding specific media files for a given language is also possible; you simply use the ::language construct. See the [xlsform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
 
+### Formulas
+Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. The formula evaluation functionality in ODK is provided by Javarosa. [Documentation of the functions supported by Javarosa is available here.](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat#!paths-and-expressions). [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
+
+### Calculates
+Your survey client can perform calculations using the values of preceding questions. In most cases this will require use of a calculate question. For example, in the survey below, we have calculated the tip and shown it to the surveyor. Our survey sheet will look like this:
+
+
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label           |  calculation  |
+|               | decimal       | amount  | What was the price of the meal? |   |
+|               | calculate     | tip  | (Label is not required because calculates do not display any content.) |  ${amount} * 0.18 |
+|               | note      | display  | 18% tip for your meal is: ${tip} |   |
+
+### Media
+You can also make questions that show the user an image, a video or an audio file as a way of asking a question. In order to do this, you will need to put the media in /odk/forms/formname-media folder on your phone, and reference their filenames from xlsform in a media column.
+
+| survey        |               |       |      |      |      |
+| ------------- | ------------- | ----- | ---- | ---- | ---- |
+|               | type          | name  |  label  | media::image  |  media::video  |
+|               | note      | media_example  | Media example |    example.jpg | example.mp4 |
+
+
+### Settings Worksheet
+You can include a settings worksheet in your xls file similar to the following:
+
+| settings      |               |       |      |      |      |    |
+| ------------- | ------------- | ----- | ---- | ---- | ---- | ---- |
+|               | form_title    | form_id  |  public_key  | submission_url |default_language | version  |
+|               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  2  |
+
+They do the following: form_title: The name of the form presented to users. form_id: The name used to identify the form submission_url: The url of a server that submitted forms are to be sent to. public_key: If form instances are to be encrypted, a public key needs to be included in the form. default_language: In localized forms, this sets which translation should be used as the default. None of these settings are required.
+
+### More Resources
+Your first stop for more resources should be [formhub university](http://formhub.org/formhub_u/), an account on formhub with many forms that you can download and inspect to learn about features. The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSforms. If you are still confused, you can just email opendatakit@googlegroups.com, or search the list for previous threads which may have answered your question. If you want to dig in deeper to understand xforms and go beyond xlsforms, here are some resources to understand them:
+
+* Form guidelines: [http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines](http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines)
+* Form design tutorial: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
+* Sample forms: [http://code.google.com/p/opendatakit/source/browse/?repo=forms](http://code.google.com/p/opendatakit/source/browse/?repo=forms)
+* XForms as supported by JavaRosa: [https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat)
+
+
+
+
 
 
 
