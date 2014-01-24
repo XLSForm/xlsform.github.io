@@ -215,10 +215,10 @@ If you want to skip a group of questions put the relevant attribute on a group l
 
 ### Constraining Responses
   
- | survey        |               |       |      |      |
- | ------------- | ------------- | ----- | ---- | ---- |
- |               | type          | name  |  label           |  constraint  |
- |               | integer       | age   | How old are you? |  . <= 150  |
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label           |  constraint  |
+|               | integer       | age   | How old are you? |  . <= 150  |
  
 Here we’ve put a constraint on age so that no one can be older than 150 years. If the enumerator puts 151 ODK Collect will not allow the enumerator to swipe to the next question. The column ‘constraint’ takes an XPath expression. A question is accepted if the ‘constraint’ column evaluates to true. Generally, a constraint pops up a default message telling the enumerator that he/she cannot go forward, but a constraint_message column can override this message on a question-by-question basis.
 
