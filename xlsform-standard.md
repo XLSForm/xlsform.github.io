@@ -45,21 +45,18 @@ XLSForm supports a number of simple question types. These are just some of the o
 | video         | Take a video recording.      | 
 | calculate     | Perform a calculation; see the [Calculations] (#calculations) section below.      | 
 
-To collect the name and gps coordinates of a store use the following Excel file:
+For example, to collect the name and GPS coordinates of a store, you would write the following:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
 |               | type          | name  |  label |
-|               | text          | name  | What is the name of this store?|
-|               | geopoint      | geopoint |  Collect the GPS coordinates of this store.|
+|               | text          | store_name  | What is the name of this store?|
+|               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
 
-To collect the name and gps coordinates of a store use the following Excel file:
+### Multiple choice questions
 
-
-### Multiple Choice Questions
-
-ODK Collect has support for both ‘select one’ and ‘select all that apply’ questions. To write a multiple choice question requires adding a second worksheet called ‘choices’ to our Excel workbook. Here is an example of a ‘select one’ question:
+XLSForm supports both ‘select one’ and ‘select multiple’ questions. Writing a multiple choice question requires adding a second worksheet called ‘choices’ to our Excel workbook. Here is an example of a ‘select one’ question:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -71,45 +68,40 @@ ODK Collect has support for both ‘select one’ and ‘select all that apply�
 |               |   yes_no      |  no      |  No       |
 
 
-1. There are three columns on the ‘choices’ sheet: ‘list name’ contains the name of multiple choice list this choice belongs to. ‘name’ holds the value that will be submitted to the database if this choice is selected. ‘label’ is what will appear on the phone for this choice.
-1. To add a select one question to your survey you must add a question with type ‘select_one list-name’ where ‘list-name’ must match a list from the ‘choices’ worksheet.
+Note that the 'yes_no' in the 'survey' worksheet must match the 'yes_no' in the 'list name' column in the 'choices' worksheet. This ensures that the form displays the correct list of answer choices for a particular question.  
 
-We can also add multiple choices questions that allow multiple answers to be selected, like so:
+We can also add multiple choice questions that allow multiple answers to be selected, like so:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
 |               | type          | name  |  label |
-|               | select_multiple pizza_toppings    | favorite_topping  | Favorite toppings  |
+|               | select_multiple pizza_toppings    | favorite_toppings  | What are your favorite pizza toppings?  |
 |**choices**    |                      |                |                 |
 |               |  list name           | name           |  label          |
 |               |   pizza_toppings     |  cheese        |  Cheese         |
 |               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
 |               |   pizza_toppings     |  sausage       |  Sausage        |
+
+
+### Specify other
+For multiple choice options, one might want to add an “Other” option, which, if picked, has to be specified further by the user in a free text input field. This is possible through XLSForm by including 'or_other' after the list name in the select_multiple field. See below. 
+
+| survey        |               |       |      |
+| ------------- | ------------- | ----- | ---- |
+|               | type          | name  |  label |
+|               | select_multiple pizza_toppings or_other | favorite_topping  | What are your favorite pizza toppings?  |
+|**choices**    |                      |                |                 |
+|               |  list name           | name           |  label          |
+|               |   pizza_toppings     |  cheese        |  Cheese         |
+|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
+|               |   pizza_toppings     |  sausage       |  Sausage        |
+
+This form will automatically ask the user if her/his favorite toppings are Cheese, Pepperoni, Sausage or Other, and if the user selects Other, a text box will appear underneath, asking the user to type in their other response. Try it out! 
 
 Notes / Caveats:
+* When you export data for this form, in the 'pizza_toppings' column, you will see a value ‘other’. A second column will have the answer for the questions in which the user selected ‘other'. This makes data analysis a little more cumbersome, so we don’t recommend the 'or_other' construct for large-scale data collection efforts. To see the other way to do "specify other" questions, see the [Relevant] (#relevant) section below. The 'or_other' option is perfectly appropriate for pilots, however.
 
-* Make sure you don’t forget the first row and the headings “list name”, “name” and “label.”
-* Make sure that your column headers in the “choices” sheet match those in the “survey” sheet (i.e. there
-  will be errors if you columns are “label:English” on the survey and “label” on the choices worksheet)
-
-### Specify Other
-For multiple choice options, one might want to add an “Other” option, which if picked has to be specified further by the user in a free text input field. This is possible through xlsform by having an option list that includes “Other” as an option, and a second question that is relevant only if “Other” was selected the first time around. But because this has to be done a lot in the early phases of surveying, xlsform has a shortcut to make this easy.
-
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | select_multiple pizza_toppings or_other    | favorite_topping  | Favorite toppings  |
-|**choices**    |                      |                |                 |
-|               |  list name           | name           |  label          |
-|               |   pizza_toppings     |  cheese        |  Cheese         |
-|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
-|               |   pizza_toppings     |  sausage       |  Sausage        |
-
-This form with automatically ask the user if her/his favorite toppings are cheese, pepperoni, sausage or other, and if the user selects other, what their favorite topping is. Try it out! Notes / Caveats:
-
-* If you have data like this, when you export data, in the pizza_toppings column, you will see a value ‘other’. A second column will have the answer for the questions which the user selected ‘other.’ This makes doing data analysis more cumbersome, so we don’t recommend the or_other construct for large-scale data collection efforts. The option is perfectly appropriate for pilots, however.
-
-### Cascading Selects
+### Cascading selects
 In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
 
 ### Metadata
@@ -225,6 +217,7 @@ If you want to skip a group of questions put the relevant attribute on a group l
 
 <h3 id="calculations">Calculations</h3>
 
+<h3 id="relevant">Relevant</h3>
 
 
 
