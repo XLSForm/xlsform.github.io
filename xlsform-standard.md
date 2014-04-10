@@ -139,9 +139,7 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | sim_serial    | sim_serial   |         |
 |               | phone_number  | phone_number   |   |        |
 
-Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone.  
-
-#### GPS
+Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone. 
 
 ### Hints
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a 'hint' column next to the 'label' column and add your hint messages  next to the question label. See below for an example.
