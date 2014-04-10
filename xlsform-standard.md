@@ -158,9 +158,36 @@ One way to ensure data quality is to add constraints to the data fields in your 
 
 In this example, the formula ```. <= 150``` is saying that the value entered **(.)** must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to swipe to the next question or submit the form.
 
+Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/).
+
 #### Constraint Message
 
-If you want to include a message with your constraint, Generally, a constraint pops up a default message telling the enumerator that he/she cannot go forward, but a constraint_message column can override this message on a question-by-question basis.
+If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.
+
+#### Relevant
+
+One great feature of ODK Collect is the ability to skip a question based on the response to a previous question. Below is an example of how to do this using XLSform:
+
+
+| survey        |               |       |      |       |
+| ------------- | ------------- | ----- | ---- |   ---- |
+|               | type                  | name         |  label              |  relevant |
+|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
+|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|selected(${likes_pizza}, ‘yes’)|
+
+(choices worksheet omitted; see above). This will ask the respondent, “Do you like pizza?” and ask which topping the respondent likes if he/she like pizza (and skips the question otherwise). The entry in the ‘relevant’ column is a true or false XPath expression. When the expression evaluates to true the question will be asked, otherwise it will be skipped. XLSforms have some convenient syntax so you don’t have to put the XPath in for the question likes_pizza, instead you can put ${likes_pizza} and the XLSform converter will replace ${likes_pizza} with the absolute XPath to the question named likes_pizza. Here are a couple additional examples of relevance formulas: *${number_x}=${number_y} selected(${select_question}, 'option')* For more on proper XPath expressions, see this page: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
+
+If you want to skip a group of questions put the relevant attribute on a group like follows:
+
+|               |       |      |     |
+| ------------- | ----- | ---- |---- |
+| type               | name          |  label    |   relevant    |
+| integer            | age       | How old are you? |
+| begin group        | child     | Child |  ${age} <= 5    |
+| integer            | muac      | Record this child’s mid-upper arm circumference. |  |
+|  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
+|  end group |      |   |  |
+
 
 ### Cascading selects
 In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
@@ -215,28 +242,7 @@ By setting a group's appearance column to field-list you can display multiple qu
 |               | end group     |            |
 
 
-### Skipping Questions
-One great feature of ODK Collect is the ability to skip a question based on the response to a previous question. Below is an example of how to do this using XLSform:
 
-
-| survey        |               |       |      |       |
-| ------------- | ------------- | ----- | ---- |   ---- |
-|               | type                  | name         |  label              |  relevant |
-|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
-|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|selected(${likes_pizza}, ‘yes’)|
-
-(choices worksheet omitted; see above). This will ask the respondent, “Do you like pizza?” and ask which topping the respondent likes if he/she like pizza (and skips the question otherwise). The entry in the ‘relevant’ column is a true or false XPath expression. When the expression evaluates to true the question will be asked, otherwise it will be skipped. XLSforms have some convenient syntax so you don’t have to put the XPath in for the question likes_pizza, instead you can put ${likes_pizza} and the XLSform converter will replace ${likes_pizza} with the absolute XPath to the question named likes_pizza. Here are a couple additional examples of relevance formulas: *${number_x}=${number_y} selected(${select_question}, 'option')* For more on proper XPath expressions, see this page: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
-
-If you want to skip a group of questions put the relevant attribute on a group like follows:
-
-|               |       |      |     |
-| ------------- | ----- | ---- |---- |
-| type               | name          |  label    |   relevant    |
-| integer            | age       | How old are you? |
-| begin group        | child     | Child |  ${age} <= 5    |
-| integer            | muac      | Record this child’s mid-upper arm circumference. |  |
-|  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
-|  end group |      |   |  |
 
 ### Multiple Language Support
 It’s easy to add multiple languages to a survey. You simply have to name your label::language1 label::language2 etc., and your surveys will be available on multiple languages. To select a different language on the phone, press the Menu key, and the “Change Language” option. For the form below, “English” and “Español” will show up as the possible options.
@@ -290,7 +296,3 @@ Your first stop for more resources should be [formhub university](http://formhub
 * Form design tutorial: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
 * Sample forms: [http://code.google.com/p/opendatakit/source/browse/?repo=forms](http://code.google.com/p/opendatakit/source/browse/?repo=forms)
 * XForms as supported by JavaRosa: [https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat)
-
-
-
-<h3 id="relevant">Relevant</h3>
