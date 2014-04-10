@@ -144,7 +144,7 @@ Notice that there are no labels associated with the metadata question types.  Th
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
 
 | survey        |               |       |      |    |
-| ------------- | ------------- | ----- | ---- | -- |
+| ------------- | ------------- | ----- | ---- | ----- |
 |               | type     | name  |  label | hint |
 |               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
 || geopoint | geopoint | Collect the GPS coordinates of this store.| |
@@ -190,6 +190,8 @@ This is a good way to group related questions. To create a repeating group of qu
 |               | end repeat    |     |       |
 
 This is a list of household members, with the name and age of each household member. The phone will ask the name and age of the first household member, and then ask if the enumerator wants to add another ‘Household Member’ group. If the enumerator responds with a ‘yes’ then the name and age of the second household member will be asked, and so on. All data within repeats will be exported in a different worksheet inside excel files.
+
+Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
 
 
 ### Nesting Groups of Questions
