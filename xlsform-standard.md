@@ -1,41 +1,41 @@
 ## What is XLSForm?
 
-XLSForm is a tool used to simplify the creation of web forms. With XLSForm, you can author webforms in Excel, and XLSForm will convert it to an XForm that can be used with a number of online mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel. Please refer to this [sample Excel file](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdDY4akxMVmlrQjNCRy1MNXFBbzdKSkE&usp=sharing) as you read through the tutorial.
-
+XLSForm is a tool used to simplify the creation of web forms. With XLSForm, you can author webforms in Excel, and XLSForm will convert it to an XForm that can be used with a number of online mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.
 
 ### Basic format
-Each Excel workbook usually has two worksheets: 'survey' and 'choices'. Later on, you'll learn about other worksheets that can add additional specifications to your webform, but the 'survey' and 'choices' worksheets are usually mandatory.
+Each Excel workbook usually has two worksheets: **survey** and **choices**. Later on, you'll learn about other worksheets that can add additional specifications to your webform, but the survey and choices worksheets are usually mandatory.
 
-#### The 'survey' worksheet
+#### The survey worksheet
 This worksheet gives your webform its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features you'll read about later that you can add to the form to improve the user experience.
-#### The 'choices' worksheet
+
+#### The choices worksheet
 This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same list name are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
 ![](https://farm4.staticflickr.com/3767/13734054823_d2b3beb03d.jpg)
 
 Both of these worksheets have a set of mandatory columns that must be present for the form to work. Additionally, each worksheet has a set of optional columns that allow further control over the behavior of each entry in the form, but are not essential to have. Every entry must have values for each of the mandatory columns, but the optional columns may be left blank.
 
-* The 'survey' worksheet has 3 mandatory columns: 'type', 'name', and 'label'.
-  * The 'type' column specifies the type of entry you are adding.
-  * The 'name' column specifies the unique variable name for that entry. No two entries can have the same name.
-  * The 'label' column contains the actual text you see in the webform.  
+* The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
+  * The **type** column specifies the type of entry you are adding.
+  * The **name** column specifies the unique variable name for that entry. No two entries can have the same name.
+  * The **label** column contains the actual text you see in the webform.  
 
 ![](https://farm4.staticflickr.com/3686/13734779364_63e8389c7a.jpg)
 
-* The 'choices' worksheet has 3 mandatory columns as well: 'list name', 'name', and 'label'.
-  * The 'list name' column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
-  * The 'name' column specifies the unique variable name for that answer choice.
-  * The 'label' column shows the answer choice exactly as you want it to appear on the webform.
+* The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
+  * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
+  * The **name** column specifies the unique variable name for that answer choice.
+  * The **label** column shows the answer choice exactly as you want it to appear on the webform.
 
 ![](https://farm8.staticflickr.com/7446/13734959034_45125ea1d3.jpg)
 
 The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored so that dividing lines, shading, and other font formatting can be used to make the form more readable.
 
-One thing to keep in mind when authoring webforms in Excel is that the syntax you use must be precise. For example, if you write 'Choices' or 'choice' instead of 'choices', the form won't work.
+One thing to keep in mind when authoring webforms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
 
 
 ### Question types
-XLSForm supports a number of simple question types. These are just some of the options you can enter in the 'type' column in the first worksheet:
+XLSForm supports a number of simple question types. These are just some of the options you can enter in the **type** column in the first worksheet:
 
 | Question type | Answer input    |
 | ------------- | ------------- |
@@ -62,10 +62,11 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | text          | store_name  | What is the name of this store?|
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
+Check out the [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) for a look at each question type in action!
 
 #### Multiple choice questions
 
-XLSForm supports both ‘select one’ (select only one answer) and ‘select multiple’ (select multiple answers) questions. Writing a multiple choice question requires adding a ‘choices’ worksheet to your Excel workbook. Here is an example of a ‘select one’ question:
+XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. Writing a multiple choice question requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -77,7 +78,7 @@ XLSForm supports both ‘select one’ (select only one answer) and ‘select mu
 |               |   yes_no      |  no      |  No       |
 
 
-Note that the 'yes_no' in the 'survey' worksheet must match the 'yes_no' in the 'list name' column in the 'choices' worksheet. This ensures that the form displays the correct list of answer choices for a particular question.  
+Note that the **yes_no** in the **survey** worksheet must match the **yes_no** in the **list name** column in the **choices** worksheet. This ensures that the form displays the correct list of answer choices for a particular question.  
 
 We can also add multiple choice questions that allow multiple answers to be selected, like so:
 
@@ -93,7 +94,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 
 
 #### Specify other
-For multiple choice questions, surveys often include an option of marking 'other' when their answer choice is not listed. Then they are usually asked to specify the 'other' option. This is possible through XLSForm by including 'or_other' after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below.
+For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below.
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -105,13 +106,9 @@ For multiple choice questions, surveys often include an option of marking 'other
 |               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
 |               |   pizza_toppings     |  sausage       |  Sausage        |
 
-On your mobile phone, you will see a new text box question for 'other' appear after the pizza topping question. See below.
-
-[add picture of this on mobile phone]
-
 **Caveat**  
 
-When you export data using this 'or_other' option, in the 'pizza_toppings' column, you will see a value ‘other’. A separate column will have the answer for the questions in which the user selected ‘other'. This makes data analysis more cumbersome, so we do not recommend the 'or_other' construct for large scale data collection efforts. See the 'Relevant' section below for an alternative method more appropriate for large scale projects.
+When you export data using this **or_other** option, in the **pizza_toppings** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Skip Logic** section below for an alternative method more appropriate for large scale projects.
 
 #### Metadata
 XLSForm has a number of data type options available for meta data collection:
@@ -139,16 +136,31 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | sim_serial    | sim_serial   |         |
 |               | phone_number  | phone_number   |   |        |
 
-Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone. 
+Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 
 ### Hints
-Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a 'hint' column next to the 'label' column and add your hint messages  next to the question label. See below for an example.
+Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
 
 | survey        |               |       |      |    |
 | ------------- | ------------- | ----- | ---- | -- |
 |               | type     | name  |  label | hint |
 |               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
-|           | geopoint | geopoint |  Collect the GPS coordinates of this store.|  h |
+|| geopoint | geopoint | Collect the GPS coordinates of this store.| |
+
+### Constraints
+
+One way to ensure data quality is to add constraints to the data fields in your forms.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the **(.)** refers to the variable in the formula.
+
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label           |  constraint  |
+|               | integer       | age   | How old are you? |  . <= 150  |
+
+In this example, the formula ```. <= 150``` is saying that the value entered **(.)** must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to swipe to the next question or submit the form.
+
+#### Constraint Message
+
+If you want to include a message with your constraint, Generally, a constraint pops up a default message telling the enumerator that he/she cannot go forward, but a constraint_message column can override this message on a question-by-question basis.
 
 ### Cascading selects
 In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
@@ -225,15 +237,6 @@ If you want to skip a group of questions put the relevant attribute on a group l
 | integer            | muac      | Record this child’s mid-upper arm circumference. |  |
 |  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
 |  end group |      |   |  |
-
-### Constraining Responses
-
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label           |  constraint  |
-|               | integer       | age   | How old are you? |  . <= 150  |
-
-Here we’ve put a constraint on age so that no one can be older than 150 years. If the enumerator puts 151 ODK Collect will not allow the enumerator to swipe to the next question. The column ‘constraint’ takes an XPath expression. A question is accepted if the ‘constraint’ column evaluates to true. Generally, a constraint pops up a default message telling the enumerator that he/she cannot go forward, but a constraint_message column can override this message on a question-by-question basis.
 
 ### Multiple Language Support
 It’s easy to add multiple languages to a survey. You simply have to name your label::language1 label::language2 etc., and your surveys will be available on multiple languages. To select a different language on the phone, press the Menu key, and the “Change Language” option. For the form below, “English” and “Español” will show up as the possible options.
