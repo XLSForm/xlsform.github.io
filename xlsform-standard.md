@@ -106,6 +106,8 @@ For multiple choice questions, surveys often include an option of marking **othe
 |               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
 |               |   pizza_toppings     |  sausage       |  Sausage        |
 
+Click on the link to look at the complete [pizza_questionnaire](https://ona.io/xlsforms/forms/pizza_questionnaire).
+
 **Caveat**  
 
 When you export data using this **or_other** option, in the **pizza_toppings** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Skip Logic** section below for an alternative method more appropriate for large scale projects.
