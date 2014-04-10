@@ -113,20 +113,20 @@ On your mobile phone, you will see a new text box question for 'other' appear af
 
 When you export data using this 'or_other' option, in the 'pizza_toppings' column, you will see a value ‘other’. A separate column will have the answer for the questions in which the user selected ‘other'. This makes data analysis more cumbersome, so we do not recommend the 'or_other' construct for large scale data collection efforts. See the 'Relevant' section below for an alternative method more appropriate for large scale projects.
 
-### Metadata
+#### Metadata
 XLSForm has a number of data type options available for meta data collection:
 
-|Meta data type |
-| start         | Start date and time of the survey. |
+| Metadata type | Meaning       |
 | ------------- | ------------- |
-| end           | End date and time of the survey.      |
+| start         | Start date and time of the survey. |
+| end           | End date and time of the survey.  |
 | today         | Day of the survey.     |
 | deviceid      | IMEI (International Mobile Equipment Identity)     |
 | subscriberid  | IMSI (International Mobile Subscriber Identity)     |
 | sim_serial    | SIM serial number.     |
 | phone_number  | Phone number (if available).      |
 
-If I wanted my survey to collect all of this metadata I would put the following at the top of the survey:
+If I wanted my survey to collect all of this metadata, I would put the following at the beginning of the survey:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -136,23 +136,24 @@ If I wanted my survey to collect all of this metadata I would put the following 
 |               | today         | today   |        |
 |               | deviceid      | deviceid   |         |
 |               | subscriberid  | subscriberid   |         |
-|               | sim_serial    | simserial   |         |
-|               | phone_number  | phonenumber   |   |        |
+|               | sim_serial    | sim_serial   |         |
+|               | phone_number  | phone_number   |   |        |
 
-Notice there are no labels associated with the metadata, that’s because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but will be included in the xml file ODK Collect writes to store and transmit the survey data. To see this fields in action, fill out a survey on your phone, connect your phone to your computer and use the sd card as a USB flash drive, navigate to /sdcard/odk/instances and checkout the xml files in the folders there. This will give you an idea of what the data looks like.
+Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone.  
+
+#### GPS
+
+### Hints
+Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a 'hint' column next to the 'label' column and add your hint messages  next to the question label. See below for an example.
+
+| survey        |               |       |      |    |
+| ------------- | ------------- | ----- | ---- | -- |
+|               | type     | name  |  label | hint |
+|               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
+|           | geopoint | geopoint |  Collect the GPS coordinates of this store.|  h |
 
 ### Cascading selects
 In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
-
-
-### Hints
-It’s easy to add hints to questions.  Simply type in text under the hint column for a question.
-
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label | hint |
-|               | text          | name  | What is the name of this store?| Look on the signboard if the store has a signboard.
-|               | geopoint      | geopoint |  Collect the GPS coordinates of this store.|
 
 ### Grouping Questions
 To create a group of questions try the following:
@@ -246,6 +247,15 @@ It’s easy to add multiple languages to a survey. You simply have to name your 
 
 Adding a hint in a different language in a hint, or adding specific media files for a given language is also possible; you simply use the ::language construct. See the [xlsform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
 
+
+### Media
+You can also include questions in your form that display images or that play videos or audio files. In order to do this, you will need to put the media files that you want to include in your form in the /odk/forms/formname-media folder on your phone, and then reference the file name in the media column in your form. See below for an example of how to do this.
+
+| survey        |               |       |      |      |      |
+| ------------- | ------------- | ----- | ---- | ---- | ---- |
+|               | type          | name  |  label  | media::image  |  media::video  |
+|               | note      | media_example  | Media example |    example.jpg | example.mp4 |
+
 ### Formulas
 Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
@@ -260,13 +270,6 @@ Your survey client can perform calculations using the values of preceding questi
 |               | calculate     | tip  | (Label is not required because calculates do not display any content.) |  ${amount} * 0.18 |
 |               | note      | display  | 18% tip for your meal is: ${tip} |   |
 
-### Media
-You can also make questions that show the user an image, a video or an audio file as a way of asking a question. In order to do this, you will need to put the media in /odk/forms/formname-media folder on your phone, and reference their filenames from xlsform in a media column.
-
-| survey        |               |       |      |      |      |
-| ------------- | ------------- | ----- | ---- | ---- | ---- |
-|               | type          | name  |  label  | media::image  |  media::video  |
-|               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
 
 ### Settings Worksheet
