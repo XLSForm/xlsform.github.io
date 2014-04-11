@@ -174,7 +174,7 @@ In this example, if the user enters an age less than 18, then the error message 
 
 ### Relevant
 
-One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column, using our pizza topping example from before:
+One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column for a **select_one** question, using our pizza topping example from before:
 
 
 | survey        |               |       |           |       |
@@ -183,32 +183,39 @@ One great feature of XLSForm is the ability to skip a question or make an additi
 |               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
 |               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
 
-In this example, the respondent is asked, “Do you like pizza?” and ask which topping the respondent likes if he/she like pizza (and skips the question otherwise). The entry in the ‘relevant’ column is a true or false XPath expression. When the expression evaluates to true the question will be asked, otherwise it will be skipped. XLSforms have some convenient syntax so you don’t have to put the XPath in for the question likes_pizza, instead you can put ${likes_pizza} and the XLSform converter will replace ${likes_pizza} with the absolute XPath to the question named likes_pizza. Here are a couple additional examples of relevance formulas: *${number_x}=${number_y} selected(${select_question}, 'option')* For more on proper XPath expressions, see this page: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
+In this example, the respondent is asked, “Do you like pizza?” If the answer is **yes**, then the pizza topping question appears below. Note the **${ }** around the variable **likes_pizza**.  These are required in order for the form to reference the variable.  
 
-If you want to skip a group of questions put the relevant attribute on a group like follows:
+In the next example, below, we use relevant syntax for a **select_multiple** question, which is slightly different from the **select_one** question example above.
 
-|               |       |      |     |
-| ------------- | ----- | ---- |---- |
-| type               | name          |  label    |   relevant    |
-| integer            | age       | How old are you? |
-| begin group        | child     | Child |  ${age} <= 5    |
-| integer            | muac      | Record this child’s mid-upper arm circumference. |  |
-|  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
-|  end group |      |   |  |
+| survey        |               |       |           |       |
+| ------------- | ------------- | ----- | --------- |   ----- |
+|               | type                  | name         |  label              |  relevant |
+|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
+|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
+|      | text  | favorite_cheese | What is your favorite type of cheese? | selected(${favorite_topping}, 'cheese') |
+|**choices**    |                      |                |                 |  |
+|               |  list name           | name           |  label          |    |
+|               |   pizza_toppings     |  cheese        |  Cheese         |    |
+|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |    |
+|               |   pizza_toppings     |  sausage       |  Sausage        |    |
+
+Since the pizza topping question allows multiple responses, we have to use the **selected(${favorite_topping}, 'cheese')** expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
 
 ### Formulas
-Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
+Formulas are used in the constraint, relevant and calculate columns. You've already seen some examples in the **Relevant** and **Constraint** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.) The full list of these can be found [here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
-### Calculations
-Your survey client can perform calculations using the values of preceding questions. In most cases this will require use of a calculate question. For example, in the survey below, we have calculated the tip and shown it to the surveyor. Our survey sheet will look like this:
+### Calculation
+Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
 
 | survey        |               |       |      |      |
 | ------------- | ------------- | ----- | ---- | ---- |
 |               | type          | name  |  label           |  calculation  |
 |               | decimal       | amount  | What was the price of the meal? |   |
-|               | calculate     | tip  | (Label is not required because calculates do not display any content.) |  ${amount} * 0.18 |
+|               | calculate     | tip  |  |  ${amount} * 0.18 |
 |               | note      | display  | 18% tip for your meal is: ${tip} |   |
+
+
 
 ### Grouping Questions
 To create a group of questions try the following:
@@ -246,6 +253,17 @@ Groups of questions can be nested:
 |               | select_one yes_no     | have_hiv_medication |  Does this hospital have HIV medication? |
 |               | end group    |     |       |
 |               | end group    |     |       |
+
+If you want to skip a group of questions put the relevant attribute on a group like follows:
+
+|               |       |      |     |
+| ------------- | ----- | ---- |---- |
+| type               | name          |  label    |   relevant    |
+| integer            | age       | How old are you? |
+| begin group        | child     | Child |  ${age} <= 5    |
+| integer            | muac      | Record this child’s mid-upper arm circumference. |  |
+|  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
+|  end group |      |   |  |
 
 ### Repeats
 
