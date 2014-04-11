@@ -5,10 +5,10 @@ XLSForm is a tool used to simplify the creation of web forms. With XLSForm, you 
 ### Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. Later on, you'll learn about other worksheets that can add additional specifications to your webform, but the survey and choices worksheets are usually mandatory.
 
-#### The survey worksheet
+##### The survey worksheet
 This worksheet gives your webform its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features you'll read about later that you can add to the form to improve the user experience.
 
-#### The choices worksheet
+##### The choices worksheet
 This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same list name are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
 ![](https://farm4.staticflickr.com/3767/13734054823_d2b3beb03d.jpg)
@@ -64,7 +64,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 
 Check out the [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) for a look at each question type in action!
 
-#### Multiple choice questions
+##### Multiple choice questions
 
 XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. Writing a multiple choice question requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
 
@@ -93,7 +93,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 |               |   pizza_toppings     |  sausage       |  Sausage        |
 
 
-#### Specify other
+##### Specify other
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below.
 
 | survey        |               |       |      |
@@ -111,7 +111,7 @@ Click on the link to look at the complete [pizza_questionnaire](https://ona.io/x
 **Caveat**  
 When you export data using this **or_other** option, in the **pizza_toppings** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Skip Logic** section below for an alternative method more appropriate for large scale projects.
 
-#### Metadata
+##### Metadata
 XLSForm has a number of data type options available for meta data collection:
 
 | Metadata type | Meaning       |
@@ -161,7 +161,7 @@ In this example, the formula ```. <= 150``` is saying that the value entered **(
 
 Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/).
 
-#### Constraint Message
+##### Constraint Message
 
 If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
 
@@ -172,7 +172,7 @@ If you want to include a message with your constraint, telling the user why the 
 
 In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears.
 
-#### Relevant
+### Relevant
 
 One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column, using our pizza topping example from before:
 
@@ -234,7 +234,7 @@ This is a good way to group related questions. To create a repeating group of qu
 
 This is a list of household members, with the name and age of each household member. The phone will ask the name and age of the first household member, and then ask if the enumerator wants to add another ‘Household Member’ group. If the enumerator responds with a ‘yes’ then the name and age of the second household member will be asked, and so on. All data within repeats will be exported in a different worksheet inside excel files.
 
-#### Nesting Groups Within Groups
+##### Nesting Groups Within Groups
 Groups of questions can be nested:
 
 | survey        |               |       |      |
@@ -247,7 +247,7 @@ Groups of questions can be nested:
 |               | end group    |     |       |
 |               | end group    |     |       |
 
-#### Repeats
+### Repeats
 
 Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
 
@@ -270,13 +270,10 @@ You can also include questions in your form that display images or that play vid
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
-<<<<<<< HEAD
-=======
 Checkout the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which clearly illustrates the use of media files.
 
 ### Formulas
 Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
->>>>>>> d427f82cc7f6f79a02b67a2be4c05fb49b36ee7b
 
 ### Cascading selects
 In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
@@ -285,7 +282,7 @@ In Collect 1.2 and above it is possible to create cascading selects (select type
 
 ### Appearance
 
-#### Grouping questions on single mobile screen
+##### Grouping questions on single mobile screen
 By setting a group's appearance column to field-list you can display multiple questions on a single screen of your survey.
 
 | survey        |               |       |      |        |
@@ -306,11 +303,11 @@ You can include a settings worksheet in your xls file similar to the following:
 
 They do the following: form_title: The name of the form presented to users. form_id: The name used to identify the form submission_url: The url of a server that submitted forms are to be sent to. public_key: If form instances are to be encrypted, a public key needs to be included in the form. default_language: In localized forms, this sets which translation should be used as the default. None of these settings are required.
 
-#### Encrypted forms
+##### Encrypted forms
 
-#### Multiple webpage forms
+##### Multiple webpage forms
 
-#### Grid Theme forms
+##### Grid Theme forms
 
 ### Styling notes
 
