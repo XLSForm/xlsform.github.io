@@ -266,6 +266,8 @@ You can also include questions in your form that display images or that play vid
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
+Checkout the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which clearly illustrates the use of media files.
+
 ### Formulas
 Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
