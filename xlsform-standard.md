@@ -163,20 +163,27 @@ Other useful expressions to use in the **constraint** column can be found [here]
 
 #### Constraint Message
 
-If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.
+If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
+
+| survey |          |       |      |       |  |
+| -------| ---------| ----- | ---- | ------|--|
+|        | type     | name  | label| constraint| constraint_message|
+|        | integer  | respondent_age | Respondent's age  | . >=18  | Respondent must be 18 or older to complete the survey. |
+
+In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears.
 
 #### Relevant
 
-One great feature of ODK Collect is the ability to skip a question based on the response to a previous question. Below is an example of how to do this using XLSform:
+One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column, using our pizza topping example from before:
 
 
-| survey        |               |       |      |       |
-| ------------- | ------------- | ----- | ---- |   ---- |
+| survey        |               |       |           |       |
+| ------------- | ------------- | ----- | --------- |   ----- |
 |               | type                  | name         |  label              |  relevant |
 |               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
-|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|selected(${likes_pizza}, ‘yes’)|
+|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
 
-(choices worksheet omitted; see above). This will ask the respondent, “Do you like pizza?” and ask which topping the respondent likes if he/she like pizza (and skips the question otherwise). The entry in the ‘relevant’ column is a true or false XPath expression. When the expression evaluates to true the question will be asked, otherwise it will be skipped. XLSforms have some convenient syntax so you don’t have to put the XPath in for the question likes_pizza, instead you can put ${likes_pizza} and the XLSform converter will replace ${likes_pizza} with the absolute XPath to the question named likes_pizza. Here are a couple additional examples of relevance formulas: *${number_x}=${number_y} selected(${select_question}, 'option')* For more on proper XPath expressions, see this page: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
+In this example, the respondent is asked, “Do you like pizza?” and ask which topping the respondent likes if he/she like pizza (and skips the question otherwise). The entry in the ‘relevant’ column is a true or false XPath expression. When the expression evaluates to true the question will be asked, otherwise it will be skipped. XLSforms have some convenient syntax so you don’t have to put the XPath in for the question likes_pizza, instead you can put ${likes_pizza} and the XLSform converter will replace ${likes_pizza} with the absolute XPath to the question named likes_pizza. Here are a couple additional examples of relevance formulas: *${number_x}=${number_y} selected(${select_question}, 'option')* For more on proper XPath expressions, see this page: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
 
 If you want to skip a group of questions put the relevant attribute on a group like follows:
 
@@ -189,9 +196,19 @@ If you want to skip a group of questions put the relevant attribute on a group l
 |  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
 |  end group |      |   |  |
 
+### Formulas
+Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
-### Cascading selects
-In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
+### Calculations
+Your survey client can perform calculations using the values of preceding questions. In most cases this will require use of a calculate question. For example, in the survey below, we have calculated the tip and shown it to the surveyor. Our survey sheet will look like this:
+
+
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label           |  calculation  |
+|               | decimal       | amount  | What was the price of the meal? |   |
+|               | calculate     | tip  | (Label is not required because calculates do not display any content.) |  ${amount} * 0.18 |
+|               | note      | display  | 18% tip for your meal is: ${tip} |   |
 
 ### Grouping Questions
 To create a group of questions try the following:
@@ -217,10 +234,7 @@ This is a good way to group related questions. To create a repeating group of qu
 
 This is a list of household members, with the name and age of each household member. The phone will ask the name and age of the first household member, and then ask if the enumerator wants to add another ‘Household Member’ group. If the enumerator responds with a ‘yes’ then the name and age of the second household member will be asked, and so on. All data within repeats will be exported in a different worksheet inside excel files.
 
-Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
-
-
-### Nesting Groups of Questions
+#### Nesting Groups Within Groups
 Groups of questions can be nested:
 
 | survey        |               |       |      |
@@ -233,19 +247,9 @@ Groups of questions can be nested:
 |               | end group    |     |       |
 |               | end group    |     |       |
 
-### Grouping Questions on a Single Screen
-By setting a group's appearance column to field-list you can display multiple questions on a single screen of your survey.
+#### Repeats
 
-| survey        |               |       |      |        |
-| ------------- | ------------- | ----- | ---- | ------- |
-|               | type          | name       |  label      | appearance    |
-|               | begin group   | respondent |  Respondent | field-list |
-|               | text          | name       | Enter the respondent’s name |
-|               | text          | position   |  Enter the respondent’s position within the school.|
-|               | end group     |            |
-
-
-
+Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
 
 ### Multiple Language Support
 It’s easy to add multiple languages to a survey. You simply have to name your label::language1 label::language2 etc., and your surveys will be available on multiple languages. To select a different language on the phone, press the Menu key, and the “Change Language” option. For the form below, “English” and “Español” will show up as the possible options.
@@ -266,21 +270,24 @@ You can also include questions in your form that display images or that play vid
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
-### Formulas
-Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
-### Calculations
-Your survey client can perform calculations using the values of preceding questions. In most cases this will require use of a calculate question. For example, in the survey below, we have calculated the tip and shown it to the surveyor. Our survey sheet will look like this:
+### Cascading selects
+In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
 
+### Default
 
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label           |  calculation  |
-|               | decimal       | amount  | What was the price of the meal? |   |
-|               | calculate     | tip  | (Label is not required because calculates do not display any content.) |  ${amount} * 0.18 |
-|               | note      | display  | 18% tip for your meal is: ${tip} |   |
+### Appearance
 
+#### Grouping questions on single mobile screen
+By setting a group's appearance column to field-list you can display multiple questions on a single screen of your survey.
 
+| survey        |               |       |      |        |
+| ------------- | ------------- | ----- | ---- | ------- |
+|               | type          | name       |  label      | appearance    |
+|               | begin group   | respondent |  Respondent | field-list |
+|               | text          | name       | Enter the respondent’s name |
+|               | text          | position   |  Enter the respondent’s position within the school.|
+|               | end group     |            |
 
 ### Settings Worksheet
 You can include a settings worksheet in your xls file similar to the following:
@@ -291,6 +298,16 @@ You can include a settings worksheet in your xls file similar to the following:
 |               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  2  |
 
 They do the following: form_title: The name of the form presented to users. form_id: The name used to identify the form submission_url: The url of a server that submitted forms are to be sent to. public_key: If form instances are to be encrypted, a public key needs to be included in the form. default_language: In localized forms, this sets which translation should be used as the default. None of these settings are required.
+
+#### Encrypted forms
+
+#### Multiple webpage forms
+
+#### Grid Theme forms
+
+### Styling notes
+
+### SMS form data submission
 
 ### More Resources
 Your first stop for more resources should be [formhub university](http://formhub.org/formhub_u/), an account on formhub with many forms that you can download and inspect to learn about features. The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSforms. If you are still confused, you can just email opendatakit@googlegroups.com, or search the list for previous threads which may have answered your question. If you want to dig in deeper to understand xforms and go beyond xlsforms, here are some resources to understand them:
