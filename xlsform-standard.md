@@ -166,7 +166,7 @@ Other useful expressions to use in the **constraint** column can be found [here]
 If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
 
 | survey |          |       |      |       |  |
-| -------| ---------| ----- | ---- | ------|--|
+| -------| ---------| ----- | ---- | ------|-----|
 |        | type     | name  | label| constraint| constraint_message|
 |        | integer  | respondent_age | Respondent's age  | . >=18  | Respondent must be 18 or older to complete the survey. |
 
