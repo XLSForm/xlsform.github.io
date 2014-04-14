@@ -217,6 +217,17 @@ Your survey can perform calculations using the values of preceding questions. In
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
 
+### Required
+
+It's simple to mark certain questions as required in your form.  Marking them as required means the user will not be able to swipe to the next question (on a mobile client) or submit the form (on a web client) without entering an answer for that question.
+
+To make questions required, add a **required** column to your survey page. Under that column, mark questions as required by writing **yes**.  See the example below:
+
+| survey        |               |       |      |      |           |
+| ------------- | ------------- | ----- | ---- | ---- | -------------- |
+|               | type          | name  |  label           |  constraint  | required |
+|               | integer       | age   | How old are you? |  . <= 150  | yes |
+
 ### Grouping Questions
 
 To create a group of questions in your form try the following:
@@ -313,22 +324,52 @@ Upload the media files by tapping the ```Choose Files``` button, then click on t
 Check out the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which illustrates the use of media files.
 
 ### Cascading selects
-select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
+A lot of forms usually start out by asking the location of the form submission, with each location selection narrowing the subsequent location choices (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each one, you can use **cascade select** type questions. For example, you could automatically display cities in a **select_one** question based on the country selected in a previous question, without having to include any relevant logic. In order to use cascading selects, you will need to create a **choice_filter** column in your survey sheet and add the location attribute columns in your choices sheet. Check out an [example XLSForm here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
 ### Default
 
+Making a default field means that a question is already pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
+
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label  | default  |
+|               | date      | survey_date  |  Survey date? |    ${today} |
+
+In the above example, the **survey_date** field is always pre-populated with today's date. Make sure you include the **today** metadata field in the form when you reference it!
+
+| survey        |               |       |      |      |
+| ------------- | ------------- | ----- | ---- | ---- |
+|               | type          | name  |  label  | default  |
+|               | decimal      | weight  |  Respondent's weight? (in kgs) |  51.3  |
+
+In this example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tappng in the answer field and inputting another answer.
+
 ### Appearance
 
-##### Grouping questions on single mobile screen
-By setting a group's appearance column to field-list you can display multiple questions on a single screen of your survey.
+The **appearance** column allows you to change the appearance of questions in your form. The following table lists the possible appearance attributes and how the question appears in the form.
 
-| survey        |               |       |      |        |
-| ------------- | ------------- | ----- | ---- | ------- |
-|               | type          | name       |  label      | appearance    |
-|               | begin group   | respondent |  Respondent | field-list |
-|               | text          | name       | Enter the respondent’s name |
-|               | text          | position   |  Enter the respondent’s position within the school.|
-|               | end group     |            |
+|  Appearance attribute   |  Description           |  
+| ----------------------- | ----------------------- |
+|  multiline             |  Makes a text box multiple lines long.         |
+|  field-list            | Create a group with appearance set to field-list to make the entire group of questions appear on one screen.          |
+|  table-list            | Similar to field-list, table-list makes the questions on the screen more compact in a table-like format.          |
+|  minimal             | Makes the answer choices appear in a drop-down menu.          |
+|  quick             | Relevant for mobile clients only, this attribute auto-advances to the next question after an answer is selected (no swiping required).          |  
+| month-year | For date fields, select a month and year only for the date. |
+| year       | For date fields, select only a year for the date. |
+| horizontal | For web clients only, this makes the answer choices appear columns of horizontal lists. |
+| horizontal-compact | For web clients only, this makes the answer choices appear in a single horizontal list. |
+| Likert     | For select_one questions, makes the answer choices appear in a Likert-style row. |
+| compact    |      |
+| quickcompact |       |
+| maps       |      |
+| label      |      |
+| list-nolabel |       |
+| big        |      |
+| signature  |      |
+
+A tutorial XLSForm with all of the appearance attributes in this table is available [here]().
+
 
 ### Settings Worksheet
 You can include a settings worksheet in your xls file similar to the following:
