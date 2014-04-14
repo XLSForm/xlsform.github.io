@@ -338,7 +338,13 @@ You can include a settings worksheet in your xls file similar to the following:
 |               | form_title    | form_id  |  public_key  | submission_url |default_language | version  |
 |               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  2  |
 
-They do the following: form_title: The name of the form presented to users. form_id: The name used to identify the form submission_url: The url of a server that submitted forms are to be sent to. public_key: If form instances are to be encrypted, a public key needs to be included in the form. default_language: In localized forms, this sets which translation should be used as the default. None of these settings are required.
+They do the following:
+* **form_title**: The name of the form presented to users. 
+* **form_id**: The name used to identify the form submission.
+* **url**: The url of a server that submitted forms are to be sent to. 
+* **public_key**: If form instances are to be encrypted, a public key needs to be included in the form. 
+* **default_language**: In localized forms, this sets which translation should be used as the default. 
+Note: None of these settings are required.
 
 ##### Encrypted forms
 
