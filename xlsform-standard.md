@@ -215,11 +215,11 @@ Your survey can perform calculations using the values of preceding questions. In
 |               | calculate     | tip  |  |  ${amount} * 0.18 |
 |               | note      | display  | 18% tip for your meal is: ${tip} |   |
 
-
+Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
 
 ### Grouping Questions
-To create a group of questions try the following:
 
+To create a group of questions in your form try the following:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -229,20 +229,11 @@ To create a group of questions try the following:
 |               | text     | position |  Enter the respondent’s position within the school.|
 |               | end group    |     |       |
 
-This is a good way to group related questions. To create a repeating group of questions use the following construct:
-
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | begin repeat         | member |  Household Member |
-|               | text          | name  | Name of household member. |
-|               | integer     | age |  Age of household member. |
-|               | end repeat    |     |       |
-
-This is a list of household members, with the name and age of each household member. The phone will ask the name and age of the first household member, and then ask if the enumerator wants to add another ‘Household Member’ group. If the enumerator responds with a ‘yes’ then the name and age of the second household member will be asked, and so on. All data within repeats will be exported in a different worksheet inside excel files.
+This is a good way to group related questions for data export and analysis. Notice how **end group** doesn't require a name or label, because it is hidden in the form.
 
 ##### Nesting Groups Within Groups
-Groups of questions can be nested:
+
+Groups of questions can be nested within one another:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -254,47 +245,75 @@ Groups of questions can be nested:
 |               | end group    |     |       |
 |               | end group    |     |       |
 
-If you want to skip a group of questions put the relevant attribute on a group like follows:
+You always have to end the most recent group that was created first. For instance, the first **end group** you see closes the HIV medication group, and the second one closes the beginning hospital group. When working with groups and you keep getting error messages when trying to upload your form, double-check that for each **begin group** you have one **end group**.
+
+##### Skipping
+
+One neat feature of XLSForm is the ability to skip a group of questions by combining grouping with relevant syntax, as described above. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
 
 |               |       |      |     |
 | ------------- | ----- | ---- |---- |
 | type               | name          |  label    |   relevant    |
-| integer            | age       | How old are you? |
+| integer            | age       | How old are you? |  |
 | begin group        | child     | Child |  ${age} <= 5    |
 | integer            | muac      | Record this child’s mid-upper arm circumference. |  |
 |  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
 |  end group |      |   |  |
 
+In this example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
+
 ### Repeats
+
+Sometimes repeating a group of questions can come in handy, like when you have to record multiple instances of an event. A good example is when you are registering a woman's delivery, and you have to record the birth of twins or triplets.  You can simply repeat the child questions for each child born instead of having to submit multiple forms. To create a repeating group of questions use the following construct:
+
+| survey        |               |       |      |
+| ------------- | ------------- | ----- | ---- |
+|               | type          | name  |  label |
+|               | begin repeat         | member |  Household Member |
+|               | text          | name  | Name of household member. |
+|               | integer     | age |  Age of household member. |
+|               | end repeat    |     |       |
+
+The above example is a list of household members, containing their name and age. The form will ask the name and age of the first household member, and then ask if the user wants to add another member. If so, the form will repeat each question for the second household member and so on.
 
 Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
 
 ### Multiple Language Support
-It’s easy to add multiple languages to a survey. You simply have to name your label::language1 label::language2 etc., and your surveys will be available on multiple languages. To select a different language on the phone, press the Menu key, and the “Change Language” option. For the form below, “English” and “Español” will show up as the possible options.
+It’s easy to add multiple languages to a survey. You simply have to name your **label::language1**,  **label::language2**, etc., and your surveys will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
 
 | survey        |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- |
 |               | type          | name  |  label::English  | label::Español  |  constraint  |
 |               | integer       | age   | How old are you? |    ¿Cuántos años tienes? |. <= 150 |
 
-Adding a hint in a different language in a hint, or adding specific media files for a given language is also possible; you simply use the ::language construct. See the [xlsform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
+
+**Note**
+
+You can also add a different language column for hints and media files; you simply use the **::language** construct. See the [XLSForm standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
 
 
 ### Media
-You can also include questions in your form that display images or that play videos or audio files. In order to do this, you will need to put the media files that you want to include in your form in the /odk/forms/formname-media folder on your phone, and then reference the file name in the media column in your form. See below for an example of how to do this.
+You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
 
 | survey        |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- |
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
-Checkout the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which clearly illustrates the use of media files.
+If using Ona or any other web client for form submission, you need to upload the media files to the form page, under the **Media** heading.
 
-### Formulas
-Formulas are used in the constraint, relevant and calculate columns. Formulas are composed of functions and operators (+,*,div,etc) that are for the most part derived from the XPath specification. [The XPath operators are documented here](http://www.w3schools.com/xpath/xpath_operators.asp).
+![](https://farm6.staticflickr.com/5007/13841014673_17ae707014.jpg)
+
+A list of allowed media file types is listed.
+
+Upload the media files by tapping the ```Choose Files``` button, then click on the ```Upload``` button to add your files to the form.  A list of your files will be displayed.  To remove a file, tap the **remove** option next to the file name.
+
+![](https://farm4.staticflickr.com/3794/13841015493_4076102e51.jpg)
+
+Check out the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which illustrates the use of media files.
 
 ### Cascading selects
-In Collect 1.2 and above it is possible to create cascading selects (select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
+select type questions where the options depend on the options selected in previous questions). For example, you could display cities in a select question based on the country selected in a previous question. In order to use cascading selects you will need to create a choice_filter column in your survey sheet and add some attribute columns to filter on in your choices sheet. [There is an example XLSForm available here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing). There are a few caveats to bear in mind: or_other is currently not supported for cascading selects. Best practice for naming attribute column headers in the choices sheet is to begin your names with attr and only use letters (no spaces).
 
 ### Default
 
