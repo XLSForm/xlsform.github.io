@@ -46,12 +46,13 @@ XLSForm supports a number of simple question types. These are just some of the o
 | select_multiple [options] | Multiple choice question; multiple answers can be selected.     |
 | note          | Display a note on the screen, takes no input.      |
 | geopoint      | Collect GPS coordinates.      |
-| image         | Take a picture.      |
-| barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
 | date          | Date input.     |
-| datetime      | Accepts a date and a time input.      |
+| dateTime      | Accepts a date and a time input.      |
+| time          | Time input.     |
+| image         | Take a picture.      |
 | audio         | Take an audio recording.      |
 | video         | Take a video recording.      |
+| barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
 | calculate     | Perform a calculation; see the 'Calculations' section below.      |
 
 For example, to collect the name and GPS coordinates of a store, you would write the following:
@@ -350,28 +351,30 @@ The **appearance** column allows you to change the appearance of questions in yo
 
 |  Appearance attribute   |  Description           |  
 | ----------------------- | ----------------------- |
-|  multiline             |  Makes a text box multiple lines long.         |
-|  field-list            | Create a group with appearance set to field-list to make the entire group of questions appear on one screen.          |
-|  table-list            | Similar to field-list, table-list makes the questions on the screen more compact in a table-like format.          |
-|  minimal             | Makes the answer choices appear in a drop-down menu.          |
-|  quick             | Relevant for mobile clients only, this attribute auto-advances to the next question after an answer is selected (no swiping required).          |  
-| month-year | For date fields, select a month and year only for the date. |
-| year       | For date fields, select only a year for the date. |
-| horizontal | For web clients only, this makes the answer choices appear columns of horizontal lists. |
+|  multiline             |  Best if used with web clients, set appearance to **multiline** for **text** questions, makes the text box multiple lines long.         |
+|  field-list            | Create a group with appearance set to **field-list** to make the entire group of questions appear on one screen (for mobile clients only).          |
+|  table-list            | Similar to field-list, **table-list** makes the questions on the screen more compact in a table-like format.          |
+|  minimal             | Makes the answer choices for **select_one** or **select_multiple** questions appear in a drop-down menu.          |
+|  quick             | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected (no swiping required).          |  
+| month-year | For **date** fields, select a month and year only for the date. |
+| year       | For **date** fields, select only a year for the date. |
+| horizontal | For web clients only, this makes the answer choices appear in columns of horizontal lists. |
 | horizontal-compact | For web clients only, this makes the answer choices appear in a single horizontal list. |
-| Likert     | For select_one questions, makes the answer choices appear in a Likert-style row. |
+| Likert     | Best if used with web clients, set appearance to **likert** for **select_one** questions, makes the answer choices appear in a Likert-style row. |
 | compact    |      |
 | quickcompact |       |
 | maps       |      |
-| label      |      |
-| list-nolabel |       |
+| label      | Used with tables where the table group's appearance is set to **field-list**, this allows a table grid display with the answer choice labels on separate columns.      |
+| list-nolabel | Used in the same group as the **label** appearance, this allows the answer input to show without the label.      |
 | big        |      |
-| signature  |      |
+| signature  | Used with **image** questions for mobile clients only, signature allows you to draw your signature into your form.      |
+| draw       | Used with **image** questions for mobile clients only, draw allows you to sketch a drawing with your finger on the mobile device screen. |
 
 A tutorial XLSForm with all of the appearance attributes in this table is available [here]().
 
-
 ### Settings Worksheet
+Earlier we hinted that there were additional sheets besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** sheet is optional, but it allows you to further customize your form and
+
 You can include a settings worksheet in your xls file similar to the following:
 
 | settings      |               |       |      |      |      |    |
@@ -380,11 +383,11 @@ You can include a settings worksheet in your xls file similar to the following:
 |               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  2  |
 
 They do the following:
-* **form_title**: The name of the form presented to users. 
+* **form_title**: The name of the form presented to users.
 * **form_id**: The name used to identify the form submission.
-* **url**: The url of a server that submitted forms are to be sent to. 
-* **public_key**: If form instances are to be encrypted, a public key needs to be included in the form. 
-* **default_language**: In localized forms, this sets which translation should be used as the default. 
+* **url**: The url of a server that submitted forms are to be sent to.
+* **public_key**: If form instances are to be encrypted, a public key needs to be included in the form.
+* **default_language**: In localized forms, this sets which translation should be used as the default.
 Note: None of these settings are required.
 
 ##### Encrypted forms
