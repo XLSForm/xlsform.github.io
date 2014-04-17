@@ -398,11 +398,13 @@ Encrypted forms provide a mechanism to keep your data private using http for com
 
 ###### How to encrypt XLS forms
 
-* In the settings worksheet add the *id_string*, *submission_url* and the *public_key* fields. They do the following:
+* In the settings worksheet add the *id_string*, *submission_url* and the *public_key* fields.
 
-*id_string* - name used to identify the form
-*submission_url* - is your submission url
-*public_key* - is the base64RsaPublicKey
+They do the following:
+
+**id_string** - name used to identify the form
+**submission_url** - is your submission url
+**public_key** - is the base64RsaPublicKey
 
 For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.. 
 
