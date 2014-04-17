@@ -20,7 +20,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name.
   * The **label** column contains the actual text you see in the webform.  
 
-![](https://farm4.staticflickr.com/3686/13734779364_63e8389c7a.jpg)
+![](https://farm4.staticflickr.com/3750/13912042263_eab8f6c1b2.jpg)
 
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
