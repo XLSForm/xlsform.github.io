@@ -139,7 +139,7 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | phonenumber   | phonenumber   |   |        |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
-The [Tutorial](https://ona.io/xlsforms/forms/tutorial_xlsform) XLSForm shows how metadata is used in a form.
+The [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) XLSForm shows how metadata is used in a form.
 
 ### Hints
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
@@ -149,6 +149,8 @@ Sometimes you want to add a small hint to a question on your survey, instructing
 |               | type     | name  |  label | hint |
 |               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
 || geopoint | geopoint | Collect the GPS coordinates of this store.| |
+
+The [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) provides more examples of questions with hints.
 
 ### Constraints
 
@@ -362,13 +364,12 @@ The **appearance** column allows you to change the appearance of questions in yo
 | horizontal | For web clients only, this makes the answer choices appear in columns of horizontal lists. |
 | horizontal-compact | For web clients only, this makes the answer choices appear in a single horizontal list. |
 | Likert     | Best if used with web clients, set appearance to **likert** for **select_one** questions, makes the answer choices appear in a Likert-style row. |
-| compact    |      |
+| compact    |  Used for web clients, makes it possible to select an image as choice in a select one questions, the images are displayed side by side with each other.    |
 | quickcompact |       |
-| maps       |      |
+| maps       |    Same as previous but this one advances to the next question automatically in ODK Collect.  |
 | label      | Used with tables where the table group's appearance is set to **field-list**, this allows a table grid display with the answer choice labels on separate columns.      |
 | list-nolabel | Used in the same group as the **label** appearance, this allows the answer input to show without the label.      |
-| big        |      |
-| signature  | Used with **image** questions for mobile clients only, signature allows you to draw your signature into your form.      |
+| signature  | Used with **image** questions for mobile clients only, signature allows you to trace your signature into your form.      |
 | draw       | Used with **image** questions for mobile clients only, draw allows you to sketch a drawing with your finger on the mobile device screen. |
 
 A tutorial XLSForm with all of the appearance attributes in this table is available [here]().
@@ -392,6 +393,19 @@ They do the following:
 Note: None of these settings are required.
 
 ##### Encrypted forms
+
+Encrypted forms provide a mechanism to keep your data private using http for communication. Submission sent to the Aggregate server is encrypted and completely inaccessible to anyone not possessing the private key.
+
+###### How to encrypt XLS forms
+
+* In the settings worksheet add the *id_string*, *submission_url* and the *public_key* fields. They do the following:
+
+*id_string* - name used to identify the form
+*submission_url* - is your submission url
+*public_key* - is the base64RsaPublicKey
+
+For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted]() xlsform. 
+
 
 ##### Multiple webpage forms
 
