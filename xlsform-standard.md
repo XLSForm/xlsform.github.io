@@ -404,7 +404,7 @@ Encrypted forms provide a mechanism to keep your data private using http for com
 *submission_url* - is your submission url
 *public_key* - is the base64RsaPublicKey
 
-For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted]() xlsform. 
+For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.. 
 
 
 ##### Multiple webpage forms
