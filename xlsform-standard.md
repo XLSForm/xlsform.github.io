@@ -27,7 +27,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
   * The **name** column specifies the unique variable name for that answer choice.
   * The **label** column shows the answer choice exactly as you want it to appear on the webform.
 
-![](https://farm8.staticflickr.com/7446/13734959034_45125ea1d3.jpg)
+![](https://farm8.staticflickr.com/7190/13888981636_de6f800cf9.jpg)
 
 The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored so that dividing lines, shading, and other font formatting can be used to make the form more readable.
 
