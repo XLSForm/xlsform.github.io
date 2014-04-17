@@ -1,4 +1,4 @@
-## What is XLSForm??
+## What is XLSForm?
 
 XLSForm is a tool used to simplify the creation of web forms. With XLSForm, you can author webforms in Excel, and XLSForm will convert it to an XForm that can be used with a number of online mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.
 
@@ -135,10 +135,11 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | today         | today   |        |
 |               | deviceid      | deviceid   |         |
 |               | subscriberid  | subscriberid   |         |
-|               | sim_serial    | sim_serial   |         |
-|               | phone_number  | phone_number   |   |        |
+|               | imei          | imei   |         |
+|               | phonenumber   | phonenumber   |   |        |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
+The [Tutorial](https://ona.io/xlsforms/forms/tutorial_xlsform) XLSForm shows how metadata is used in a form.
 
 ### Hints
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
