@@ -396,15 +396,13 @@ Note: None of these settings are required.
 
 Encrypted forms provide a mechanism to keep your data private using http for communication. Submission sent to the Aggregate server is encrypted and completely inaccessible to anyone not possessing the private key.
 
-###### How to encrypt XLS forms
-
-* In the settings worksheet add the *id_string*, *submission_url* and the *public_key* fields.
+To encrypt XLS forms, add the **id_string**, **submission_url** and the **public_key** as column headers in the settings worksheet.
 
 They do the following:
 
-**id_string** - name used to identify the form
-**submission_url** - is your submission url
-**public_key** - is the base64RsaPublicKey
+  * **id_string** - name used to identify the form
+  * **submission_url** - is your submission url
+  * **public_key** - is the base64RsaPublicKey
 
 For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.. 
 
