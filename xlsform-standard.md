@@ -365,8 +365,8 @@ The **appearance** column allows you to change the appearance of questions in yo
 | horizontal-compact | For web clients only, this makes the answer choices appear in a single horizontal list. |
 | Likert     | Best if used with web clients, set appearance to **likert** for **select_one** questions, makes the answer choices appear in a Likert-style row. |
 | compact    |  Used for web clients, makes it possible to select an image as choice in a select one questions, the images are displayed side by side with each other.    |
-| quickcompact |       |
-| maps       |    Same as previous but this one advances to the next question automatically in ODK Collect.  |
+| quickcompact | Same as previous but this one advances to the next question automatically in ODK Collect.       |
+| maps       |     |
 | label      | Used with tables where the table group's appearance is set to **field-list**, this allows a table grid display with the answer choice labels on separate columns.      |
 | list-nolabel | Used in the same group as the **label** appearance, this allows the answer input to show without the label.      |
 | signature  | Used with **image** questions for mobile clients only, signature allows you to trace your signature into your form.      |
