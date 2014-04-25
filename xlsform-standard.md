@@ -375,9 +375,9 @@ The **appearance** column allows you to change the appearance of questions in yo
 A tutorial XLSForm with all of the appearance attributes in this table is available [here]().
 
 ### Settings Worksheet
-Earlier we hinted that there were additional sheets besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** sheet is optional, but it allows you to further customize your form and
+Earlier we hinted that there were additional sheets besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** sheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
 
-You can include a settings worksheet in your xls file similar to the following:
+You can include a **settings** worksheet in your XLSForm similar to the following:
 
 | settings      |               |       |      |      |      |    |
 | ------------- | ------------- | ----- | ---- | ---- | ---- | ---- |
@@ -404,14 +404,60 @@ They do the following:
   * **submission_url** - is your submission url
   * **public_key** - is the base64RsaPublicKey
 
-For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example..
+For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.
 
 
 ##### Multiple webpage forms
 
+Web forms can be split into multiple pages using the style theme **pages**.
+
+![](insert image of multi page webform)
+
+In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
+
+| settings      |               |       |      |  
+| ------------- | ------------- | ----- | ---- |
+|               | form_title    | form_id  |  style  |
+|               | example title     | example_id  | pages |
+
+In your **survey** tab, group together the questions you would like to appear on each page and then set the appearance for the group to **field-list**. See the example below.
+
+| survey   |               |       |      |  |
+| -------- | ------------- | ----- | ---- |---|
+|          | type    | name  |  label  | appearance |
+|          |  begin group     | group1  |  | field-list |
+|         |  text     | name  | Respondent's name |  |
+|         |  integer  | age  | Respondent's age |  |
+|         |  string  | address  | Respondent's address |  |
+|         |  end group  |   |  |  |
+
+See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms.
+
 ##### Grid Theme forms
 
-![](https://farm3.staticflickr.com/2935/14028959313_ec88c2e3a4_s.jpg)
+The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
+
+![](insert image of grid webform)
+
+To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
+
+| settings      |               |       |      |  
+| ------------- | ------------- | ----- | ---- |
+|               | form_title    | form_id  |  style  |
+|               | example title     | example_id  | theme-grid |
+
+In your **survey** tab, group together the questions you would like to appear in each section and then set the appearance for each field according to the desired width (the default width is 4). See the example below.
+
+| survey   |               |       |      |  |
+| -------- | ------------- | ----- | ---- |---|
+|          | type    | name  |  label  | appearance |
+|          |  begin group     | group1  |  |  |
+|         |  text     | name  | Respondent's name | w3 |
+|         |  integer  | age  | Respondent's age | w1 |
+|         |  string  | address  | Respondent's address | w4 |
+|         |  end group  |   |  |  |
+
+See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms.
 
 ### Styling notes
 
