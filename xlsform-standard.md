@@ -411,7 +411,7 @@ For more information on encrypted forms and how to generate the rsa keys have a 
 
 ##### Grid Theme forms
 
-![](https://farm6.staticflickr.com/5282/14008829885_d3fbb967c4_s.jpg)
+![](https://farm3.staticflickr.com/2935/14028959313_ec88c2e3a4_s.jpg)
 
 ### Styling notes
 
