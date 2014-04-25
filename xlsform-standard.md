@@ -404,12 +404,14 @@ They do the following:
   * **submission_url** - is your submission url
   * **public_key** - is the base64RsaPublicKey
 
-For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.. 
+For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example..
 
 
 ##### Multiple webpage forms
 
 ##### Grid Theme forms
+
+![](https://farm6.staticflickr.com/5282/14008829885_d3fbb967c4_s.jpg)
 
 ### Styling notes
 
