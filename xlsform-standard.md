@@ -411,7 +411,7 @@ For more information on encrypted forms and how to generate the rsa keys have a 
 
 Web forms can be split into multiple pages using the style theme **pages**.
 
-![](insert image of multi page webform)
+An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform.
 
 In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
 
@@ -437,7 +437,7 @@ See this [blog post](http://blog.enketo.org/pages/) for more information on crea
 
 The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
 
-![](insert image of grid webform)
+Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform)
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
