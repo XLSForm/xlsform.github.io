@@ -1,15 +1,15 @@
 ## What is XLSForm?
 
-XLSForm is a tool used to simplify the creation of web forms. With XLSForm, you can author webforms in Excel, and XLSForm will convert it to an XForm that can be used with a number of online mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.
+XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.
 
 ### Basic format
-Each Excel workbook usually has two worksheets: **survey** and **choices**. Later on, you'll learn about other worksheets that can add additional specifications to your webform, but the survey and choices worksheets are usually mandatory.
+Each Excel workbook usually has two worksheets: **survey** and **choices**. Later on, you'll learn about a third worksheet that can add additional specifications to your form, but the **survey** and **choices** worksheets are usually standard.
 
 ##### The survey worksheet
-This worksheet gives your webform its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features you'll read about later that you can add to the form to improve the user experience.
+This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features you'll read about later that you can add to the form to improve the user experience.
 
 ##### The choices worksheet
-This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same list name are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
+This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same **list name** are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
 ![](https://farm4.staticflickr.com/3767/13734054823_d2b3beb03d.jpg)
 
@@ -18,20 +18,20 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
   * The **type** column specifies the type of entry you are adding.
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name.
-  * The **label** column contains the actual text you see in the webform.  
+  * The **label** column contains the actual text you see in the form.  
 
 ![](https://farm4.staticflickr.com/3750/13912042263_eab8f6c1b2.jpg)
 
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
   * The **name** column specifies the unique variable name for that answer choice.
-  * The **label** column shows the answer choice exactly as you want it to appear on the webform.
+  * The **label** column shows the answer choice exactly as you want it to appear on the form.
 
 ![](https://farm8.staticflickr.com/7190/13888981636_de6f800cf9.jpg)
 
-The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored so that dividing lines, shading, and other font formatting can be used to make the form more readable.
+The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
 
-One thing to keep in mind when authoring webforms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
+One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
 
 
 ### Question types
@@ -47,13 +47,13 @@ XLSForm supports a number of simple question types. These are just some of the o
 | note          | Display a note on the screen, takes no input.      |
 | geopoint      | Collect GPS coordinates.      |
 | date          | Date input.     |
-| dateTime      | Accepts a date and a time input.      |
 | time          | Time input.     |
+| dateTime      | Accepts a date and a time input.      |
 | image         | Take a picture.      |
 | audio         | Take an audio recording.      |
 | video         | Take a video recording.      |
 | barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
-| calculate     | Perform a calculation; see the 'Calculations' section below.      |
+| calculate     | Perform a calculation; see the **Calculation** section below.      |
 
 For example, to collect the name and GPS coordinates of a store, you would write the following:
 
@@ -63,7 +63,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | text          | store_name  | What is the name of this store?|
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
-Check out the [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) for a look at each question type in action!
+Check out the [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1Lo1IZCy5KO8ifi-7FOjBVbWWIXajtCmrN-U7F52MmUw/edit#gid=58957195) for a look at each question type in action!
 
 ##### Multiple choice questions
 
@@ -95,7 +95,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 
 
 ##### Specify other
-For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below.
+For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -110,7 +110,7 @@ For multiple choice questions, surveys often include an option of marking **othe
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
 
 **Caveat**  
-When you export data using this **or_other** option, in the **pizza_toppings** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Skip Logic** section below for an alternative method more appropriate for large scale projects.
+When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
 
 ##### Metadata
 XLSForm has a number of data type options available for meta data collection:
@@ -125,7 +125,9 @@ XLSForm has a number of data type options available for meta data collection:
 | sim_serial    | SIM serial number.     |
 | phone_number  | Phone number (if available).      |
 
-If I wanted my survey to collect all of this metadata, I would put the following at the beginning of the survey:
+Note that some metadata fields would only apply for mobile phone-based forms.
+
+If I wanted my survey to collect all of these metadata, I would put the following at the beginning of the survey:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -142,7 +144,7 @@ Notice that there are no labels associated with the metadata question types.  Th
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
 
 ### Hints
-Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
+Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column and add your hint message. See below for an example.
 
 | survey        |               |       |      |    |
 | ------------- | ------------- | ----- | ---- | ----- |
@@ -154,16 +156,16 @@ The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC
 
 ### Constraints
 
-One way to ensure data quality is to add constraints to the data fields in your forms.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the **(.)** refers to the variable in the formula.
+One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the ``.`` in the formula refers back to the question variable.
 
 | survey        |               |       |      |      |
 | ------------- | ------------- | ----- | ---- | ---- |
 |               | type          | name  |  label           |  constraint  |
 |               | integer       | age   | How old are you? |  . <= 150  |
 
-In this example, the formula ```. <= 150``` is saying that the value entered **(.)** must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to swipe to the next question or submit the form.
+In this example, the formula ```. <= 150``` is saying that the value entered ``.`` for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.
 
-Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/).
+Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/). Look under the **Operators** section.
 
 ##### Constraint Message
 
@@ -187,7 +189,7 @@ One great feature of XLSForm is the ability to skip a question or make an additi
 |               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
 |               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
 
-In this example, the respondent is asked, “Do you like pizza?” If the answer is **yes**, then the pizza topping question appears below. Note the **${ }** around the variable **likes_pizza**.  These are required in order for the form to reference the variable.  
+In this example, the respondent is asked, “Do you like pizza?” If the answer is **yes**, then the pizza topping question appears below. Note the ``${ }`` around the variable **likes_pizza**.  These are required in order for the form to reference the variable from the previous question.  
 
 In the next example, below, we use relevant syntax for a **select_multiple** question, which is slightly different from the **select_one** question example above.
 
@@ -203,10 +205,26 @@ In the next example, below, we use relevant syntax for a **select_multiple** que
 |               |   pizza_toppings     |  pepperoni     |  Pepperoni      |    |
 |               |   pizza_toppings     |  sausage       |  Sausage        |    |
 
-Since the pizza topping question allows multiple responses, we have to use the **selected(${favorite_topping}, 'cheese')** expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
+Since the pizza topping question allows multiple responses, we have to use the ``selected(${favorite_topping}, 'cheese')`` expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
+
+Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:
+
+| survey        |               |       |      |  |
+| ------------- | ------------- | ----- | ---- |--|
+|               | type          | name  |  label | relevant |
+|               | select_multiple pizza_toppings    | favorite_toppings  | What are your favorite pizza toppings?  |  |
+|               | text    | favorite_toppings_other  | Specify other:  | selected(${favorite_toppings}, 'other')
+|**choices**    |                      |                |                 |  |
+|               |  list name           | name           |  label          |  |
+|               |   pizza_toppings     |  cheese        |  Cheese         |  |
+|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |  |
+|               |   pizza_toppings     |  sausage       |  Sausage        |  |
+|               |   pizza_toppings     |  other       |  Other        |  |
+
+Note that you must include **other** as an answer choice in the **choices** worksheet.
 
 ### Formulas
-Formulas are used in the constraint, relevant and calculate columns. You've already seen some examples in the **Relevant** and **Constraint** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xpath/xpath_operators.asp).
+Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
 ### Calculation
 Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
@@ -223,9 +241,9 @@ Note that the **${tip}** in the last line will be replaced with the actual tip a
 
 ### Required
 
-It's simple to mark certain questions as required in your form.  Marking them as required means the user will not be able to swipe to the next question (on a mobile client) or submit the form (on a web client) without entering an answer for that question.
+It's simple to mark certain questions as required in your form.  Marking them as required means the user will not be able to move on to the next question or submit the form without entering an answer for that question.
 
-To make questions required, add a **required** column to your survey page. Under that column, mark questions as required by writing **yes**.  See the example below:
+To make questions required, add a **required** column to your survey worksheet. Under that column, mark questions as required by writing **yes**.  See the example below:
 
 | survey        |               |       |      |      |           |
 | ------------- | ------------- | ----- | ---- | ---- | -------------- |
@@ -264,7 +282,7 @@ You always have to end the most recent group that was created first. For instanc
 
 ##### Skipping
 
-One neat feature of XLSForm is the ability to skip a group of questions by combining grouping with relevant syntax, as described above. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
+One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with relevant syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
 
 |               |       |      |     |
 | ------------- | ----- | ----- |----- |
@@ -279,22 +297,25 @@ In this example, the two child group questions (**muac** and **mrdt**) will only
 
 ### Repeats
 
-Sometimes repeating a group of questions can come in handy, like when you have to record multiple instances of an event. A good example is when you are registering a woman's delivery, and you have to record the birth of twins or triplets.  You can simply repeat the child questions for each child born instead of having to submit multiple forms. To create a repeating group of questions use the following construct:
+Sometimes repeating a group of questions can come in handy, like when you have to record multiple instances of an event. A good example is when you are registering a new birth, and you have to record the birth of twins or triplets.  You can simply repeat a set of questions for each child born instead of having to submit multiple forms. To create a repeating group of questions use the **begin repeat** and **end repeat** construct:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
 |               | type          | name  |  label |
-|               | begin repeat         | member |  Household Member |
-|               | text          | name  | Name of household member. |
-|               | integer     | age |  Age of household member. |
+|               | begin repeat         | child_repeat |   |
+|               | text         | name |  Child's name |
+|               | decimal          | birthweight  |  Child's birthweight |
+|               | select_one male_female     | sex | Child's sex |
 |               | end repeat    |     |       |
+|  **choices**   | list name    |  name   |  label     |
+|     | male_female    |  male   |  Male     |
+|     | male_female    |  female   |  Female     |
 
-The above example is a list of household members, containing their name and age. The form will ask the name and age of the first household member, and then ask if the user wants to add another member. If so, the form will repeat each question for the second household member and so on.
 
-Please look at the [delivery_outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
+Check out the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
 
 ### Multiple Language Support
-It’s easy to add multiple languages to a survey. You simply have to name your **label::language1**,  **label::language2**, etc., and your surveys will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
 
 | survey        |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- |
@@ -304,7 +325,7 @@ It’s easy to add multiple languages to a survey. You simply have to name your 
 
 **Note**
 
-You can also add a different language column for hints and media files; you simply use the **::language** construct. See the [XLSForm standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
+You can also add a different language column for hints and media files; you simply use the ``::language`` construct again. See the [XLSForm standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
 
 
 ### Media
@@ -315,38 +336,30 @@ You can include questions in your form that display images or that play video or
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
-If using Ona or any other web client for form submission, you need to upload the media files to the form page, under the **Media** heading.
-
-![](https://farm6.staticflickr.com/5007/13841014673_17ae707014.jpg)
-
-A list of allowed media file types is listed.
-
-Upload the media files by tapping the ```Choose Files``` button, then click on the ```Upload``` button to add your files to the form.  A list of your files will be displayed.  To remove a file, tap the **remove** option next to the file name.
-
-![](https://farm4.staticflickr.com/3794/13841015493_4076102e51.jpg)
-
-Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform)
+Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform).
 
 ### Cascading selects
-A lot of forms usually start out by asking the location of the form submission, with each location selection narrowing the subsequent location choices (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each one, you can use **cascade select** type questions. For example, you could automatically display cities in a **select_one** question based on the country selected in a previous question, without having to include any relevant logic. In order to use cascading selects, you will need to create a **choice_filter** column in your survey sheet and add the location attribute columns in your choices sheet. Check out an [example XLSForm here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
+A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
 ### Default
 
-Making a default field means that a question is already pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
+Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
 
 | survey        |               |       |      |      |
 | ------------- | ------------- | ----- | ---- | ---- |
 |               | type          | name  |  label  | default  |
+|               | today      | today  |    |     |
 |               | date      | survey_date  |  Survey date? |    ${today} |
 
 In the above example, the **survey_date** field is always pre-populated with today's date. Make sure you include the **today** metadata field in the form when you reference it!
+
+In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tappng in the answer field and inputting another answer.
 
 | survey        |               |       |      |      |
 | ------------- | ------------- | ----- | ---- | ---- |
 |               | type          | name  |  label  | default  |
 |               | decimal      | weight  |  Respondent's weight? (in kgs) |  51.3  |
 
-In this example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tappng in the answer field and inputting another answer.
 
 ### Appearance
 
@@ -374,7 +387,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
 ### Settings Worksheet
-Earlier we hinted that there were additional sheets besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** sheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
+Earlier we hinted that there was an additional worksheet besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
 
 You can include a **settings** worksheet in your XLSForm similar to the following:
 
@@ -386,10 +399,11 @@ You can include a **settings** worksheet in your XLSForm similar to the followin
 They do the following:
 * **form_title**: The name of the form presented to users.
 * **form_id**: The name used to identify the form submission.
-* **url**: The url of a server that submitted forms are to be sent to.
 * **public_key**: If form instances are to be encrypted, a public key needs to be included in the form.
+* **submission_url**: The url of a server that submitted forms are to be sent to.
 * **default_language**: In localized forms, this sets which translation should be used as the default.
 Note: None of these settings are required.
+* **version**:
 
 ##### Encrypted forms
 
@@ -410,6 +424,8 @@ For more information on encrypted forms and how to generate the rsa keys have a 
 
 Web forms can be split into multiple pages using the style theme **pages**.
 
+An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform.
+
 In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
 
 | settings      |               |       |      |  
@@ -428,13 +444,13 @@ In your **survey** tab, group together the questions you would like to appear on
 |         |  string  | address  | Respondent's address |  |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLSForm source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.)
+See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms.  The XLSForm source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.).
 
 ##### Grid Theme forms
 
 The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
 
-Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform). 
+Please click on the link to see an example of a [Grid theme webform](https://fx5jf.enketo.org/webform).
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
@@ -454,12 +470,28 @@ In your **survey** tab, group together the questions you would like to appear in
 |         |  string  | address  | Respondent's address | w4 |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing)  
+See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The Grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing).  
 
-### Styling notes
+### Advanced Notes
+
+##### Visually combining notes
+
+The XLSForm format only allows one of each type of media (image, video, audio) to be added to a **note** question (ie, you cannot have more than one media file or type in a single **note** field). To work around this limitation, subsequent notes will now be visually merged together so that they appear as one note in your form. Practically speaking, this means you can include multiple **note** fields one after another in your XLSForm.  When viewing the form, the notes will automatically appear as one note.  See the example web form [here](https://notes.enketo.org/webform), and the XLSForm source [here](https://docs.google.com/spreadsheet/ccc?key=0Al3Mw5sknZoPdDRvaXlrR19GTklyNHJQak9tT1ZtSVE&usp=sharing#gid=0).
+
+##### Styling notes
+
+XLSForm supports a limited subset of Markdown syntax for styling notes in your form.
+
+* *emphasize* words by wrapping them inside ``_`` or ``*``
+* **strongly emphasize** words by wrapping them inside ``__`` or ``**``
+* a link can be added by using ``[name of link](url)``
+* add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
+
+Check out the blog post on styling and combining notes [here](http://blog.enketo.org/better-notes/).
 
 ### More Resources
-Your first stop for more resources should be [formhub university](http://formhub.org/formhub_u/), an account on formhub with many forms that you can download and inspect to learn about features. The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSforms. If you are still confused, you can just email opendatakit@googlegroups.com, or search the list for previous threads which may have answered your question. If you want to dig in deeper to understand xforms and go beyond xlsforms, here are some resources to understand them:
+
+The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
 
 * Form guidelines: [http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines](http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines)
 * Form design tutorial: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
