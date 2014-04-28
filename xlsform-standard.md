@@ -429,7 +429,7 @@ In your **survey** tab, group together the questions you would like to appear on
 |         |  string  | address  | Respondent's address |  |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLS Form source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.
+See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLS Form source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.)
 
 ##### Grid Theme forms
 
@@ -437,7 +437,7 @@ The **theme-grid** style allows your form to mimic the look of traditional paper
 
 Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform)
 
-![](https://flic.kr/p/npe51Z][img]https://farm3.staticflickr.com/2909/14046321505_a551c88350_o.png)
+![grid_web_form](https://farm3.staticflickr.com/2909/14046321505_4cf96e6d8d_b.jpg)
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
