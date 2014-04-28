@@ -404,7 +404,7 @@ They do the following:
   * **submission_url** - is your submission url
   * **public_key** - is the base64RsaPublicKey
 
-For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted](https://ona.io/xlsforms/forms/tutorial_encrypted) xlsform example.
+For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted XLSForm ](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
 
 
 ##### Multiple webpage forms
@@ -429,13 +429,13 @@ In your **survey** tab, group together the questions you would like to appear on
 |         |  string  | address  | Respondent's address |  |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLS Form source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.)
+See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLSForm source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.)
 
 ##### Grid Theme forms
 
 The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
 
-Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform)
+Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform). 
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
@@ -455,11 +455,9 @@ In your **survey** tab, group together the questions you would like to appear in
 |         |  string  | address  | Respondent's address | w4 |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. 
+See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing)  
 
 ### Styling notes
-
-### SMS form data submission
 
 ### More Resources
 Your first stop for more resources should be [formhub university](http://formhub.org/formhub_u/), an account on formhub with many forms that you can download and inspect to learn about features. The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSforms. If you are still confused, you can just email opendatakit@googlegroups.com, or search the list for previous threads which may have answered your question. If you want to dig in deeper to understand xforms and go beyond xlsforms, here are some resources to understand them:
