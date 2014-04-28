@@ -139,7 +139,7 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | phonenumber   | phonenumber   |   |        |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
-The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) XLSForm shows how metadata is used in a form.
+The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing)shows how metadata is used in a form.
 
 ### Hints
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
@@ -175,7 +175,7 @@ If you want to include a message with your constraint, telling the user why the 
 |        | integer  | respondent_age | Respondent's age  | . >=18  | Respondent must be 18 or older to complete the survey. |
 
 In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears. More examples on constraints have been illustrated in this [xlsform](https://docs.google.com/spreadsheets/d/1g12xGrOsnNYezG6WtTfeusxzypRT1JHeUC2uNbe03sc/edit?usp=sharing).
-)
+
 ### Relevant
 
 One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column for a **select_one** question, using our pizza topping example from before:
@@ -291,7 +291,7 @@ Sometimes repeating a group of questions can come in handy, like when you have t
 
 The above example is a list of household members, containing their name and age. The form will ask the name and age of the first household member, and then ask if the user wants to add another member. If so, the form will repeat each question for the second household member and so on.
 
-Please look at the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
+Please look at the [delivery_outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
 
 ### Multiple Language Support
 It’s easy to add multiple languages to a survey. You simply have to name your **label::language1**,  **label::language2**, etc., and your surveys will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
@@ -325,7 +325,7 @@ Upload the media files by tapping the ```Choose Files``` button, then click on t
 
 ![](https://farm4.staticflickr.com/3794/13841015493_4076102e51.jpg)
 
-Check out the [Birds](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) XLSForm which illustrates the use of media files. Click on the link to see the [Birds](https://l2sje.enketo.org/webform) webform in action on [Ona](https://ona.io)
+Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. Click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform) in action on [Ona](https://ona.io)
 
 ### Cascading selects
 A lot of forms usually start out by asking the location of the form submission, with each location selection narrowing the subsequent location choices (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each one, you can use **cascade select** type questions. For example, you could automatically display cities in a **select_one** question based on the country selected in a previous question, without having to include any relevant logic. In order to use cascading selects, you will need to create a **choice_filter** column in your survey sheet and add the location attribute columns in your choices sheet. Check out an [example XLSForm here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
@@ -372,7 +372,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 | signature  | Used with **image** questions for mobile clients only, signature allows you to trace your signature into your form.      |
 | draw       | Used with **image** questions for mobile clients only, draw allows you to sketch a drawing with your finger on the mobile device screen. |
 
-A tutorial XLSForm with all of the appearance attributes in this table is available [here]().
+An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
 ### Settings Worksheet
 Earlier we hinted that there were additional sheets besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** sheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
@@ -411,8 +411,6 @@ For more information on encrypted forms and how to generate the rsa keys have a 
 
 Web forms can be split into multiple pages using the style theme **pages**.
 
-An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform.
-
 In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
 
 | settings      |               |       |      |  
@@ -431,7 +429,7 @@ In your **survey** tab, group together the questions you would like to appear on
 |         |  string  | address  | Respondent's address |  |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms.
+See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms. An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform. The XLS Form source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.
 
 ##### Grid Theme forms
 
@@ -457,7 +455,7 @@ In your **survey** tab, group together the questions you would like to appear in
 |         |  string  | address  | Respondent's address | w4 |
 |         |  end group  |   |  |  |
 
-See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms.
+See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. 
 
 ### Styling notes
 
