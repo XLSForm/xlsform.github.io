@@ -325,7 +325,7 @@ Upload the media files by tapping the ```Choose Files``` button, then click on t
 
 ![](https://farm4.staticflickr.com/3794/13841015493_4076102e51.jpg)
 
-Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform]
+Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform)
 
 ### Cascading selects
 A lot of forms usually start out by asking the location of the form submission, with each location selection narrowing the subsequent location choices (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each one, you can use **cascade select** type questions. For example, you could automatically display cities in a **select_one** question based on the country selected in a previous question, without having to include any relevant logic. In order to use cascading selects, you will need to create a **choice_filter** column in your survey sheet and add the location attribute columns in your choices sheet. Check out an [example XLSForm here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
