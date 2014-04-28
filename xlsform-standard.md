@@ -63,7 +63,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | text          | store_name  | What is the name of this store?|
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
-Check out the [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) for a look at each question type in action!
+Check out the [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) for a look at each question type in action!
 
 ##### Multiple choice questions
 
@@ -107,7 +107,7 @@ For multiple choice questions, surveys often include an option of marking **othe
 |               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
 |               |   pizza_toppings     |  sausage       |  Sausage        |
 
-Click on the link to look at the complete [pizza_questionnaire](https://ona.io/xlsforms/forms/pizza_questionnaire).
+Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
 
 **Caveat**  
 When you export data using this **or_other** option, in the **pizza_toppings** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Skip Logic** section below for an alternative method more appropriate for large scale projects.
@@ -139,7 +139,7 @@ If I wanted my survey to collect all of this metadata, I would put the following
 |               | phonenumber   | phonenumber   |   |        |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
-The [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) XLSForm shows how metadata is used in a form.
+The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) XLSForm shows how metadata is used in a form.
 
 ### Hints
 Sometimes you want to add a small hint to a question on your survey, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column next to the **label** column and add your hint messages  next to the question label. See below for an example.
@@ -150,7 +150,7 @@ Sometimes you want to add a small hint to a question on your survey, instructing
 |               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
 || geopoint | geopoint | Collect the GPS coordinates of this store.| |
 
-The [Tutorial XLSForm](https://ona.io/xlsforms/forms/tutorial_xlsform) provides more examples of questions with hints.
+The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) provides more examples of questions with hints.
 
 ### Constraints
 
@@ -174,8 +174,8 @@ If you want to include a message with your constraint, telling the user why the 
 |        | type     | name  | label| constraint| constraint_message|
 |        | integer  | respondent_age | Respondent's age  | . >=18  | Respondent must be 18 or older to complete the survey. |
 
-In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears.
-
+In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears. More examples on constraints have been illustrated in this [xlsform](https://docs.google.com/spreadsheets/d/1g12xGrOsnNYezG6WtTfeusxzypRT1JHeUC2uNbe03sc/edit?usp=sharing).
+)
 ### Relevant
 
 One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column for a **select_one** question, using our pizza topping example from before:
@@ -291,7 +291,7 @@ Sometimes repeating a group of questions can come in handy, like when you have t
 
 The above example is a list of household members, containing their name and age. The form will ask the name and age of the first household member, and then ask if the user wants to add another member. If so, the form will repeat each question for the second household member and so on.
 
-Please look at the [Delivery Outcome](https://ona.io/xlsforms/forms/Delivery_Outcome) XLSForm that shows how to create repeating group questions.
+Please look at the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
 
 ### Multiple Language Support
 It’s easy to add multiple languages to a survey. You simply have to name your **label::language1**,  **label::language2**, etc., and your surveys will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
@@ -325,7 +325,7 @@ Upload the media files by tapping the ```Choose Files``` button, then click on t
 
 ![](https://farm4.staticflickr.com/3794/13841015493_4076102e51.jpg)
 
-Check out the [Birds](https://ona.io/xlsforms/forms/Birds) XLSForm which illustrates the use of media files.
+Check out the [Birds](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) XLSForm which illustrates the use of media files. Click on the link to see the [Birds](https://l2sje.enketo.org/webform) webform in action on [Ona](https://ona.io)
 
 ### Cascading selects
 A lot of forms usually start out by asking the location of the form submission, with each location selection narrowing the subsequent location choices (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each one, you can use **cascade select** type questions. For example, you could automatically display cities in a **select_one** question based on the country selected in a previous question, without having to include any relevant logic. In order to use cascading selects, you will need to create a **choice_filter** column in your survey sheet and add the location attribute columns in your choices sheet. Check out an [example XLSForm here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
