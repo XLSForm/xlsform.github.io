@@ -437,6 +437,8 @@ The **theme-grid** style allows your form to mimic the look of traditional paper
 
 Please click on the link to see an example of a [grid theme webform](https://fx5jf.enketo.org/webform)
 
+![](https://flic.kr/p/npe51Z][img]https://farm3.staticflickr.com/2909/14046321505_a551c88350_o.png)
+
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
 | settings      |               |       |      |  
