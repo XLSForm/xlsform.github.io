@@ -63,7 +63,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | text          | store_name  | What is the name of this store?|
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
-Check out the [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1Lo1IZCy5KO8ifi-7FOjBVbWWIXajtCmrN-U7F52MmUw/edit#gid=58957195) for a look at each question type in action!
+Check out the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type in action!
 
 ##### Multiple choice questions
 
@@ -209,8 +209,8 @@ Since the pizza topping question allows multiple responses, we have to use the `
 
 Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:
 
-| survey        |               |       |      |  |
-| ------------- | ------------- | ----- | ---- |--|
+| survey        |               |       |      |    |
+| ------------- | ------------- | ----- | ---- |----|
 |               | type          | name  |  label | relevant |
 |               | select_multiple pizza_toppings    | favorite_toppings  | What are your favorite pizza toppings?  |  |
 |               | text    | favorite_toppings_other  | Specify other:  | selected(${favorite_toppings}, 'other')
