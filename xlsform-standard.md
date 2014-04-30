@@ -391,10 +391,10 @@ Earlier we hinted that there was an additional worksheet besides the **survey** 
 
 You can include a **settings** worksheet in your XLSForm similar to the following:
 
-| settings      |               |       |      |      |      |    |
-| ------------- | ------------- | ----- | ---- | ---- | ---- | ---- |
-|               | form_title    | form_id  |  public_key  | submission_url |default_language | version  |
-|               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  2  |
+| settings      |               |       |      |      |      |
+| ------------- | ------------- | ----- | ---- | ---- | ---- | 
+|               | form_title    | form_id  |  public_key  | submission_url |default_language |
+|               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  
 
 They do the following:
 * **form_title**: The name of the form presented to users.
@@ -403,7 +403,7 @@ They do the following:
 * **submission_url**: The url of a server that submitted forms are to be sent to.
 * **default_language**: In localized forms, this sets which translation should be used as the default.
 Note: None of these settings are required.
-* **version**:
+
 
 ##### Encrypted forms
 
