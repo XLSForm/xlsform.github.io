@@ -1,8 +1,11 @@
+[Basic format](#basic format)
+
+
 ## What is XLSForm?
 
 XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.
 
-### Basic format
+### <a name="basic format"></a>Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. Later on, you'll learn about a third worksheet that can add additional specifications to your form, but the **survey** and **choices** worksheets are usually standard.
 
 ##### The survey worksheet
