@@ -21,6 +21,7 @@
   * [Media](#media)
   * [Pre-loading CSV data](#preloading csv data)
     * [How to pull data from CSV](#how to pull data from csv)
+  * [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
   * [Cascading Selects](#cascade)
   * [Default](#default)
   * [Appearance](#appearance)
@@ -412,6 +413,35 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly. 
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
+ 
+
+ 
+### <a name="dynamic selects from pre-loaded data"></a>Dynamic selects from pre-loaded data
+Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple choice) section.
+The following should be done:
+* specify select_one listname or select_multiple listname in the type column (where listname is the name of your choice list)
+* specify any special appearance styles in the appearance column
+* include one or more rows for your listname on the choices worksheet. 
+
+Below is an example of the **survey worksheet**:
+
+| survey        |               |       |      |            |  
+| ------------- | ------------- | ----- | ---- | -----------|
+|               | type          | name  |  label           |  appearance |
+|               | select_o* On the **choices worksheet**:
+ * a row should indicate which .csv columns to use for the label and selected value. As follows: 
+   * **list_name** column: specify the name of your choice list as you normally would.
+   * **name** column:  include the name of the .csv column to use for uniquely identifying selected choices.
+   * **label** column:  include the name of the .csv column to use for labeling the choicesne fruits       | fruits   | Select a fruit  | search('fruits')   | 
+
+Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
+
+There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
+* In the appearance column:
+ * Include a **search() expression** that specifies which .csv rows to include in the choice list.
+ * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a **space**, then the **search() expression**. [e.g., **quick search()**]
+
+
 
 ### <a name="cascade"></a>Cascading selects
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
