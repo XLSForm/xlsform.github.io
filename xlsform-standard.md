@@ -419,28 +419,47 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 ### <a name="dynamic selects from pre-loaded data"></a>Dynamic selects from pre-loaded data
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple choice) section.
 The following should be done:
-* specify select_one listname or select_multiple listname in the type column (where listname is the name of your choice list)
-* specify any special appearance styles in the appearance column
+* specify **select_one listname** or **select_multiple listname** in the type column (where **listname** is the name of your choice list)
+* specify any special **appearance styles** in the appearance column
 * include one or more rows for your listname on the choices worksheet. 
 
 Below is an example of the **survey worksheet**:
 
 | survey        |               |       |      |            |  
 | ------------- | ------------- | ----- | ---- | -----------|
-|               | type          | name  |  label           |  appearance |
-|               | select_o* On the **choices worksheet**:
- * a row should indicate which .csv columns to use for the label and selected value. As follows: 
-   * **list_name** column: specify the name of your choice list as you normally would.
-   * **name** column:  include the name of the .csv column to use for uniquely identifying selected choices.
-   * **label** column:  include the name of the .csv column to use for labeling the choicesne fruits       | fruits   | Select a fruit  | search('fruits')   | 
-
-Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
+|               | type          | name  |  labe|  appearance |
+|               | select_one fruits    |  fruits     |  Select a fruit     |   search('fruits')   | 
 
 There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
 * In the appearance column:
  * Include a **search() expression** that specifies which .csv rows to include in the choice list.
  * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a **space**, then the **search() expression**. [e.g., **quick search()**]
+* On the **choices worksheet**:
+ * a row should indicate which .csv columns to use for the label and selected value. As follows:
+   * **list_name** column: specify the name of your choice list as you normally would.
+    * **name** column:  include the name of the .csv column to use for uniquely identifying selected choices.
+    * **label** column:  include the name of the .csv column to use for labeling the choices.
+<br>
+**Note**:
+<br>
+If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.
+* In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column. 
+<br>
+**Note**:
+<br>
+If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
+<br>
+See below an example of the choices worksheet:
+<br>
 
+| choices      |               |       |      |          
+| ------------- | ------------- | ----- | ---- | 
+|               | list name        | name  |  label |  
+|               | fruits   |  name_key     |  name     |   
+
+Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
+<br>
+There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://opendatakit.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
 
 
 ### <a name="cascade"></a>Cascading selects
