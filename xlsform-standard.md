@@ -19,6 +19,8 @@
   * [Repeats](#repeats)
   * [Multiple Language Support](#language)
   * [Media](#media)
+  * [Pre-loading CSV data](#preloading csv data)
+    * [How to pull data from CSV](#how to pull data from csv)
   * [Cascading Selects](#cascade)
   * [Default](#default)
   * [Appearance](#appearance)
@@ -371,6 +373,45 @@ You can include questions in your form that display images or that play video or
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
 Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform).
+
+### <a name="pre-loading csv data"></a>Pre-loading CSV data
+Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre- existing data in a specific survey form or any other source.  For example if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+To reference pre-existing data in a survey form:
+* Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section).The first row of each .csv file should be a header that includes short:
+  * unique names for each column
+  * subsequent rows which should contain the data itself
+  
+Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
+
+| name_key      |   name         | 
+| ------------- |-------------| 
+| mango         | Mango         |   
+| orange        | Orange        |
+
+##### <a name="how to pull data from csv"></a>How to pull data from CSV 
+You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time. 
+For each data field that you want to pull into your survey:
+ * Add a **calculate field** to your survey. 
+ * Give that field a **name**
+ * Then in its **calculation** column, call the **pulldata()** function, indicating which field to pull from which row of which .csv file.
+
+See below for an example:
+
+|    survey     |               |       |           |            |
+| ------------- |-------------| -----|  --------    | ----------|     
+|               |      type     | name  | label     | calculation|
+|               |    calculate  | fruit |           |   pulldata('fruits', 'name','name', 'mango') |
+|               |      note     |   note_fruit    |   The fruit ${fruit} pulled from csv        |             |
+
+Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user. 
+
+Click on the link to see an example of a [pre-loading sample form ](https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing)
+
+**Important notes on usage of pre-loaded data**
+ * Compress a large .csv file into a **.zip archive** before uploading it.
+ * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly. 
+ * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
+ * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
 
 ### <a name="cascade"></a>Cascading selects
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
