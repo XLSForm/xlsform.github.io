@@ -7,6 +7,1839 @@
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Introduction to XLSForms</title>
+        <description>&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#what is xlsform&quot;&gt;What is XLSForm?&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#basic format&quot;&gt;Basic format&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#survey worksheet&quot;&gt;The survey worksheet&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#choices worksheet&quot;&gt;The choices worksheet&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#question types&quot;&gt;Question types&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#multiple choice&quot;&gt;Multiple choice questions&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#specify other&quot;&gt;Specify other&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#metadata&quot;&gt;Metadata&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#hints&quot;&gt;Hints&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#constraints&quot;&gt;Constraints&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#constraint message&quot;&gt;Constraint message&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#relevant&quot;&gt;Relevant&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#formulas&quot;&gt;Formulas&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#calculation&quot;&gt;Calculation&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#required&quot;&gt;Required&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#grouping&quot;&gt;Grouping Questions&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#nesting&quot;&gt;Nesting groups within groups&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#skipping&quot;&gt;Skipping&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#repeats&quot;&gt;Repeats&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#language&quot;&gt;Multiple Language Support&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#media&quot;&gt;Media&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#preloading csv data&quot;&gt;Pre-loading CSV data&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#how to pull data from csv&quot;&gt;How to pull data from CSV&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#dynamic selects from pre-loaded data&quot;&gt;Dynamic selects from pre-loaded data&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#cascade&quot;&gt;Cascading Selects&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#default&quot;&gt;Default&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#appearance&quot;&gt;Appearance&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#settings&quot;&gt;Settings Worksheet&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#encrypted&quot;&gt;Encrypted forms&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#multiple&quot;&gt;Multiple webpage forms&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#grid&quot;&gt;Grid Theme forms&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#advanced notes&quot;&gt;Advanced Notes&lt;/a&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#combining&quot;&gt;Visually combining notes&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#styling&quot;&gt;Styling notes&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;More Resources&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;a-namewhat-is-xlsformawhat-is-xlsform&quot;&gt;&lt;a name=&quot;what is xlsform&quot;&gt;&lt;/a&gt;What is XLSForm?&lt;/h2&gt;
+
+&lt;p&gt;XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namebasic-formatabasic-format&quot;&gt;&lt;a name=&quot;basic format&quot;&gt;&lt;/a&gt;Basic format&lt;/h3&gt;
+&lt;p&gt;Each Excel workbook usually has two worksheets: &lt;strong&gt;survey&lt;/strong&gt; and &lt;strong&gt;choices&lt;/strong&gt;. Later on, you’ll learn about a third worksheet that can add additional specifications to your form, but the &lt;strong&gt;survey&lt;/strong&gt; and &lt;strong&gt;choices&lt;/strong&gt; worksheets are usually standard.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namesurvey-worksheetathe-survey-worksheet&quot;&gt;&lt;a name=&quot;survey worksheet&quot;&gt;&lt;/a&gt;The survey worksheet&lt;/h5&gt;
+&lt;p&gt;This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features you’ll read about later that you can add to the form to improve the user experience.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namechoices-worksheetathe-choices-worksheet&quot;&gt;&lt;a name=&quot;choices worksheet&quot;&gt;&lt;/a&gt;The choices worksheet&lt;/h5&gt;
+&lt;p&gt;This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same &lt;strong&gt;list name&lt;/strong&gt; are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://farm4.staticflickr.com/3767/13734054823_d2b3beb03d.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Both of these worksheets have a set of mandatory columns that must be present for the form to work. Additionally, each worksheet has a set of optional columns that allow further control over the behavior of each entry in the form, but are not essential to have. Every entry must have values for each of the mandatory columns, but the optional columns may be left blank.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The &lt;strong&gt;survey&lt;/strong&gt; worksheet has 3 mandatory columns: &lt;strong&gt;type&lt;/strong&gt;, &lt;strong&gt;name&lt;/strong&gt;, and &lt;strong&gt;label&lt;/strong&gt;.
+    &lt;ul&gt;
+      &lt;li&gt;The &lt;strong&gt;type&lt;/strong&gt; column specifies the type of entry you are adding.&lt;/li&gt;
+      &lt;li&gt;The &lt;strong&gt;name&lt;/strong&gt; column specifies the unique variable name for that entry. No two entries can have the same name.&lt;/li&gt;
+      &lt;li&gt;The &lt;strong&gt;label&lt;/strong&gt; column contains the actual text you see in the form.  &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://farm4.staticflickr.com/3750/13912042263_eab8f6c1b2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The &lt;strong&gt;choices&lt;/strong&gt; worksheet has 3 mandatory columns as well: &lt;strong&gt;list name&lt;/strong&gt;, &lt;strong&gt;name&lt;/strong&gt;, and &lt;strong&gt;label&lt;/strong&gt;.
+    &lt;ul&gt;
+      &lt;li&gt;The &lt;strong&gt;list name&lt;/strong&gt; column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.&lt;/li&gt;
+      &lt;li&gt;The &lt;strong&gt;name&lt;/strong&gt; column specifies the unique variable name for that answer choice.&lt;/li&gt;
+      &lt;li&gt;The &lt;strong&gt;label&lt;/strong&gt; column shows the answer choice exactly as you want it to appear on the form.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://farm8.staticflickr.com/7190/13888981636_de6f800cf9.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.&lt;/p&gt;
+
+&lt;p&gt;One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write &lt;strong&gt;Choices&lt;/strong&gt; or &lt;strong&gt;choice&lt;/strong&gt; instead of &lt;strong&gt;choices&lt;/strong&gt;, the form won’t work.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namequestion-typesaquestion-types&quot;&gt;&lt;a name=&quot;question types&quot;&gt;&lt;/a&gt;Question types&lt;/h3&gt;
+&lt;p&gt;XLSForm supports a number of simple question types. These are just some of the options you can enter in the &lt;strong&gt;type&lt;/strong&gt; column in the first worksheet:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Question type&lt;/th&gt;
+      &lt;th&gt;Answer input&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;Integer (i.e., whole number) input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;decimal&lt;/td&gt;
+      &lt;td&gt;Decimal input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;Free text response.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;select_one [options]&lt;/td&gt;
+      &lt;td&gt;Multiple choice question; only one answer can be selected.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;select_multiple [options]&lt;/td&gt;
+      &lt;td&gt;Multiple choice question; multiple answers can be selected.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;note&lt;/td&gt;
+      &lt;td&gt;Display a note on the screen, takes no input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;geopoint&lt;/td&gt;
+      &lt;td&gt;Collect GPS coordinates.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;date&lt;/td&gt;
+      &lt;td&gt;Date input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;time&lt;/td&gt;
+      &lt;td&gt;Time input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;dateTime&lt;/td&gt;
+      &lt;td&gt;Accepts a date and a time input.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;image&lt;/td&gt;
+      &lt;td&gt;Take a picture.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;audio&lt;/td&gt;
+      &lt;td&gt;Take an audio recording.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;video&lt;/td&gt;
+      &lt;td&gt;Take a video recording.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;barcode&lt;/td&gt;
+      &lt;td&gt;Scan a barcode, requires the barcode scanner app to be installed.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;calculate&lt;/td&gt;
+      &lt;td&gt;Perform a calculation; see the &lt;strong&gt;Calculation&lt;/strong&gt; section below.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;For example, to collect the name and GPS coordinates of a store, you would write the following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;store_name&lt;/td&gt;
+      &lt;td&gt;What is the name of this store?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;geopoint&lt;/td&gt;
+      &lt;td&gt;store_gps&lt;/td&gt;
+      &lt;td&gt;Collect the GPS coordinates of this store.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing&quot;&gt;question_types XLSForm&lt;/a&gt; for a look at each question type in action!&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namemultiple-choiceamultiple-choice-questions&quot;&gt;&lt;a name=&quot;multiple choice&quot;&gt;&lt;/a&gt;Multiple choice questions&lt;/h5&gt;
+
+&lt;p&gt;XLSForm supports both &lt;strong&gt;select_one&lt;/strong&gt; (select only one answer) and &lt;strong&gt;select_multiple&lt;/strong&gt; (select multiple answers) questions. Writing a multiple choice question requires adding a &lt;strong&gt;choices&lt;/strong&gt; worksheet to your Excel workbook. Here is an example of a &lt;strong&gt;select_one&lt;/strong&gt; question:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one yes_no&lt;/td&gt;
+      &lt;td&gt;likes_pizza&lt;/td&gt;
+      &lt;td&gt;Do you like pizza?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;yes_no&lt;/td&gt;
+      &lt;td&gt;yes&lt;/td&gt;
+      &lt;td&gt;Yes&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;yes_no&lt;/td&gt;
+      &lt;td&gt;no&lt;/td&gt;
+      &lt;td&gt;No&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the &lt;strong&gt;yes_no&lt;/strong&gt; in the &lt;strong&gt;survey&lt;/strong&gt; worksheet must match the &lt;strong&gt;yes_no&lt;/strong&gt; in the &lt;strong&gt;list name&lt;/strong&gt; column in the &lt;strong&gt;choices&lt;/strong&gt; worksheet. This ensures that the form displays the correct list of answer choices for a particular question.  &lt;/p&gt;
+
+&lt;p&gt;We can also add multiple choice questions that allow multiple answers to be selected, like so:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_multiple pizza_toppings&lt;/td&gt;
+      &lt;td&gt;favorite_toppings&lt;/td&gt;
+      &lt;td&gt;What are your favorite pizza toppings?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;cheese&lt;/td&gt;
+      &lt;td&gt;Cheese&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;pepperoni&lt;/td&gt;
+      &lt;td&gt;Pepperoni&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;sausage&lt;/td&gt;
+      &lt;td&gt;Sausage&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h5 id=&quot;a-namespecify-otheraspecify-other&quot;&gt;&lt;a name=&quot;specify other&quot;&gt;&lt;/a&gt;Specify other&lt;/h5&gt;
+&lt;p&gt;For multiple choice questions, surveys often include an option of marking &lt;strong&gt;other&lt;/strong&gt; when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including &lt;strong&gt;or_other&lt;/strong&gt; after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_multiple pizza_toppings or_other&lt;/td&gt;
+      &lt;td&gt;favorite_topping&lt;/td&gt;
+      &lt;td&gt;What are your favorite pizza toppings?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;cheese&lt;/td&gt;
+      &lt;td&gt;Cheese&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;pepperoni&lt;/td&gt;
+      &lt;td&gt;Pepperoni&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;sausage&lt;/td&gt;
+      &lt;td&gt;Sausage&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Click on the link to look at the complete &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing&quot;&gt;pizza_questionnaire&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Caveat&lt;/strong&gt;&lt;br /&gt;
+When you export data using this &lt;strong&gt;or_other&lt;/strong&gt; option, in the &lt;strong&gt;favorite_topping&lt;/strong&gt; column, you will see a value &lt;strong&gt;other&lt;/strong&gt;. A separate column will have the answer for the questions in which the user selected &lt;strong&gt;other&lt;/strong&gt;. This makes data analysis more cumbersome, so we do not recommend the &lt;strong&gt;or_other&lt;/strong&gt; construct for large scale data collection efforts. See the &lt;strong&gt;Relevant&lt;/strong&gt; section below for an alternative method more appropriate for large scale projects.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namemetadataametadata&quot;&gt;&lt;a name=&quot;metadata&quot;&gt;&lt;/a&gt;Metadata&lt;/h5&gt;
+&lt;p&gt;XLSForm has a number of data type options available for meta data collection:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Metadata type&lt;/th&gt;
+      &lt;th&gt;Meaning&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;start&lt;/td&gt;
+      &lt;td&gt;Start date and time of the survey.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;end&lt;/td&gt;
+      &lt;td&gt;End date and time of the survey.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;today&lt;/td&gt;
+      &lt;td&gt;Day of the survey.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;deviceid&lt;/td&gt;
+      &lt;td&gt;IMEI (International Mobile Equipment Identity)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;subscriberid&lt;/td&gt;
+      &lt;td&gt;IMSI (International Mobile Subscriber Identity)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;sim_serial&lt;/td&gt;
+      &lt;td&gt;SIM serial number.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;phone_number&lt;/td&gt;
+      &lt;td&gt;Phone number (if available).&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that some metadata fields would only apply for mobile phone-based forms.&lt;/p&gt;
+
+&lt;p&gt;If I wanted my survey to collect all of these metadata, I would put the following at the beginning of the survey:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;start&lt;/td&gt;
+      &lt;td&gt;start&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end&lt;/td&gt;
+      &lt;td&gt;end&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;today&lt;/td&gt;
+      &lt;td&gt;today&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;deviceid&lt;/td&gt;
+      &lt;td&gt;deviceid&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;subscriberid&lt;/td&gt;
+      &lt;td&gt;subscriberid&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;imei&lt;/td&gt;
+      &lt;td&gt;imei&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;phonenumber&lt;/td&gt;
+      &lt;td&gt;phonenumber&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
+The &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing&quot;&gt;Tutorial XLSForm&lt;/a&gt; shows how metadata is used in a form.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namehintsahints&quot;&gt;&lt;a name=&quot;hints&quot;&gt;&lt;/a&gt;Hints&lt;/h3&gt;
+&lt;p&gt;Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don’t want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a &lt;strong&gt;hint&lt;/strong&gt; column and add your hint message. See below for an example.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;hint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;What is the name of this store?&lt;/td&gt;
+      &lt;td&gt;Look on the signboard if the store has a signboard.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;geopoint&lt;/td&gt;
+      &lt;td&gt;geopoint&lt;/td&gt;
+      &lt;td&gt;Collect the GPS coordinates of this store.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing&quot;&gt;Tutorial XLSForm&lt;/a&gt; provides more examples of questions with hints.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-nameconstraintsaconstraints&quot;&gt;&lt;a name=&quot;constraints&quot;&gt;&lt;/a&gt;Constraints&lt;/h3&gt;
+
+&lt;p&gt;One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person’s age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called &lt;strong&gt;constraint&lt;/strong&gt;, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person’s age must be less than or equal to 150. Note how the &lt;code&gt;.&lt;/code&gt; in the formula refers back to the question variable.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;constraint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;How old are you?&lt;/td&gt;
+      &lt;td&gt;. &amp;lt;= 150&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this example, the formula &lt;code&gt;. &amp;lt;= 150&lt;/code&gt; is saying that the value entered &lt;code&gt;.&lt;/code&gt; for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.&lt;/p&gt;
+
+&lt;p&gt;Other useful expressions to use in the &lt;strong&gt;constraint&lt;/strong&gt; column can be found &lt;a href=&quot;http://opendatakit.org/help/form-design/binding/&quot;&gt;here&lt;/a&gt;. Look under the &lt;strong&gt;Operators&lt;/strong&gt; section.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-nameconstraint-messageaconstraint-message&quot;&gt;&lt;a name=&quot;constraint message&quot;&gt;&lt;/a&gt;Constraint Message&lt;/h5&gt;
+
+&lt;p&gt;If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a &lt;strong&gt;constraint_message&lt;/strong&gt; column to your form.  See the example below.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;constraint&lt;/td&gt;
+      &lt;td&gt;constraint_message&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;respondent_age&lt;/td&gt;
+      &lt;td&gt;Respondent’s age&lt;/td&gt;
+      &lt;td&gt;. &amp;gt;=18&lt;/td&gt;
+      &lt;td&gt;Respondent must be 18 or older to complete the survey.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this example, if the user enters an age less than 18, then the error message in the &lt;strong&gt;constraint_message&lt;/strong&gt; column appears. More examples on constraints have been illustrated in this &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1g12xGrOsnNYezG6WtTfeusxzypRT1JHeUC2uNbe03sc/edit?usp=sharing&quot;&gt;XLSForm&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namerelevantarelevant&quot;&gt;&lt;a name=&quot;relevant&quot;&gt;&lt;/a&gt;Relevant&lt;/h3&gt;
+
+&lt;p&gt;One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a &lt;strong&gt;relevant&lt;/strong&gt; column for a &lt;strong&gt;select_one&lt;/strong&gt; question, using our pizza topping example from before:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;relevant&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one yes_no&lt;/td&gt;
+      &lt;td&gt;likes_pizza&lt;/td&gt;
+      &lt;td&gt;Do you like pizza?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_multiple pizza_toppings or_other&lt;/td&gt;
+      &lt;td&gt;favorite_topping&lt;/td&gt;
+      &lt;td&gt;Favorite toppings&lt;/td&gt;
+      &lt;td&gt;${likes_pizza} = ‘yes’&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this example, the respondent is asked, “Do you like pizza?” If the answer is &lt;strong&gt;yes&lt;/strong&gt;, then the pizza topping question appears below. Note the &lt;code&gt;${ }&lt;/code&gt; around the variable &lt;strong&gt;likes_pizza&lt;/strong&gt;.  These are required in order for the form to reference the variable from the previous question.  &lt;/p&gt;
+
+&lt;p&gt;In the next example, below, we use relevant syntax for a &lt;strong&gt;select_multiple&lt;/strong&gt; question, which is slightly different from the &lt;strong&gt;select_one&lt;/strong&gt; question example above.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;relevant&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one yes_no&lt;/td&gt;
+      &lt;td&gt;likes_pizza&lt;/td&gt;
+      &lt;td&gt;Do you like pizza?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_multiple pizza_toppings or_other&lt;/td&gt;
+      &lt;td&gt;favorite_topping&lt;/td&gt;
+      &lt;td&gt;Favorite toppings&lt;/td&gt;
+      &lt;td&gt;${likes_pizza} = ‘yes’&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;favorite_cheese&lt;/td&gt;
+      &lt;td&gt;What is your favorite type of cheese?&lt;/td&gt;
+      &lt;td&gt;selected(${favorite_topping}, ‘cheese’)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;cheese&lt;/td&gt;
+      &lt;td&gt;Cheese&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;pepperoni&lt;/td&gt;
+      &lt;td&gt;Pepperoni&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;sausage&lt;/td&gt;
+      &lt;td&gt;Sausage&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Since the pizza topping question allows multiple responses, we have to use the &lt;code&gt;selected(${favorite_topping}, 'cheese')&lt;/code&gt; expression, because we want the cheese question to appear every time the user selects &lt;strong&gt;cheese&lt;/strong&gt; as one of the answers (regardless of whether additional answers are selected).&lt;/p&gt;
+
+&lt;p&gt;Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;relevant&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_multiple pizza_toppings&lt;/td&gt;
+      &lt;td&gt;favorite_toppings&lt;/td&gt;
+      &lt;td&gt;What are your favorite pizza toppings?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;favorite_toppings_other&lt;/td&gt;
+      &lt;td&gt;Specify other:&lt;/td&gt;
+      &lt;td&gt;selected(${favorite_toppings}, ‘other’)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;cheese&lt;/td&gt;
+      &lt;td&gt;Cheese&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;pepperoni&lt;/td&gt;
+      &lt;td&gt;Pepperoni&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;sausage&lt;/td&gt;
+      &lt;td&gt;Sausage&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pizza_toppings&lt;/td&gt;
+      &lt;td&gt;other&lt;/td&gt;
+      &lt;td&gt;Other&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that you must include &lt;strong&gt;other&lt;/strong&gt; as an answer choice in the &lt;strong&gt;choices&lt;/strong&gt; worksheet.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-nameformulasaformulas&quot;&gt;&lt;a name=&quot;formulas&quot;&gt;&lt;/a&gt;Formulas&lt;/h3&gt;
+&lt;p&gt;Formulas are used in the constraint, relevant and calculation columns. You’ve already seen some examples in the and &lt;strong&gt;Constraint&lt;/strong&gt; and &lt;strong&gt;Relevant&lt;/strong&gt; sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found &lt;a href=&quot;http://www.w3schools.com/xpath/xpath_operators.asp&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namecalculationacalculation&quot;&gt;&lt;a name=&quot;calculation&quot;&gt;&lt;/a&gt;Calculation&lt;/h3&gt;
+&lt;p&gt;Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a &lt;strong&gt;calculate&lt;/strong&gt; question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;calculation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;decimal&lt;/td&gt;
+      &lt;td&gt;amount&lt;/td&gt;
+      &lt;td&gt;What was the price of the meal?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;calculate&lt;/td&gt;
+      &lt;td&gt;tip&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;${amount} * 0.18&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;note&lt;/td&gt;
+      &lt;td&gt;display&lt;/td&gt;
+      &lt;td&gt;18% tip for your meal is: ${tip}&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Note that the &lt;strong&gt;${tip}&lt;/strong&gt; in the last line will be replaced with the actual tip amount when viewing and filling out the form.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namerequiredarequired&quot;&gt;&lt;a name=&quot;required&quot;&gt;&lt;/a&gt;Required&lt;/h3&gt;
+
+&lt;p&gt;It’s simple to mark certain questions as required in your form.  Marking them as required means the user will not be able to move on to the next question or submit the form without entering an answer for that question.&lt;/p&gt;
+
+&lt;p&gt;To make questions required, add a &lt;strong&gt;required&lt;/strong&gt; column to your survey worksheet. Under that column, mark questions as required by writing &lt;strong&gt;yes&lt;/strong&gt;.  See the example below:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;constraint&lt;/td&gt;
+      &lt;td&gt;required&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;How old are you?&lt;/td&gt;
+      &lt;td&gt;. &amp;lt;= 150&lt;/td&gt;
+      &lt;td&gt;yes&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;a-namegroupingagrouping-questions&quot;&gt;&lt;a name=&quot;grouping&quot;&gt;&lt;/a&gt;Grouping Questions&lt;/h3&gt;
+
+&lt;p&gt;To create a group of questions in your form try the following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;respondent&lt;/td&gt;
+      &lt;td&gt;Respondent&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;Enter the respondent’s name&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;position&lt;/td&gt;
+      &lt;td&gt;Enter the respondent’s position within the school.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;This is a good way to group related questions for data export and analysis. Notice how &lt;strong&gt;end group&lt;/strong&gt; doesn’t require a name or label, because it is hidden in the form.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namenestinganesting-groups-within-groups&quot;&gt;&lt;a name=&quot;nesting&quot;&gt;&lt;/a&gt;Nesting Groups Within Groups&lt;/h5&gt;
+
+&lt;p&gt;Groups of questions can be nested within one another:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;hospital&lt;/td&gt;
+      &lt;td&gt;Hospital&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;What is the name of this hospital?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;hiv_medication&lt;/td&gt;
+      &lt;td&gt;HIV Medication&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one yes_no&lt;/td&gt;
+      &lt;td&gt;have_hiv_medication&lt;/td&gt;
+      &lt;td&gt;Does this hospital have HIV medication?&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;You always have to end the most recent group that was created first. For instance, the first &lt;strong&gt;end group&lt;/strong&gt; you see closes the HIV medication group, and the second one closes the beginning hospital group. When working with groups and you keep getting error messages when trying to upload your form, double-check that for each &lt;strong&gt;begin group&lt;/strong&gt; you have one &lt;strong&gt;end group&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-nameskippingaskipping&quot;&gt;&lt;a name=&quot;skipping&quot;&gt;&lt;/a&gt;Skipping&lt;/h5&gt;
+
+&lt;p&gt;One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with relevant syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;relevant&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;How old are you?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;child&lt;/td&gt;
+      &lt;td&gt;Child&lt;/td&gt;
+      &lt;td&gt;${age} &amp;lt;= 5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;muac&lt;/td&gt;
+      &lt;td&gt;Record this child’s mid-upper arm circumference.&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;select_one yes_no&lt;/td&gt;
+      &lt;td&gt;mrdt&lt;/td&gt;
+      &lt;td&gt;Is the child’s rapid diagnostic test positive?&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In this example, the two child group questions (&lt;strong&gt;muac&lt;/strong&gt; and &lt;strong&gt;mrdt&lt;/strong&gt;) will only appear if the child’s &lt;strong&gt;age&lt;/strong&gt; from the first question is less than or equal to five.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namerepeatsarepeats&quot;&gt;&lt;a name=&quot;repeats&quot;&gt;&lt;/a&gt;Repeats&lt;/h3&gt;
+
+&lt;p&gt;Sometimes repeating a group of questions can come in handy, like when you have to record multiple instances of an event. A good example is when you are registering a new birth, and you have to record the birth of twins or triplets.  You can simply repeat a set of questions for each child born instead of having to submit multiple forms. To create a repeating group of questions use the &lt;strong&gt;begin repeat&lt;/strong&gt; and &lt;strong&gt;end repeat&lt;/strong&gt; construct:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin repeat&lt;/td&gt;
+      &lt;td&gt;child_repeat&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;Child’s name&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;decimal&lt;/td&gt;
+      &lt;td&gt;birthweight&lt;/td&gt;
+      &lt;td&gt;Child’s birthweight&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one male_female&lt;/td&gt;
+      &lt;td&gt;sex&lt;/td&gt;
+      &lt;td&gt;Child’s sex&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end repeat&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;choices&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;male_female&lt;/td&gt;
+      &lt;td&gt;male&lt;/td&gt;
+      &lt;td&gt;Male&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;male_female&lt;/td&gt;
+      &lt;td&gt;female&lt;/td&gt;
+      &lt;td&gt;Female&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing&quot;&gt;Delivery Outcome&lt;/a&gt; XLSForm that shows how to create repeating group questions.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namelanguageamultiple-language-support&quot;&gt;&lt;a name=&quot;language&quot;&gt;&lt;/a&gt;Multiple Language Support&lt;/h3&gt;
+&lt;p&gt;It’s easy to add multiple languages to a form. You simply have to name your &lt;strong&gt;label::language1&lt;/strong&gt;,  &lt;strong&gt;label::language2&lt;/strong&gt;, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the &lt;strong&gt;Menu&lt;/strong&gt; key, and the&lt;strong&gt;Change Language&lt;/strong&gt; option. For the form below, English and Español will show up as the possible options.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label::English&lt;/td&gt;
+      &lt;td&gt;label::Español&lt;/td&gt;
+      &lt;td&gt;constraint&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;How old are you?&lt;/td&gt;
+      &lt;td&gt;¿Cuántos años tienes?&lt;/td&gt;
+      &lt;td&gt;. &amp;lt;= 150&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;You can also add a different language column for hints and media files; you simply use the &lt;code&gt;::language&lt;/code&gt; construct again. See the &lt;a href=&quot;https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&amp;amp;usp=sharing&quot;&gt;XLSForm standard document&lt;/a&gt; to see exactly what kinds of column headers can accept a language modification.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namemediaamedia&quot;&gt;&lt;a name=&quot;media&quot;&gt;&lt;/a&gt;Media&lt;/h3&gt;
+&lt;p&gt;You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the &lt;strong&gt;/odk/forms/formname-media&lt;/strong&gt; folder on your phone, and then reference the exact file name in the &lt;strong&gt;media&lt;/strong&gt; column in your form. See below for an example of how to do this.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;media::image&lt;/td&gt;
+      &lt;td&gt;media::video&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;note&lt;/td&gt;
+      &lt;td&gt;media_example&lt;/td&gt;
+      &lt;td&gt;Media example&lt;/td&gt;
+      &lt;td&gt;example.jpg&lt;/td&gt;
+      &lt;td&gt;example.mp4&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing&quot;&gt;Birds XLSForm&lt;/a&gt; which illustrates the use of media files. You can also click on the link to see the &lt;a href=&quot;https://l2sje.enketo.org/webform&quot;&gt;Birds webform &lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namepre-loading-csv-dataapre-loading-csv-data&quot;&gt;&lt;a name=&quot;pre-loading csv data&quot;&gt;&lt;/a&gt;Pre-loading CSV data&lt;/h3&gt;
+&lt;p&gt;Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre- existing data in a specific survey form or any other source.  For example if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+To reference pre-existing data in a survey form:
+* Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the &lt;a href=&quot;#media&quot;&gt;Media&lt;/a&gt; section).The first row of each .csv file should be a header that includes short:
+  * unique names for each column
+  * subsequent rows which should contain the data itself&lt;/p&gt;
+
+&lt;p&gt;Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row’s data to pull into the survey. For the columns that will be used for looking up rows add &lt;strong&gt;_key&lt;/strong&gt; to the end of the column name in the first row. Any columns with names ending in &lt;strong&gt;_key&lt;/strong&gt; will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;name_key&lt;/th&gt;
+      &lt;th&gt;name&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;mango&lt;/td&gt;
+      &lt;td&gt;Mango&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;orange&lt;/td&gt;
+      &lt;td&gt;Orange&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h5 id=&quot;a-namehow-to-pull-data-from-csvahow-to-pull-data-from-csv&quot;&gt;&lt;a name=&quot;how to pull data from csv&quot;&gt;&lt;/a&gt;How to pull data from CSV&lt;/h5&gt;
+&lt;p&gt;You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time. 
+For each data field that you want to pull into your survey:
+ * Add a &lt;strong&gt;calculate field&lt;/strong&gt; to your survey. 
+ * Give that field a &lt;strong&gt;name&lt;/strong&gt;
+ * Then in its &lt;strong&gt;calculation&lt;/strong&gt; column, call the &lt;strong&gt;pulldata()&lt;/strong&gt; function, indicating which field to pull from which row of which .csv file.&lt;/p&gt;
+
+&lt;p&gt;See below for an example:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;calculation&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;calculate&lt;/td&gt;
+      &lt;td&gt;fruit&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;pulldata(‘fruits’, ‘name’,’name’, ‘mango’)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;note&lt;/td&gt;
+      &lt;td&gt;note_fruit&lt;/td&gt;
+      &lt;td&gt;The fruit ${fruit} pulled from csv&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Once you have loaded .csv data into a survey field using the &lt;strong&gt;pulldata()&lt;/strong&gt; function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user. &lt;/p&gt;
+
+&lt;p&gt;Click on the link to see an example of a &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing&quot;&gt;pre-loading sample form &lt;/a&gt; and  the .csv file used with form can be found &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Important notes on usage of pre-loaded data&lt;/strong&gt;
+ * Compress a large .csv file into a &lt;strong&gt;.zip archive&lt;/strong&gt; before uploading it.
+ * Save .csv file in &lt;strong&gt;UTF-8 format&lt;/strong&gt; if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly. 
+ * Data fields pulled from a .csv file are considered to be text strings therefore use the &lt;strong&gt;int()&lt;/strong&gt; or &lt;strong&gt;number()&lt;/strong&gt; functions to convert a pre-loaded field into numeric form.
+ * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namedynamic-selects-from-pre-loaded-dataadynamic-selects-from-pre-loaded-data&quot;&gt;&lt;a name=&quot;dynamic selects from pre-loaded data&quot;&gt;&lt;/a&gt;Dynamic selects from pre-loaded data&lt;/h3&gt;
+&lt;p&gt;Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for &lt;strong&gt;select_one&lt;/strong&gt; and &lt;strong&gt;select_multiple&lt;/strong&gt; fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the &lt;a href=&quot;#multiple choice&quot;&gt;Multiple choice questions&lt;/a&gt; section.
+The following should be done:
+* specify &lt;strong&gt;select_one listname&lt;/strong&gt; or &lt;strong&gt;select_multiple listname&lt;/strong&gt; in the type column (where &lt;strong&gt;listname&lt;/strong&gt; is the name of your choice list)
+* specify any special &lt;strong&gt;appearance styles&lt;/strong&gt; in the appearance column
+* include one or more rows for your listname on the choices worksheet. &lt;/p&gt;
+
+&lt;p&gt;Below is an example of the &lt;strong&gt;survey worksheet&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;labe&lt;/td&gt;
+      &lt;td&gt;appearance&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;select_one fruits&lt;/td&gt;
+      &lt;td&gt;fruits&lt;/td&gt;
+      &lt;td&gt;Select a fruit&lt;/td&gt;
+      &lt;td&gt;search(‘fruits’)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
+* In the appearance column:
+ * Include a &lt;strong&gt;search() expression&lt;/strong&gt; that specifies which .csv rows to include in the choice list.
+ * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a &lt;strong&gt;space&lt;/strong&gt;, then the &lt;strong&gt;search() expression&lt;/strong&gt;. [e.g., &lt;strong&gt;quick search()&lt;/strong&gt;]
+* On the &lt;strong&gt;choices worksheet&lt;/strong&gt;:
+ * a row should indicate which .csv columns to use for the label and selected value. As follows:
+   * &lt;strong&gt;list_name&lt;/strong&gt; column: specify the name of your choice list as you normally would.
+    * &lt;strong&gt;name&lt;/strong&gt; column:  include the name of the .csv column to use for uniquely identifying selected choices.
+    * &lt;strong&gt;label&lt;/strong&gt; column:  include the name of the .csv column to use for labeling the choices.
+&lt;br /&gt;
+&lt;strong&gt;Note&lt;/strong&gt;:
+&lt;br /&gt;
+If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.
+* In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column. 
+&lt;br /&gt;
+&lt;strong&gt;Note&lt;/strong&gt;:
+&lt;br /&gt;
+If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
+&lt;br /&gt;
+See below an example of the choices worksheet:
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;choices&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;list name&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;fruits&lt;/td&gt;
+      &lt;td&gt;name_key&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;Click on the link to see an example of a &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing&quot;&gt;search-and-select sample form&lt;/a&gt; and  the .csv file used with form can be found &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing&quot;&gt;here&lt;/a&gt;.
+&lt;br /&gt;
+There are a series of options to indicate which .csv rows to include in the choice list using the &lt;strong&gt;search() expression&lt;/strong&gt;, see this &lt;a href=&quot;http://opendatakit.org/help/form-design/data-preloading/&quot;&gt;post&lt;/a&gt; for additional information on these search() expressions. &lt;/p&gt;
+
+&lt;h3 id=&quot;a-namecascadeacascading-selects&quot;&gt;&lt;a name=&quot;cascade&quot;&gt;&lt;/a&gt;Cascading selects&lt;/h3&gt;
+&lt;p&gt;A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  » district » village).  Instead of adding a &lt;strong&gt;select_one&lt;/strong&gt; field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a &lt;strong&gt;choice_filter&lt;/strong&gt; column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm &lt;a href=&quot;https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&amp;amp;usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namedefaultadefault&quot;&gt;&lt;a name=&quot;default&quot;&gt;&lt;/a&gt;Default&lt;/h3&gt;
+
+&lt;p&gt;Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;default&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;today&lt;/td&gt;
+      &lt;td&gt;today&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;date&lt;/td&gt;
+      &lt;td&gt;survey_date&lt;/td&gt;
+      &lt;td&gt;Survey date?&lt;/td&gt;
+      &lt;td&gt;${today}&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In the above example, the &lt;strong&gt;survey_date&lt;/strong&gt; field is always pre-populated with today’s date. Make sure you include the &lt;strong&gt;today&lt;/strong&gt; metadata field in the form when you reference it!&lt;/p&gt;
+
+&lt;p&gt;In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tappng in the answer field and inputting another answer.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;default&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;decimal&lt;/td&gt;
+      &lt;td&gt;weight&lt;/td&gt;
+      &lt;td&gt;Respondent’s weight? (in kgs)&lt;/td&gt;
+      &lt;td&gt;51.3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;a-nameappearanceaappearance&quot;&gt;&lt;a name=&quot;appearance&quot;&gt;&lt;/a&gt;Appearance&lt;/h3&gt;
+
+&lt;p&gt;The &lt;strong&gt;appearance&lt;/strong&gt; column allows you to change the appearance of questions in your form. The following table lists the possible appearance attributes and how the question appears in the form.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Appearance attribute&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;multiline&lt;/td&gt;
+      &lt;td&gt;Best if used with web clients, set appearance to &lt;strong&gt;multiline&lt;/strong&gt; for &lt;strong&gt;text&lt;/strong&gt; questions, makes the text box multiple lines long.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;field-list&lt;/td&gt;
+      &lt;td&gt;Create a group with appearance set to &lt;strong&gt;field-list&lt;/strong&gt; to make the entire group of questions appear on one screen (for mobile clients only).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;table-list&lt;/td&gt;
+      &lt;td&gt;Similar to field-list, &lt;strong&gt;table-list&lt;/strong&gt; makes the questions on the screen more compact in a table-like format.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;minimal&lt;/td&gt;
+      &lt;td&gt;Makes the answer choices for &lt;strong&gt;select_one&lt;/strong&gt; or &lt;strong&gt;select_multiple&lt;/strong&gt; questions appear in a drop-down menu.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;quick&lt;/td&gt;
+      &lt;td&gt;Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected (no swiping required).&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;month-year&lt;/td&gt;
+      &lt;td&gt;For &lt;strong&gt;date&lt;/strong&gt; fields, select a month and year only for the date.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;year&lt;/td&gt;
+      &lt;td&gt;For &lt;strong&gt;date&lt;/strong&gt; fields, select only a year for the date.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;horizontal&lt;/td&gt;
+      &lt;td&gt;For web clients only, this makes the answer choices appear in columns of horizontal lists.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;horizontal-compact&lt;/td&gt;
+      &lt;td&gt;For web clients only, this makes the answer choices appear in a single horizontal list.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Likert&lt;/td&gt;
+      &lt;td&gt;Best if used with web clients, set appearance to &lt;strong&gt;likert&lt;/strong&gt; for &lt;strong&gt;select_one&lt;/strong&gt; questions, makes the answer choices appear in a Likert-style row.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;compact&lt;/td&gt;
+      &lt;td&gt;Used for web clients, makes it possible to select an image as choice in a select one questions, the images are displayed side by side with each other.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;quickcompact&lt;/td&gt;
+      &lt;td&gt;Same as previous but this one advances to the next question automatically in ODK Collect.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;Used with tables where the table group’s appearance is set to &lt;strong&gt;field-list&lt;/strong&gt;, this allows a table grid display with the answer choice labels on separate columns.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;list-nolabel&lt;/td&gt;
+      &lt;td&gt;Used in the same group as the &lt;strong&gt;label&lt;/strong&gt; appearance, this allows the answer input to show without the label.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;signature&lt;/td&gt;
+      &lt;td&gt;Used with &lt;strong&gt;image&lt;/strong&gt; questions for mobile clients only, signature allows you to trace your signature into your form.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;draw&lt;/td&gt;
+      &lt;td&gt;Used with &lt;strong&gt;image&lt;/strong&gt; questions for mobile clients only, draw allows you to sketch a drawing with your finger on the mobile device screen.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;An XLSForm with all of the appearance attributes in this table is available &lt;a href=&quot;https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namesettingsasettings-worksheet&quot;&gt;&lt;a name=&quot;settings&quot;&gt;&lt;/a&gt;Settings Worksheet&lt;/h3&gt;
+&lt;p&gt;Earlier we hinted that there was an additional worksheet besides the &lt;strong&gt;survey&lt;/strong&gt; and &lt;strong&gt;choices&lt;/strong&gt; sheet to include with your XLSForm. The &lt;strong&gt;settings&lt;/strong&gt; worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.&lt;/p&gt;
+
+&lt;p&gt;You can include a &lt;strong&gt;settings&lt;/strong&gt; worksheet in your XLSForm similar to the following:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;settings&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;form_title&lt;/td&gt;
+      &lt;td&gt;form_id&lt;/td&gt;
+      &lt;td&gt;public_key&lt;/td&gt;
+      &lt;td&gt;submission_url&lt;/td&gt;
+      &lt;td&gt;default_language&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;example title&lt;/td&gt;
+      &lt;td&gt;example_id&lt;/td&gt;
+      &lt;td&gt;IIBIjANBg…&lt;/td&gt;
+      &lt;td&gt;https://example-odk-aggregate.appspot.com/submission&lt;/td&gt;
+      &lt;td&gt;English&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;They do the following:
+* &lt;strong&gt;form_title&lt;/strong&gt;: The name of the form presented to users.
+* &lt;strong&gt;form_id&lt;/strong&gt;: The name used to identify the form submission.
+* &lt;strong&gt;public_key&lt;/strong&gt;: If form instances are to be encrypted, a public key needs to be included in the form.
+* &lt;strong&gt;submission_url&lt;/strong&gt;: The url of a server that submitted forms are to be sent to.
+* &lt;strong&gt;default_language&lt;/strong&gt;: In localized forms, this sets which translation should be used as the default.
+Note: None of these settings are required.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-nameencryptedaencrypted-forms&quot;&gt;&lt;a name=&quot;encrypted&quot;&gt;&lt;/a&gt;Encrypted forms&lt;/h5&gt;
+
+&lt;p&gt;Encrypted forms provide a mechanism to keep your data private using http for communication. Submission sent to the Aggregate server is encrypted and completely inaccessible to anyone not possessing the private key.&lt;/p&gt;
+
+&lt;p&gt;To encrypt XLS forms, add the &lt;strong&gt;id_string&lt;/strong&gt;, &lt;strong&gt;submission_url&lt;/strong&gt; and the &lt;strong&gt;public_key&lt;/strong&gt; as column headers in the settings worksheet.&lt;/p&gt;
+
+&lt;p&gt;They do the following:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;id_string&lt;/strong&gt; - name used to identify the form&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;submission_url&lt;/strong&gt; - is your submission url&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;public_key&lt;/strong&gt; - is the base64RsaPublicKey&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial &lt;a href=&quot;http://opendatakit.org/help/encrypted-forms/&quot;&gt;here&lt;/a&gt;. Please have a look at the &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing&quot;&gt;tutorial_encrypted XLSForm &lt;/a&gt; example.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namemultipleamultiple-webpage-forms&quot;&gt;&lt;a name=&quot;multiple&quot;&gt;&lt;/a&gt;Multiple webpage forms&lt;/h5&gt;
+
+&lt;p&gt;Web forms can be split into multiple pages using the style theme &lt;strong&gt;pages&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;An example of a form divided into multiple pages can be seen on the &lt;a href=&quot;https://asrj5.enketo.org/webform&quot;&gt;Widgets on Pages&lt;/a&gt; webform.&lt;/p&gt;
+
+&lt;p&gt;In the &lt;strong&gt;settings&lt;/strong&gt; tab, create a column called &lt;strong&gt;style&lt;/strong&gt; and set it to &lt;strong&gt;pages&lt;/strong&gt;, as follows:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;settings&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;form_title&lt;/td&gt;
+      &lt;td&gt;form_id&lt;/td&gt;
+      &lt;td&gt;style&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;example title&lt;/td&gt;
+      &lt;td&gt;example_id&lt;/td&gt;
+      &lt;td&gt;pages&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In your &lt;strong&gt;survey&lt;/strong&gt; tab, group together the questions you would like to appear on each page and then set the appearance for the group to &lt;strong&gt;field-list&lt;/strong&gt;. See the example below.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;appearance&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;group1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;field-list&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;Respondent’s name&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;Respondent’s age&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;string&lt;/td&gt;
+      &lt;td&gt;address&lt;/td&gt;
+      &lt;td&gt;Respondent’s address&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;See this &lt;a href=&quot;http://blog.enketo.org/pages/&quot;&gt;blog post&lt;/a&gt; for more information on creating multi-page web forms.  The XLSForm source is &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namegridagrid-theme-forms&quot;&gt;&lt;a name=&quot;grid&quot;&gt;&lt;/a&gt;Grid Theme forms&lt;/h5&gt;
+
+&lt;p&gt;The &lt;strong&gt;theme-grid&lt;/strong&gt; style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!&lt;/p&gt;
+
+&lt;p&gt;Please click on the link to see an example of a &lt;a href=&quot;https://fx5jf.enketo.org/webform&quot;&gt;Grid theme webform&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;To create a Grid form, in the &lt;strong&gt;settings&lt;/strong&gt; tab, under the &lt;strong&gt;style&lt;/strong&gt; column, write &lt;strong&gt;theme-grid&lt;/strong&gt;, as follows:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;settings&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;form_title&lt;/td&gt;
+      &lt;td&gt;form_id&lt;/td&gt;
+      &lt;td&gt;style&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;example title&lt;/td&gt;
+      &lt;td&gt;example_id&lt;/td&gt;
+      &lt;td&gt;theme-grid&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;In your &lt;strong&gt;survey&lt;/strong&gt; tab, group together the questions you would like to appear in each section and then set the appearance for each field according to the desired width (the default width is 4). See the example below.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;survey&lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt; &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;type&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;label&lt;/td&gt;
+      &lt;td&gt;appearance&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;begin group&lt;/td&gt;
+      &lt;td&gt;group1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;text&lt;/td&gt;
+      &lt;td&gt;name&lt;/td&gt;
+      &lt;td&gt;Respondent’s name&lt;/td&gt;
+      &lt;td&gt;w3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;integer&lt;/td&gt;
+      &lt;td&gt;age&lt;/td&gt;
+      &lt;td&gt;Respondent’s age&lt;/td&gt;
+      &lt;td&gt;w1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;string&lt;/td&gt;
+      &lt;td&gt;address&lt;/td&gt;
+      &lt;td&gt;Respondent’s address&lt;/td&gt;
+      &lt;td&gt;w4&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;end group&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;See this &lt;a href=&quot;http://blog.enketo.org/gorgeous-grid/&quot;&gt;blog post&lt;/a&gt; for more information on creating Grid forms. The Grid theme XLSForm example is &lt;a href=&quot;https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing&quot;&gt;here&lt;/a&gt;.  &lt;/p&gt;
+
+&lt;h3 id=&quot;a-nameadvanced-notesaadvanced-notes&quot;&gt;&lt;a name=&quot;advanced notes&quot;&gt;&lt;/a&gt;Advanced Notes&lt;/h3&gt;
+
+&lt;h5 id=&quot;a-namecombiningavisually-combining-notes&quot;&gt;&lt;a name=&quot;combining&quot;&gt;&lt;/a&gt;Visually combining notes&lt;/h5&gt;
+
+&lt;p&gt;The XLSForm format only allows one of each type of media (image, video, audio) to be added to a &lt;strong&gt;note&lt;/strong&gt; question (ie, you cannot have more than one media file or type in a single &lt;strong&gt;note&lt;/strong&gt; field). To work around this limitation, subsequent notes will now be visually merged together so that they appear as one note in your form. Practically speaking, this means you can include multiple &lt;strong&gt;note&lt;/strong&gt; fields one after another in your XLSForm.  When viewing the form, the notes will automatically appear as one note.  See the example web form &lt;a href=&quot;https://notes.enketo.org/webform&quot;&gt;here&lt;/a&gt;, and the XLSForm source &lt;a href=&quot;https://docs.google.com/spreadsheet/ccc?key=0Al3Mw5sknZoPdDRvaXlrR19GTklyNHJQak9tT1ZtSVE&amp;amp;usp=sharing#gid=0&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h5 id=&quot;a-namestylingastyling-notes&quot;&gt;&lt;a name=&quot;styling&quot;&gt;&lt;/a&gt;Styling notes&lt;/h5&gt;
+
+&lt;p&gt;XLSForm supports a limited subset of Markdown syntax for styling notes in your form.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;emphasize&lt;/em&gt; words by wrapping them inside &lt;code&gt;_&lt;/code&gt; or &lt;code&gt;*&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;strongly emphasize&lt;/strong&gt; words by wrapping them inside &lt;code&gt;__&lt;/code&gt; or &lt;code&gt;**&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;a link can be added by using &lt;code&gt;[name of link](url)&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Check out the blog post on styling and combining notes &lt;a href=&quot;http://blog.enketo.org/better-notes/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-nameresourcesamore-resources&quot;&gt;&lt;a name=&quot;resources&quot;&gt;&lt;/a&gt;More Resources&lt;/h3&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&amp;amp;usp=sharing&quot;&gt;XLSform standard document&lt;/a&gt; can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Form guidelines: &lt;a href=&quot;http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines&quot;&gt;http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Form design tutorial: &lt;a href=&quot;https://bitbucket.org/javarosa/javarosa/wiki/buildxforms&quot;&gt;https://bitbucket.org/javarosa/javarosa/wiki/buildxforms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Sample forms: &lt;a href=&quot;http://code.google.com/p/opendatakit/source/browse/?repo=forms&quot;&gt;http://code.google.com/p/opendatakit/source/browse/?repo=forms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;XForms as supported by JavaRosa: &lt;a href=&quot;https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat&quot;&gt;https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Wed, 28 May 2014 18:20:37 +0300</pubDate>
+        <link>http://yourdomain.com/xlsform/docs/2014/05/28/xlsform/</link>
+        <guid isPermaLink="true">http://yourdomain.com/xlsform/docs/2014/05/28/xlsform/</guid>
+      </item>
+    
+      <item>
         <title>Welcome to Jekyll!</title>
         <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
 To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
