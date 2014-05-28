@@ -1,7 +1,7 @@
 # Site settings
 title: XLSForms
 email: support@ona.io
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
+description: "This site will help you author xlsforms. XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel."
 baseurl: ""
 url: "http://www.ona.io"
 
