@@ -1,7 +1,7 @@
 # Site settings
 title: XLSForm.org
 email: info@xlsform.org
-description: "This site will help you author xlsforms. XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel."
+description: "This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms."
 baseurl: ""
 url: "http://github.com/xlsform"
 
