@@ -1,78 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml" />
+    <title>XLSForm.org</title>
+    <description>This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms.</description>
+    <link>http://github.com/xlsform/</link>
+    <atom:link href="http://github.com/xlsform/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
         <title>Introduction to XLSForms</title>
         <description>&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#what is xlsform&quot;&gt;What is XLSForm?&lt;/a&gt;
+  &lt;li&gt;&lt;a href=&quot;#what is xlsform&quot;&gt;What is an XLSForm?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#xlsform-tools&quot;&gt;Platforms/Tools that use XLSForms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#basic format&quot;&gt;Basic format&lt;/a&gt;
     &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#basic format&quot;&gt;Basic format&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#survey worksheet&quot;&gt;The survey worksheet&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#choices worksheet&quot;&gt;The choices worksheet&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#question types&quot;&gt;Question types&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#multiple choice&quot;&gt;Multiple choice questions&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#specify other&quot;&gt;Specify other&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#metadata&quot;&gt;Metadata&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#hints&quot;&gt;Hints&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#constraints&quot;&gt;Constraints&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#constraint message&quot;&gt;Constraint message&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#relevant&quot;&gt;Relevant&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#formulas&quot;&gt;Formulas&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#calculation&quot;&gt;Calculation&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#required&quot;&gt;Required&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#grouping&quot;&gt;Grouping Questions&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#nesting&quot;&gt;Nesting groups within groups&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#skipping&quot;&gt;Skipping&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#repeats&quot;&gt;Repeats&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#language&quot;&gt;Multiple Language Support&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#media&quot;&gt;Media&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#preloading csv data&quot;&gt;Pre-loading CSV data&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#how to pull data from csv&quot;&gt;How to pull data from CSV&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#dynamic selects from pre-loaded data&quot;&gt;Dynamic selects from pre-loaded data&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#cascade&quot;&gt;Cascading Selects&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#default&quot;&gt;Default&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#appearance&quot;&gt;Appearance&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#settings&quot;&gt;Settings Worksheet&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#encrypted&quot;&gt;Encrypted forms&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#multiple&quot;&gt;Multiple webpage forms&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#grid&quot;&gt;Grid Theme forms&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#advanced notes&quot;&gt;Advanced Notes&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#combining&quot;&gt;Visually combining notes&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#styling&quot;&gt;Styling notes&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;More Resources&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#survey worksheet&quot;&gt;The survey worksheet&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#choices worksheet&quot;&gt;The choices worksheet&lt;/a&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#question types&quot;&gt;Question types&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#multiple choice&quot;&gt;Multiple choice questions&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#specify other&quot;&gt;Specify other&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#metadata&quot;&gt;Metadata&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#hints&quot;&gt;Hints&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#constraints&quot;&gt;Constraints&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#constraint message&quot;&gt;Constraint message&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#relevant&quot;&gt;Relevant&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#formulas&quot;&gt;Formulas&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#calculation&quot;&gt;Calculation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#required&quot;&gt;Required&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#grouping&quot;&gt;Grouping Questions&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#nesting&quot;&gt;Nesting groups within groups&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#skipping&quot;&gt;Skipping&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#repeats&quot;&gt;Repeats&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#language&quot;&gt;Multiple Language Support&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#media&quot;&gt;Media&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#preloading csv data&quot;&gt;Pre-loading CSV data&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#how to pull data from csv&quot;&gt;How to pull data from CSV&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#dynamic selects from pre-loaded data&quot;&gt;Dynamic selects from pre-loaded data&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#cascade&quot;&gt;Cascading Selects&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#default&quot;&gt;Default&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#appearance&quot;&gt;Appearance&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#settings&quot;&gt;Settings Worksheet&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#encrypted&quot;&gt;Encrypted forms&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#multiple&quot;&gt;Multiple webpage forms&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#grid&quot;&gt;Grid Theme forms&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#advanced notes&quot;&gt;Advanced Notes&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#combining&quot;&gt;Visually combining notes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#styling&quot;&gt;Styling notes&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#resources&quot;&gt;More Resources&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#about&quot;&gt;About this site&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#history&quot;&gt;History&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;a-namewhat-is-xlsformawhat-is-xlsform&quot;&gt;&lt;a name=&quot;what is xlsform&quot;&gt;&lt;/a&gt;What is XLSForm?&lt;/h2&gt;
+&lt;h2 id=&quot;a-namewhat-is-xlsformawhat-is-an-xlsform&quot;&gt;&lt;a name=&quot;what is xlsform&quot;&gt;&lt;/a&gt;What is an XLSForm?&lt;/h2&gt;
 
-&lt;p&gt;XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.&lt;/p&gt;
+&lt;p&gt;XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.   They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.&lt;/p&gt;
+
+&lt;p&gt;The XLSForm is then converted to an XForm, a popular open form standard, that allows you to a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.    XLSForms are compatible with the subset of XForm functionality supported by &lt;a href=&quot;https://bitbucket.org/javarosa/javarosa/wiki/Home&quot;&gt;Javarosa Project&lt;/a&gt;.  XLSForms are supported by a number of popular data collection platforms.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namexlsform-toolsaplatformstools-that-support-xlsforms&quot;&gt;&lt;a name=&quot;xlsform-tools&quot;&gt;&lt;/a&gt;Platforms/Tools that support XLSForms&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://opendatakit.org&quot;&gt;Open Data Kit (ODK)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://formhub.org&quot;&gt;Formhub&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://ona.io&quot;&gt;Ona&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://surveycto.com&quot;&gt;SurveyCTO&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://enketo.org&quot;&gt;Enketo&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kobotoolbox.org&quot;&gt;Kobo ToolBox&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://commcarehq.org&quot;&gt;CommCare&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This intro-level tutorial teaches you how to author your forms using Excel.&lt;/p&gt;
 
 &lt;h3 id=&quot;a-namebasic-formatabasic-format&quot;&gt;&lt;a name=&quot;basic format&quot;&gt;&lt;/a&gt;Basic format&lt;/h3&gt;
 &lt;p&gt;Each Excel workbook usually has two worksheets: &lt;strong&gt;survey&lt;/strong&gt; and &lt;strong&gt;choices&lt;/strong&gt;. Later on, you’ll learn about a third worksheet that can add additional specifications to your form, but the &lt;strong&gt;survey&lt;/strong&gt; and &lt;strong&gt;choices&lt;/strong&gt; worksheets are usually standard.&lt;/p&gt;
@@ -1823,7 +1838,7 @@ Note: None of these settings are required.&lt;/p&gt;
 
 &lt;p&gt;Check out the blog post on styling and combining notes &lt;a href=&quot;http://blog.enketo.org/better-notes/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;a-nameresourcesamore-resources&quot;&gt;&lt;a name=&quot;resources&quot;&gt;&lt;/a&gt;More Resources&lt;/h3&gt;
+&lt;h3 id=&quot;a-nameresourcesamore-resources&quot;&gt;&lt;a name=&quot;resources&quot;&gt;&lt;/a&gt;More resources&lt;/h3&gt;
 
 &lt;p&gt;The &lt;a href=&quot;https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&amp;amp;usp=sharing&quot;&gt;XLSform standard document&lt;/a&gt; can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:&lt;/p&gt;
 
@@ -1831,33 +1846,23 @@ Note: None of these settings are required.&lt;/p&gt;
   &lt;li&gt;Form guidelines: &lt;a href=&quot;http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines&quot;&gt;http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Form design tutorial: &lt;a href=&quot;https://bitbucket.org/javarosa/javarosa/wiki/buildxforms&quot;&gt;https://bitbucket.org/javarosa/javarosa/wiki/buildxforms&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;Sample forms: &lt;a href=&quot;http://code.google.com/p/opendatakit/source/browse/?repo=forms&quot;&gt;http://code.google.com/p/opendatakit/source/browse/?repo=forms&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://formhub.org/formhub_u&quot;&gt;Formhub University&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://ona.io&quot;&gt;Ona Form Gallery&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;XForms as supported by JavaRosa: &lt;a href=&quot;https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat&quot;&gt;https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h3 id=&quot;a-nameaboutaabout-this-site&quot;&gt;&lt;a name=&quot;about&quot;&gt;&lt;/a&gt;About this site&lt;/h3&gt;
+&lt;p&gt;XLSForm.org is a community supported project aiming to create a common reference point for the XLSForm.org standard.&lt;/p&gt;
+
+&lt;p&gt;If you want to contribute to or improve this documentation, please visit our &lt;a href=&quot;https://github.com/XLSForm/xlsform.github.io&quot;&gt;project’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-namehistoryahistory&quot;&gt;&lt;a name=&quot;history&quot;&gt;&lt;/a&gt;History&lt;/h3&gt;
+&lt;p&gt;The XLSForm was originally developed by Andrew Marder and Alex Dorey of the &lt;a href=&quot;http://sel.columbia.edu&quot;&gt;Sustainable Engineering Lab at Columbia University&lt;/a&gt;.  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  &lt;a href=&quot;https://github.com/SEL-Columbia/pyxform&quot;&gt;PyXForm&lt;/a&gt;, the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.&lt;/p&gt;
+
 </description>
         <pubDate>Wed, 28 May 2014 18:20:37 +0300</pubDate>
-        <link>http://yourdomain.com/xlsform/docs/2014/05/28/xlsform/</link>
-        <guid isPermaLink="true">http://yourdomain.com/xlsform/docs/2014/05/28/xlsform/</guid>
-      </item>
-    
-      <item>
-        <title>Welcome to Jekyll!</title>
-        <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
-To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;.&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 28 May 2014 17:50:37 +0300</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2014/05/28/welcome-to-jekyll/</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2014/05/28/welcome-to-jekyll/</guid>
+        <link>http://github.com/xlsform/xlsform/docs/2014/05/28/xlsform/</link>
+        <guid isPermaLink="true">http://github.com/xlsform/xlsform/docs/2014/05/28/xlsform/</guid>
       </item>
     
   </channel>
