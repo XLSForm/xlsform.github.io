@@ -22,6 +22,19 @@ a         { color: #2a7ae2; text-decoration: none; }
 a:hover   { color: #000; text-decoration: underline; }
 a:visited { color: #205caa; }
 
+table{
+    margin:0!important;
+    padding:0!important;
+    border-collapse:collapse;
+}
+table tr th{
+    background:#EFEFEF;
+}
+table tr th, table tr td{
+    border:1px solid #AFAFAF;
+    padding:0.6em;
+}
+
 /* Utility */
 
 .wrap:before,
