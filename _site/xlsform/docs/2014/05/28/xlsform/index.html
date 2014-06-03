@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Introduction to XLSForms</title>
     <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.">
-    <link rel="canonical" href="http://yourdomain.com/xlsform/docs/2014/05/28/xlsform/">
+    <meta name="description" content="This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms.">
+    <link rel="canonical" href="http://github.com/xlsform/xlsform/docs/2014/05/28/xlsform/">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
@@ -21,7 +21,7 @@
 
   <div class="wrap">
 
-    <a class="site-title" href="/">Your awesome title</a>
+    <a class="site-title" href="/">XLSForm.org</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -37,11 +37,11 @@
       </a>
       <div class="trigger">
         
-          <a class="page-link" href="/about/">About</a>
-        
           <a class="page-link" href="/feed.xml"></a>
         
           <a class="page-link" href="/"></a>
+        
+          <a class="page-link" href="/index_bak/"></a>
         
       </div>
     </nav>
@@ -53,6 +53,7 @@
 
     <div class="page-content">
       <div class="wrap">
+        <article class="post-content">
       <div class="post">
 
   <header class="post-header">
@@ -62,70 +63,85 @@
 
   <article class="post-content">
   <ul>
-  <li><a href="#what is xlsform">What is XLSForm?</a>
+  <li><a href="#what is xlsform">What is an XLSForm?</a></li>
+  <li><a href="#xlsform-tools">Platforms/Tools that use XLSForms</a></li>
+  <li><a href="#basic format">Basic format</a>
     <ul>
-      <li><a href="#basic format">Basic format</a>
-        <ul>
-          <li><a href="#survey worksheet">The survey worksheet</a></li>
-          <li><a href="#choices worksheet">The choices worksheet</a></li>
-        </ul>
-      </li>
-      <li><a href="#question types">Question types</a>
-        <ul>
-          <li><a href="#multiple choice">Multiple choice questions</a></li>
-          <li><a href="#specify other">Specify other</a></li>
-          <li><a href="#metadata">Metadata</a></li>
-        </ul>
-      </li>
-      <li><a href="#hints">Hints</a></li>
-      <li><a href="#constraints">Constraints</a>
-        <ul>
-          <li><a href="#constraint message">Constraint message</a></li>
-        </ul>
-      </li>
-      <li><a href="#relevant">Relevant</a></li>
-      <li><a href="#formulas">Formulas</a></li>
-      <li><a href="#calculation">Calculation</a></li>
-      <li><a href="#required">Required</a></li>
-      <li><a href="#grouping">Grouping Questions</a>
-        <ul>
-          <li><a href="#nesting">Nesting groups within groups</a></li>
-          <li><a href="#skipping">Skipping</a></li>
-        </ul>
-      </li>
-      <li><a href="#repeats">Repeats</a></li>
-      <li><a href="#language">Multiple Language Support</a></li>
-      <li><a href="#media">Media</a></li>
-      <li><a href="#preloading csv data">Pre-loading CSV data</a>
-        <ul>
-          <li><a href="#how to pull data from csv">How to pull data from CSV</a></li>
-        </ul>
-      </li>
-      <li><a href="#dynamic selects from pre-loaded data">Dynamic selects from pre-loaded data</a></li>
-      <li><a href="#cascade">Cascading Selects</a></li>
-      <li><a href="#default">Default</a></li>
-      <li><a href="#appearance">Appearance</a></li>
-      <li><a href="#settings">Settings Worksheet</a>
-        <ul>
-          <li><a href="#encrypted">Encrypted forms</a></li>
-          <li><a href="#multiple">Multiple webpage forms</a></li>
-          <li><a href="#grid">Grid Theme forms</a></li>
-        </ul>
-      </li>
-      <li><a href="#advanced notes">Advanced Notes</a>
-        <ul>
-          <li><a href="#combining">Visually combining notes</a></li>
-          <li><a href="#styling">Styling notes</a></li>
-        </ul>
-      </li>
-      <li><a href="#resources">More Resources</a></li>
+      <li><a href="#survey worksheet">The survey worksheet</a></li>
+      <li><a href="#choices worksheet">The choices worksheet</a></li>
     </ul>
   </li>
+  <li><a href="#question types">Question types</a>
+    <ul>
+      <li><a href="#multiple choice">Multiple choice questions</a></li>
+      <li><a href="#specify other">Specify other</a></li>
+      <li><a href="#metadata">Metadata</a></li>
+    </ul>
+  </li>
+  <li><a href="#hints">Hints</a></li>
+  <li><a href="#constraints">Constraints</a>
+    <ul>
+      <li><a href="#constraint message">Constraint message</a></li>
+    </ul>
+  </li>
+  <li><a href="#relevant">Relevant</a></li>
+  <li><a href="#formulas">Formulas</a></li>
+  <li><a href="#calculation">Calculation</a></li>
+  <li><a href="#required">Required</a></li>
+  <li><a href="#grouping">Grouping Questions</a>
+    <ul>
+      <li><a href="#nesting">Nesting groups within groups</a></li>
+      <li><a href="#skipping">Skipping</a></li>
+    </ul>
+  </li>
+  <li><a href="#repeats">Repeats</a></li>
+  <li><a href="#language">Multiple Language Support</a></li>
+  <li><a href="#media">Media</a></li>
+  <li><a href="#preloading csv data">Pre-loading CSV data</a>
+    <ul>
+      <li><a href="#how to pull data from csv">How to pull data from CSV</a></li>
+    </ul>
+  </li>
+  <li><a href="#dynamic selects from pre-loaded data">Dynamic selects from pre-loaded data</a></li>
+  <li><a href="#cascade">Cascading Selects</a></li>
+  <li><a href="#default">Default</a></li>
+  <li><a href="#appearance">Appearance</a></li>
+  <li><a href="#settings">Settings Worksheet</a>
+    <ul>
+      <li><a href="#encrypted">Encrypted forms</a></li>
+      <li><a href="#multiple">Multiple webpage forms</a></li>
+      <li><a href="#grid">Grid Theme forms</a></li>
+    </ul>
+  </li>
+  <li><a href="#advanced notes">Advanced Notes</a>
+    <ul>
+      <li><a href="#combining">Visually combining notes</a></li>
+      <li><a href="#styling">Styling notes</a></li>
+    </ul>
+  </li>
+  <li><a href="#resources">More Resources</a></li>
+  <li><a href="#about">About this site</a></li>
+  <li><a href="#history">History</a></li>
 </ul>
 
-<h2 id="a-namewhat-is-xlsformawhat-is-xlsform"><a name="what is xlsform"></a>What is XLSForm?</h2>
+<h2 id="a-namewhat-is-xlsformawhat-is-an-xlsform"><a name="what is xlsform"></a>What is an XLSForm?</h2>
 
-<p>XLSForm is a tool used to simplify the creation of forms. With XLSForm, you can author forms in Excel, and XLSForm will convert it to an XForm that can be used with a number of web or mobile platforms. This intro-level tutorial teaches you how to author your forms using Excel.</p>
+<p>XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.   They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.</p>
+
+<p>The XLSForm is then converted to an XForm, a popular open form standard, that allows you to a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.    XLSForms are compatible with the subset of XForm functionality supported by <a href="https://bitbucket.org/javarosa/javarosa/wiki/Home">Javarosa Project</a>.  XLSForms are supported by a number of popular data collection platforms.</p>
+
+<h3 id="a-namexlsform-toolsaplatformstools-that-support-xlsforms"><a name="xlsform-tools"></a>Platforms/Tools that support XLSForms</h3>
+<ul>
+  <li><a href="http://opendatakit.org">Open Data Kit (ODK)</a></li>
+  <li><a href="http://formhub.org">Formhub</a></li>
+  <li><a href="http://ona.io">Ona</a></li>
+  <li><a href="http://surveycto.com">SurveyCTO</a></li>
+  <li><a href="http://enketo.org">Enketo</a></li>
+  <li><a href="http://kobotoolbox.org">Kobo ToolBox</a></li>
+  <li><a href="http://commcarehq.org">CommCare</a></li>
+</ul>
+
+<p>This intro-level tutorial teaches you how to author your forms using Excel.</p>
 
 <h3 id="a-namebasic-formatabasic-format"><a name="basic format"></a>Basic format</h3>
 <p>Each Excel workbook usually has two worksheets: <strong>survey</strong> and <strong>choices</strong>. Later on, you’ll learn about a third worksheet that can add additional specifications to your form, but the <strong>survey</strong> and <strong>choices</strong> worksheets are usually standard.</p>
@@ -1876,7 +1892,7 @@ Note: None of these settings are required.</p>
 
 <p>Check out the blog post on styling and combining notes <a href="http://blog.enketo.org/better-notes/">here</a>.</p>
 
-<h3 id="a-nameresourcesamore-resources"><a name="resources"></a>More Resources</h3>
+<h3 id="a-nameresourcesamore-resources"><a name="resources"></a>More resources</h3>
 
 <p>The <a href="https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&amp;usp=sharing">XLSform standard document</a> can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:</p>
 
@@ -1884,12 +1900,24 @@ Note: None of these settings are required.</p>
   <li>Form guidelines: <a href="http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines">http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines</a></li>
   <li>Form design tutorial: <a href="https://bitbucket.org/javarosa/javarosa/wiki/buildxforms">https://bitbucket.org/javarosa/javarosa/wiki/buildxforms</a></li>
   <li>Sample forms: <a href="http://code.google.com/p/opendatakit/source/browse/?repo=forms">http://code.google.com/p/opendatakit/source/browse/?repo=forms</a></li>
+  <li><a href="http://formhub.org/formhub_u">Formhub University</a></li>
+  <li><a href="http://ona.io">Ona Form Gallery</a></li>
   <li>XForms as supported by JavaRosa: <a href="https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat">https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat</a></li>
 </ul>
+
+<h3 id="a-nameaboutaabout-this-site"><a name="about"></a>About this site</h3>
+<p>XLSForm.org is a community supported project aiming to create a common reference point for the XLSForm.org standard.</p>
+
+<p>If you want to contribute to or improve this documentation, please visit our <a href="https://github.com/XLSForm/xlsform.github.io">project’s GitHub repo</a>.</p>
+
+<h3 id="a-namehistoryahistory"><a name="history"></a>History</h3>
+<p>The XLSForm was originally developed by Andrew Marder and Alex Dorey of the <a href="http://sel.columbia.edu">Sustainable Engineering Lab at Columbia University</a>.  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  <a href="https://github.com/SEL-Columbia/pyxform">PyXForm</a>, the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.</p>
+
 
   </article>
 
 </div>
+      </article>
       </div>
     </div>
 
@@ -1897,12 +1925,12 @@ Note: None of these settings are required.</p>
 
   <div class="wrap">
 
-    <h2 class="footer-heading">Your awesome title</h2>
+    <h2 class="footer-heading">XLSForm.org</h2>
 
     <div class="footer-col-1 column">
       <ul>
-        <li>Your awesome title</li>
-        <li><a href="mailto:your-email@domain.com">your-email@domain.com</a></li>
+        <li>XLSForm.org</li>
+        <li><a href="mailto:info@xlsform.org">info@xlsform.org</a></li>
       </ul>
     </div>
 
@@ -1948,12 +1976,19 @@ Note: None of these settings are required.</p>
     </div>
 
     <div class="footer-col-3 column">
-      <p class="text">Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</p>
+      <p class="text">This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms.</p>
     </div>
 
   </div>
 
 </footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".post-content > ul:first-child").appendTo(".sidenav");
+    $(".post-content > h2:first-child").appendTo(".heading-bar");
+});
+</script>
 
 
     </body>
