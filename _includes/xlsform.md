@@ -166,6 +166,7 @@ Click on the link to look at the complete [pizza_questionnaire](https://docs.goo
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
 
 ##### <a name="metadata"></a>Metadata
+
 XLSForm has a number of data type options available for meta data collection:
 
 | Metadata type | Meaning       |
@@ -197,6 +198,7 @@ Notice that there are no labels associated with the metadata question types.  Th
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
 
 ### <a name="hints"></a>Hints
+
 Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column and add your hint message. See below for an example.
 
 | survey        |               |       |      |    |
@@ -262,6 +264,7 @@ Since the pizza topping question allows multiple responses, we have to use the `
 
 Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:
 
+
 | survey        |               |       |      |    |
 | ------------- | ------------- | ----- | ---- |----|
 |               | type          | name  |  label | relevant |
@@ -277,9 +280,11 @@ Earlier we mentioned there was an alternative method for specifying other for mu
 Note that you must include **other** as an answer choice in the **choices** worksheet.
 
 ### <a name="formulas"></a>Formulas
+
 Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xpath/xpath_operators.asp).
 
 ### <a name="calculation"></a>Calculation
+
 Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
 
@@ -368,6 +373,7 @@ Sometimes repeating a group of questions can come in handy, like when you have t
 Check out the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
 
 ### <a name="language"></a>Multiple Language Support
+
 It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
 
 | survey        |               |       |      |      |      |
@@ -382,6 +388,7 @@ You can also add a different language column for hints and media files; you simp
 
 
 ### <a name="media"></a>Media
+
 You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
 
 | survey        |               |       |      |      |      |
@@ -392,8 +399,10 @@ You can include questions in your form that display images or that play video or
 Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform).
 
 ### <a name="pre-loading csv data"></a>Pre-loading CSV data
+
 Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre- existing data in a specific survey form or any other source.  For example if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
 To reference pre-existing data in a survey form:
+
 * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section).The first row of each .csv file should be a header that includes short:
   * unique names for each column
   * subsequent rows which should contain the data itself
@@ -406,8 +415,10 @@ Each csv file should contain at least one column that can be used to uniquely id
 | orange        | Orange        |
 
 ##### <a name="how to pull data from csv"></a>How to pull data from CSV 
+
 You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time. 
 For each data field that you want to pull into your survey:
+
  * Add a **calculate field** to your survey. 
  * Give that field a **name**
  * Then in its **calculation** column, call the **pulldata()** function, indicating which field to pull from which row of which .csv file.
@@ -425,6 +436,7 @@ Once you have loaded .csv data into a survey field using the **pulldata()** func
 Click on the link to see an example of a [pre-loading sample form ](https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing)
 
 **Important notes on usage of pre-loaded data**
+
  * Compress a large .csv file into a **.zip archive** before uploading it.
  * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly. 
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
@@ -434,7 +446,9 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  
 ### <a name="dynamic selects from pre-loaded data"></a>Dynamic selects from pre-loaded data
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple choice) section.
+
 The following should be done:
+
 * specify **select_one listname** or **select_multiple listname** in the type column (where **listname** is the name of your choice list)
 * specify any special **appearance styles** in the appearance column
 * include one or more rows for your listname on the choices worksheet. 
@@ -447,6 +461,7 @@ Below is an example of the **survey worksheet**:
 |               | select_one fruits    |  fruits     |  Select a fruit     |   search('fruits')   | 
 
 There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
+
 * In the appearance column:
  * Include a **search() expression** that specifies which .csv rows to include in the choice list.
  * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a **space**, then the **search() expression**. [e.g., **quick search()**]
@@ -479,6 +494,7 @@ There are a series of options to indicate which .csv rows to include in the choi
 
 
 ### <a name="cascade"></a>Cascading selects
+
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
 ### <a name="default"></a>Default
@@ -527,6 +543,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
 ### <a name="settings"></a>Settings Worksheet
+
 Earlier we hinted that there was an additional worksheet besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
 
 You can include a **settings** worksheet in your XLSForm similar to the following:
@@ -641,11 +658,13 @@ The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ
 * XForms as supported by JavaRosa: [https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat)
 
 ### <a name="about"></a>About this site
+
 XLSForm.org is a community supported project aiming to create a common reference point for the XLSForm.org standard.
 
 If you want to contribute to or improve this documentation, please visit our [project's GitHub repo](https://github.com/XLSForm/xlsform.github.io).
 
 ### <a name="history"></a>History
+
 The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/SEL-Columbia/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
 
 
