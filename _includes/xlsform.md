@@ -1,10 +1,3 @@
----
-layout: post
-title:  "Introduction to XLSForms"
-date:   2014-05-28 15:20:37
-categories: xlsform docs
----
-
 * [What is an XLSForm?](#what is xlsform)
 * [Platforms/Tools that use XLSForms](#xlsform-tools)
 * [Basic format](#basic format)
