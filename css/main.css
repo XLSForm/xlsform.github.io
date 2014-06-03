@@ -10,7 +10,7 @@ html, body { height: 100%; }
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.5;
   font-weight: 300;
   background-color: #fdfdfd;
@@ -34,17 +34,39 @@ table tr th, table tr td{
     border:1px solid #AFAFAF;
     padding:0.6em;
 }
+.cleafix:before, .clearfix:after{
+    content:""; display:table;
+}
+.clearfix:after{ clear:both; }
 
 /* Utility */
-
-.wrap:before,
-.wrap:after { content:""; display:table; }
-.wrap:after { clear: both; }
-.wrap {
-  max-width: 800px;
-  padding: 0 30px;
+.page-content{
+  max-width: 960px;
   margin: 0 auto;
+}
+.wrap{
+  float:left;
+  padding: 0 1em;
   zoom: 1;
+  width:65%;
+}
+
+.sidenav{
+    clear:both;
+    float:left;
+    margin-right:1em;
+    width:30%;
+}
+.sidenav > ul{
+    background:#EFEFEF;
+    font-size:14px;
+    padding:0.6em 1em 0.6em 1.6em;
+}
+.sidenav > ul li{
+    padding:0.1em;
+}
+.sidenav > ul li ul{
+    margin-left:2em;
 }
 
 
@@ -87,7 +109,6 @@ table tr th, table tr td{
 }
 
 /* Site footer */
-
 .site-footer {
   border-top: 1px solid #e8e8e8;
   padding: 30px 0;
@@ -207,7 +228,7 @@ table tr th, table tr td{
 .post-content h6 {
   line-height: 1;
   font-weight: 300;
-  margin: 40px 0 20px;
+  margin: 30px 0 20px;
 }
 
 .post-content h2 {

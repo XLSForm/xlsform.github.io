@@ -50,57 +50,10 @@
 
 </header>
 
-
-     <div class="page-content">
-      <div class="wrap">
-        <article class="post-content">
-       ## XLSForm.org
-
-* [What is an XLSForm?](#what is xlsform)
-* [Platforms/Tools that use XLSForms](#xlsform-tools)
-* [Basic format](#basic format)
-  * [The survey worksheet](#survey worksheet)
-  * [The choices worksheet](#choices worksheet)
-* [Question types](#question types)
-  * [Multiple choice questions](#multiple choice)
-  * [Specify other](#specify other)
-  * [Metadata](#metadata)
-* [Hints](#hints)
-* [Constraints](#constraints)
-  * [Constraint message](#constraint message)
-* [Relevant](#relevant)
-* [Formulas](#formulas)
-* [Calculation](#calculation)
-* [Required](#required)
-* [Grouping Questions](#grouping)
-  * [Nesting groups within groups](#nesting)
-  * [Skipping](#skipping)
-* [Repeats](#repeats)
-* [Multiple Language Support](#language)
-* [Media](#media)
-* [Pre-loading CSV data](#preloading csv data)
-  * [How to pull data from CSV](#how to pull data from csv)
-* [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
-* [Cascading Selects](#cascade)
-* [Default](#default)
-* [Appearance](#appearance)
-* [Settings Worksheet](#settings)
-  * [Encrypted forms](#encrypted)
-  * [Multiple webpage forms](#multiple)
-  * [Grid Theme forms](#grid)
-* [Advanced Notes](#advanced notes)
-  * [Visually combining notes](#combining)
-  * [Styling notes](#styling)
-* [More Resources](#resources)
-* [About this site](#about)
-* [History](#history)
-
-      </article>
-      </div>
-    </div>
     
-    
-    <div class="page-content">
+    <div class="page-content clearfix">
+      <div class="sidenav clearfix"></div>
+        
       <div class="wrap">
         <article class="post-content">
       <ul>
@@ -2054,6 +2007,12 @@ Note: None of these settings are required.</p>
   </div>
 
 </footer>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".post-content > ul:first-child").appendTo(".sidenav");
+});
+</script>
 
 
     </body>
