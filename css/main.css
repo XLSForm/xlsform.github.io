@@ -40,10 +40,11 @@ table tr th, table tr td{
 .clearfix:after{ clear:both; }
 
 /* Utility */
-.page-content{
+.container{
   max-width: 960px;
   margin: 0 auto;
 }
+
 .wrap{
   float:left;
   padding: 0 1em;
@@ -69,13 +70,6 @@ table tr th, table tr td{
 .sidenav > ul li ul{
     margin-left:2em;
 }
-.heading-bar h2{
-    color:#333;
-    font-size:2.1em;
-    font-weight:bold;
-    margin:0;
-}
-
 
 /* Layout Styles */
 /* ----------------------------------------------------------*/
