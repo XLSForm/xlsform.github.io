@@ -1,5 +1,5 @@
 * [What is an XLSForm?](#what is xlsform)
-* [Platforms/Tools that use XLSForms](#xlsform-tools)
+* [Platforms/Tools that support XLSForms](#xlsform-tools)
 * [Basic format](#basic format)
   * [The survey worksheet](#survey worksheet)
   * [The choices worksheet](#choices worksheet)
@@ -14,26 +14,26 @@
 * [Formulas](#formulas)
 * [Calculation](#calculation)
 * [Required](#required)
-* [Grouping Questions](#grouping)
+* [Grouping questions](#grouping)
   * [Nesting groups within groups](#nesting)
   * [Skipping](#skipping)
 * [Repeats](#repeats)
-* [Multiple Language Support](#language)
+* [Multiple language support](#language)
 * [Media](#media)
-* [Pre-loading CSV data](#preloading csv data)
+* [Pre-loading CSV data](#pre-loading csv data)
   * [How to pull data from CSV](#how to pull data from csv)
 * [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
-* [Cascading Selects](#cascade)
+* [Cascading selects](#cascade)
 * [Default](#default)
 * [Appearance](#appearance)
-* [Settings Worksheet](#settings)
+* [Settings worksheet](#settings)
   * [Encrypted forms](#encrypted)
   * [Multiple webpage forms](#multiple)
-  * [Grid Theme forms](#grid)
-* [Advanced Notes](#advanced notes)
+  * [Grid theme forms](#grid)
+* [Advanced notes](#advanced notes)
   * [Visually combining notes](#combining)
   * [Styling notes](#styling)
-* [More Resources](#resources)
+* [More resources](#resources)
 * [About this site](#about)
 * [History](#history)
 
@@ -222,7 +222,7 @@ In this example, the formula ```. <= 150``` is saying that the value entered ``.
 
 Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/). Look under the **Operators** section.
 
-##### <a name="constraint message"></a>Constraint Message
+##### <a name="constraint message"></a>Constraint message
 
 If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
 
@@ -308,7 +308,7 @@ To make questions required, add a **required** column to your survey worksheet. 
 |               | type          | name  |  label           |  constraint  | required |
 |               | integer       | age   | How old are you? |  . <= 150  | yes |
 
-### <a name="grouping"></a>Grouping Questions
+### <a name="grouping"></a>Grouping questions
 
 To create a group of questions in your form try the following:
 
@@ -322,7 +322,7 @@ To create a group of questions in your form try the following:
 
 This is a good way to group related questions for data export and analysis. Notice how **end group** doesn't require a name or label, because it is hidden in the form.
 
-##### <a name="nesting"></a>Nesting Groups Within Groups
+##### <a name="nesting"></a>Nesting groups within groups
 
 Groups of questions can be nested within one another:
 
@@ -372,7 +372,7 @@ Sometimes repeating a group of questions can come in handy, like when you have t
 
 Check out the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
 
-### <a name="language"></a>Multiple Language Support
+### <a name="language"></a>Multiple language support
 
 It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
 
@@ -542,7 +542,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
-### <a name="settings"></a>Settings Worksheet
+### <a name="settings"></a>Settings worksheet
 
 Earlier we hinted that there was an additional worksheet besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
 
@@ -603,7 +603,7 @@ In your **survey** tab, group together the questions you would like to appear on
 
 See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms.  The XLSForm source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.).
 
-##### <a name="grid"></a>Grid Theme forms
+##### <a name="grid"></a>Grid theme forms
 
 The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
 
@@ -629,7 +629,7 @@ In your **survey** tab, group together the questions you would like to appear in
 
 See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The Grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing).  
 
-### <a name="advanced notes"></a>Advanced Notes
+### <a name="advanced notes"></a>Advanced notes
 
 ##### <a name="combining"></a>Visually combining notes
 
