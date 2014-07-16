@@ -521,24 +521,24 @@ In the next example, the weight is automatically set to 51.3 kg.  You can simply
 
 The **appearance** column allows you to change the appearance of questions in your form. The following table lists the possible appearance attributes and how the question appears in the form.
 
-|  Appearance attribute   |  Description           |  
-| ----------------------- | ----------------------- |
-|  multiline             |  Best if used with web clients, set appearance to **multiline** for **text** questions, makes the text box multiple lines long.         |
-|  field-list            | Create a group with appearance set to **field-list** to make the entire group of questions appear on one screen (for mobile clients only).          |
-|  table-list            | Similar to field-list, **table-list** makes the questions on the screen more compact in a table-like format.          |
-|  minimal             | Makes the answer choices for **select_one** or **select_multiple** questions appear in a drop-down menu.          |
-|  quick             | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected (no swiping required).          |  
-| month-year | For **date** fields, select a month and year only for the date. |
-| year       | For **date** fields, select only a year for the date. |
-| horizontal | For web clients only, this makes the answer choices appear in columns of horizontal lists. |
-| horizontal-compact | For web clients only, this makes the answer choices appear in a single horizontal list. |
-| Likert     | Best if used with web clients, set appearance to **likert** for **select_one** questions, makes the answer choices appear in a Likert-style row. |
-| compact    |  Used for web clients, makes it possible to select an image as choice in a select one questions, the images are displayed side by side with each other.    |
-| quickcompact | Same as previous but this one advances to the next question automatically in ODK Collect.       |
-| label      | Used with tables where the table group's appearance is set to **field-list**, this allows a table grid display with the answer choice labels on separate columns.      |
-| list-nolabel | Used in the same group as the **label** appearance, this allows the answer input to show without the label.      |
-| signature  | Used with **image** questions for mobile clients only, signature allows you to trace your signature into your form.      |
-| draw       | Used with **image** questions for mobile clients only, draw allows you to sketch a drawing with your finger on the mobile device screen. |
+|  Appearance attribute   |  Question type          | Description            |  
+| ----------------------- | ----------------------- | ---------------------- |
+|  multiline             |  text   | Best if used with web clients, makes the text box multiple lines long.         |
+|  minimal             | select_one, select_multiple  | Answer choices appear in a pull-down menu.          |
+|  quick             | select_one  | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.          |  
+| month-year | date   |  Select a month and year only for the date. |
+| year       | date   |  Select only a year for the date. |
+| horizontal-compact | select_one, select_multiple  | For web clients only, this displays the answer choices horizontally. |
+| horizontal | select_one, select_multiple  | For web clients only, this displays the answer choices horizontally, but in columns. |
+| likert     | select_one   | Best if used with web clients, makes the answer choices appear as a Likert scale. |
+| compact    |  select_one, select_multiple [choices with images] | Arranges image answer choices side by side.    |
+| quickcompact | select_one [choices with images]  | Same as previous, but this one auto-advances to the next question (in mobile clients only).       |
+|  field-list            | groups  |  Entire group of questions appear on one screen (for mobile clients only).          |
+| label      | select_one, select_multiple  | Displays answer choice labels (and not inputs).      |
+| list-nolabel | select_one, select_multiple  | Used in conjunction with **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client).      |
+|  table-list            | groups  | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).          |
+| signature  | image  | Allows you to trace your signature into your form (mobile clients only).      |
+| draw       | image  | Allows you to sketch a drawing with your finger on the mobile device screen. |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
