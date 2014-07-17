@@ -53,8 +53,6 @@ The XLSForm is then converted to an XForm, a popular open form standard, that al
 * [Kobo ToolBox](http://kobotoolbox.org)
 * [CommCare](http://commcarehq.org)
 
-This intro-level tutorial teaches you how to author your forms using Excel.
-
 ### <a name="basic format"></a>Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below. 
 
