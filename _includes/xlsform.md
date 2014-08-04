@@ -28,6 +28,7 @@
 * [Appearance](#appearance)
 * [Settings worksheet](#settings)
   * [Encrypted forms](#encrypted)
+  * [Specify form submission name](#instance_name)
   * [Multiple webpage forms](#multiple)
   * [Grid theme forms](#grid)
 * [Advanced notes](#advanced notes)
@@ -562,7 +563,7 @@ The column headings in this example **settings** worksheet do the following:
 
 ##### <a name="encrypted"></a>Encrypted forms
 
-Encrypted forms provide a mechanism to keep your data private using http for communication. Submission sent to the Aggregate server is encrypted and completely inaccessible to anyone not possessing the private key.
+Encrypted forms provide a mechanism to keep your data private using http for communication. Form submissions sent to the Aggregate server are encrypted and completely inaccessible to anyone not possessing the private key.
 
 To encrypt XLS forms, add the **id_string**, **submission_url** and the **public_key** as column headers in the settings worksheet.
 
@@ -574,6 +575,12 @@ They do the following:
 
 For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted XLSForm ](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
 
+
+##### <a name="instance_name"></a>Specify form submission name
+
+In the **settings** worksheet, you can specify a unique name for each form submission using fields filled in by the user during the survey.  On the settings worksheet, add a column called **instance_name**.  Write in the expression that defines the unique form instance name using fields from the survey worksheet.
+
+Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d/1Bapi05GYITV6D0THvs9RaOSEjqb1-FWIhfjSTXtvl8I/edit#gid=1932003628) that calculates the instance name as the user's last and first names coupled with the form submission uuid.
 
 ##### <a name="multiple"></a>Multiple webpage forms
 
