@@ -552,11 +552,11 @@ An example **settings** worksheet is below:
 |               | Example Title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  
 
 The column headings in this example **settings** worksheet do the following:
-* **form_title**: The title of the form that is shown to users.  The form title is pulled from **form_id** if **form_title** is blank or missing.
-* **form_id**: The name used to identify the form submission.  The form id is pulled from the XLS file name if **form_id** is blank or missing.
-* **public_key**: For encrypted forms, this is where the public key is copied and pasted.
-* **submission_url**: For encrypted forms, this url specifies the server where finalized forms are submitted to.
-* **default_language**: In localized forms, this sets which language should be used as the default.
+- **form_title**: The title of the form that is shown to users.  The form title is pulled from **form_id** if **form_title** is blank or missing.
+- **form_id**: The name used to identify the form submission.  The form id is pulled from the XLS file name if **form_id** is blank or missing.
+- **public_key**: For encrypted forms, this is where the public key is copied and pasted.
+- **submission_url**: For encrypted forms, this url specifies the server where finalized forms are submitted to.
+- **default_language**: In localized forms, this sets which language should be used as the default.
 
 
 ##### <a name="encrypted"></a>Encrypted forms
