@@ -542,22 +542,21 @@ An XLSForm with all of the appearance attributes in this table is available [her
 
 ### <a name="settings"></a>Settings worksheet
 
-Earlier we hinted that there was an additional worksheet besides the **survey** and **choices** sheet to include with your XLSForm. The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
+The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
 
-You can include a **settings** worksheet in your XLSForm similar to the following:
+An example **settings** worksheet is below:
 
 | settings      |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- | 
 |               | form_title    | form_id  |  public_key  | submission_url |default_language |
-|               | example title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  
+|               | Example Title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  
 
-They do the following:
-* **form_title**: The name of the form presented to users.
-* **form_id**: The name used to identify the form submission.
-* **public_key**: If form instances are to be encrypted, a public key needs to be included in the form.
-* **submission_url**: The url of a server that submitted forms are to be sent to.
-* **default_language**: In localized forms, this sets which translation should be used as the default.
-Note: None of these settings are required.
+The column headings in this example **settings** worksheet do the following:
+* **form_title**: The title of the form that is shown to users.  The form title is pulled from **form_id** if **form_title** is blank or missing.
+* **form_id**: The name used to identify the form submission.  The form id is pulled from the XLS file name if **form_id** is blank or missing.
+* **public_key**: For encrypted forms, this is where the public key is copied and pasted.
+* **submission_url**: For encrypted forms, this url specifies the server where finalized forms are submitted to.
+* **default_language**: In localized forms, this sets which language should be used as the default.
 
 
 ##### <a name="encrypted"></a>Encrypted forms
