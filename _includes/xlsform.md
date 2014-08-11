@@ -664,7 +664,7 @@ The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ
 
 ### <a name="about"></a>About this site
 
-XLSForm.org is a community supported project aiming to create a common reference point for the XLSForm.org standard.
+XLSForm.org is a community-supported project aiming to create a common reference point for the XLSForm standard.
 
 If you want to contribute to or improve this documentation, please visit our [project's GitHub repo](https://github.com/XLSForm/xlsform.github.io).
 
