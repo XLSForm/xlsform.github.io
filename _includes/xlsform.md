@@ -506,7 +506,7 @@ Adding a default field means that a question will be pre-populated with an answe
 |               | today      | today  |    |     |
 |               | date      | survey_date  |  Survey date? |    2010-06-15 |
 
-In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tappng in the answer field and inputting another answer.
+In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tapping in the answer field and inputting another answer.
 
 | survey        |               |       |      |      |
 | ------------- | ------------- | ----- | ---- | ---- |
