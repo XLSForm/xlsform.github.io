@@ -175,8 +175,8 @@ XLSForm has a number of data type options available for meta data collection:
 | today         | Day of the survey.     |
 | deviceid      | IMEI (International Mobile Equipment Identity)     |
 | subscriberid  | IMSI (International Mobile Subscriber Identity)     |
-| sim_serial    | SIM serial number.     |
-| phone_number  | Phone number (if available).      |
+| simserial    | SIM serial number.     |
+| phonenumber  | Phone number (if available).      |
 
 Note that some metadata fields would only apply for mobile phone-based forms.
 
