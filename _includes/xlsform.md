@@ -1,5 +1,4 @@
 * [What is an XLSForm?](#what is xlsform)
-* [Platforms/Tools that support XLSForms](#xlsform-tools)
 * [Basic format](#basic format)
   * [The survey worksheet](#survey worksheet)
   * [The choices worksheet](#choices worksheet)
@@ -34,6 +33,7 @@
 * [Advanced notes](#advanced notes)
   * [Visually combining notes](#combining)
   * [Styling notes](#styling)
+* [Platforms/Tools that support XLSForms](#xlsform-tools)
 * [More resources](#resources)
 * [About this site](#about)
 * [History](#history)
@@ -44,15 +44,6 @@
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
 
 The XLSForm is then converted to an XForm, a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.    XLSForms are compatible with the subset of XForm functionality supported by [Javarosa Project](https://bitbucket.org/javarosa/javarosa/wiki/Home).  XLSForms are supported by a number of popular data collection platforms.
-
-###<a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
-* [Open Data Kit (ODK)](http://opendatakit.org)
-* [Formhub](http://formhub.org)
-* [Ona](http://ona.io)
-* [SurveyCTO](http://surveycto.com)
-* [Enketo](http://enketo.org)
-* [Kobo ToolBox](http://kobotoolbox.org)
-* [CommCare](http://commcarehq.org)
 
 ### <a name="basic format"></a>Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below. 
@@ -648,6 +639,15 @@ XLSForm supports a limited subset of Markdown syntax for styling notes in your f
 * add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
 
 Check out the blog post on styling and combining notes [here](http://blog.enketo.org/better-notes/).
+
+### <a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
+* [Open Data Kit (ODK)](http://opendatakit.org)
+* [Formhub](http://formhub.org)
+* [Ona](http://ona.io)
+* [SurveyCTO](http://surveycto.com)
+* [Enketo](http://enketo.org)
+* [Kobo ToolBox](http://kobotoolbox.org)
+* [CommCare](http://commcarehq.org)
 
 ### <a name="resources"></a>More resources
 
