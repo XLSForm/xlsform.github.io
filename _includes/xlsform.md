@@ -345,7 +345,7 @@ In this example, the two child group questions (**muac** and **mrdt**) will only
 
 ### <a name="repeats"></a>Repeats
 
-Sometimes repeating a group of questions can come in handy, like when you have to record multiple instances of an event. A good example is when you are registering a new birth, and you have to record the birth of twins or triplets.  You can simply repeat a set of questions for each child born instead of having to submit multiple forms. To create a repeating group of questions use the **begin repeat** and **end repeat** construct:
+A user can repeat a group of questions by using the **begin repeat** and **end repeat** construct:
 
 | survey        |               |       |      |
 | ------------- | ------------- | ----- | ---- |
@@ -359,8 +359,43 @@ Sometimes repeating a group of questions can come in handy, like when you have t
 |     | male_female    |  male   |  Male     |
 |     | male_female    |  female   |  Female     |
 
+In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat group, and the user can repeat this group as many times as required by selecting the option in the form to start another repeat. 
 
-Check out the [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm that shows how to create repeating group questions.
+The **label** column is optional for **begin repeat**.  Assigning a label to a repeat group will add the label as a title to the block of repeat questions in the form.
+
+The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm illustrates another repeat group example.
+
+Instead of allowing an infinite number of repeats, the user can specify an exact number of repeats by using the **repeat_count** column:
+
+| survey        |               |       |      |   |
+| ------------- | ------------- | ----- | ---- |---|
+|               | type          | name  |  label | repeat_count |
+|               | begin repeat         | child_repeat |   | 3 |
+|               | text         | name |  Child's name |  |
+|               | decimal          | birthweight  |  Child's birthweight |  |
+|               | select_one male_female     | sex | Child's sex |  |
+|               | end repeat    |     |       |  |
+|  **choices**   | list name    |  name   |  label     |   |
+|     | male_female    |  male   |  Male     |  |
+|     | male_female    |  female   |  Female     |  |
+
+In the above example, the repeat group is restricted to **3** repeats.  
+
+Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of times the **hh_member** group repeats: 
+
+| survey        |               |       |      |   |
+| ------------- | ------------- | ----- | ---- |---|
+|               | type          | name  |  label | repeat_count |
+|               | integer       | num_hh_members |   |   |
+|               | begin repeat         | hh_member |   | ${num_hh_members} |
+|               | text         | name |  Name |  |
+|               | integer          | age  |  Age |  |
+|               | select_one male_female     | gender | Gender |  |
+|               | end repeat    |     |       |  |
+|  **choices**   | list name    |  name   |  label     |   |
+|     | male_female    |  male   |  Male     |  |
+|     | male_female    |  female   |  Female     |  |
+
 
 ### <a name="language"></a>Multiple language support
 
