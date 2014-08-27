@@ -387,7 +387,7 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 | ------------- | ------------- | ----- | ---- |---|
 |               | type          | name  |  label | repeat_count |
 |               | integer       | num_hh_members |   |   |
-|               | begin repeat         | hh_member |   | ${num_hh_members} |
+|               | begin repeat         | hh_member | Number of household members?  | ${num_hh_members} |
 |               | text         | name |  Name |  |
 |               | integer          | age  |  Age |  |
 |               | select_one male_female     | gender | Gender |  |
