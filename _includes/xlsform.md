@@ -523,7 +523,7 @@ There are a series of options to indicate which .csv rows to include in the choi
 
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
-### <a name="external-selects"></a>External selects
+### <a name="external"></a>External selects
 
 If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
 
