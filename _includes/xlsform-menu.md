@@ -26,6 +26,7 @@
   * [How to pull data from CSV](#how to pull data from csv)
 * [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
 * [Cascading Selects](#cascade)
+* [External Selects](#external)
 * [Default](#default)
 * [Appearance](#appearance)
 * [Settings Worksheet](#settings)
