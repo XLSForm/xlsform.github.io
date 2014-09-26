@@ -23,6 +23,7 @@
   * [How to pull data from CSV](#how-to-pull-data-from-csv)
 * [Dynamic selects from pre-loaded data](#dynamic-selects-from-pre-loaded-data)
 * [Cascading selects](#cascade)
+* [External selects](#external)
 * [Default](#default)
 * [Appearance](#appearance)
 * [Settings worksheet](#settings)
@@ -521,6 +522,21 @@ There are a series of options to indicate which .csv rows to include in the choi
 ### <a name="cascade"></a>Cascading selects
 
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
+
+### <a name="external"></a>External selects
+
+If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
+
+Enabling external selects is straightforward. 
+ - Instead of 'select_one' for the prompt type, use 'select_one_external'.
+ - Instead of the 'choices' sheet, put external choices in the 'external_choices' sheet.
+
+See select_one_external form for an example that uses normal and external choices.
+
+When an XLSForm with external choices is converted to an XForm, two files will be produced, the XForm (e.g., form-filename.xml) with all the normal choices, and an itemsets.csv with the external choices. 
+
+The itemsets.csv file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. CLients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
+
 
 ### <a name="default"></a>Default
 
