@@ -528,14 +528,14 @@ A lot of forms start out by asking the location of the  respondent, with each lo
 If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
 
 Enabling external selects is straightforward. 
- - Instead of 'select_one' for the prompt type, use 'select_one_external'.
- - Instead of the 'choices' sheet, put external choices in the 'external_choices' sheet.
+ - Instead of **select_one** for the prompt type, use **select_one_external**.
+ - Instead of the **choices** sheet, put external choices in the **external_choices** sheet.
 
-See select_one_external form for an example that uses normal and external choices.
+See [select_one_external](https://docs.google.com/spreadsheets/d/12qZL34kuHSZGWDv0BBJ1qf7dSmml-d2VnMWH0Vtg-O4/edit?usp=sharing) form for an example that uses normal and external choices.
 
-When an XLSForm with external choices is converted to an XForm, two files will be produced, the XForm (e.g., form-filename.xml) with all the normal choices, and an itemsets.csv with the external choices. 
+When an XLSForm with external choices is converted to an XForm, two files will be produced, the **XForm** (e.g., form-filename.xml) with all the normal choices, and an **itemsets.csv** with the external choices. 
 
-The itemsets.csv file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. CLients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
+The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. Clients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
 
 
 ### <a name="default"></a>Default
