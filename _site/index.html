@@ -314,10 +314,10 @@
       <td>Do you like pizza?</td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
     <tr>
       <td> </td>
@@ -367,10 +367,10 @@
       <td>What are your favorite pizza toppings?</td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
     <tr>
       <td> </td>
@@ -400,7 +400,7 @@
 </table>
 
 <h5 id="a-namespecify-otheraspecify-other"><a name="specify other"></a>Specify other</h5>
-<p>For multiple choice questions, surveys often include an option of marking <strong>other</strong> when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including <strong>or_other</strong> after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:</p>
+<p>For multiple choice questions, surveys often include an option of marking <strong>other</strong> when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including <strong>or_other</strong> after the answer choice <strong>list name</strong> in the survey worksheet. The <strong>choices</strong> worksheet stays the same. See below:</p>
 
 <table>
   <thead>
@@ -425,10 +425,10 @@
       <td>What are your favorite pizza toppings?</td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
     <tr>
       <td> </td>
@@ -779,11 +779,11 @@ The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4h
       <td>selected(${favorite_topping}, ‘cheese’)</td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
     <tr>
       <td> </td>
@@ -853,11 +853,11 @@ The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4h
       <td>selected(${favorite_toppings}, ‘other’)</td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
     <tr>
       <td> </td>
@@ -1105,6 +1105,7 @@ The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4h
 <table>
   <thead>
     <tr>
+      <th>survey</th>
       <th> </th>
       <th> </th>
       <th> </th>
@@ -1113,36 +1114,42 @@ The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4h
   </thead>
   <tbody>
     <tr>
+      <td> </td>
       <td>type</td>
       <td>name</td>
       <td>label</td>
       <td>relevant</td>
     </tr>
     <tr>
+      <td> </td>
       <td>integer</td>
       <td>age</td>
       <td>How old are you?</td>
       <td> </td>
     </tr>
     <tr>
+      <td> </td>
       <td>begin group</td>
       <td>child</td>
       <td>Child</td>
       <td>${age} &lt;= 5</td>
     </tr>
     <tr>
+      <td> </td>
       <td>integer</td>
       <td>muac</td>
       <td>Record this child’s mid-upper arm circumference.</td>
       <td> </td>
     </tr>
     <tr>
+      <td> </td>
       <td>select_one yes_no</td>
       <td>mrdt</td>
       <td>Is the child’s rapid diagnostic test positive?</td>
       <td> </td>
     </tr>
     <tr>
+      <td> </td>
       <td>end group</td>
       <td> </td>
       <td> </td>
@@ -1204,7 +1211,13 @@ The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4h
       <td> </td>
     </tr>
     <tr>
-      <td><strong>choices</strong></td>
+      <th><strong>choices</strong></th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+    </tr>
+    <tr>
+      <td> </td>
       <td>list name</td>
       <td>name</td>
       <td>label</td>
@@ -1399,14 +1412,14 @@ For each data field that you want to pull into your survey:</p>
 </ul>
 
 <h3 id="a-namedynamic-selects-from-pre-loaded-dataadynamic-selects-from-pre-loaded-data"><a name="dynamic selects from pre-loaded data"></a>Dynamic selects from pre-loaded data</h3>
-<p>Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for <strong>select_one</strong> and <strong>select_multiple</strong> fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the <a href="#multiple choice">Multiple choice questions</a> section.</p>
+<p>Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for <strong>select_one</strong> and <strong>select_multiple</strong> fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static <strong>select_one</strong> and <strong>select_multiple</strong> fields as previously covered in the <a href="#multiple choice">Multiple choice questions</a> section.</p>
 
 <p>The following should be done:</p>
 
 <ul>
-  <li>specify <strong>select_one listname</strong> or <strong>select_multiple listname</strong> in the type column (where <strong>listname</strong> is the name of your choice list)</li>
+  <li>specify <strong>select_one</strong> <strong>listname</strong> or <strong>select_multiple</strong> <strong>listname</strong> in the type column (where <strong>listname</strong> is the name of your choice list)</li>
   <li>specify any special <strong>appearance styles</strong> in the appearance column</li>
-  <li>include one or more rows for your listname on the choices worksheet. </li>
+  <li>include one or more rows for your listname on the <strong>choices</strong> worksheet. </li>
 </ul>
 
 <p>Below is an example of the <strong>survey worksheet</strong>:</p>
@@ -1445,7 +1458,7 @@ For each data field that you want to pull into your survey:</p>
   <li>In the appearance column:</li>
   <li>Include a <strong>search() expression</strong> that specifies which .csv rows to include in the choice list.</li>
   <li>If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a <strong>space</strong>, then the <strong>search() expression</strong>. [e.g., <strong>quick search()</strong>]</li>
-  <li>On the <strong>choices worksheet</strong>:</li>
+  <li>On the <strong>choices</strong> worksheet:</li>
   <li>a row should indicate which .csv columns to use for the label and selected value. As follows:
     <ul>
       <li><strong>list_name</strong> column: specify the name of your choice list as you normally would.</li>
@@ -1457,13 +1470,13 @@ For each data field that you want to pull into your survey:</p>
 If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.</li>
     </ul>
   </li>
-  <li>In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column. 
+  <li>In your <strong>choices</strong> worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column. 
 <br />
 <strong>Note</strong>:
 <br />
 If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
 <br />
-See below an example of the choices worksheet:
+See below an example of the <strong>choices</strong> worksheet:
 <br /></li>
 </ul>
 
@@ -1498,7 +1511,7 @@ There are a series of options to indicate which .csv rows to include in the choi
 
 <h3 id="a-namecascadeacascading-selects"><a name="cascade"></a>Cascading selects</h3>
 
-<p>A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  » district » village).  Instead of adding a <strong>select_one</strong> field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a <strong>choice_filter</strong> column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm <a href="https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&amp;usp=sharing">here</a>.</p>
+<p>A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  » district » village).  Instead of adding a <strong>select_one</strong> field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a <strong>choice_filter</strong> column in your survey worksheet and add the location attribute columns in your <strong>choices</strong> worksheet. Check out an example XLSForm <a href="https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&amp;usp=sharing">here</a>.</p>
 
 <h3 id="a-namedefaultadefault"><a name="default"></a>Default</h3>
 
