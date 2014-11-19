@@ -8,3 +8,6 @@ url: "http://github.com/xlsform"
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+g_analytics_token: 'UA-55713660-1'
+g_analytics_domain: 'xlsform.org'
