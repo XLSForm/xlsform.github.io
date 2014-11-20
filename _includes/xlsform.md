@@ -62,14 +62,14 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
   * The **type** column specifies the type of entry you are adding.
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name.
-  * The **label** column contains the actual text you see in the form.  
+  * The **label** column contains the actual text you see in the form. Alternatively, <a href="#language">label translation columns</a> can be used.
 
 ![](https://farm4.staticflickr.com/3750/13912042263_eab8f6c1b2.jpg)
 
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
   * The **name** column specifies the unique variable name for that answer choice.
-  * The **label** column shows the answer choice exactly as you want it to appear on the form.
+  * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, <a href="#language">label translation columns</a> can be used.
 
 ![](https://farm8.staticflickr.com/7190/13888981636_de6f800cf9.jpg)
 
