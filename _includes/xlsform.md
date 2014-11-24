@@ -109,7 +109,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 
 Check out the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type in action!
 
-##### <a name="multiple choice"></a>Multiple choice questions
+##### <a name="multiple-choice"></a>Multiple choice questions
 
 XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. Writing a multiple choice question requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
 
@@ -138,7 +138,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 |               |   pizza_toppings     |  sausage       |  Sausage        |
 
 
-##### <a name="specify other"></a>Specify other
+##### <a name="specify-other"></a>Specify other
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 | survey        |               |       |      |
@@ -424,7 +424,7 @@ You can include questions in your form that display images or that play video or
 
 Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform).
 
-### <a name="pre-loading csv data"></a>Pre-loading CSV data
+### <a name="pre-loading-csv-data"></a>Pre-loading CSV data
 
 Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre- existing data in a specific survey form or any other source.  For example if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
 To reference pre-existing data in a survey form:
@@ -440,7 +440,7 @@ Each csv file should contain at least one column that can be used to uniquely id
 | mango         | Mango         |   
 | orange        | Orange        |
 
-##### <a name="how to pull data from csv"></a>How to pull data from CSV 
+##### <a name="how-to-pull-data-from-csv"></a>How to pull data from CSV 
 
 You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time. 
 For each data field that you want to pull into your survey:
