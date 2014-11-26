@@ -89,7 +89,9 @@ XLSForm supports a number of simple question types. These are just some of the o
 | select_one [options] | Multiple choice question; only one answer can be selected.      |
 | select_multiple [options] | Multiple choice question; multiple answers can be selected.     |
 | note          | Display a note on the screen, takes no input.      |
-| geopoint      | Collect GPS coordinates.      |
+| geopoint      | Collect a single GPS coordinates. |
+| geotrace      | Record a line of two or more GPS coordinates. |
+| geoshape      | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
 | date          | Date input.     |
 | time          | Time input.     |
 | dateTime      | Accepts a date and a time input.      |
