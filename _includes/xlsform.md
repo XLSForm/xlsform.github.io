@@ -702,7 +702,8 @@ Check out the blog post on styling and combining notes [here](http://blog.enketo
 * [Kobo ToolBox](http://kobotoolbox.org)
 * [CommCare](http://commcarehq.org)
 * Nafundi's [XLSForm Offline](https://gumroad.com/l/xlsform-offline)
-* Nathan Breit's [xlsform.exe](https://github.com/UW-ICTD/xlsform.exe/blob/master/README.md) 
+* Nathan Breit's [xlsform.exe](https://github.com/UW-ICTD/xlsform.exe/blob/master/README.md)
+* [DataWinners](https://www.datawinners.com/en/home/) 
 
 ### <a name="resources"></a>More resources
 
