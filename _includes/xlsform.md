@@ -8,7 +8,7 @@
   * [Metadata](#metadata)
 * [Hints](#hints)
 * [Constraints](#constraints)
-  * [Constraint message](#constraint-message)
+  * [Constraint message](#constraint message)
 * [Relevant](#relevant)
 * [Formulas](#formulas)
 * [Calculation](#calculation)
@@ -21,7 +21,7 @@
 * [Media](#media)
 * [Pre-loading CSV data](#pre-loading-csv-data)
   * [How to pull data from CSV](#how-to-pull-data-from-csv)
-* [Dynamic selects from pre-loaded data](#dynamic-selects-from-pre-loaded-data)
+* [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
 * [Cascading selects](#cascade)
 * [External selects](#external)
 * [Default](#default)
@@ -618,7 +618,7 @@ They do the following:
 For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted XLSForm ](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
 
 
-##### <a name="instance_name"></a>Specify form submission name
+##### <a name="instance-name"></a>Specify form submission name
 
 In the **settings** worksheet, you can specify a unique name for each form submission using fields filled in by the user during the survey.  On the settings worksheet, add a column called **instance_name**.  Write in the expression that defines the unique form instance name using fields from the survey worksheet.
 
