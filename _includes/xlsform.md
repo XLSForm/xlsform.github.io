@@ -1,7 +1,7 @@
-* [What is an XLSForm?](#what-is-xlsform)
-* [Basic format](#basic-format)
-  * [The survey worksheet](#survey-worksheet)
-  * [The choices worksheet](#choices-worksheet)
+* [What is an XLSForm?](#what is xlsform)
+* [Basic format](#basic format)
+  * [The survey worksheet](#survey worksheet)
+  * [The choices worksheet](#choices worksheet)
 * [Question types](#question types)
   * [Multiple choice questions](#multiple-choice)
   * [Specify other](#specify-other)
@@ -40,7 +40,7 @@
 * [History](#history)
 
 
-## <a name="what is xlsform"></a>What is an XLSForm?
+## <a name="whatis xlsform"></a>What is an XLSForm?
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
 
