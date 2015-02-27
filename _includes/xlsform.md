@@ -684,7 +684,7 @@ The XLSForm format only allows one of each type of media (image, video, audio) t
 
 ##### <a name="styling"></a>Styling notes
 
-XLSForm supports a limited subset of Markdown syntax for styling notes in your form.
+XLSForm supports a limited subset of Markdown syntax for styling notes in your form. At the moment such styling is only supported in the Enketo client; in other clients the syntax characters will be displayed as text. 
 
 * *emphasize* words by wrapping them inside ``_`` or ``*``
 * **strongly emphasize** words by wrapping them inside ``__`` or ``**``
