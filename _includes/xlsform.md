@@ -110,7 +110,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | text          | store_name  | What is the name of this store?|
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
-Check out the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type in action!
+See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
 
 ##### <a name="multiple-choice"></a>Multiple choice questions
 
