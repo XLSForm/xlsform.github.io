@@ -79,7 +79,7 @@ One thing to keep in mind when authoring forms in Excel is that the syntax you u
 
 
 ### <a name="question types"></a>Question types
-XLSForm supports a number of simple question types. These are just some of the options you can enter in the **type** column in the first worksheet:
+XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
 
 | Question type | Answer input    |
 | ------------- | ------------- |
