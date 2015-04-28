@@ -99,7 +99,8 @@ XLSForm supports a number of simple question types. These are just some of the o
 | audio         | Take an audio recording.      |
 | video         | Take a video recording.      |
 | barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
-| calculate     | Perform a calculation; see the **Calculation** section below.      |
+| calculate     | Perform a calculation; see the **Calculation** section below.|
+| acknowledge   | Acknowledge prompt that sets value to "OK" if selected.  |
 
 For example, to collect the name and GPS coordinates of a store, you would write the following:
 
