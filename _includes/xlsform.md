@@ -305,14 +305,13 @@ To make questions required, add a **required** column to your survey worksheet. 
 
 ##### <a name="required-message"></a>Required message
 
-If you need to customize the message displayed to users when they leave a required question blank
-(for instance, to provide a translated message), you can add a **required_message** column to your form.
+If you want to customize the message displayed to users when they leave a required question blank, you can add a **required_message** column to your form.
 See the example below.
 
 | survey |          |       |      |       |  |
 | -------| ---------| ----- | ---- | ------|-----|
-|        | type     | name  | label| required | required_message::English |
-|        | integer  | respondent_age | Respondent's age  | yes  | Sorry, this answer is required |
+|        | type     | name  | label| required | required_message |
+|        | integer  | respondent_age | Respondent's age  | yes  | Sorry, this answer is required. |
 
 ### <a name="grouping"></a>Grouping questions
 
@@ -738,5 +737,3 @@ If you want to contribute to or improve this documentation, please visit our [pr
 ### <a name="history"></a>History
 
 The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/SEL-Columbia/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
-
-
