@@ -13,7 +13,7 @@
 * [Formulas](#formulas)
 * [Calculation](#calculation)
 * [Required](#required)
-  * [Required message](#required message)
+  * [Required message](#required-message)
 * [Grouping questions](#grouping)
   * [Nesting groups within groups](#nesting)
   * [Skipping](#skipping)
@@ -303,7 +303,7 @@ To make questions required, add a **required** column to your survey worksheet. 
 |               | type          | name  |  label           |  constraint  | required |
 |               | integer       | age   | How old are you? |  . <= 150  | yes |
 
-##### <a name="required message"></a>Required message
+##### <a name="required-message"></a>Required message
 
 If you need to customize the message displayed to users when they leave a required question blank
 (for instance, to provide a translated message), you can add a **required_message** column to your form.
@@ -312,7 +312,7 @@ See the example below.
 | survey |          |       |      |       |  |
 | -------| ---------| ----- | ---- | ------|-----|
 |        | type     | name  | label| required | required_message::English |
-|        | integer  | respondent_age | Respondent's age  | true  | Sorry this answer is required |
+|        | integer  | respondent_age | Respondent's age  | yes  | Sorry, this answer is required |
 
 ### <a name="grouping"></a>Grouping questions
 
