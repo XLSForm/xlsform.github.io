@@ -1,8 +1,9 @@
-## Sheet: `survey` 
+This page is a work-in-progress reference for all available functions in XLS Forms. It is divided into the three possible sheets: [survey](#survey), [choices](#choices), and [settings](#settings).
+
+### <a name="survey"></a>survey
 This sheet is mandatory in all XLSForms. 
 
-| Category                           	| Item                                 	| Description                                                                                                                       	| Works in Enketo? 	| Works in ODKCollect? 	| Synonyms        	| Notes                                                                                                                                  	|
-|------------------------------------	|--------------------------------------	|-----------------------------------------------------------------------------------------------------------------------------------	|------------------	|----------------------	|-----------------	|----------------------------------------------------------------------------------------------------------------------------------------	|
+| Category                           	| Item                                 	| Description                                                                                                                       	| Works in Enketo? 	| Works in Collect? 	| Synonyms        	| Notes                                                                                                                                  	|
 | **Column headers**                 	|                                      	|                                                                                                                                   	|                  	|                      	|                 	|                                                                                                                                        	|
 |                                    	| type                                 	| Sets the question type, see above                                                                                                 	| yes              	| yes                  	|                 	|                                                                                                                                        	|
 |                                    	| name                                 	| Unique ID (name) of the question, is saved to XML                                                                                 	| yes              	| yes                  	|                 	|                                                                                                                                        	|
@@ -110,22 +111,20 @@ This sheet is mandatory in all XLSForms.
 |                                    	| count()                              	| Allows counting the number of repeat groups                                                                                       	| yes              	| yes                  	|                 	|                                                                                                                                        	|
 |                                    	| count-selected()                     	| Counts the number of responses to a select_multiple question                                                                      	| yes              	| yes                  	|                 	|                                                                                                                                        	|
 
-## Sheet: `choices` 
+### <a name="choices"></a>choices 
 The choices sheet is optional and only required if there are any select_one or select_multiple questions in the file.
 
-| Item                   	| Description                                                                                                                  	| Works in Enketo? 	| Works in ODK? 	| Synonyms          	| Notes                                            	|
-|------------------------	|------------------------------------------------------------------------------------------------------------------------------	|------------------	|---------------	|-------------------	|--------------------------------------------------	|
+| Item                   	| Description                                                                                                                  	| Works in Enketo? 	| Works in Collect? 	| Synonyms          	| Notes                                            	|
 | list name              	| A unique name for each set of choices                                                                                        	| yes              	| yes           	| list_name         	|                                                  	|
 | name                   	| ID (name) of the specific choice, will be saved to XML                                                                       	| yes              	| yes           	|                   	|                                                  	|
 | label::[language]      	| Choice label, will be displayed on screen. Allows adding a translation of choice labels, showing [language] in the interface 	| yes              	| yes           	| label::[language] 	|                                                  	|
 | media                  	|                                                                                                                              	| yes              	| yes           	|                   	| optional                                         	|
 | [filter_category_name] 	| Allows setting a specific parent category for choice filters (cascading questions)                                           	| yes              	| yes           	|                   	| Column name is specified by user, e.g. 'country' 	|
 
-## Sheet: `settings`
+### <a name="settings"></a>settings
 The settings sheet and all of its items are optional.
 
-| Item                	| Description                                                                    	| Works in Enketo? 	| Works in ODK? 	| Synonyms 	| Notes                                                     	|
-|---------------------	|--------------------------------------------------------------------------------	|------------------	|---------------	|----------	|-----------------------------------------------------------	|
+| Item                	| Description                                                                    	| Works in Enketo? 	| Works in Collect? 	| Synonyms 	| Notes                                                     	|
 | form_title          	| Title displayed at beginning of form, in form list                             	| yes              	| yes           	|          	| if missing assigned to form_id                            	|
 | form_id             	| ID used in the XML and often needs to be unique                                	| yes              	| yes           	|          	| If missing assigned to xls name                           	|
 | public_key          	| Key required for encrypted forms                                               	| no               	| yes           	|          	|                                                           	|

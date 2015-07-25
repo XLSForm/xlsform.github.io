@@ -29,12 +29,23 @@ table{
     padding:0!important;
     border-collapse:collapse;
 }
+.fullpage table {
+  max-width: 1600px;
+}
 table tr th{
     background:#EFEFEF;
 }
 table tr th, table tr td{
     border:1px solid #AFAFAF;
     padding:0.6em;
+}
+.fullpage table tr th, table tr td{
+    padding:0.1em 0.5em;
+    font-size: 11px;
+}
+.fullpage table tr:first-child td {
+    background-color: #eeeeee;
+    font-weight: bold;
 }
 .cleafix:before, .clearfix:after{
     content:""; display:table;
@@ -54,6 +65,10 @@ table tr th, table tr td{
   width:65%;
 }
 
+.fullpage .wrap {
+  width:auto;
+  float:none;
+}
 .sidenav{
     clear:both;
     float:left;
