@@ -6,6 +6,8 @@
   * [The survey worksheet](#survey-worksheet)
   * [The choices worksheet](#choices-worksheet)
 * [Question types](#question-types)
+  * [GPS](#gps)    
+  * [GPS with accuracyThreshold](#gps_accuracy_threshold)
   * [Multiple choice questions](#multiple-choice)
   * [Specify other](#specify-other)
   * [Metadata](#metadata)

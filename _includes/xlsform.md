@@ -1,14 +1,16 @@
-* [What is an XLSForm?](#what is xlsform)
+* [What is an XLSForm?](#wwhat-is-xlsform)
 * [Basic format](#basic format)
-  * [The survey worksheet](#survey worksheet)
-  * [The choices worksheet](#choices worksheet)
-* [Question types](#question types)
+  * [The survey worksheet](#survey-worksheet)
+  * [The choices worksheet](#choices-worksheet)
+* [Question types](#question-types)
+  * [GPS](#gps)    
+  * [GPS with accuracyThreshold](#gps_accuracy_threshold)
   * [Multiple choice questions](#multiple-choice)
   * [Specify other](#specify-other)
   * [Metadata](#metadata)
 * [Hints](#hints)
 * [Constraints](#constraints)
-  * [Constraint message](#constraint message)
+  * [Constraint message](#constraint-message)
 * [Relevant](#relevant)
 * [Formulas](#formulas)
 * [Calculation](#calculation)
@@ -22,7 +24,7 @@
 * [Media](#media)
 * [Pre-loading CSV data](#pre-loading-csv-data)
   * [How to pull data from CSV](#how-to-pull-data-from-csv)
-* [Dynamic selects from pre-loaded data](#dynamic selects from pre-loaded data)
+* [Dynamic selects from pre-loaded data](#dynamic-selects-from-pre-loaded-data)
 * [Cascading selects](#cascade)
 * [External selects](#external)
 * [Default](#default)
@@ -104,6 +106,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | calculate     | Perform a calculation; see the **Calculation** section below.|
 | acknowledge   | Acknowledge prompt that sets value to "OK" if selected.  |
 
+##### <a name="gps"></a>GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
 
 | survey        |               |       |      |
@@ -113,6 +116,17 @@ For example, to collect the name and GPS coordinates of a store, you would write
 |               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
 
 See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
+
+##### <a name="gps_accuracy_threshold"></a>GPS with accuracyThreshold
+
+When recording GPS coordinates in ODK Collect, the geo positioning process usually stops when one achieves an accuracy level of 5 meters or less. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with heading **body::accuracyThreshold** on the survey sheet of your XLSForm. You can then specify your preferred accuracy threshold value in this column for your geopoint question, as in the example shown below:
+
+| survey        |               |       |      |       |
+| ------------- | ------------- | ----- | ---- |------ |
+|               | type          | name  |  label | body::accuracyThreshold |
+|               | geopoint      | store_gps |  Collect the GPS coordinates of this store.  |    1.5  |
+
+See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing) form for an example that uses this attribute.
 
 ##### <a name="multiple-choice"></a>Multiple choice questions
 
@@ -415,7 +429,7 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 
 ### <a name="language"></a>Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the**Change Language** option. For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the **Change Language** option. For the form below, English and Español will show up as the possible options.
 
 | survey        |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- |
@@ -580,6 +594,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 |  multiline             |  text   | Best if used with web clients, makes the text box multiple lines long.         |
 |  minimal             | select_one, select_multiple  | Answer choices appear in a pull-down menu.          |
 |  quick             | select_one  | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.          |  
+| no-calendar| date   |  For mobile devices only, used to suppress the calendar.|
 | month-year | date   |  Select a month and year only for the date. |
 | year       | date   |  Select only a year for the date. |
 | horizontal-compact | select_one, select_multiple  | For web clients only, this displays the answer choices horizontally. |
