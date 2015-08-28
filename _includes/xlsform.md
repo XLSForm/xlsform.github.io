@@ -4,7 +4,7 @@
   * [The choices worksheet](#choices-worksheet)
 * [Question types](#question-types)
   * [GPS](#gps)    
-  * [GPS with accuracyThreshold](#gps_accuracy_threshold)
+  * [GPS with accuracyThreshold](#gps-accuracy-threshold)
   * [Multiple choice questions](#multiple-choice)
   * [Specify other](#specify-other)
   * [Metadata](#metadata)
