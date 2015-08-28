@@ -117,7 +117,7 @@ For example, to collect the name and GPS coordinates of a store, you would write
 
 See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
 
-##### <a name="gps_accuracy_threshold"></a>GPS with accuracyThreshold
+##### <a name="gps-accuracy-threshold"></a>GPS with accuracyThreshold
 
 When recording GPS coordinates in ODK Collect, the geo positioning process usually stops when one achieves an accuracy level of 5 meters or less. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with heading **body::accuracyThreshold** on the survey sheet of your XLSForm. You can then specify your preferred accuracy threshold value in this column for your geopoint question, as in the example shown below:
 
