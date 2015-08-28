@@ -1,5 +1,5 @@
-* [What is an XLSForm?](#wwhat-is-xlsform)
-* [Basic format](#basic format)
+* [What is an XLSForm?](#what-is-xlsform)
+* [Basic format](#basic-format)
   * [The survey worksheet](#survey-worksheet)
   * [The choices worksheet](#choices-worksheet)
 * [Question types](#question-types)
@@ -50,13 +50,13 @@ XLSForm is a form standard created to help simplify the authoring of forms in Ex
 
 The XLSForm is then converted to an XForm, a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.    XLSForms are compatible with the subset of XForm functionality supported by [Javarosa Project](https://bitbucket.org/javarosa/javarosa/wiki/Home).  XLSForms are supported by a number of popular data collection platforms.
 
-### <a name="basic format"></a>Basic format
+### <a name="basic-format"></a>Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below. 
 
-##### <a name="survey worksheet"></a>The survey worksheet
+##### <a name="survey-worksheet"></a>The survey worksheet
 This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features described below that you can add to the form to improve the user experience.
 
-##### <a name="choices worksheet"></a>The choices worksheet
+##### <a name="choices-worksheet"></a>The choices worksheet
 This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same **list name** are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
 ![](https://farm4.staticflickr.com/3767/13734054823_d2b3beb03d.jpg)
@@ -119,7 +119,7 @@ See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0
 
 ##### <a name="gps-accuracy-threshold"></a>GPS with accuracyThreshold
 
-When recording GPS coordinates in ODK Collect, the geo positioning process usually stops when one achieves an accuracy level of 5 meters or less. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with heading **body::accuracyThreshold** on the survey sheet of your XLSForm. You can then specify your preferred accuracy threshold value in this column for your geopoint question, as in the example shown below:
+When recording GPS coordinates in ODK Collect, ODK collect automatically collects the gps when an accuracy level of 5 meters or less is reached. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with heading **body::accuracyThreshold** on the survey sheet of your XLSForm. Then specify your preferred accuracy threshold value for this column on your geopoint question, as in the example shown below:
 
 | survey        |               |       |      |       |
 | ------------- | ------------- | ----- | ---- |------ |
@@ -232,7 +232,7 @@ In this example, the formula ```. <= 150``` is saying that the value entered ``.
 
 Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/). Look under the **Operators** section.
 
-##### <a name="constraint message"></a>Constraint message
+##### <a name="constraint-message"></a>Constraint message
 
 If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
 
@@ -499,7 +499,7 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  
 
  
-### <a name="dynamic selects from pre-loaded data"></a>Dynamic selects from pre-loaded data
+### <a name="dynamic-selects-from-pre-loaded-data"></a>Dynamic selects from pre-loaded data
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple choice) section.
 
 The following should be done:
