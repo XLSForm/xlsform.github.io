@@ -483,8 +483,8 @@ See below for an example:
 |    survey     |               |       |           |            |
 | ------------- |-------------| -----|  --------    | ----------|     
 |               |      type     | name  | label     | calculation|
-|               |    calculate  | fruit |           |   pulldata('fruits', 'name','name', 'mango') |
-|               |      note     |   note_fruit    |   The fruit ${fruit} pulled from csv        |             |
+|               |    calculate  | fruit |           |   pulldata('fruits', 'name', 'name_key', 'mango') |
+|               |      note     |   note_fruit    |   The fruit ${fruit} pulled from csv.        |             |
 
 Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user. 
 
