@@ -82,7 +82,7 @@ The columns you add to your Excel workbook, whether they are mandatory or option
 One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
 
 
-### <a name="question types"></a>Question types
+### <a name="question-types"></a>Question types
 XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
 
 | Question type | Answer input    |
