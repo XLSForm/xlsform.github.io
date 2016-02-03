@@ -54,8 +54,8 @@ table tr th, table tr td{
 
 /* Utility */
 .container{
+  margin: 0 auto!important;
   max-width: 960px;
-  margin: 0 auto;
 }
 
 .wrap{

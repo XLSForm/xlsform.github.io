@@ -41,7 +41,6 @@
 * [More resources](#resources)
 * [About this site](#about)
 * [History](#history)
-* [XLSForm Reference Table](/ref-table)
 
 
 ## <a name="whatis xlsform"></a>What is an XLSForm?
