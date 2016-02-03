@@ -77,9 +77,19 @@ table tr th, table tr td{
     padding-top:1em;
     width:30%;
 }
+/* Fixed sidebar */
+.sidenav.is_stuck{
+    margin-top:0;
+    overflow-y:auto;
+    bottom:0;
+    top:0!important;
+}
 .sidenav > ul{
     font-size:14px;
     padding:0.6em 1em 0.6em 1.6em;
+}
+.sidenav > ul > li.active{
+    background:pink;
 }
 .sidenav > ul li{
     padding:0.1em;
@@ -452,6 +462,6 @@ table tr th, table tr td{
     float: none;
     clear: both;
     width: auto;
-    margin: 0 0 15px; }
-
+    margin: 0 0 15px; 
+  }
 }
