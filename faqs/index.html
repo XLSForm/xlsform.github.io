@@ -1,0 +1,12 @@
+---
+layout: fullpage
+---
+<div class="wrap">
+    <h2>FAQs</h2>
+    {% for posts in site.categories.faq %}
+        <ul>
+            <li><a href="{{ posts.permalink }}">{{ posts.title }}</a></li>
+        </ul>
+
+    {% endfor %}
+</div>
