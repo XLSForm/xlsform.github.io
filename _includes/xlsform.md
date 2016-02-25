@@ -291,7 +291,7 @@ Note that you must include **other** as an answer choice in the **choices** work
 
 ### <a name="formulas"></a>Formulas
 
-Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xpath/xpath_operators.asp).
+Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xsl/xpath_operators.asp).
 
 ### <a name="calculation"></a>Calculation
 
