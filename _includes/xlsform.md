@@ -711,7 +711,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * **strongly emphasize** words by wrapping them inside ``__`` or ``**``
 * add a link by using ``[name of link](url)``
 * add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest<small>) to header text
-* style text for color or font with span tags (e.g., &lt;span style="color:#f58a1f"&gt;<font color="#f58a1f">orange</font>&lt;span&gt;, &lt;span style="color:red; font-family=cursive"&gt;<font color="red" face="cursive">red and cursive</font>&lt;span&gt;)
+* style text for color or font with span tags (e.g., &lt;span style="color:#f58a1f"&gt;<span style="color:#f58a1f">orange</span>&lt;span&gt;, &lt;span style="color:red; font-family:cursive"&gt;<span style="color:red; font-family:cursive;">red and cursive</span>&lt;span&gt;)
 * add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
 * add your favorite emojis 😍📋😍!
 
