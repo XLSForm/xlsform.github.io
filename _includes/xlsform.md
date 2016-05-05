@@ -713,15 +713,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest<small>) to header text
 * style text for color or font with span tags (e.g., &lt;span style="color:#f58a1f"&gt;<font color="#f58a1f">orange</font>&lt;span&gt;, &lt;span style="color:red; font-family=cursive"&gt;<font color="red" face="cursive">red and cursive</font>&lt;span&gt;)
 * add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
-
-For more advanced users, ODK Collect also supports [HTML tags](https://android.googlesource.com/platform/cts/+/master/tests/tests/text/src/android/text/cts/HtmlTest.java) like &lt;br&gt;, &lt;big&gt;, &lt;small&gt;, and &lt;h1&gt; through &lt;h6&gt;. And you can even add your favorite emojis 😍📋😍!
-
-Check out the blog post on styling [ODK Collect](https://nafundi.com/blog/posts/customize-odk-forms-with-fonts-colors-sizes-and-links/)
-
-##### <a name="combining"></a>Visually combining notes in Enketo
-The XLSForm format only allows one of each type of media (image, video, audio) to be added to a **note** question (ie, you cannot have more than one media file or type in a single **note** field). To work around this limitation, subsequent notes will now be visually merged together so that they appear as one note in your form. Practically speaking, this means you can include multiple **note** fields one after another in your XLSForm. When viewing the form, the notes will automatically appear as one note. See the example web form [here](https://notes.enketo.org/webform), and the XLSForm source [here](https://docs.google.com/spreadsheet/ccc?key=0Al3Mw5sknZoPdDRvaXlrR19GTklyNHJQak9tT1ZtSVE&usp=sharing#gid=0).
-
-Check out the blog post [better notes](http://blog.enketo.org/better-notes/) from Enketo.
+* add your favorite emojis 😍📋😍!
 
 ### <a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
 * [Open Data Kit (ODK)](http://opendatakit.org)
