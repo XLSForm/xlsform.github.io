@@ -30,7 +30,6 @@
 * [Default](#default)
 * [Appearance](#appearance)
 * [Styling](#styling)
-  * [Visually combining notes](#combining)
 * [Settings worksheet](#settings)
   * [Encrypted forms](#encrypted)
   * [Specify form submission name](#instance-name)
