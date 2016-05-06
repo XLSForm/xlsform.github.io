@@ -29,14 +29,12 @@
 * [External selects](#external)
 * [Default](#default)
 * [Appearance](#appearance)
+* [Styling](#styling)
 * [Settings worksheet](#settings)
   * [Encrypted forms](#encrypted)
   * [Specify form submission name](#instance-name)
   * [Multiple webpage forms](#multiple)
   * [Grid theme forms](#grid)
-* [Advanced notes](#advanced notes)
-  * [Visually combining notes](#combining)
-  * [Styling notes](#styling)
 * [Platforms/Tools that support XLSForms](#xlsform-tools)
 * [More resources](#resources)
 * [About this site](#about)
@@ -704,22 +702,17 @@ In your **survey** tab, group together the questions you would like to appear in
 
 See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The Grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing).  
 
-### <a name="advanced notes"></a>Advanced notes
+### <a name="styling"></a>Styling prompts
 
-##### <a name="combining"></a>Visually combining notes
-
-The XLSForm format only allows one of each type of media (image, video, audio) to be added to a **note** question (ie, you cannot have more than one media file or type in a single **note** field). To work around this limitation, subsequent notes will now be visually merged together so that they appear as one note in your form. Practically speaking, this means you can include multiple **note** fields one after another in your XLSForm.  When viewing the form, the notes will automatically appear as one note.  See the example web form [here](https://notes.enketo.org/webform), and the XLSForm source [here](https://docs.google.com/spreadsheet/ccc?key=0Al3Mw5sknZoPdDRvaXlrR19GTklyNHJQak9tT1ZtSVE&usp=sharing#gid=0).
-
-##### <a name="styling"></a>Styling notes
-
-XLSForm supports a limited subset of Markdown syntax for styling notes in your form. At the moment such styling is only supported in the Enketo client; in other clients the syntax characters will be displayed as text. 
+Markdown support in XLSForm allows for increased emphasis through bold and italics, different sized headers, various fonts and colors, and clickable web links in ODK Collect 1.4.9 and Enketo.
 
 * *emphasize* words by wrapping them inside ``_`` or ``*``
 * **strongly emphasize** words by wrapping them inside ``__`` or ``**``
-* a link can be added by using ``[name of link](url)``
+* add a link by using ``[name of link](url)``
+* add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest<small>) to header text
+* style text for color or font with span tags (e.g., &lt;span style="color:#f58a1f"&gt;<span style="color:#f58a1f">orange</span>&lt;span&gt;, &lt;span style="color:red; font-family:cursive"&gt;<span style="color:red; font-family:cursive;">red and cursive</span>&lt;span&gt;)
 * add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
-
-Check out the blog post on styling and combining notes [here](http://blog.enketo.org/better-notes/).
+* add your favorite emojis 😍📋😍!
 
 ### <a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
 * [Open Data Kit (ODK)](http://opendatakit.org)
