@@ -28,6 +28,7 @@
 * [Cascading selects](#cascade)
 * [External selects](#external)
 * [Default](#default)
+* [Read only](#read-only)
 * [Appearance](#appearance)
 * [Styling](#styling)
 * [Settings worksheet](#settings)
@@ -510,7 +511,7 @@ Below is an example of the **survey worksheet**:
 
 | survey        |               |       |      |            |  
 | ------------- | ------------- | ----- | ---- | -----------|
-|               | type          | name  |  labe|  appearance |
+|               | type          | name  |  label|  appearance |
 |               | select_one fruits    |  fruits     |  Select a fruit     |   search('fruits')   | 
 
 There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
@@ -581,6 +582,16 @@ In the next example, the weight is automatically set to 51.3 kg.  You can simply
 | ------------- | ------------- | ----- | ---- | ---- |
 |               | type          | name  |  label  | default  |
 |               | decimal      | weight  |  Respondent's weight? (in kgs) |  51.3  |
+
+
+### <a name="read-only"></a>Read only
+
+Adding a read only field means that a question can not be edited. Read only fields can be combined with default fields to deliver information back to a user. 
+
+| survey        |               |       |      |      |           |
+| ------------- | ------------- | ----- | ---- | ---- | -------------- |
+|               | type          | name  |  label |  read_only | default |
+|               | integer       | num   | Please patient is:  | yes | 5
 
 
 ### <a name="appearance"></a>Appearance
