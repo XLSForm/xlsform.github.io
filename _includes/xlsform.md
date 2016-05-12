@@ -590,7 +590,7 @@ Adding a read only field means that a question can not be edited. Read only fiel
 
 | survey        |               |       |      |      |           |
 | ------------- | ------------- | ----- | ---- | ---- | -------------- |
-|               | type          | name  |  label |  read-only | default |
+|               | type          | name  |  label |  read_only | default |
 |               | integer       | num   | Please patient is:  | yes | 5
 
 
