@@ -425,6 +425,8 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 |     | male_female    |  male   |  Male     |  |
 |     | male_female    |  female   |  Female     |  |
 
+Note like normal [groups](#nesting), repeat groups can be nested, which means putting a repeat group inside another repeat group, the [homestead](https://docs.google.com/spreadsheets/d/1WcFC_VUAhyUviOO1AJ33E25hcE-jftfn9x5sMrs4Sa8/edit?usp=sharing) XLSForm is used as an example to show how nested repeats work.
+
 
 ### <a name="language"></a>Multiple language support
 
