@@ -1,16 +1,12 @@
 <footer class="site-footer">
-
   <div class="container clearfix">
-
     <h2 class="footer-heading">{{ site.title }}</h2>
-
     <div class="footer-col-1 column">
       <ul>
         <li>{{ site.title }}</li>
         <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
       </ul>
     </div>
-
     <div class="footer-col-2 column">
       <ul>
         <li>
@@ -55,14 +51,16 @@
     <div class="footer-col-3 column">
       <p class="text">{{ site.description }}</p>
     </div>
-
   </div>
 
 </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="{{ "/assets/js/jquery.sticky-kit.min.js" | prepend: site.baseurl }}"></script>
+<script src="{{ "/assets/js/scroll-spy.js" | prepend: site.baseurl }}"></script>
 <script>
 $(document).ready(function(){
     $(".post-content > ul:first-child").appendTo(".sidenav");
+    $(".sidenav").stick_in_parent({ offset_top: 0, inner_scrolling: true });
 });
 </script>
 
