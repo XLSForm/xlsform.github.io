@@ -643,11 +643,11 @@ The column headings in this example **settings** worksheet do the following:
 
 Encrypted forms provide a mechanism to keep your data private using http for communication. Form submissions sent to the Aggregate server are encrypted and completely inaccessible to anyone not possessing the private key.
 
-To encrypt XLS forms, add the **id_string**, **submission_url** and the **public_key** as column headers in the settings worksheet.
+To encrypt XLS forms, add the **form_id**, **submission_url** and the **public_key** as column headers in the settings worksheet.
 
 They do the following:
 
-  * **id_string** - name used to identify the form
+  * **form_id** - name used to identify the form
   * **submission_url** - is your submission url
   * **public_key** - is the base64RsaPublicKey
 
