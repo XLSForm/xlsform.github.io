@@ -625,10 +625,10 @@ The **settings** worksheet is optional, but it allows you to further customize y
 
 An example **settings** worksheet is below:
 
-| settings      |               |       |      |      |      |
-| ------------- | ------------- | ----- | ---- | ---- | ---- | 
-|               | form_title    | form_id  |  public_key  | submission_url |default_language |
-|               | Example Title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English|  
+| settings      |               |       |      |      |      |      |
+| ------------- | ------------- | ----- | ---- | ---- | ---- | ---- |
+|               | form_title    | form_id  |  public_key  | submission_url |default_language | version
+|               | Example Title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English| 2017021501
 
 The column headings in this example **settings** worksheet do the following:
 
@@ -637,7 +637,7 @@ The column headings in this example **settings** worksheet do the following:
 * **public_key**: For encrypted forms, this is where the public key is copied and pasted.
 * **submission_url**: For encrypted forms, this url specifies the server where finalized forms are submitted to.
 * **default_language**: In localized forms, this sets which language should be used as the default.
-
+* **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have alphabetically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
 
 ##### <a name="encrypted"></a>Encrypted forms
 
