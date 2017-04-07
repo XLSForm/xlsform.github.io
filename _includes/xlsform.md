@@ -289,7 +289,7 @@ Note that you must include **other** as an answer choice in the **choices** work
 
 ### <a name="formulas"></a>Formulas
 
-Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xsl/xpath_operators.asp).
+Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  Formulas are composed of functions and operators (+,*,div,etc.). The full list of these can be found [here](http://www.w3schools.com/xml/xpath_operators.asp).
 
 ### <a name="calculation"></a>Calculation
 
@@ -498,7 +498,7 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
  
 ### <a name="dynamic-selects-from-pre-loaded-data"></a>Dynamic selects from pre-loaded data
-Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple choice) section.
+Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
 The following should be done:
 
@@ -756,4 +756,4 @@ If you want to contribute to or improve this documentation, please visit our [pr
 
 ### <a name="history"></a>History
 
-The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/SEL-Columbia/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
+The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
