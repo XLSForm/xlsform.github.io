@@ -186,8 +186,8 @@ XLSForm has a number of data type options available for meta data collection:
 | subscriberid  | IMSI (International Mobile Subscriber Identity)     |
 | simserial    | SIM serial number.     |
 | phonenumber  | Phone number (if available).      |
-| username      | Username configured in ODK Collect settings page.  |
-| email         | Google Account configured in ODK Collect settings page.  |
+| username      | Username configured (if available).  |
+| email         | Google Account configured (if available).  |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
