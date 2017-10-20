@@ -187,7 +187,7 @@ XLSForm has a number of data type options available for meta data collection:
 | simserial    | SIM serial number.     |
 | phonenumber  | Phone number (if available).      |
 | username      | Username configured (if available).  |
-| email         | Google Account configured (if available).  |
+| email         | Email address configured (if available).  |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
