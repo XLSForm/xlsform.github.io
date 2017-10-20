@@ -186,6 +186,8 @@ XLSForm has a number of data type options available for meta data collection:
 | subscriberid  | IMSI (International Mobile Subscriber Identity)     |
 | simserial    | SIM serial number.     |
 | phonenumber  | Phone number (if available).      |
+| username      | Username configured (if available).  |
+| email         | Email address configured (if available).  |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
@@ -201,6 +203,8 @@ If I wanted my survey to collect all of these metadata, I would put the followin
 |               | subscriberid  | subscriberid   |         |
 |               | simserial     | simserial   |         |
 |               | phonenumber   | phonenumber   |        |       
+|               | username      | username   |        |   
+|               | email         | email   |        |   
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
