@@ -431,12 +431,14 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 
 ### <a name="language"></a>Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1**,  **label::language2**, etc., and your forms will be available in multiple languages. See the example below. To select a different language on the phone, press the **Menu** key, and the **Change Language** option. For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection  application (this may be located under the **Menu** key) . For the form below, English and Español will show up as the possible options.
 
 | survey        |               |       |      |      |      |
 | ------------- | ------------- | ----- | ---- | ---- | ---- |
-|               | type          | name  |  label::English  | label::Español  |  constraint  |
+|               | type          | name  |  label::English (en) | label::Español (es) |  constraint  |
 |               | integer       | age   | How old are you? |    ¿Cuántos años tienes? |. <= 150 |
+
+Form language and user interface language may be the determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called _subtags_ are published [here](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) (search the page with Ctrl-F or Cmd-F).
 
 
 **Note**
