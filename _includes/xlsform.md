@@ -455,7 +455,7 @@ You can include questions in your form that display images or that play video or
 |               | type          | name  |  label  | media::image  |  media::video  |
 |               | note      | media_example  | Media example |    example.jpg | example.mp4 |
 
-Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://l2sje.enketo.org/webform).
+Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://enketo.ona.io/x/#Ynv3).
 
 ### <a name="pre-loading-csv-data"></a>Pre-loading CSV data
 
@@ -670,7 +670,7 @@ Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d
 
 Web forms can be split into multiple pages using the style theme **pages**.
 
-An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://asrj5.enketo.org/webform) webform.
+An example of a form divided into multiple pages can be seen on the [Widgets on Pages](https://enketo.ona.io/x/#YjeC) webform.
 
 In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
 
@@ -696,7 +696,7 @@ See this [blog post](http://blog.enketo.org/pages/) for more information on crea
 
 The **theme-grid** style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!
 
-Please click on the link to see an example of a [Grid theme webform](https://fx5jf.enketo.org/webform).
+Please click on the link to see an example of a [Grid theme webform](https://enketo.ona.io/x/#Yn4R).
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
@@ -741,7 +741,8 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * [CommCare](http://commcarehq.org)
 * Nafundi's [XLSForm Offline](https://gumroad.com/l/xlsform-offline)
 * Nathan Breit's [xlsform.exe](https://github.com/UW-ICTD/xlsform.exe/blob/master/README.md)
-* [DataWinners](https://www.datawinners.com/en/home/) 
+* [DataWinners](https://www.datawinners.com/en/home/)
+* [Tattara](http://tattara.com/)
 
 ### <a name="resources"></a>More resources
 
