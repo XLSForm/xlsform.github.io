@@ -103,6 +103,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
 | calculate     | Perform a calculation; see the **Calculation** section below.|
 | acknowledge   | Acknowledge prompt that sets value to "OK" if selected.  |
+| hidden        | A field with no associated UI element |
 
 ##### <a name="gps"></a>GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
