@@ -465,3 +465,9 @@ table tr th, table tr td{
     margin: 0 0 15px; 
   }
 }
+
+#platformstools-that-support-xlsforms+ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
