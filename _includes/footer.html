@@ -60,6 +60,24 @@
 $(document).ready(function(){
     $(".post-content > ul:first-child").appendTo(".sidenav");
 });
+
+  shuffle(Array.prototype.slice.call(document.querySelectorAll('#platformstools-that-support-xlsforms + ul > li')))
+    .forEach(function (el, index) {
+      el.style.order = index;
+    });
+
+  function shuffle(array) {
+    var m = array.length;
+
+    while (m) {
+      var i = Math.floor(Math.random() * m--);
+      var t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+
+    return array;
+  }
 </script>
 
 {% if site.g_analytics_token %}
