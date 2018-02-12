@@ -733,7 +733,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * add your favorite emojis 😍📋😍!
 
 ### <a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
-* [Secure Data Kit (SDK)] (http://www.securedatakit.com)
+* [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Open Data Kit (ODK)](http://opendatakit.org)
 * [Formhub](http://formhub.org)
 * [Ona](http://ona.io)
