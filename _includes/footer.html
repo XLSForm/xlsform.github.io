@@ -55,12 +55,10 @@
 
 </footer>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="{{ "/assets/js/jquery.sticky-kit.min.js" | prepend: site.baseurl }}"></script>
 <script src="{{ "/assets/js/scroll-spy.js" | prepend: site.baseurl }}"></script>
 <script>
 $(document).ready(function(){
     $(".post-content > ul:first-child").appendTo(".sidenav");
-    $(".sidenav").stick_in_parent({ offset_top: 0, inner_scrolling: true });
 });
 </script>
 
