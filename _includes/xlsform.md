@@ -1,47 +1,3 @@
-* [What is an XLSForm?](#what-is-xlsform)
-* [Basic format](#basic-format)
-  * [The survey worksheet](#survey-worksheet)
-  * [The choices worksheet](#choices-worksheet)
-* [Question types](#question-types)
-  * [GPS](#gps)    
-  * [GPS with accuracyThreshold](#gps-accuracy-threshold)
-  * [Multiple choice questions](#multiple-choice)
-  * [Specify other](#specify-other)
-  * [Metadata](#metadata)
-* [Hints](#hints)
-* [Constraints](#constraints)
-  * [Constraint message](#constraint-message)
-* [Relevant](#relevant)
-* [Formulas](#formulas)
-* [Calculation](#calculation)
-* [Required](#required)
-  * [Required message](#required-message)
-* [Grouping questions](#grouping)
-  * [Nesting groups within groups](#nesting)
-  * [Skipping](#skipping)
-* [Repeats](#repeats)
-* [Multiple language support](#language)
-* [Media](#media)
-* [Pre-loading CSV data](#pre-loading-csv-data)
-  * [How to pull data from CSV](#how-to-pull-data-from-csv)
-* [Dynamic selects from pre-loaded data](#dynamic-selects-from-pre-loaded-data)
-* [Cascading selects](#cascade)
-* [External selects](#external)
-* [Default](#default)
-* [Read only](#read-only)
-* [Appearance](#appearance)
-* [Styling](#styling)
-* [Settings worksheet](#settings)
-  * [Encrypted forms](#encrypted)
-  * [Specify form submission name](#instance-name)
-  * [Multiple webpage forms](#multiple)
-  * [Grid theme forms](#grid)
-* [Platforms/Tools that support XLSForms](#xlsform-tools)
-* [More resources](#resources)
-* [About this site](#about)
-* [History](#history)
-
-
 ## <a name="whatis xlsform"></a>What is an XLSForm?
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
@@ -83,37 +39,38 @@ One thing to keep in mind when authoring forms in Excel is that the syntax you u
 ### <a name="question-types"></a>Question types
 XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
 
-| Question type | Answer input    |
-| ------------- | ------------- |
-| integer       | Integer (i.e., whole number) input. |
-| decimal       | Decimal input.      |
-| text          | Free text response.
-| select_one [options] | Multiple choice question; only one answer can be selected.      |
-| select_multiple [options] | Multiple choice question; multiple answers can be selected.     |
-| note          | Display a note on the screen, takes no input.      |
-| geopoint      | Collect a single GPS coordinate. |
-| geotrace      | Record a line of two or more GPS coordinates. |
-| geoshape      | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
-| date          | Date input.     |
-| time          | Time input.     |
-| dateTime      | Accepts a date and a time input.      |
-| image         | Take a picture.      |
-| audio         | Take an audio recording.      |
-| video         | Take a video recording.      |
-| file          | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)|
-| barcode       | Scan a barcode, requires the barcode scanner app to be installed.      |
-| calculate     | Perform a calculation; see the **Calculation** section below.|
-| acknowledge   | Acknowledge prompt that sets value to "OK" if selected.  |
-| hidden        | A field with no associated UI element |
+| Question type             | Answer input                                                                                 |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
+| integer                   | Integer (i.e., whole number) input.                                                          |
+| decimal                   | Decimal input.                                                                               |
+| range                     | [Range](#range) input.                                                                       |
+| text                      | Free text response.                                                                          |
+| select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
+| select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
+| note                      | Display a note on the screen, takes no input.                                                |
+| geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
+| geotrace                  | Record a line of two or more GPS coordinates.                                                |
+| geoshape                  | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
+| date                      | Date input.                                                                                  |
+| time                      | Time input.                                                                                  |
+| dateTime                  | Accepts a date and a time input.                                                             |
+| image                     | Take a picture.                                                                              |
+| audio                     | Take an audio recording.                                                                     |
+| video                     | Take a video recording.                                                                      |
+| file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
+| barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
+| calculate                 | Perform a calculation; see the **Calculation** section below.                                |
+| acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
+| hidden                    | A field with no associated UI element                                                        |
 
 ##### <a name="gps"></a>GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | text          | store_name  | What is the name of this store?|
-|               | geopoint      | store_gps |  Collect the GPS coordinates of this store.|
+| survey |          |            |                                            |
+| ------ | -------- | ---------- | ------------------------------------------ |
+|        | type     | name       | label                                      |
+|        | text     | store_name | What is the name of this store?            |
+|        | geopoint | store_gps  | Collect the GPS coordinates of this store. |
 
 See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
 
@@ -121,10 +78,10 @@ See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0
 
 When recording GPS coordinates in ODK Collect, ODK collect automatically collects the gps when an accuracy level of 5 meters or less is reached. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with heading **body::accuracyThreshold** on the survey sheet of your XLSForm. Then specify your preferred accuracy threshold value for this column on your geopoint question, as in the example shown below:
 
-| survey        |               |       |      |       |
-| ------------- | ------------- | ----- | ---- |------ |
-|               | type          | name  |  label | body::accuracyThreshold |
-|               | geopoint      | store_gps |  Collect the GPS coordinates of this store.  |    1.5  |
+| survey |          |           |                                            |                         |
+| ------ | -------- | --------- | ------------------------------------------ | ----------------------- |
+|        | type     | name      | label                                      | body::accuracyThreshold |
+|        | geopoint | store_gps | Collect the GPS coordinates of this store. | 1.5                     |
 
 See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing) form for an example that uses this attribute.
 
@@ -132,81 +89,85 @@ See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WON
 
 XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. Writing a multiple choice question requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |
-|**choices**    |               |       |              |
-|               |  list name    | name  |  label       |
-|               |   yes_no      |  yes     |  Yes      |
-|               |   yes_no      |  no      |  No       |
+| survey      |                   |             |                    |
+| ----------- | ----------------- | ----------- | ------------------ |
+|             | type              | name        | label              |
+|             | select_one yes_no | likes_pizza | Do you like pizza? |
+| **choices** |                   |             |                    |
+|             | list name         | name        | label              |
+|             | yes_no            | yes         | Yes                |
+|             | yes_no            | no          | No                 |
 
 
 Note that the **yes_no** in the **survey** worksheet must match the **yes_no** in the **list name** column in the **choices** worksheet. This ensures that the form displays the correct list of answer choices for a particular question.  
 
 We can also add multiple choice questions that allow multiple answers to be selected, like so:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | select_multiple pizza_toppings    | favorite_toppings  | What are your favorite pizza toppings?  |
-|**choices**    |                      |                |                 |
-|               |  list name           | name           |  label          |
-|               |   pizza_toppings     |  cheese        |  Cheese         |
-|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
-|               |   pizza_toppings     |  sausage       |  Sausage        |
+| survey      |                                |                   |                                        |
+| ----------- | ------------------------------ | ----------------- | -------------------------------------- |
+|             | type                           | name              | label                                  |
+|             | select_multiple pizza_toppings | favorite_toppings | What are your favorite pizza toppings? |
+| **choices** |                                |                   |                                        |
+|             | list name                      | name              | label                                  |
+|             | pizza_toppings                 | cheese            | Cheese                                 |
+|             | pizza_toppings                 | pepperoni         | Pepperoni                              |
+|             | pizza_toppings                 | sausage           | Sausage                                |
 
 
 ##### <a name="specify-other"></a>Specify other
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | select_multiple pizza_toppings or_other | favorite_topping  | What are your favorite pizza toppings?  |
-|**choices**    |                      |                |                 |
-|               |  list name           | name           |  label          |
-|               |   pizza_toppings     |  cheese        |  Cheese         |
-|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |
-|               |   pizza_toppings     |  sausage       |  Sausage        |
+| survey      |                                         |                  |                                        |
+| ----------- | --------------------------------------- | ---------------- | -------------------------------------- |
+|             | type                                    | name             | label                                  |
+|             | select_multiple pizza_toppings or_other | favorite_topping | What are your favorite pizza toppings? |
+| **choices** |                                         |                  |                                        |
+|             | list name                               | name             | label                                  |
+|             | pizza_toppings                          | cheese           | Cheese                                 |
+|             | pizza_toppings                          | pepperoni        | Pepperoni                              |
+|             | pizza_toppings                          | sausage          | Sausage                                |
 
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
 
 **Caveat**  
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
 
+##### <a name="range"></a>Range
+aba
+
+
 ##### <a name="metadata"></a>Metadata
 
 XLSForm has a number of data type options available for meta data collection:
 
-| Metadata type | Meaning       |
-| ------------- | ------------- |
-| start         | Start date and time of the survey. |
-| end           | End date and time of the survey.  |
-| today         | Day of the survey.     |
-| deviceid      | IMEI (International Mobile Equipment Identity)     |
-| subscriberid  | IMSI (International Mobile Subscriber Identity)     |
-| simserial    | SIM serial number.     |
-| phonenumber  | Phone number (if available).      |
-| username      | Username configured (if available).  |
-| email         | Email address configured (if available).  |
+| Metadata type | Meaning                                         |
+| ------------- | ----------------------------------------------- |
+| start         | Start date and time of the survey.              |
+| end           | End date and time of the survey.                |
+| today         | Day of the survey.                              |
+| deviceid      | IMEI (International Mobile Equipment Identity)  |
+| subscriberid  | IMSI (International Mobile Subscriber Identity) |
+| simserial     | SIM serial number.                              |
+| phonenumber   | Phone number (if available).                    |
+| username      | Username configured (if available).             |
+| email         | Email address configured (if available).        |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
 If I wanted my survey to collect all of these metadata, I would put the following at the beginning of the survey:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | start         | start |        |
-|               | end           | end   |        |
-|               | today         | today   |        |
-|               | deviceid      | deviceid   |         |
-|               | subscriberid  | subscriberid   |         |
-|               | simserial     | simserial   |         |
-|               | phonenumber   | phonenumber   |        |       
-|               | username      | username   |        |   
-|               | email         | email   |        |   
+| survey |              |              |       |
+| ------ | ------------ | ------------ | ----- |
+|        | type         | name         | label |
+|        | start        | start        |       |
+|        | end          | end          |       |
+|        | today        | today        |       |
+|        | deviceid     | deviceid     |       |
+|        | subscriberid | subscriberid |       |
+|        | simserial    | simserial    |       |
+|        | phonenumber  | phonenumber  |       |
+|        | username     | username     |       |
+|        | email        | email        |       |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
@@ -215,11 +176,11 @@ The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC
 
 Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column and add your hint message. See below for an example.
 
-| survey        |               |       |      |    |
-| ------------- | ------------- | ----- | ---- | ----- |
-|               | type     | name  |  label | hint |
-|               | text     | name  | What is the name of this store?| Look on the signboard if the store has a signboard.|
-|| geopoint | geopoint | Collect the GPS coordinates of this store.| |
+| survey |          |          |                                            |                                                     |
+| ------ | -------- | -------- | ------------------------------------------ | --------------------------------------------------- |
+|        | type     | name     | label                                      | hint                                                |
+|        | text     | name     | What is the name of this store?            | Look on the signboard if the store has a signboard. |
+|        | geopoint | geopoint | Collect the GPS coordinates of this store. |                                                     |
 
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) provides more examples of questions with hints.
 
@@ -227,10 +188,10 @@ The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC
 
 One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the ``.`` in the formula refers back to the question variable.
 
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label           |  constraint  |
-|               | integer       | age   | How old are you? |  . <= 150  |
+| survey |         |      |                  |            |
+| ------ | ------- | ---- | ---------------- | ---------- |
+|        | type    | name | label            | constraint |
+|        | integer | age  | How old are you? | . <= 150   |
 
 In this example, the formula ```. <= 150``` is saying that the value entered ``.`` for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.
 
@@ -240,10 +201,10 @@ Other useful expressions to use in the **constraint** column can be found [here]
 
 If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a **constraint_message** column to your form.  See the example below.
 
-| survey |          |       |      |       |  |
-| -------| ---------| ----- | ---- | ------|-----|
-|        | type     | name  | label| constraint| constraint_message|
-|        | integer  | respondent_age | Respondent's age  | . >=18  | Respondent must be 18 or older to complete the survey. |
+| survey |         |                |                  |            |                                                        |
+| ------ | ------- | -------------- | ---------------- | ---------- | ------------------------------------------------------ |
+|        | type    | name           | label            | constraint | constraint_message                                     |
+|        | integer | respondent_age | Respondent's age | . >=18     | Respondent must be 18 or older to complete the survey. |
 
 In this example, if the user enters an age less than 18, then the error message in the **constraint_message** column appears. More examples on constraints have been illustrated in this [XLSForm](https://docs.google.com/spreadsheets/d/1g12xGrOsnNYezG6WtTfeusxzypRT1JHeUC2uNbe03sc/edit?usp=sharing).
 
@@ -252,44 +213,44 @@ In this example, if the user enters an age less than 18, then the error message 
 One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a **relevant** column for a **select_one** question, using our pizza topping example from before:
 
 
-| survey        |               |       |           |       |
-| ------------- | ------------- | ----- | --------- |   ----- |
-|               | type                  | name         |  label              |  relevant |
-|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
-|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
+| survey |                                         |                  |                    |                        |
+| ------ | --------------------------------------- | ---------------- | ------------------ | ---------------------- |
+|        | type                                    | name             | label              | relevant               |
+|        | select_one yes_no                       | likes_pizza      | Do you like pizza? |                        |
+|        | select_multiple pizza_toppings or_other | favorite_topping | Favorite toppings  | ${likes_pizza} = 'yes' |
 
 In this example, the respondent is asked, “Do you like pizza?” If the answer is **yes**, then the pizza topping question appears below. Note the ``${ }`` around the variable **likes_pizza**.  These are required in order for the form to reference the variable from the previous question.  
 
 In the next example, below, we use relevant syntax for a **select_multiple** question, which is slightly different from the **select_one** question example above.
 
-| survey        |               |       |           |       |
-| ------------- | ------------- | ----- | --------- |   ----- |
-|               | type                  | name         |  label              |  relevant |
-|               | select_one yes_no     | likes_pizza  | Do you like pizza?  |           |
-|               | select_multiple pizza_toppings or_other| favorite_topping  | Favorite toppings|${likes_pizza} = 'yes'|
-|      | text  | favorite_cheese | What is your favorite type of cheese? | selected(${favorite_topping}, 'cheese') |
-|**choices**    |                      |                |                 |  |
-|               |  list name           | name           |  label          |    |
-|               |   pizza_toppings     |  cheese        |  Cheese         |    |
-|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |    |
-|               |   pizza_toppings     |  sausage       |  Sausage        |    |
+| survey      |                                         |                  |                                       |                                         |
+| ----------- | --------------------------------------- | ---------------- | ------------------------------------- | --------------------------------------- |
+|             | type                                    | name             | label                                 | relevant                                |
+|             | select_one yes_no                       | likes_pizza      | Do you like pizza?                    |                                         |
+|             | select_multiple pizza_toppings or_other | favorite_topping | Favorite toppings                     | ${likes_pizza} = 'yes'                  |
+|             | text                                    | favorite_cheese  | What is your favorite type of cheese? | selected(${favorite_topping}, 'cheese') |
+| **choices** |                                         |                  |                                       |                                         |
+|             | list name                               | name             | label                                 |                                         |
+|             | pizza_toppings                          | cheese           | Cheese                                |                                         |
+|             | pizza_toppings                          | pepperoni        | Pepperoni                             |                                         |
+|             | pizza_toppings                          | sausage          | Sausage                               |                                         |
 
 Since the pizza topping question allows multiple responses, we have to use the ``selected(${favorite_topping}, 'cheese')`` expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
 
 Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:
 
 
-| survey        |               |       |      |    |
-| ------------- | ------------- | ----- | ---- |----|
-|               | type          | name  |  label | relevant |
-|               | select_multiple pizza_toppings    | favorite_toppings  | What are your favorite pizza toppings?  |  |
-|               | text    | favorite_toppings_other  | Specify other:  | selected(${favorite_toppings}, 'other')
-|**choices**    |                      |                |                 |  |
-|               |  list name           | name           |  label          |  |
-|               |   pizza_toppings     |  cheese        |  Cheese         |  |
-|               |   pizza_toppings     |  pepperoni     |  Pepperoni      |  |
-|               |   pizza_toppings     |  sausage       |  Sausage        |  |
-|               |   pizza_toppings     |  other       |  Other        |  |
+| survey      |                                |                         |                                        |                                         |
+| ----------- | ------------------------------ | ----------------------- | -------------------------------------- | --------------------------------------- |
+|             | type                           | name                    | label                                  | relevant                                |
+|             | select_multiple pizza_toppings | favorite_toppings       | What are your favorite pizza toppings? |                                         |
+|             | text                           | favorite_toppings_other | Specify other:                         | selected(${favorite_toppings}, 'other') |
+| **choices** |                                |                         |                                        |                                         |
+|             | list name                      | name                    | label                                  |                                         |
+|             | pizza_toppings                 | cheese                  | Cheese                                 |                                         |
+|             | pizza_toppings                 | pepperoni               | Pepperoni                              |                                         |
+|             | pizza_toppings                 | sausage                 | Sausage                                |                                         |
+|             | pizza_toppings                 | other                   | Other                                  |                                         |
 
 Note that you must include **other** as an answer choice in the **choices** worksheet.
 
@@ -302,12 +263,12 @@ Formulas are used in the constraint, relevant and calculation columns. You've al
 Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
 
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label           |  calculation  |
-|               | decimal       | amount  | What was the price of the meal? |   |
-|               | calculate     | tip  |  |  ${amount} * 0.18 |
-|               | note      | display  | 18% tip for your meal is: ${tip} |   |
+| survey |           |         |                                  |                  |
+| ------ | --------- | ------- | -------------------------------- | ---------------- |
+|        | type      | name    | label                            | calculation      |
+|        | decimal   | amount  | What was the price of the meal?  |                  |
+|        | calculate | tip     |                                  | ${amount} * 0.18 |
+|        | note      | display | 18% tip for your meal is: ${tip} |                  |
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
 
@@ -317,32 +278,32 @@ It's simple to mark certain questions as required in your form.  Marking them as
 
 To make questions required, add a **required** column to your survey worksheet. Under that column, mark questions as required by writing **yes**.  See the example below:
 
-| survey        |               |       |      |      |           |
-| ------------- | ------------- | ----- | ---- | ---- | -------------- |
-|               | type          | name  |  label           |  constraint  | required |
-|               | integer       | age   | How old are you? |  . <= 150  | yes |
+| survey |         |      |                  |            |          |
+| ------ | ------- | ---- | ---------------- | ---------- | -------- |
+|        | type    | name | label            | constraint | required |
+|        | integer | age  | How old are you? | . <= 150   | yes      |
 
 ##### <a name="required-message"></a>Required message
 
 If you want to customize the message displayed to users when they leave a required question blank, you can add a **required_message** column to your form.
 See the example below.
 
-| survey |          |       |      |       |  |
-| -------| ---------| ----- | ---- | ------|-----|
-|        | type     | name  | label| required | required_message |
-|        | integer  | respondent_age | Respondent's age  | yes  | Sorry, this answer is required. |
+| survey |         |                |                  |          |                                 |
+| ------ | ------- | -------------- | ---------------- | -------- | ------------------------------- |
+|        | type    | name           | label            | required | required_message                |
+|        | integer | respondent_age | Respondent's age | yes      | Sorry, this answer is required. |
 
 ### <a name="grouping"></a>Grouping questions
 
 To create a group of questions in your form try the following:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | begin group         | respondent |  Respondent |
-|               | text          | name  | Enter the respondent’s name |
-|               | text     | position |  Enter the respondent’s position within the school.|
-|               | end group    |     |       |
+| survey |             |            |                                                     |
+| ------ | ----------- | ---------- | --------------------------------------------------- |
+|        | type        | name       | label                                               |
+|        | begin group | respondent | Respondent                                          |
+|        | text        | name       | Enter the respondent’s name                        |
+|        | text        | position   | Enter the respondent’s position within the school. |
+|        | end group   |            |                                                     |
 
 This is a good way to group related questions for data export and analysis. Notice how **end group** doesn't require a name or label, because it is hidden in the form.
 
@@ -350,15 +311,15 @@ This is a good way to group related questions for data export and analysis. Noti
 
 Groups of questions can be nested within one another:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | begin group         | hospital |  Hospital |
-|               | text          | name  | What is the name of this hospital? |
-|               | begin group         | hiv_medication |  HIV Medication |
-|               | select_one yes_no     | have_hiv_medication |  Does this hospital have HIV medication? |
-|               | end group    |     |       |
-|               | end group    |     |       |
+| survey |                   |                     |                                         |
+| ------ | ----------------- | ------------------- | --------------------------------------- |
+|        | type              | name                | label                                   |
+|        | begin group       | hospital            | Hospital                                |
+|        | text              | name                | What is the name of this hospital?      |
+|        | begin group       | hiv_medication      | HIV Medication                          |
+|        | select_one yes_no | have_hiv_medication | Does this hospital have HIV medication? |
+|        | end group         |                     |                                         |
+|        | end group         |                     |                                         |
 
 You always have to end the most recent group that was created first. For instance, the first **end group** you see closes the HIV medication group, and the second one closes the beginning hospital group. When working with groups and you keep getting error messages when trying to upload your form, double-check that for each **begin group** you have one **end group**.
 
@@ -366,14 +327,14 @@ You always have to end the most recent group that was created first. For instanc
 
 One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with relevant syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
 
-|               |       |      |     |
-| ------------- | ----- | ----- |----- |
-| type               | name          |  label    |   relevant    |
-| integer            | age       | How old are you? |  |
-| begin group        | child     | Child |  ${age} <= 5    |
-| integer            | muac      | Record this child’s mid-upper arm circumference. |  |
-|  select_one yes_no | mrdt      | Is the child’s rapid diagnostic test positive?  |  |
-|  end group |      |   |  |
+|                   |       |                                                   |             |
+| ----------------- | ----- | ------------------------------------------------- | ----------- |
+| type              | name  | label                                             | relevant    |
+| integer           | age   | How old are you?                                  |             |
+| begin group       | child | Child                                             | ${age} <= 5 |
+| integer           | muac  | Record this child’s mid-upper arm circumference. |             |
+| select_one yes_no | mrdt  | Is the child’s rapid diagnostic test positive?   |             |
+| end group         |       |                                                   |             |
 
 In this example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
 
@@ -381,17 +342,17 @@ In this example, the two child group questions (**muac** and **mrdt**) will only
 
 A user can repeat a group of questions by using the **begin repeat** and **end repeat** construct:
 
-| survey        |               |       |      |
-| ------------- | ------------- | ----- | ---- |
-|               | type          | name  |  label |
-|               | begin repeat         | child_repeat |   |
-|               | text         | name |  Child's name |
-|               | decimal          | birthweight  |  Child's birthweight |
-|               | select_one male_female     | sex | Child's sex |
-|               | end repeat    |     |       |
-|  **choices**   | list name    |  name   |  label     |
-|     | male_female    |  male   |  Male     |
-|     | male_female    |  female   |  Female     |
+| survey      |                        |              |                     |
+| ----------- | ---------------------- | ------------ | ------------------- |
+|             | type                   | name         | label               |
+|             | begin repeat           | child_repeat |                     |
+|             | text                   | name         | Child's name        |
+|             | decimal                | birthweight  | Child's birthweight |
+|             | select_one male_female | sex          | Child's sex         |
+|             | end repeat             |              |                     |
+| **choices** | list name              | name         | label               |
+|             | male_female            | male         | Male                |
+|             | male_female            | female       | Female              |
 
 In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat group, and the user can repeat this group as many times as required by selecting the option in the form to start another repeat. 
 
@@ -401,44 +362,44 @@ The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-y
 
 Instead of allowing an infinite number of repeats, the user can specify an exact number of repeats by using the **repeat_count** column:
 
-| survey        |               |       |      |   |
-| ------------- | ------------- | ----- | ---- |---|
-|               | type          | name  |  label | repeat_count |
-|               | begin repeat         | child_repeat |   | 3 |
-|               | text         | name |  Child's name |  |
-|               | decimal          | birthweight  |  Child's birthweight |  |
-|               | select_one male_female     | sex | Child's sex |  |
-|               | end repeat    |     |       |  |
-|  **choices**   | list name    |  name   |  label     |   |
-|     | male_female    |  male   |  Male     |  |
-|     | male_female    |  female   |  Female     |  |
+| survey      |                        |              |                     |              |
+| ----------- | ---------------------- | ------------ | ------------------- | ------------ |
+|             | type                   | name         | label               | repeat_count |
+|             | begin repeat           | child_repeat |                     | 3            |
+|             | text                   | name         | Child's name        |              |
+|             | decimal                | birthweight  | Child's birthweight |              |
+|             | select_one male_female | sex          | Child's sex         |              |
+|             | end repeat             |              |                     |              |
+| **choices** | list name              | name         | label               |              |
+|             | male_female            | male         | Male                |              |
+|             | male_female            | female       | Female              |              |
 
 In the above example, the repeat group is restricted to **3** repeats.  
 
 Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of times the **hh_member** group repeats: 
 
-| survey        |               |       |      |   |
-| ------------- | ------------- | ----- | ---- |---|
-|               | type          | name  |  label | repeat_count |
-|               | integer       | num_hh_members | Number of household members?  |   |
-|               | begin repeat         | hh_member |   | ${num_hh_members} |
-|               | text         | name |  Name |  |
-|               | integer          | age  |  Age |  |
-|               | select_one male_female     | gender | Gender |  |
-|               | end repeat    |     |       |  |
-|  **choices**   | list name    |  name   |  label     |   |
-|     | male_female    |  male   |  Male     |  |
-|     | male_female    |  female   |  Female     |  |
+| survey      |                        |                |                              |                   |
+| ----------- | ---------------------- | -------------- | ---------------------------- | ----------------- |
+|             | type                   | name           | label                        | repeat_count      |
+|             | integer                | num_hh_members | Number of household members? |                   |
+|             | begin repeat           | hh_member      |                              | ${num_hh_members} |
+|             | text                   | name           | Name                         |                   |
+|             | integer                | age            | Age                          |                   |
+|             | select_one male_female | gender         | Gender                       |                   |
+|             | end repeat             |                |                              |                   |
+| **choices** | list name              | name           | label                        |                   |
+|             | male_female            | male           | Male                         |                   |
+|             | male_female            | female         | Female                       |                   |
 
 
 ### <a name="language"></a>Multiple language support
 
 It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection  application (this may be located under the **Menu** key) . For the form below, English and Español will show up as the possible options.
 
-| survey        |               |       |      |      |      |
-| ------------- | ------------- | ----- | ---- | ---- | ---- |
-|               | type          | name  |  label::English (en) | label::Español (es) |  constraint  |
-|               | integer       | age   | How old are you? |    ¿Cuántos años tienes? |. <= 150 |
+| survey |         |      |                     |                       |            |
+| ------ | ------- | ---- | ------------------- | --------------------- | ---------- |
+|        | type    | name | label::English (en) | label::Español (es)   | constraint |
+|        | integer | age  | How old are you?    | ¿Cuántos años tienes? | . <= 150   |
 
 Form language and user interface language may be the determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called _subtags_ are published [here](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) (search the page with Ctrl-F or Cmd-F).
 
@@ -452,10 +413,10 @@ You can also add a different language column for hints and media files; you simp
 
 You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
 
-| survey        |               |       |      |      |      |
-| ------------- | ------------- | ----- | ---- | ---- | ---- |
-|               | type          | name  |  label  | media::image  |  media::video  |
-|               | note      | media_example  | Media example |    example.jpg | example.mp4 |
+| survey |      |               |               |              |              |
+| ------ | ---- | ------------- | ------------- | ------------ | ------------ |
+|        | type | name          | label         | media::image | media::video |
+|        | note | media_example | Media example | example.jpg  | example.mp4  |
 
 Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://enketo.ona.io/x/#Ynv3).
 
@@ -470,10 +431,10 @@ To reference pre-existing data in a survey form:
   
 Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
 
-| name_key      |   name         | 
-| ------------- |-------------| 
-| mango         | Mango         |   
-| orange        | Orange        |
+| name_key | name   |
+| -------- | ------ |
+| mango    | Mango  |
+| orange   | Orange |
 
 ##### <a name="how-to-pull-data-from-csv"></a>How to pull data from CSV 
 
@@ -486,11 +447,11 @@ For each data field that you want to pull into your survey:
 
 See below for an example:
 
-|    survey     |               |       |           |            |
-| ------------- |-------------| -----|  --------    | ----------|     
-|               |      type     | name  | label     | calculation|
-|               |    calculate  | fruit |           |   pulldata('fruits', 'name', 'name_key', 'mango') |
-|               |      note     |   note_fruit    |   The fruit ${fruit} pulled from csv.        |             |
+| survey |           |            |                                     |                                                 |
+| ------ | --------- | ---------- | ----------------------------------- | ----------------------------------------------- |
+|        | type      | name       | label                               | calculation                                     |
+|        | calculate | fruit      |                                     | pulldata('fruits', 'name', 'name_key', 'mango') |
+|        | note      | note_fruit | The fruit ${fruit} pulled from csv. |                                                 |
 
 Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user. 
 
@@ -516,10 +477,10 @@ The following should be done:
 
 Below is an example of the **survey worksheet**:
 
-| survey        |               |       |      |            |  
-| ------------- | ------------- | ----- | ---- | -----------|
-|               | type          | name  |  label|  appearance |
-|               | select_one fruits    |  fruits     |  Select a fruit     |   search('fruits')   | 
+| survey |                   |        |                |                  |
+| ------ | ----------------- | ------ | -------------- | ---------------- |
+|        | type              | name   | label          | appearance       |
+|        | select_one fruits | fruits | Select a fruit | search('fruits') |
 
 There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
 
@@ -544,10 +505,10 @@ If you refer to image files in this way, you must always upload those image file
 See below an example of the choices worksheet:
 <br>
 
-| choices      |               |       |      |          
-| ------------- | ------------- | ----- | ---- | 
-|               | list name        | name  |  label |  
-|               | fruits   |  name_key     |  name     |   
+| choices |           |          |       |
+| ------- | --------- | -------- | ----- |
+|         | list name | name     | label |
+|         | fruits    | name_key | name  |
 
 Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
 <br>
@@ -577,53 +538,53 @@ The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., OD
 
 Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
 
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label  | default  |
-|               | today      | today  |    |     |
-|               | date      | survey_date  |  Survey date? |    2010-06-15 |
+| survey |       |             |              |            |
+| ------ | ----- | ----------- | ------------ | ---------- |
+|        | type  | name        | label        | default    |
+|        | today | today       |              |            |
+|        | date  | survey_date | Survey date? | 2010-06-15 |
 
 In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tapping in the answer field and inputting another answer.
 
-| survey        |               |       |      |      |
-| ------------- | ------------- | ----- | ---- | ---- |
-|               | type          | name  |  label  | default  |
-|               | decimal      | weight  |  Respondent's weight? (in kgs) |  51.3  |
+| survey |         |        |                               |         |
+| ------ | ------- | ------ | ----------------------------- | ------- |
+|        | type    | name   | label                         | default |
+|        | decimal | weight | Respondent's weight? (in kgs) | 51.3    |
 
 
 ### <a name="read-only"></a>Read only
 
 Adding a read only field means that a question can not be edited. Read only fields can be combined with default fields to deliver information back to a user. 
 
-| survey        |               |       |      |      |           |
-| ------------- | ------------- | ----- | ---- | ---- | -------------- |
-|               | type          | name  |  label |  read_only | default |
-|               | integer       | num   | Please patient is:  | yes | 5
+| survey |         |      |                    |           |         |
+| ------ | ------- | ---- | ------------------ | --------- | ------- |
+|        | type    | name | label              | read_only | default |
+|        | integer | num  | Please patient is: | yes       | 5       |
 
 
 ### <a name="appearance"></a>Appearance
 
 The **appearance** column allows you to change the appearance of questions in your form. The following table lists the possible appearance attributes and how the question appears in the form.
 
-|  Appearance attribute   |  Question type          | Description            |  
-| ----------------------- | ----------------------- | ---------------------- |
-|  multiline             |  text   | Best if used with web clients, makes the text box multiple lines long.         |
-|  minimal             | select_one, select_multiple  | Answer choices appear in a pull-down menu.          |
-|  quick             | select_one  | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.          |  
-| no-calendar| date   |  For mobile devices only, used to suppress the calendar.|
-| month-year | date   |  Select a month and year only for the date. |
-| year       | date   |  Select only a year for the date. |
-| horizontal-compact | select_one, select_multiple  | For web clients only, this displays the answer choices horizontally. |
-| horizontal | select_one, select_multiple  | For web clients only, this displays the answer choices horizontally, but in columns. |
-| likert     | select_one   | Best if used with web clients, makes the answer choices appear as a Likert scale. |
-| compact    |  select_one, select_multiple [choices with images] | Arranges image answer choices side by side.    |
-| quickcompact | select_one [choices with images]  | Same as previous, but this one auto-advances to the next question (in mobile clients only).       |
-|  field-list            | groups  |  Entire group of questions appear on one screen (for mobile clients only).          |
-| label      | select_one, select_multiple  | Displays answer choice labels (and not inputs).      |
-| list-nolabel | select_one, select_multiple  | Used in conjunction with **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client).      |
-|  table-list            | groups  | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).          |
-| signature  | image  | Allows you to trace your signature into your form (mobile clients only).      |
-| draw       | image  | Allows you to sketch a drawing with your finger on the mobile device screen. |
+| Appearance attribute | Question type                                     | Description                                                                                                                                                                                                                     |
+| -------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| multiline            | text                                              | Best if used with web clients, makes the text box multiple lines long.                                                                                                                                                          |
+| minimal              | select_one, select_multiple                       | Answer choices appear in a pull-down menu.                                                                                                                                                                                      |
+| quick                | select_one                                        | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.                                                                                                       |
+| no-calendar          | date                                              | For mobile devices only, used to suppress the calendar.                                                                                                                                                                         |
+| month-year           | date                                              | Select a month and year only for the date.                                                                                                                                                                                      |
+| year                 | date                                              | Select only a year for the date.                                                                                                                                                                                                |
+| horizontal-compact   | select_one, select_multiple                       | For web clients only, this displays the answer choices horizontally.                                                                                                                                                            |
+| horizontal           | select_one, select_multiple                       | For web clients only, this displays the answer choices horizontally, but in columns.                                                                                                                                            |
+| likert               | select_one                                        | Best if used with web clients, makes the answer choices appear as a Likert scale.                                                                                                                                               |
+| compact              | select_one, select_multiple [choices with images] | Arranges image answer choices side by side.                                                                                                                                                                                     |
+| quickcompact         | select_one [choices with images]                  | Same as previous, but this one auto-advances to the next question (in mobile clients only).                                                                                                                                     |
+| field-list           | groups                                            | Entire group of questions appear on one screen (for mobile clients only).                                                                                                                                                       |
+| label                | select_one, select_multiple                       | Displays answer choice labels (and not inputs).                                                                                                                                                                                 |
+| list-nolabel         | select_one, select_multiple                       | Used in conjunction with **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
+| table-list           | groups                                            | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
+| signature            | image                                             | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
+| draw                 | image                                             | Allows you to sketch a drawing with your finger on the mobile device screen.                                                                                                                                                    |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
@@ -633,10 +594,10 @@ The **settings** worksheet is optional, but it allows you to further customize y
 
 An example **settings** worksheet is below:
 
-| settings      |               |       |      |      |      |      |
-| ------------- | ------------- | ----- | ---- | ---- | ---- | ---- |
-|               | form_title    | form_id  |  public_key  | submission_url |default_language | version
-|               | Example Title     | example_id  | IIBIjANBg... |    https://example-odk-aggregate.appspot.com/submission | English| 2017021501
+| settings |               |            |              |                                                      |                  |            |
+| -------- | ------------- | ---------- | ------------ | ---------------------------------------------------- | ---------------- | ---------- |
+|          | form_title    | form_id    | public_key   | submission_url                                       | default_language | version    |
+|          | Example Title | example_id | IIBIjANBg... | https://example-odk-aggregate.appspot.com/submission | English          | 2017021501 |
 
 The column headings in this example **settings** worksheet do the following:
 
@@ -676,21 +637,21 @@ An example of a form divided into multiple pages can be seen on the [Widgets on 
 
 In the **settings** tab, create a column called **style** and set it to **pages**, as follows:
 
-| settings      |               |       |      |  
-| ------------- | ------------- | ----- | ---- |
-|               | form_title    | form_id  |  style  |
-|               | example title     | example_id  | pages |
+| settings |               |            |       |
+| -------- | ------------- | ---------- | ----- |
+|          | form_title    | form_id    | style |
+|          | example title | example_id | pages |
 
 In your **survey** tab, group together the questions you would like to appear on each page and then set the appearance for the group to **field-list**. See the example below.
 
-| survey   |               |       |      |  |
-| -------- | ------------- | ----- | ---- |---|
-|          | type    | name  |  label  | appearance |
-|          |  begin group     | group1  |  | field-list |
-|         |  text     | name  | Respondent's name |  |
-|         |  integer  | age  | Respondent's age |  |
-|         |  string  | address  | Respondent's address |  |
-|         |  end group  |   |  |  |
+| survey |             |         |                      |            |
+| ------ | ----------- | ------- | -------------------- | ---------- |
+|        | type        | name    | label                | appearance |
+|        | begin group | group1  |                      | field-list |
+|        | text        | name    | Respondent's name    |            |
+|        | integer     | age     | Respondent's age     |            |
+|        | string      | address | Respondent's address |            |
+|        | end group   |         |                      |            |
 
 See this [blog post](http://blog.enketo.org/pages/) for more information on creating multi-page web forms.  The XLSForm source is [here](https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.).
 
@@ -702,21 +663,21 @@ Please click on the link to see an example of a [Grid theme webform](https://enk
 
 To create a Grid form, in the **settings** tab, under the **style** column, write **theme-grid**, as follows:
 
-| settings      |               |       |      |  
-| ------------- | ------------- | ----- | ---- |
-|               | form_title    | form_id  |  style  |
-|               | example title     | example_id  | theme-grid |
+| settings |               |            |            |
+| -------- | ------------- | ---------- | ---------- |
+|          | form_title    | form_id    | style      |
+|          | example title | example_id | theme-grid |
 
 In your **survey** tab, group together the questions you would like to appear in each section and then set the appearance for each field according to the desired width (the default width is 4). See the example below.
 
-| survey   |               |       |      |  |
-| -------- | ------------- | ----- | ---- |---|
-|          | type    | name  |  label  | appearance |
-|          |  begin group     | group1  |  |  |
-|         |  text     | name  | Respondent's name | w3 |
-|         |  integer  | age  | Respondent's age | w1 |
-|         |  string  | address  | Respondent's address | w4 |
-|         |  end group  |   |  |  |
+| survey |             |         |                      |            |
+| ------ | ----------- | ------- | -------------------- | ---------- |
+|        | type        | name    | label                | appearance |
+|        | begin group | group1  |                      |            |
+|        | text        | name    | Respondent's name    | w3         |
+|        | integer     | age     | Respondent's age     | w1         |
+|        | string      | address | Respondent's address | w4         |
+|        | end group   |         |                      |            |
 
 See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information on creating Grid forms. The Grid theme XLSForm example is [here](https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing).  
 

@@ -4,7 +4,9 @@
     <div class="footer-col-1 column">
       <ul>
         <li>{{ site.title }}</li>
-        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+        <li>
+          <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        </li>
       </ul>
     </div>
     <div class="footer-col-2 column">
@@ -54,13 +56,8 @@
   </div>
 
 </footer>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script>
-$(document).ready(function(){
-    $(".post-content > ul:first-child").appendTo(".sidenav");
-});
-
   shuffle(Array.prototype.slice.call(document.querySelectorAll('#platformstools-that-support-xlsforms + ul > li')))
     .forEach(function (el, index) {
       el.style.order = index;
