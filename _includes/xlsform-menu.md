@@ -7,6 +7,7 @@
   * [GPS with accuracyThreshold](#gps-accuracy-threshold)
   * [Multiple choice questions](#multiple-choice)
   * [Specify other](#specify-other)
+  * [Range](#range)
   * [Metadata](#metadata)
 * [Hints](#hints)
 * [Constraints](#constraints)
