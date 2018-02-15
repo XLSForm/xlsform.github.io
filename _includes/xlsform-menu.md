@@ -9,6 +9,7 @@
   * [Specify other](#specify-other)
   * [Range](#range)
   * [Metadata](#metadata)
+  * [External XML data](#xml-external)
 * [Hints](#hints)
 * [Constraints](#constraints)
   * [Constraint message](#constraint-message)

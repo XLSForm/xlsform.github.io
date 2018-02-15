@@ -62,6 +62,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | calculate                 | Perform a calculation; see the **Calculation** section below.                                |
 | acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
 | hidden                    | A field with no associated UI element                                                        |
+| xml-external              | Adds a reference to an [external XML data](#xml-external) file                               |
 
 ##### <a name="gps"></a>GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
@@ -176,6 +177,17 @@ If I wanted my survey to collect all of these metadata, I would put the followin
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
+
+##### <a name="xml-external"></a>External XML data
+
+For advanced users, that need to perform complex queries on external data without restrictions, an external XML data file can be added with question type **xml-external**. The value in the **name** column can be used to refer to this data in any formula (e.g. for a calculation, constraint, relevant, or choice_filter) using the **instance('name')** function. A file with the same name and the **.xml** extension should be uploaded with the form. See below for an example that requires uploading a file called houses.xml with the form.
+
+| survey |              |        |                 |                                                              |
+| ------ | ------------ | ------ | --------------- | ------------------------------------------------------------ |
+|        | type         | name   | label           | calculation                                                  |
+|        | xml-external | houses |                 |                                                              |
+|        | integer      | rooms  | How many rooms? |                                                              |
+|        | calculate    | count  |                 | count(instance('houses')/house[rooms = current()/../rooms ]) |
 
 ### <a name="hints"></a>Hints
 
