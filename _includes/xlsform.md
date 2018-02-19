@@ -54,9 +54,9 @@ XLSForm supports a number of question types. These are just some of the options 
 | date                      | Date input.                                                                                  |
 | time                      | Time input.                                                                                  |
 | dateTime                  | Accepts a date and a time input.                                                             |
-| image                     | Take a picture.                                                                              |
-| audio                     | Take an audio recording.                                                                     |
-| video                     | Take a video recording.                                                                      |
+| image                     | Take a picture or upload an image file.                                                      |
+| audio                     | Take an audio recording or upload an audio file.                                             |
+| video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
 | calculate                 | Perform a calculation; see the **Calculation** section below.                                |
