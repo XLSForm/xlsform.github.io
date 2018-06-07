@@ -702,14 +702,16 @@ See this [blog post](http://blog.enketo.org/gorgeous-grid/) for more information
 
 Markdown support in XLSForm allows for increased emphasis through bold and italics, different sized headers, various fonts and colors, and clickable web links in ODK Collect 1.4.9 and Enketo.
 
-* *emphasize* words by wrapping them inside ``_`` or ``*``
-* **strongly emphasize** words by wrapping them inside ``__`` or ``**``
-* add a link by using ``[name of link](url)``
-* add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest<small>) to header text
-* style text for color or font with span tags (e.g., &lt;span style="color:#f58a1f"&gt;<span style="color:#f58a1f">orange</span>&lt;span&gt;, &lt;span style="color:red; font-family:cursive"&gt;<span style="color:red; font-family:cursive;">red and cursive</span>&lt;span&gt;)
+* *emphasize* words by wrapping them inside `_` or `*`
+* **strongly emphasize** words by wrapping them inside `__` or `**`
+* add a link by using `[name of link](url)`
+* add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest</small>) to header text
 * style text for color or font with span tags (e.g., `<span style="color:#f58a1f">`<span style="color:#f58a1f">orange</span>`</span>`, `<span style="color:red; font-family:cursive">`<span style="color:red; font-family:cursive;">red and cursive</span>`</span>`)
 * add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)
 * add your favorite emojis 😍📋😍!
+* use superscript with the `<sup>` tag (e.g. `100 m<sup>2</sup>` turns into 100 m<sup>2</sup>)
+* use subscript with the `<sub>` tag (e.g. `H<sub>2</sub>O` turns into H<sub>2</sub>O)
+* use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects to be triggered by these characters
 
 ### <a name="xlsform-tools"></a>Platforms/Tools that support XLSForms
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
