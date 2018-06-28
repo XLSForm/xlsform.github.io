@@ -8,9 +8,7 @@
   {% include header.html %}
 
   <div class="page-content clearfix container">
-    <div class="sidenav clearfix">
-      {% capture menu %}{% include xlsform-menu.md %}{% endcapture %} {{ menu | markdownify }}
-    </div>
+    <div class="sidenav clearfix"></div>
 
     <div class="wrap">
       <article class="post-content">
@@ -20,6 +18,8 @@
   </div>
 
   {% include footer.html %}
+
+  <script async src="/assets/js/script.js"></script>
 
 </body>
 

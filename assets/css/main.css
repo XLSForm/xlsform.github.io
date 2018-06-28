@@ -197,6 +197,10 @@ table tr th, table tr td{
   top: 3px;
 }
 
+.clickable:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 /* Page Content styles */
 /* ----------------------------------------------------------*/
