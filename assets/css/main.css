@@ -43,10 +43,6 @@ table tr th, table tr td{
     padding:0.1em 0.5em;
     font-size: 11px;
 }
-.fullpage table tr:first-child td {
-    background-color: #eeeeee;
-    font-weight: bold;
-}
 .cleafix:before, .clearfix:after{
     content:""; display:table;
 }
