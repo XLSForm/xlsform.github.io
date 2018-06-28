@@ -1,0 +1,5 @@
+{% for section in site.sections %} 
+{% if section.lang == page.lang and section.ref == page.ref %}
+{{ section.content }} 
+{% endif %}
+{% endfor %}

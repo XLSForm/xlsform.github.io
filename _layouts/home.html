@@ -1,26 +1,16 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+---
 
-{% include head.html %}
+<div class="page-content clearfix container">
+  <div class="sidenav clearfix"></div>
 
-<body>
-
-  {% include header.html %}
-
-  <div class="page-content clearfix container">
-    <div class="sidenav clearfix"></div>
-
-    <div class="wrap">
-      <article class="post-content">
-        {{ content }}
-      </article>
-    </div>
+  <div class="wrap">
+    <article class="post-content">
+      {{ content }}
+    </article>
   </div>
+</div>
 
-  {% include footer.html %}
+<script async src="/assets/js/script.js"></script>
 
-  <script async src="/assets/js/script.js"></script>
-
-</body>
-
-</html>
