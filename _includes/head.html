@@ -12,4 +12,10 @@
     <link rel="alternate" hreflang="{{ pg.lang }}" href="{{ pg.url }}" />
     {% endif %}
     {% endfor %}
+    <script>
+        var languagesSupported = [];
+        for (var lang in {{ site.description | jsonify }}){
+            languagesSupported.push(lang);
+        }
+    </script>
 </head>
