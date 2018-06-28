@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      {% for prop in site.data[include.sheet].first %}
+      <th>{{ prop }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in site.data[include.sheet] offset:1 %}
+    <tr>
+      {% for prop in row %}
+      <td>{{ prop[1] | xml_escape }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

@@ -1,0 +1,16 @@
+Item,Description,Works in Enketo?,Works in Collect?,Synonyms,Notes
+,,,,,
+form_title,"Title displayed at beginning of form, in form list",yes,yes,,if missing assigned to form_id
+form_id,ID used in the XML and often needs to be unique,yes,yes,,If missing assigned to xls name
+public_key,Key required for encrypted forms,no,yes,,
+submission_url,"Specific URL for uploading data, overrides ODK settings",no,yes,,
+default_language,"If form uses multiple languages, this one sets which to use by default",yes,yes,,
+style,Separate questions groups into pages (on Enketo). Switch to a different theme.,yes,no,,"Allowed values: pages, theme-grid, theme-formhub"
+version,,yes,yes,,
+instance_name,Allows user to create a dynamic naming convention for each submitted instance,yes,yes,,"for example, concat(${lname}, ‘-‘, ${fname}, ‘-‘, uuid())"
+sms_keyword,,no,?,,
+sms_separator,,no,?,,
+sms_allow_medias,,no,?,,
+sms_date_format,,no,?,,
+sms_datetime_format,,no,?,,
+sms_response,,no,?,,
