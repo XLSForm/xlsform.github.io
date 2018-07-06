@@ -1,16 +1,33 @@
+{% assign langpart = '::' | append: page.lang %}
+{% capture columns %}
+{% for prop in site.data[include.sheet].first %}
+  {% if prop[0] contains '::' %}
+    {% if prop[0] contains langpart %}
+      {{1}},
+    {% else %}
+      {{0}},
+    {% endif %}
+  {% else %}
+    {{1}},
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+{% assign incl-columns = columns | replace: ' ', '' | strip_newlines | split: ',' %}
 <table>
   <thead>
-    <tr>
-      {% for prop in site.data[include.sheet].first %}
-      <th>{{ prop }}</th>
-      {% endfor %}
-    </tr>
+    {% for prop in site.data[include.sheet].first %}
+      {% if incl-columns[forloop.index0] == '1' %}
+        <th>{{prop[0] | replace: langpart, ''}}</th>
+      {% endif %}
+    {% endfor %}
   </thead>
   <tbody>
-    {% for row in site.data[include.sheet] offset:1 %}
+    {% for row in site.data[include.sheet] %}
     <tr>
       {% for prop in row %}
-      <td>{{ prop[1] | xml_escape }}</td>
+        {% if incl-columns[forloop.index0] == '1' %}
+        <td>{{ prop[1] | xml_escape }}</td>
+        {% endif %}
       {% endfor %}
     </tr>
     {% endfor %}

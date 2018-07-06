@@ -1,13 +1,18 @@
 # Site settings
 title: XLSForm.org
 email: info@xlsform.org
-description: "This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms."
+description: 
+  en: "This site will help you author XLSForms. XLSForm is a tool used to simplify the creation of forms. XLSForm will convert forms authored in Excel into XForms that can be used with a number of web or mobile platforms."
+  fr: "blablabla"
 baseurl: ""
-url: "http://github.com/xlsform"
+url: "https://xlsform.org"
 
 # Build settings
 markdown: kramdown
 permalink: pretty
+
+collections:
+- sections
 
 g_analytics_token: 'UA-55713660-1'
 g_analytics_domain: 'xlsform.org'
