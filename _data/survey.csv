@@ -24,8 +24,7 @@ Column headers,,,,,,
 ,instance::attribute,include custom XML content for the data instance,depends,depends,,
 ,bind::attribute,include custom XML content for the bind attribute,depends,depends,,
 ,body::attribute,include custom XML content in the body,depends,depends,,
-,body::accuracyThreshold,set the minimum GPS accuracy level before automatically registering the coordinates,"✕
-",✔,,
+,body::accuracyThreshold,set the minimum GPS accuracy level before automatically registering the coordinates,✕,✔,,
 Questions,,These are put into the ‘type’ column,,,,
 Meta questions,,"These are hidden to the user, but otherwise work like regular questions",,,,
 ,start,Record when the form was loaded,✔,✔,,
@@ -92,6 +91,8 @@ decimal,,,,,,
 integer and decimal,,,,,,
 ,thousands-sep,Adds a localized thousands separator on screen (not in submission).,✕,✔,,
 range,,,,,,
+,vertical,Shows a vertical range slider instead of horizontal,✔,✔,,
+,no-ticks,Hides the ticks in a range widget slider,✔,✕,,
 ,picker,Shows range options in a picker instead of a slider,✕,✔,,
 ,distress,Shows a thermometer surrounding a range slider,✔,✕,,For backwards compatiblity this is also supported on integer types (with harcoded range of 0-10 with step 1). It is no longer recommend to use integer.
 date,,,,,,
@@ -101,8 +102,7 @@ date and dateTime,,,,,,
 ,no-calendar,allows to force older spinner-only display on newer 4.x devices,✕,✔,,
 ,ethiopian,Displays pickers for the Ethiopian calendar.,✕,✔,,
 ,islamic,Displays pickers for the Ethiopian calendar.,✕,✔,,
-,coptic,Displays pickers for the Ethiopian calendar.,"✕
-",✔,,
+,coptic,Displays pickers for the Ethiopian calendar.,✕,✔,,
 image,,,,,,
 ,new,Capture new photo with default camera. Can be combined with annotate.,✔,✔,,Enketo: not all browsers provide support
 ,new-front,Capture new photo with font-camera (selfie). Can be combined with annotate.,✔,✔,,Enketo: not all browsers provide support
