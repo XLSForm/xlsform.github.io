@@ -34,14 +34,36 @@ table{
 }
 table tr th{
     background:#EFEFEF;
+    font-size: 15px;
 }
 table tr th, table tr td{
     border:1px solid #AFAFAF;
     padding:0.6em;
 }
+
+table tfoot td {
+  border-color: transparent;
+}
+
+/* mimic the sheet tab */
+table tfoot td:first-of-type{
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  color: white;
+  background: #9e9e9e;
+  min-width: 150px;
+}
+
+table tr td {
+  font-size: 14px;
+}
+
 .fullpage table tr th, table tr td{
-    padding:0.1em 0.5em;
-    font-size: 11px;
+  padding:0.1em 0.5em;
+}
+
+.fullpage table tr th, .fullpage table tr td {
+  font-size: 11px;
 }
 .cleafix:before, .clearfix:after{
     content:""; display:table;
