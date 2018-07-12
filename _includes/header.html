@@ -16,10 +16,16 @@
             c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
         </svg>
       </a>
-      <a href="/ref-table">XLSForm Reference Table</a>
       <div class="trigger">
-        {% for page in site.pages %}
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+        {% for pg in site.pages %}
+          {% if pg.ref == page.ref %}
+          <a class="page-link lang-selector {{pg.lang}}" href="{{ pg.url | relative_url }}">{{ pg.lang }}</a>
+          {% endif %}
+        {% endfor %}
+        {% for pg in site.pages %}
+          {% if pg.ref != page.ref and pg.lang == page.lang %}
+          <a class="page-link" href="{{ pg.url | relative_url }}">{{ pg.title }}</a>
+          {% endif %}
         {% endfor %}
       </div>
     </nav>

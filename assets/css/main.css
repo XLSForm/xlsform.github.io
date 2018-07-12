@@ -140,6 +140,11 @@ table tr th, table tr td{
   letter-spacing: -.5px;
 }
 
+:lang(en) .lang-selector.en, 
+:lang(fr) .lang-selector.fr {
+  font-weight: bold;
+}
+
 /* Site footer */
 .site-footer {
   border-top: 1px solid #e8e8e8;
@@ -197,6 +202,10 @@ table tr th, table tr td{
   top: 3px;
 }
 
+.clickable:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
 
 /* Page Content styles */
 /* ----------------------------------------------------------*/
