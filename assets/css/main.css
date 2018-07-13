@@ -50,8 +50,9 @@ table tfoot td:first-of-type{
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   color: white;
-  background: #9e9e9e;
+  background:#b9b9b9;
   min-width: 150px;
+  text-align: center;
 }
 
 table tr td {
