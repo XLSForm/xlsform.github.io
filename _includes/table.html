@@ -13,7 +13,7 @@
 {% endfor %}
 {% endcapture %}
 {% assign incl-columns = columns | replace: ' ', '' | strip_newlines | split: ',' %}
-<table>
+<table class="{{include.sheet}}-sheet">
   <thead>
     {% for prop in site.data[include.sheet].first %}
       {% if incl-columns[forloop.index0] == '1' %}
