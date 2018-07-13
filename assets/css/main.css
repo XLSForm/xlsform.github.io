@@ -352,6 +352,16 @@ table tr td {
 
 .post pre.terminal code { background-color: #333; }
 
+/* center ODK and Enketo columns in ref-table */
+.survey-sheet td:nth-of-type(4),
+.survey-sheet td:nth-of-type(5),
+.choices-sheet td:nth-of-type(3),
+.choices-sheet td:nth-of-type(4),
+.settings-sheet td:nth-of-type(4),
+.settings-sheet td:nth-of-type(5){
+  text-align: center;
+}
+
 /* Syntax highlighting styles */
 /* ----------------------------------------------------------*/
 

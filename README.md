@@ -9,7 +9,7 @@ Install [Jekyll](https://jekyllrb.com/) and run with `jekyll serve --watch` on h
 
 ### Edit
 
-All content is in the `_sections` and `_data` folder. 
+All content is in the `_sections` and `_data` folders. 
 
 ### Add a translation
 
