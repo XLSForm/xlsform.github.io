@@ -117,13 +117,3 @@ image,,,,,,
 ,hide-input,Shows a larger map and hides the geo input fields by default.,✔,✕,,
 ,"streets, terrain, satellite, [other]",Switches the default map layer to the one with the name of the appearance.,✔,✕,,
 ,placement-map,Allows user to point at a location on a map to record those GPS coordinates,✔,✔,,Enketo: Same as maps
-Skip logic syntax (incomplete),,,,,,
-,"selected (${some_question}, ‘d’)",for multi select questions,✔,✔,,
-,${some_other_question} = ‘1’,,✔,✔,,
-Calculation commands,,,,,,Full list being established at http://opendatakit.github.io/odk-xform-spec/
-,date-time,,✔,✔,,
-,decimal-date-time,,✔,✔,,
-,once(),forces (random?) calculation to be done just once,✔,✔,,
-,indexed-repeat(),Returns a single node from a nodeset by selecting the 1-based index of a repeat nodeset. It does this up to 3 repeat levels deep.,✔,✔,,"indexed-repeat(nodeset arg, nodeset repeat1, int index1, [nodeset repeatN, int indexN]{0,2})"
-,count(),Allows counting the number of repeat groups,✔,✔,,
-,count-selected(),Counts the number of responses to a select_multiple question,✔,✔,,
