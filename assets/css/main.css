@@ -75,15 +75,17 @@ tfoot td.sheets::before{
 
 tfoot td.sheets::after{
   content: "+";
+  font-weight: bold;
+  color: #AFAFAF;
   display: inline-block;
   margin-left: 15px;
-  width: 16px;
-  height: 16px;
-  line-height: 14px;
-  border-radius: 8px;
+  width: 14px;
+  height: 14px;
+  line-height: 13px;
+  border-radius: 9px;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #AFAFAF;
+  border: 2px solid #ccc;
 }
 
 tfoot td.sheets span.active{
