@@ -42,17 +42,57 @@ table tr th, table tr td{
 }
 
 table tfoot td {
-  border-color: transparent;
+  border: none;
+  
 }
 
-/* mimic the sheet tab */
-table tfoot td:first-of-type{
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  color: white;
-  background:#b9b9b9;
-  min-width: 150px;
+table tfoot tr {
+  border: 1px solid  #AFAFAF;
+  background: #EFEFEF;
+}
+
+tfoot td.sheets {
+  min-width: 285px;
+}
+
+/* mimic the Excel sheet navigation */
+tfoot td.sheets span{
+  display: inline-block;
+  width: 65px;
   text-align: center;
+  border-right: 1px solid #b9b9b9;
+}
+
+tfoot td.sheets span:first-of-type{
+  border-left: 1px solid #b9b9b9;
+}
+
+tfoot td.sheets::before{
+  content: "◄  ►";
+  margin: 0 10px 0 5px;
+  color: #ccc;
+}
+
+tfoot td.sheets::after{
+  content: "+";
+  font-weight: bold;
+  color: #AFAFAF;
+  display: inline-block;
+  margin-left: 15px;
+  width: 14px;
+  height: 14px;
+  line-height: 13px;
+  border-radius: 9px;
+  text-align: center;
+  vertical-align: middle;
+  border: 2px solid #ccc;
+}
+
+tfoot td.sheets span.active{
+  font-weight: bold;
+  color: black;
+  border-bottom: 2px solid gray;
+  background: white;
 }
 
 table tr td {

@@ -1,5 +1,6 @@
 addNavMenu();
 setHeaderListeners();
+addSheets();
 shuffle(Array.prototype.slice.call(document.querySelectorAll('#platformstools-that-support-xlsforms + ul > li')))
     .forEach(function (el, index) {
         el.style.order = index;
@@ -128,4 +129,30 @@ function shuffle(array) {
     }
 
     return array;
+}
+
+function addSheets(){
+    var tfoots = document.querySelectorAll('tfoot');
+
+    for (var i=0; i< tfoots.length; i++){
+        var tds = tfoots[i].querySelectorAll('td');
+        sheet = tds[0].textContent;
+
+        tds[0].classList.add('sheets');
+        tds[0].textContent = '';
+        tds[0].setAttribute('colspan', '3');
+        
+        for (var j=0 ; j < 3 ; j++){
+            var span = document.createElement('span');
+            var type = ['survey', 'choices', 'settings'][j];
+            if (j > 0) {
+                tds[j].remove();
+            }
+            span.appendChild(document.createTextNode(type));
+            if (sheet === type){
+                span.classList.add('active');
+            }
+            tds[0].appendChild(span);
+        }
+    }
 }
