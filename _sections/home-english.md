@@ -31,14 +31,14 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 | select_one gender   | gender   | Respondent's gender? |
 | integer             | age      | Respondent's age?    |
 | =================== | ======== | ==================== |
-| choices             |          |                      |
+| survey              |          |                      |
 
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
   * The **name** column specifies the unique variable name for that answer choice.
   * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, <a href="#language">label translation columns</a> can be used.
 
-| type                | name        | label                |
+| list_name           | name        | label                |
 | ------------------- | ----------- | -------------------- |
 | gender              | transgender | Transgender          |
 | gender              | female      | Female               |
