@@ -234,6 +234,8 @@ For advanced users, who need to perform complex queries on external data without
 
 ## Hints
 
+### Regular hints
+
 Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a **hint** column and add your hint message. See below for an example.
 
 | type     | name     | label                                      | hint                                                 |
@@ -244,6 +246,17 @@ Sometimes you want to add a small hint to a question on your form, instructing t
 | survey   |          |                                            |                                                      |
 
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) provides more examples of questions with hints.
+
+### Guidance hints
+
+There is a special kind of hint that is normally not shown in the form. It is only shown in special views. An example would to show these hints on print-outs or during a training for enumerators. These hints are called _guidance hints_ and can be added in the **guidance_hint** column. See below for an example. 
+
+| type     | name     | label      | guidance_hint                         | relevant    |
+| -------- | -------- | ---------- | ------------------------------------- | ----------- |
+| integer  | age      | Age?       |                                       |             |
+| text     | name     | Name?      | This will only be shown for age > 18. | ${age} > 18 |
+| ======== | ======== | ========== | ===================================== | =========== |
+| survey   |          |            |                                       |             |
 
 ## Constraints
 
