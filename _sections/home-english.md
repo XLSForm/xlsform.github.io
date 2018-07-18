@@ -371,6 +371,27 @@ See the example below.
 | ======== | ========       | ============     | ========== | =============================== |
 | survey   |                |                  |            |                                 |
 
+## Randomize Choices
+
+For any question type that shows a **list of choices** the shown order of the choices displayed to the user can be randomized with the **parameters** column. See below:
+
+| type                | parameters     | name  | label     |
+| ------------------- | -------------- | ----- | --------- |
+| select_one toppings | randomize=true | top   | Favorite? |
+| ==================  | ============== | ===== | ========= |
+| survey              |                |       |           |
+
+For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://opendatakit.github.io/xforms-spec/#fn:randomize).
+
+| type                | parameters                 | name | label       | calculation                    |
+| ------------------- | -------------------------- | ---- | ----------- | ------------------------------ |
+| calculate           |                            | sd   |             | once(decimal-date-time(now())) |
+| select_one toppings | randomize=true, seed=${sd} | top  | Favorite?   |                                |
+| ==================  | ========================== | ==== | =========== | ============================== |
+| survey              |                            |      |             |                                |
+
+Note that `once()` is used to prevent re-randomizing for example when a draft record is loaded for editing.
+
 ## Grouping questions
 
 To create a group of questions in your form try the following:
