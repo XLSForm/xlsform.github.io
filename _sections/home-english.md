@@ -849,6 +849,35 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * use subscript with the `<sub>` tag (e.g. `H<sub>2</sub>O` turns into H<sub>2</sub>O)
 * use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects to be triggered by these characters
 
+## Advanced use and extensibility
+
+It is possible to use XLSForm to create XForms with custom or experimental features. This is great for custom applications with a specific feature that is not suitable for the larger community. 
+
+The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::**, **body::**) that add attributes to the XForm output, either in the _primary instance_, _bind_, or _form control_. To learn more about XForms visit the [ODK XForms Specification](https://opendatakit.github.io/xforms-spec/). The example below adds a custom "hxl" attribute to the primary instance node of a question.
+
+| type      | name       | label                    | instance::hxl |
+| --------- | ---------- | ------------------------ | ------------- |
+| integer   | population | How many people present? | #population   |
+| ========= | ========   | ======================== | ============= |
+| survey    |            |                          |               |
+
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/opendatakit/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
+
+| title     | namespaces                                                   |
+| --------- | ------------------------------------------------------------ |
+| My Form   | esri="http://esri.com/xforms" enk="http://enketo.org/xforms  |
+| ========= | ============================================================ |
+| settings  |                                                              |
+
+<p/>
+
+| type      | name         | label                    | bind::esri:fieldLength | bind::enk:for |
+| --------- | ------------ | ------------------------ | ---------------------- | ------------- |
+| text      | desc         | Describe                 | 50                     |               |
+| text      | desc_comment | Comments                 |                        | ${a}          |
+| ========= | ============ | ======================== | ====================== | ============= |
+| survey    |              |                          |                        |               |
+
 ## Platforms/Tools that support XLSForms
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Open Data Kit (ODK)](http://opendatakit.org)
