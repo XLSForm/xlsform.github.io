@@ -879,14 +879,14 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | survey    |              |                          |                        |               |
 
 ## Tools that support XLSForms
-* [Secure Data Kit (SDK)](http://www.securedatakit.com)
-* [Open Data Kit (ODK)](http://opendatakit.org)
 * [Ona](http://ona.io)
-* [SurveyCTO](http://www.surveycto.com/)
 * [Enketo](http://enketo.org)
+* [Open Data Kit (ODK)](http://opendatakit.org)
 * [Kobo ToolBox](http://kobotoolbox.org)
 * [CommCare](http://commcarehq.org)
+* [SurveyCTO](http://www.surveycto.com/)
 * [DataWinners](https://www.datawinners.com/en/home/)
+* [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
 
 ## More resources
