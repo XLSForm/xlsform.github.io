@@ -878,7 +878,7 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
 
-## Platforms/Tools that support XLSForms
+## Tools that support XLSForms
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Open Data Kit (ODK)](http://opendatakit.org)
 * [Formhub](http://formhub.org)
