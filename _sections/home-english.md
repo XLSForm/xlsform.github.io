@@ -881,14 +881,11 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 ## Tools that support XLSForms
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Open Data Kit (ODK)](http://opendatakit.org)
-* [Formhub](http://formhub.org)
 * [Ona](http://ona.io)
 * [SurveyCTO](http://www.surveycto.com/)
 * [Enketo](http://enketo.org)
 * [Kobo ToolBox](http://kobotoolbox.org)
 * [CommCare](http://commcarehq.org)
-* Nafundi's [XLSForm Offline](https://gumroad.com/l/xlsform-offline)
-* Nathan Breit's [xlsform.exe](https://github.com/UW-ICTD/xlsform.exe/blob/master/README.md)
 * [DataWinners](https://www.datawinners.com/en/home/)
 * [Tattara](http://tattara.com/)
 
