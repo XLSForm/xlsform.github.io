@@ -878,18 +878,15 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
 
-## Platforms/Tools that support XLSForms
-* [Secure Data Kit (SDK)](http://www.securedatakit.com)
-* [Open Data Kit (ODK)](http://opendatakit.org)
-* [Formhub](http://formhub.org)
+## Tools that support XLSForms
 * [Ona](http://ona.io)
-* [SurveyCTO](http://www.surveycto.com/)
 * [Enketo](http://enketo.org)
+* [Open Data Kit (ODK)](http://opendatakit.org)
 * [Kobo ToolBox](http://kobotoolbox.org)
 * [CommCare](http://commcarehq.org)
-* Nafundi's [XLSForm Offline](https://gumroad.com/l/xlsform-offline)
-* Nathan Breit's [xlsform.exe](https://github.com/UW-ICTD/xlsform.exe/blob/master/README.md)
+* [SurveyCTO](http://www.surveycto.com/)
 * [DataWinners](https://www.datawinners.com/en/home/)
+* [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
 
 ## More resources

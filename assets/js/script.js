@@ -1,7 +1,7 @@
 addNavMenu();
 setHeaderListeners();
 addSheets();
-shuffle(Array.prototype.slice.call(document.querySelectorAll('#platformstools-that-support-xlsforms + ul > li')))
+shuffle(Array.prototype.slice.call(document.querySelectorAll('#tools-that-support-xlsforms + ul > li')))
     .forEach(function (el, index) {
         el.style.order = index;
     });
