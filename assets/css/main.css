@@ -552,7 +552,7 @@ table tr td {
   }
 }
 
-#platformstools-that-support-xlsforms+ul {
+#tools-that-support-xlsforms+ul {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;

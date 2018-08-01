@@ -145,7 +145,7 @@ function addSheets(){
         for (var j=0 ; j < 3 ; j++){
             var span = document.createElement('span');
             var type = ['survey', 'choices', 'settings'][j];
-            if (j > 0) {
+            if (j > 0 && tds[j]) {
                 tds[j].remove();
             }
             span.appendChild(document.createTextNode(type));
