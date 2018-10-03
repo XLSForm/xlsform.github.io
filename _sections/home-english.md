@@ -736,7 +736,7 @@ An XLSForm with all of the appearance attributes in this table is available [her
 
 ## Settings worksheet
 
-The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your form or setting an overall style theme to your form, among others.
+The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your records or setting an overall style theme to your form, among others.
 
 An example **settings** worksheet is below:
 
@@ -748,27 +748,32 @@ An example **settings** worksheet is below:
 
 The column headings in this example **settings** worksheet do the following:
 
-* **form_title**: The title of the form that is shown to users.  The form title is pulled from **form_id** if **form_title** is blank or missing.
-* **form_id**: The name used to identify the form submission.  The form id is pulled from the XLS file name if **form_id** is blank or missing.
-* **public_key**: For encrypted forms, this is where the public key is copied and pasted.
-* **submission_url**: For encrypted forms, this url specifies the server where finalized forms are submitted to.
+* **form_title**: The title of the form that is shown to users. The form title is pulled from **form_id** if **form_title** is blank or missing.
+* **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
+* **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted.
+* **submission_url**: This url can be used to override the default server where finalized records are submitted to.
 * **default_language**: In localized forms, this sets which language should be used as the default.
 * **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have alphabetically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
 
 ### Encrypted forms
 
-Encrypted forms provide a mechanism to keep your data private using http for communication. Form submissions sent to the Aggregate server are encrypted and completely inaccessible to anyone not possessing the private key.
+Encryption-enabled forms provide a mechanism to keep finalized records private at all times. This includes the time records are stored on the device and server as well as during transport, even when http is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.
 
-To encrypt XLS forms, add the **form_id**, **submission_url** and the **public_key** as column headers in the settings worksheet.
+To encrypt XLS forms, add the **public_key** column to the **settings** worksheet and paste the base64-encoded public RSA key as its value.
 
-They do the following:
+| form_id | public_key     | 
+| ------- | -------------- | 
+| mysurvey   | IIBIjANBgklawWEserewrwesgdreewrwe32serfserfewrwerewtwer23sgfrqjwerk3423432...   | 
+| ======  | ============== | 
+| settings   |         |     
 
-  * **form_id** - name used to identify the form
-  * **submission_url** - is your submission url
-  * **public_key** - is the base64RsaPublicKey
+For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](http://opendatakit.org/help/encrypted-forms/) and at [this this sample forms](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
 
-For more information on encrypted forms and how to generate the rsa keys have a look at the tutorial [here](http://opendatakit.org/help/encrypted-forms/). Please have a look at the [tutorial_encrypted XLSForm ](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
+### Specify alternative server
 
+It is possible to specify an alternative server to send your submissions to in the **submission_url** column on the **settings** worksheet. Make sure to use the full URL that submissions should be sent to _including the path_.
+
+If this column is left out or kept empty, submissions will go the default destination for the provider you are using for your surveys.
 
 ### Specify form submission name
 
