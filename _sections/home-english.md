@@ -742,7 +742,7 @@ An example **settings** worksheet is below:
 
 | form_title | form_id | public_key     | submission_url                                       | default_language  | version      |
 | ---------- | ------- | -------------- | ---------------------------------------------------- | ----------------- | ------------ |
-| Example    | ex_id   | IIBIjANBg...   | https://example-odk-aggregate.appspot.com/submission | English           | 2017021501   |
+| Example    | ex_id   | IIBIjANBg...   | https://example.com/submission | English           | 2017021501   |
 | ========   | ======  | ============== | ================                                     | ================= | ============ |
 | settings   |         |                |                                                      |                   |              |
 
@@ -757,7 +757,7 @@ The column headings in this example **settings** worksheet do the following:
 
 ### Encrypted forms
 
-Encryption-enabled forms provide a mechanism to keep finalized records private at all times. This includes the time records are stored on the device and server as well as during transport, even when http is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.
+Encryption-enabled forms provide a mechanism to keep _finalized_ records private at all times. This includes the time _after a record is marked as final_ that it is stored on the device and server as well as during transport, even when http is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.
 
 To encrypt XLS forms, add the **public_key** column to the **settings** worksheet and paste the base64-encoded public RSA key as its value.
 
@@ -767,7 +767,7 @@ To encrypt XLS forms, add the **public_key** column to the **settings** workshee
 | ======  | ============== | 
 | settings   |         |     
 
-For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](http://opendatakit.org/help/encrypted-forms/) and at [this this sample forms](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing) example.
+For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](https://docs.opendatakit.org/encrypted-forms/) and at [this this example form](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing).
 
 ### Specify alternative server
 
