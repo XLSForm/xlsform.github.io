@@ -753,7 +753,7 @@ The column headings in this example **settings** worksheet do the following:
 * **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted.
 * **submission_url**: This url can be used to override the default server where finalized records are submitted to.
 * **default_language**: In localized forms, this sets which language should be used as the default.
-* **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have alphabetically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
+* **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
 
 ### Encrypted forms
 
