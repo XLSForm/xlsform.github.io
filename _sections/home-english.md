@@ -22,7 +22,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
   * The **type** column specifies the type of entry you are adding.
-  * The **name** column specifies the unique variable name for that entry. No two entries can have the same name.
+  * The **name** column specifies the unique variable name for that entry. No two entries can have the same name. Names have to start with a letter or an underscore. Names can only contain letters, digits, hyphens, underscores, and periods. Names are case-sensitive.
   * The **label** column contains the actual text you see in the form. Alternatively, <a href="#language">label translation columns</a> can be used.
 
 | type                | name     | label                |
