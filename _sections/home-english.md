@@ -174,11 +174,11 @@ When you export data using this **or_other** option, in the **favorite_topping**
 
 ### Rank
 
-The rank widget can be use to let respondents order a list of options. The answer is saved as an ordered space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.
+The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.
 
 | type                    | name             | label                                         |
 | ----------------------- | ---------------- | --------------------------------------------- |
-| rank pizza_toppings     | toppings         | Order pizza topping with your favorite on top |
+| rank pizza_toppings     | toppings         | Order pizza toppings with your favorite on top |
 | ======================= | ============     | ============================================= |
 | survey                  |                  |                                               |
 
@@ -186,7 +186,6 @@ The rank widget can be use to let respondents order a list of options. The answe
 
 | list name      | name       | label                     |
 | -------------- | ---------- | ------------------------- |
-| list name      | name       | label                     |
 | pizza_toppings | cheese     | Cheese                    |
 | pizza_toppings | pepperoni  | Pepperoni                 |
 | pizza_toppings | sausage    | Sausage                   |
