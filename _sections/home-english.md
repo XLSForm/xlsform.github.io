@@ -542,13 +542,13 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 | ================= | =========== | ============        | ============          | ========== |
 | survey            |             |                     |                       |            |
 
-You can also add a different language column for hints and media files by using the same ``::language (code)`` construct. See the example below and also see the [XLSForm standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
+You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
 
-|                   | hint::English (en)  | hint::Dutch (nl)     | media::image::English (en) | media::image::Dutch (nl) |
-| ----------------- | ------------------- | -------------------- | -------------------------- | ------------------------ |  
-|                   | a hint              | een hint             | old_person_cartoon.png     | ouwe_cartoon.png         |
-| ================= | ============        | ============         | ==========                 | =======                  |
-| survey            |                     |                      |                            |                          |
+| hint::English (en)  | hint::Dutch (nl)     | media::image::English (en) | media::image::Dutch (nl) |
+| ------------------- | -------------------- | -------------------------- | ------------------------ |  
+| a hint              | een hint             | old_person_cartoon.png     | ouwe_strip.png           |
+| ============        | ============         | ==========                 | =======                  |
+| survey              |                      |                            |                          |
 
 Form language and user interface language may be the determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called _subtags_ are published [here](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) (search the page with Ctrl-F or Cmd-F).
 
