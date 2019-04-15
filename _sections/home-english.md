@@ -558,7 +558,7 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 
 ## Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection  application (this may be located under the **Menu** key) . For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection  application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
 
 | type              | name        | label::English (en) | label::Español (es)   | constraint |
 | ----------------- | ----------- | ------------------- | --------------------- | ---------- |
@@ -566,12 +566,15 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 | ================= | =========== | ============        | ============          | ========== |
 | survey            |             |                     |                       |            |
 
+You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
+
+| hint::English (en)  | hint::Dutch (nl)     | media::image::English (en) | media::image::Dutch (nl) |
+| ------------------- | -------------------- | -------------------------- | ------------------------ |  
+| a hint              | een hint             | old_person_cartoon.png     | ouwe_strip.png           |
+| ============        | ============         | ==========                 | =======                  |
+| survey              |                      |                            |                          |
+
 Form language and user interface language may be the determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called _subtags_ are published [here](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) (search the page with Ctrl-F or Cmd-F).
-
-
-**Note**
-
-You can also add a different language column for hints and media files; you simply use the ``::language`` construct again. See the [XLSForm standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) to see exactly what kinds of column headers can accept a language modification.
 
 
 ## Media
@@ -585,6 +588,8 @@ You can include questions in your form that display images or that play video or
 | survey            |               |               |              |              |
 
 Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing) which illustrates the use of media files. You can also click on the link to see the [Birds webform ](https://enketo.ona.io/x/#Ynv3).
+
+Media is translatable in the same way as labels and hints as explained in the [languages section](#multiple-language-support). 
 
 ## Pre-loading CSV data
 
