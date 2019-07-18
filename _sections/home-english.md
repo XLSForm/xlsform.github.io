@@ -211,9 +211,11 @@ To restrict integer or decimal inputs to a specific range, you can use the **ran
 
 To upload an image file the **image** question type can be used. To ensure the images are not too large, you can optionally set the **max-pixels** parameter which will automatically downsize the uploaded image to match the largest side of the image with the pixel value provided. 
 
-| type  | name | parameters      | label           |
+| type  | name |  label          | parameters      |
 | ----- | ---- | --------------- | --------------- |
-| image | img  | max-pixels=1000 | Upload an image |
+| image | img  | Upload an image | max-pixels=1000 |
+| ===   | ==== | =============== | =============== |
+| survey|      |                 |                 |
 
 
 ### Metadata
