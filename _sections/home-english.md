@@ -922,6 +922,7 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [DataWinners](https://www.datawinners.com/en/home/)
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
+* [Survey123 for ArcGIS](https://survey123.arcgis.com/)
 
 ## More resources
 
