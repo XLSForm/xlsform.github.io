@@ -71,7 +71,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | date                      | Date input.                                                                                  |
 | time                      | Time input.                                                                                  |
 | dateTime                  | Accepts a date and a time input.                                                             |
-| image                     | Take a picture or upload an image file.                                                      |
+| image                     | Take a picture or upload an [image file](#image).                                            |
 | audio                     | Take an audio recording or upload an audio file.                                             |
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
@@ -147,6 +147,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 | choices        |               |                           |
 
 ### Specify other
+
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 
@@ -196,6 +197,7 @@ To prevent bias it is often recommended to use the [randomize feature](#randomiz
 
 
 ### Range
+
 To restrict integer or decimal inputs to a specific range, you can use the **range** question. This question can be used with 3 optional space-separated parameters: **start**, **end**, and **step** in a **parameters** column. The default values are 0, 10, and 1 respectively. The example below will create a question that allows input from 0 until 17 with a step of 1. Using a decimal step will result in decimal values being collected. 
 
 | type                      | name         | label                         | parameters            |
@@ -203,6 +205,15 @@ To restrict integer or decimal inputs to a specific range, you can use the **ran
 | range                     | amount       | What is the age of the child? | start=0 end=17 step=1 |
 | ========================= | ============ | ============================= | ==================    |
 | survey                    |              |                               |                       |
+
+
+### Image
+
+To upload an image file the **image** question type can be used. To ensure the images are not too large, you can optionally set the **max-pixels** parameter which will automatically downsize the uploaded image to match the largest side of the image with the pixel value provided. 
+
+| type  | name | parameters      | label           |
+| ----- | ---- | --------------- | --------------- |
+| image | img  | max-pixels=1000 | Upload an image |
 
 
 ### Metadata
