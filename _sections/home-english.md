@@ -63,6 +63,8 @@ XLSForm supports a number of question types. These are just some of the options 
 | text                      | Free text response.                                                                          |
 | select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
 | select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
+| select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
+| select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
 | note                      | Display a note on the screen, takes no input.                                                |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
@@ -171,6 +173,33 @@ Click on the link to look at the complete [pizza_questionnaire](https://docs.goo
 
 **Caveat**  
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
+
+### Multiple choice from file
+
+The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Two types of files are supported: CSV and XML files. See usage examples below:
+
+| type                                    | name | label                          | choice_filter   |
+| --------------------------------------- | ---- | ------------------------------ | --------------- |
+| select_multiple_from_file country.csv   | dest | Which countries did you live?  |                 |
+| select_one_from_file countries.xml      | cou  | Which country do you live now? |                 |
+| select_one_from_file countries.xml      | cit  | What is the closest city?      | name=${cou}     |
+| select_one_from_file households.csv     | hh   | Select household number        |                 |
+| ======================================= | ==== | ===============================|=================|
+| survey                                  |      |                                |                 |
+
+The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
+
+```
+<root>
+  <item>
+    <name/>
+    <label/>
+    ...
+  </item>
+</root>
+```
+
+Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.
 
 ### Rank
 
