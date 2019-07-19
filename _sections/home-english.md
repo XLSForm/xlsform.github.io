@@ -59,7 +59,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | ------------------------- | -------------------------------------------------------------------------------------------- |
 | integer                   | Integer (i.e., whole number) input.                                                          |
 | decimal                   | Decimal input.                                                                               |
-| range                     | [Range](#range) input.                                                                       |
+| range                     | [Range](#range) input (including rating)                                                     |
 | text                      | Free text response.                                                                          |
 | select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
 | select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
@@ -205,6 +205,14 @@ To restrict integer or decimal inputs to a specific range, you can use the **ran
 | range                     | amount       | What is the age of the child? | start=0 end=17 step=1 |
 | ========================= | ============ | ============================= | ==================    |
 | survey                    |              |                               |                       |
+
+To display a range question as a **rating widget** using stars, you can add the rating appearance as shown below:
+
+| type                      | name         | label                         | appearance | parameters           |
+| ------------------------- | ------------ | ----------------------------- | ---------- | -------------------- |
+| range                     | rated        | What rating do you give?      | rating     | start=1 end=5 step=1 |
+| ========================= | ============ | ============================= | ========== | ==================== |
+| survey                    |              |                               |            |                      |
 
 
 ### Image

@@ -93,6 +93,7 @@ integer and decimal,,,,,,
 range,,,,,,
 ,vertical,Shows a vertical range slider instead of horizontal,✔,✔,,
 ,no-ticks,Hides the ticks in a range widget slider,✔,✔,,
+,rating,Displays range as stars,✕,✔,,
 ,picker,Shows range options in a picker instead of a slider,✕,✔,,
 ,distress,Shows a thermometer surrounding a range slider,✔,✕,,For backwards compatiblity this is also supported on integer types (with harcoded range of 0-10 with step 1). It is no longer recommend to use integer.
 date,,,,,,
