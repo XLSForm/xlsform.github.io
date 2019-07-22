@@ -201,6 +201,8 @@ The files require a specific format. A CSV file requires a `name` and `label` co
 
 Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.
 
+Note that this question type is the recommended way of building select questions from external data as it is the most versatile and standards compliant. If this question type works for you, use it. If it doesn't, and your data collection application supports it, it may be worth looking into [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data). 
+
 ### Rank
 
 The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.
@@ -668,6 +670,9 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
  
 ## Dynamic selects from pre-loaded data
+
+If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection software supports it.
+
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
 The following should be done:
@@ -723,6 +728,8 @@ There are a series of options to indicate which .csv rows to include in the choi
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
 ## External selects
+
+If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection software supports it.
 
 If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
 
