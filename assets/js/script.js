@@ -27,8 +27,6 @@ function addNavMenu() {
     var navListEl = document.createElement('ul')
     var sectionHeadings = document.querySelectorAll('h2[id]');
 
-    console.log('section headings', sectionHeadings);
-
     for (var i = 0; i < sectionHeadings.length; ++i) {
         var subHeadings = [];
         var next = sectionHeadings[i].nextSibling;
@@ -54,6 +52,7 @@ function addNavMenu() {
 
 /**
  * Creates a menu element from a heading element
+ * 
  * @param  {Element} headingEl a heading element
  */
 function getMenuElement(headingEl) {
@@ -94,6 +93,7 @@ function headerClickHandler(event) {
 
 /**
  * Sets hash in URL without triggering scrolling. Adds state to history.
+ * 
  * @param {string} hash [description]
  */
 function setHash(hash) {
@@ -116,6 +116,7 @@ function addClickableClass(elements) {
 
 /**
  * Shuffles an array
+ * 
  * @param {} array 
  */
 function shuffle(array) {
@@ -131,6 +132,10 @@ function shuffle(array) {
     return array;
 }
 
+
+/**
+ * Adds markup for the fancy sheet selector (survey/choices/settings) to XLS tables.
+ */
 function addSheets(){
     var tfoots = document.querySelectorAll('tfoot');
 
