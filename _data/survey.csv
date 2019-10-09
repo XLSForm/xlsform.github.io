@@ -37,7 +37,7 @@ Meta questions,,"These are hidden to the user, but otherwise work like regular q
 ,simserial,,✕,✔,,
 ,phonenumber,,✕,✔,phone_number,TBC: phone_number
 ,email,Add user email to submission (if used),?,?,,
-,audit,Record enumerator behavior,✔,✔,,"optional settings in parameters column to enable location tracking: location-priority, location-min-interval, location-max-age",
+,audit,Record enumerator behavior,✕,✔,,"optional settings in parameters column to enable location tracking: location-priority, location-min-interval, location-max-age",
 Regular questions,,,,,,
 ,select_one [choices] [or_other],User can choose one of several choices,✔,✔,select one,
 ,select_multiple [choices] [or_other],User can choose one or more of several choices,✔,✔,select multiple,
