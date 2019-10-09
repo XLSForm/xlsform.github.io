@@ -241,27 +241,45 @@ XLSForm has a number of data type options available for meta data collection:
 | phonenumber   | Phone number (if available).                    |
 | username      | Username configured (if available).             |
 | email         | Email address configured (if available).        |
+| audit         | Log enumerator behavior during data entry       |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
-If I wanted my survey to collect all of these metadata, I would put the following at the beginning of the survey:
+For example, if you wanted to collect all of these types of metadata, put the following in your form (typically at the beginning, but can be at any point of your form):
 
-| type                      | name         | label |
-| ------------------------- | ------------ | ----- |
-| start                     | start        |       |
-| end                       | end          |       |
-| today                     | today        |       |
-| deviceid                  | deviceid     |       |
-| subscriberid              | subscriberid |       |
-| simserial                 | simserial    |       |
-| phonenumber               | phonenumber  |       |
-| username                  | username     |       |
-| email                     | email        |       |
-| ========================= | ============ | ===   |
-| survey                    |              |       |
+| type                      | name         | label | parameters |
+| ------------------------- | ------------ | ----- | --------------------- |
+| start                     | start        |       |                       |
+| end                       | end          |       |                       |
+| today                     | today        |       |                       |
+| deviceid                  | deviceid     |       |                       |
+| subscriberid              | subscriberid |       |                       |
+| simserial                 | simserial    |       |                       |
+| phonenumber               | phonenumber  |       |                       |
+| username                  | username     |       |                       |
+| email                     | email        |       |                       |
+| audit                     | audit        |       | [optional, see below] |
+| ========================= | ============ | ===   | ===================== |
+| survey                    |              |       |                       |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
+
+**Audit enumerator behavior and location tracking**
+
+The **audit** metaquestion will enable ODK Collect and Enketo to log how people navigate through a form during data entry. For example, this can be used to measure how much time an enumerator took to fill in a question, responses that were edited later on, or when the form was saved. 
+
+Optionally, the **audit** metaquestion can be configured to also record the location of the enumerator throughout the interview. This may be useful for quality control or to record exact paths taken between each respondents. To do this, add a column called **parameters** to your form and enter three required parameters: **location-priority**, **location-min-interval**, and **location-max-age**. 
+
+This example below would collect the precise GPS location every 180 seconds and will discard coordinates collected more than 300 seconds ago.  
+
+| type                      | name         | label | parameters                                                                     |
+| ------------------------- | ------------ | ----- | ------------------------------------------------------------------------------ |
+| audit                     | audit        |       | location-priority=high-accuracy location-min-interval=180 location-max-age=300 |
+| ========================= | ============ | ===   | ============================================================================== |
+| survey                    |              |       |                                                                                |
+
+See [this page](https://docs.opendatakit.org/form-audit-log/) in the ODK Collect documentation for full details about the **audit** metaquestion, available location tracking parameters, and the format of the **audit.csv** log file created for each submission. 
 
 ### External XML data
 
