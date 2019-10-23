@@ -504,7 +504,7 @@ In this example, the two child group questions (**muac** and **mrdt**) will only
 
 ## Repeats
 
-A user can repeat a group of questions by using the **begin repeat** and **end repeat** construct:
+A user can repeat questions by using the **begin repeat** and **end repeat** construct:
 
  | type                   | name         | label               |
  | ---------------------- | ------------ | ------------------- |
@@ -525,13 +525,13 @@ A user can repeat a group of questions by using the **begin repeat** and **end r
 | =================== | =========== | =========== |
 | choices             |             |             |
 
-In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat group, and the user can repeat this group as many times as required by selecting the option in the form to start another repeat. 
+In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat, and the user can collect the same information about multiple children by selecting the option in the form to add another repeat.
 
-The **label** column is optional for **begin repeat**.  Assigning a label to a repeat group will add the label as a title to the block of repeat questions in the form.
+The **label** column is optional for **begin repeat**.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form.
 
-The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm illustrates another repeat group example.
+The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm is another repeat example.
 
-Instead of allowing an infinite number of repeats, the user can specify an exact number of repeats by using the **repeat_count** column:
+Instead of allowing an infinite number of repeats, the form designer can specify an exact number of repeats by using the **repeat_count** column:
 
 | type                   | name         | label                | repeat_count |
 | ---------------------- | ------------ | -------------------- | ------------ |
@@ -552,9 +552,9 @@ Instead of allowing an infinite number of repeats, the user can specify an exact
 | =================== | =========== | =========== |
 | choices             |             |             |
 
-In the above example, the repeat group is restricted to **3** repeats.  
+In the above example, exactly **3** child repeats will be created.
 
-Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of times the **hh_member** group repeats: 
+Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of **hh_member** repeats added:
 
 | type                   | name           | label                        | repeat_count      |
 | ---------------------- | -------------- | ---------------------------- | ----------------- |
