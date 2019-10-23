@@ -540,19 +540,9 @@ Instead of allowing an infinite number of repeats, the form designer can specify
 | begin repeat           | child_repeat |                      | 3            |
 | text                   | name         | Child's name         |              |
 | decimal                | birthweight  | Child's birthweight  |              |
-| select_one male_female | sex          | Child's sex          |              |
 | end repeat             |              |                      |              |
 | =================      | ========     | ==================== | ============ |
 | survey                 |              |                      |              |
-
-<p/>
-
-| list name           | name        | label       |
-| ------------------- | ----------- | ----------- |
-| male_female         | male        | Male        |
-| male_female         | female      | Female      |
-| =================== | =========== | =========== |
-| choices             |             |             |
 
 In the above example, exactly **3** child repeats will be created.
 
@@ -566,19 +556,9 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 | begin repeat           | hh_member      |                              | ${num_hh_members} |
 | text                   | name           | Name                         |                   |
 | integer                | age            | Age                          |                   |
-| select_one male_female | gender         | Gender                       |                   |
 | end repeat             |                |                              |                   |
 | =================      | ========       | ====================         | ============      |
 | survey                 |                |                              |                   |
-
-<p/>
-
-| list name           | name        | label       |
-| ------------------- | ----------- | ----------- |
-| male_female         | male        | Male        |
-| male_female         | female      | Female      |
-| =================== | =========== | =========== |
-| choices             |             |             |
 
 ### Only add repeats in certain conditions
 
