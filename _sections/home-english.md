@@ -531,6 +531,8 @@ The **label** column is optional for **begin repeat**.  Assigning a label to a r
 
 The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm is another repeat example.
 
+### Fixed repeat counts
+
 Instead of allowing an infinite number of repeats, the form designer can specify an exact number of repeats by using the **repeat_count** column:
 
 | type                   | name         | label                | repeat_count |
@@ -554,6 +556,8 @@ Instead of allowing an infinite number of repeats, the form designer can specify
 
 In the above example, exactly **3** child repeats will be created.
 
+### Dynamic repeat counts
+
 Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of **hh_member** repeats added:
 
 | type                   | name           | label                        | repeat_count      |
@@ -576,6 +580,35 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 | =================== | =========== | =========== |
 | choices             |             |             |
 
+### Only add repeats in certain conditions
+
+Like [with groups](#skipping), all of the questions in a repeat can be skipped based on some condition. In the example below, the person filling out the form will only be given the opportunity to add children if they first indicate that there are children to add:
+
+ | type                   | name         | label                      | relevant            |
+ | ---------------------- | ------------ | ---------------------------|---------------------|
+ | select_one yes_no      | has_child    | Do any children live here? |                     |
+ | begin repeat           | child_repeat |                            | ${has_child} = 'yes'|
+ | text                   | name         | Child's name               |                     |
+ | decimal                | birthweight  | Child's birthweight        |                     |
+ | end repeat             |              |                            |                     |
+ | =================      | ========     | ========================== | =================== |
+ | survey                 |              |                            |                     |
+
+<p/>
+
+ | list_name    | name        | label    |
+ | ------------ | ----------- | -------- |
+ | yes_no       | yes         | Yes      |
+ | yes_no       | no          | No       |
+ | ============ | =========== | ======== |
+ | choices      |             |          |
+
+### Representing zero repeats
+
+By default, the person filling the form will see the questions corresponding to one repeat before getting the option to add more. To represent 0 repeats, there are three options:
+- teach the people filling out the form to delete the first repeat added
+- if the exact number of repeats is known ahead of time, [use a dynamic repeat count](#dynamic-repeat-counts)
+- if the exact number of repeats is not known ahead of time, [use `relevant`](#only-add-repeats-in-certain-conditions) to only prompt the user for repeats if there are some to add
 
 ## Multiple language support
 
