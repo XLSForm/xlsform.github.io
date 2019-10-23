@@ -502,7 +502,7 @@ One neat feature of XLSForm is the ability to skip a group of questions by combi
 
 In this example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
 
-### Repeats
+## Repeats
 
 A user can repeat a group of questions by using the **begin repeat** and **end repeat** construct:
 
