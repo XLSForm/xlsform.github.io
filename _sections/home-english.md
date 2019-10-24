@@ -529,7 +529,7 @@ In this example, the **name**, **birthweight**, and **sex** fields are grouped t
 
 The **label** column is optional for **begin repeat**.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form.
 
-Some platforms show collapsed repeats in a table of contents. The label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values `Preity` for `first_name`, `Zinta` for `last_name` and `71` for `age`, that repeat will be summarized as "Preity Zinta - 71":
+When a repeat is shown in a table of contents, the label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values `Preity` for `first_name`, `Zinta` for `last_name` and `71` for `age`, that repeat will be summarized as "Preity Zinta - 71":
 
 | type                   | name         | label                                                   |
 | ---------------------- | ------------ | ------------------------------------------------------- |
@@ -562,7 +562,7 @@ In the above example, exactly **3** child repeats will be created.
 
 ### Dynamic repeat counts
 
-Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of **hh_member** repeats added:
+The repeat count can be set to an expression that refers to other fields in the form. In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of **hh_member** repeats added:
 
 | type                   | name           | label                        | repeat_count      |
 | ---------------------- | -------------- | ---------------------------- | ----------------- |
