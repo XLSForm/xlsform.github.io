@@ -15,3 +15,6 @@ collections:
 
 g_analytics_token: 'UA-55713660-1'
 g_analytics_domain: 'xlsform.org'
+
+kramdown:
+    smart_quotes: ["apos", "apos", "quot", "quot"]
