@@ -180,8 +180,8 @@ The options in a multiple choice question can also be taken from a separate file
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
-| select_multiple_from_file country.csv   | dest | Which countries did you live?  |                 |
-| select_one_from_file countries.xml      | cou  | Which country do you live now? |                 |
+| select_multiple_from_file country.csv   | liv  | In which countries did you live?  |                 |
+| select_one_from_file countries.xml      | cou  | In which country do you live now? |                 |
 | select_one_from_file countries.xml      | cit  | What is the closest city?      | name=${cou}     |
 | select_one_from_file households.csv     | hh   | Select household number        |                 |
 | ======================================= | ==== | ===============================|=================|
