@@ -63,6 +63,8 @@ XLSForm supports a number of question types. These are just some of the options 
 | text                      | Free text response.                                                                          |
 | select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
 | select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
+| select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
+| select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
 | note                      | Display a note on the screen, takes no input.                                                |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
@@ -172,6 +174,35 @@ Click on the link to look at the complete [pizza_questionnaire](https://docs.goo
 
 **Caveat**  
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
+
+### Multiple choice from file
+
+The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Two types of files are supported: CSV and XML files. See usage examples below:
+
+| type                                    | name | label                          | choice_filter   |
+| --------------------------------------- | ---- | ------------------------------ | --------------- |
+| select_multiple_from_file country.csv   | liv  | In which countries did you live?  |                 |
+| select_one_from_file countries.xml      | cou  | In which country do you live now? |                 |
+| select_one_from_file countries.xml      | cit  | What is the closest city?      | name=${cou}     |
+| select_one_from_file households.csv     | hh   | Select household number        |                 |
+| ======================================= | ==== | ===============================|=================|
+| survey                                  |      |                                |                 |
+
+The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
+
+```
+<root>
+  <item>
+    <name/>
+    <label/>
+    ...
+  </item>
+</root>
+```
+
+Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.
+
+Note that this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
@@ -287,7 +318,7 @@ See [this page](https://docs.opendatakit.org/form-audit-log/) in the ODK Collect
 
 For advanced users, who need to perform complex queries on external data without restrictions, an external XML data file can be added with question type **xml-external**. The value in the **name** column can be used to refer to this data in any formula (e.g. for a calculation, constraint, relevant, or choice_filter) using the **instance('name')** function. A file with the same name and the **.xml** extension should be uploaded with the form. See below for an example that requires uploading a file called houses.xml with the form.
 
-
+If your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) instead if your data collection application supports this.
 
 | type                      | name         | label           | calculation                                                  |
 | ------------------------- | ------------ | --------------- | ------------------------------------------------------------ |
@@ -626,7 +657,7 @@ By default, the person filling the form will see the questions corresponding to 
 
 ## Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection  application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
 
 | type              | name        | label::English (en) | label::Español (es)   | constraint |
 | ----------------- | ----------- | ------------------- | --------------------- | ---------- |
@@ -704,9 +735,10 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
  
-
- 
 ## Dynamic selects from pre-loaded data
+
+If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection application supports it.
+
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
 The following should be done:
@@ -756,14 +788,13 @@ Click on the link to see an example of a [search-and-select sample form](https:/
 <br>
 There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://opendatakit.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
 
-
 ## Cascading selects
 
 A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
 
 ## External selects
 
-If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
+If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation if [Multiple Choice from File](#multiple-choice-from-file) is used. The best workaround to this issue is to use external selects in those data collection applications (such as ODK Collect) that support it. 
 
 Enabling external selects is straightforward. 
  - Instead of **select_one** for the prompt type, use **select_one_external**.
