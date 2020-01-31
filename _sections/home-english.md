@@ -148,7 +148,19 @@ We can also add multiple choice questions that allow multiple answers to be sele
 | ============   | ============= | ========================= |
 | choices        |               |                           |
 
-### Specify other
+#### Choice names
+
+The `name` column of the choices sheet defines the values that will be saved when each choice is selected during data collection. Choice names for **select_multiple** must not contain spaces because spaces are used as a separator when an answer with multiple selected choices is saved. Choice names for **select_one** questions may contain spaces. However, we recommend avoiding them to make analysis easier. Additionally, this makes it possible to convert the question to a **select_multiple** in a future form version.
+
+In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects) and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+
+| allow_choice_duplicates |
+| ----------------------  |
+| yes                     |
+| ===========             |
+| settings                |
+
+#### Specify other
 
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
