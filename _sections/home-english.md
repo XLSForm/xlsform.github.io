@@ -1034,6 +1034,7 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
 * [Survey123 for ArcGIS](https://survey123.arcgis.com/)
+* [Community Health Toolkit](https://communityhealthtoolkit.org/)
 
 ## More resources
 
