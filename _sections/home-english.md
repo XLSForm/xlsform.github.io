@@ -921,6 +921,10 @@ In the **settings** worksheet, you can specify a unique name for each form submi
 
 Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d/1Bapi05GYITV6D0THvs9RaOSEjqb1-FWIhfjSTXtvl8I/edit#gid=1932003628) that calculates the instance name as the user's last and first names coupled with the form submission uuid.
 
+### Specify XForms root node name
+
+In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
+
 ### Multiple webpage forms
 
 Web forms can be split into multiple pages using the style theme **pages**.
