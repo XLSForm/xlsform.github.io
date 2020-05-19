@@ -1,8 +1,8 @@
---- 
-layout: home 
-lang: en 
+---
+layout: home
+lang: en
 ref: home
-title: Home
+title: XLSForm Docs
 ---
 
 {% include content.html %}
