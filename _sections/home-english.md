@@ -948,7 +948,7 @@ In your **survey** tab, group together the questions you would like to appear on
 | begin group | group1   |                      | field-list |
 | text        | name     | Respondent's name    |            |
 | integer     | age      | Respondent's age     |            |
-| string      | address  | Respondent's address |            |
+| text        | address  | Respondent's address |            |
 | end group   |          |                      |            |
 | =========   | ======== | ======               | ====       |
 | survey      |          |                      |            |
@@ -976,7 +976,7 @@ In your **survey** tab, group together the questions you would like to appear in
 | begin group | group1   |                      |            |
 | text        | name     | Respondent's name    | w3         |
 | integer     | age      | Respondent's age     | w1         |
-| string      | address  | Respondent's address | w4         |
+| text        | address  | Respondent's address | w4         |
 | end group   |          |                      |            |
 | =========   | ======== | ======               | ====       |
 | survey      |          |                      |            |
