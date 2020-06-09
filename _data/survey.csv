@@ -76,7 +76,7 @@ select_one / select_multiple,,,,,,
 ,minimal,Spinner widget - click button to provide a response,✔,✔,,
 ,label,Table of answers,✔,✔,,
 ,list-nolabel,"Goes with label, no label on answer just radios",✔,✔,,
-,autocomplete,Autocomplete widget,✔,✔,search,
+,autocomplete,Autocomplete widget,✔,✔,search,Not supported on select_multiple in Enketo
 ,likert,Shows question as likert widget,✔,✕,,
 ,horizontal,Displays choices horizontally and automatically creates neat columns for multiple rows,✔,✔,,
 ,compact,Displays choices horizontally as compact as possible,✔,✔,horizontal-compact,
@@ -84,7 +84,7 @@ select_one / select_multiple,,,,,,
 ,quick,Auto advance to next question upon selection,✔,✕,,
 ,quickcompact,Displays choices horizontally as compact as possible. Auto advance to next question upon selection,✔,✕,quick compact,
 ,image-map,"When used in conjunction with an SVG media label, the select question will be presented as a clickable image.",✔,✔,,The choices with a value that have a matching id attribute value on a <path> or <g> element in the SVG image are selectable in the presented image
-text,numbers,Show the number keyboard on the device,✔,✔,In Enketo some browsers may not support this,
+text,numbers,Show the number keyboard on the device,✔,✔,,Enketo: not all browsers provide support
 ,multiline,Creates a larger text entry field,✔,✕,,
 ,url,Shows button to launch a website to stored URL,✔,✔,,
 ,printer,Interface with an external (Zebra barcode) printer,✕,✔,,
