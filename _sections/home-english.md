@@ -679,7 +679,7 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 
 You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
 
-| hint::English (en)  | hint::Dutch (nl)     | media::image::English (en) | media::image::Dutch (nl) |
+| hint::English (en)  | hint::Dutch (nl)     | image::English (en)        | image::Dutch (nl)        |
 | ------------------- | -------------------- | -------------------------- | ------------------------ |  
 | a hint              | een hint             | old_person_cartoon.png     | ouwe_strip.png           |
 | ============        | ============         | ==========                 | =======                  |
@@ -692,7 +692,7 @@ Form language and user interface language may be the determined separately by th
 
 You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
 
-| type              | name          | label         | media::image | media::video |
+| type              | name          | label         | image        |  video       |
 | ----------------- | ------------- | ------------- | ------------ | ------------ |
 | note              | media_example | Media example | example.jpg  | example.mp4  |
 | ================= | ===========   | ============  | ============ | ==========   |
