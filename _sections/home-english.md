@@ -68,8 +68,8 @@ XLSForm supports a number of question types. These are just some of the options 
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
 | note                      | Display a note on the screen, takes no input.                                                |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
-| geotrace                  | Record a line of two or more GPS coordinates.                                                |
-| geoshape                  | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
+| geotrace                  | Record a [line of two or more GPS coordinates](#gps).                                                |
+| geoshape                  | Record a [polygon of multiple GPS coordinates](#gps); the last point is the same as the first point. |
 | date                      | Date input.                                                                                  |
 | time                      | Time input.                                                                                  |
 | dateTime                  | Accepts a date and a time input.                                                             |
@@ -86,13 +86,21 @@ XLSForm supports a number of question types. These are just some of the options 
 ### GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
 
-
 | type       | name         | label                                        |
 | ---------- | ------------ | -------------------------------------------- |
 | text       | store_name   | What is the name of this store?              |
 | geopoint   | store_gps    | Collect the GPS coordinates of this store.   |
 | ========== | ============ | ============================================ |
 | survey     |              |                                              |
+
+To collect a line or shape of GPS coordinates, you can use one of the following:
+
+| type       | name         | label   | hint                                                                           |
+| ---------- | ------------ | ---------------------------------------------------------------------------------------  |
+| geotrace   | pipe         | Pipeline| Please walk along the pipeline and record the coordinates of each corner point |
+| geoshape   | border       | Border  | Please walk along the border and record the coordinates of each corner point   |
+| ========== | ============ | ======================================================================================== |
+| survey     |              |         |                                                                                |
 
 See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
 
@@ -107,6 +115,7 @@ When recording GPS coordinates in ODK Collect, ODK collect automatically collect
 | survey     |              |                                             |                           |
 
 See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing) form for an example that uses this attribute.
+
 
 ### Multiple choice
 
