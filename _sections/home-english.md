@@ -23,7 +23,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
   * The **type** column specifies the type of entry you are adding.
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name. Names have to start with a letter or an underscore. Names can only contain letters, digits, hyphens, underscores, and periods. Names are case-sensitive.
-  * The **label** column contains the actual text you see in the form. Alternatively, <a href="#language">label translation columns</a> can be used.
+  * The **label** column contains the actual text you see in the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
 
 | type                | name     | label                |
 | ------------------- | -------- | -------------------- |
@@ -36,7 +36,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
   * The **name** column specifies the unique variable name for that answer choice.
-  * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, <a href="#language">label translation columns</a> can be used.
+  * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
 
 | list_name           | name        | label                |
 | ------------------- | ----------- | -------------------- |
@@ -882,7 +882,7 @@ An example **settings** worksheet is below:
 
 | form_title | form_id | public_key     | submission_url                                       | default_language  | version      |
 | ---------- | ------- | -------------- | ---------------------------------------------------- | ----------------- | ------------ |
-| Example    | ex_id   | IIBIjANBg...   | https://example.com/submission | English           | 2017021501   |
+| Example    | ex_id   | IIBIjANBg...   | https://example.com/submission                       | English (en)      | 2017021501   |
 | ========   | ======  | ============== | ================                                     | ================= | ============ |
 | settings   |         |                |                                                      |                   |              |
 
@@ -892,7 +892,7 @@ The column headings in this example **settings** worksheet do the following:
 * **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
 * **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted.
 * **submission_url**: This url can be used to override the default server where finalized records are submitted to.
-* **default_language**: In localized forms, this sets which language should be used as the default.
+* **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
 * **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
 
 ### Encrypted forms
