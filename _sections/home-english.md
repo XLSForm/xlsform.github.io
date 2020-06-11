@@ -366,6 +366,13 @@ There is a special kind of hint that is normally not shown in the form. It is on
 | ======== | ======== | ========== | ===================================== | =========== |
 | survey   |          |            |                                       |             |
 
+## Formulas
+
+Formulas are used in the [constraint](#constraints), [relevant](#relevant), [calculation](#calculation), and [trigger](#trigger) columns and optionally also in the [default](#default), and [required](#required) columns. Formulas allow you to add additional functionality and data quality measures to your forms.  
+
+Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.opendatakit.org/form-operators-functions/). For the
+technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://opendatakit.github.io/xforms-spec/#xpath-functions).
+
 ## Constraints
 
 One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the ``.`` in the formula refers back to the question variable.
@@ -450,13 +457,6 @@ Earlier we mentioned there was an alternative method for specifying other for mu
 
 Note that you must include **other** as an answer choice in the **choices** worksheet.
 
-## Formulas
-
-Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  
-
-Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.opendatakit.org/form-operators-functions/). For the
-technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://opendatakit.github.io/xforms-spec/#xpath-functions).
-
 ## Calculation
 
 Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
@@ -471,6 +471,45 @@ Your survey can perform calculations using the values of preceding questions. In
  | survey    |          |                                       |                              |
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
+
+## Trigger
+
+A trigger column can be used to run a calculation only **when another question changes**. See a simple but very useful example below:
+
+| type      | name           | label                                 | calculation                  | trigger            |
+| --------- | -------------- | ------------------------------------- | ---------------------------- | ------------------ |
+| integer   | temp           | Enter the current temperature         |                              |                    |
+| dateTime  | temp_ts        |                                       | now()                        | ${temp}            |
+| ========  | ============== | ===================================== | ============================ | ================== |
+| survey    |                |                                       |                              |                    |
+
+This will calculate a timestamp immediately after a respondent enters a temperature. If the user goes back and changes the temperate, the timestamp will be re-calculated.
+
+All the regular [calculation features](#calculation) apply to these special value-change-triggered calculations as well. So you can e.g. use a label or hint to display the calculation question on the form to the user.
+
+Multiple questions may have the same trigger. See this example, where two calculations are triggered by the temperature question (one is hidden, and the other is shown):
+
+| type      | name           | label                           | calculation                  | trigger            | readonly |
+| --------- | -------------- | ------------------------------- | ---------------------------- | ------------------ | -------- |         
+| integer   | temp           | Enter temperature in Celsius    |                              |                    |          |
+| dateTime  | temp_ts        |                                 | now()                        | ${temp}            |          |
+| text      | temp_F         | Temperature in Fahrenheit       | 32 + 1.8 * ${temp}           | ${temp}            | true     |
+| calculate | temp_K         |                                 | 273.15 + ${temp}             | ${temp}            |          |
+| ========  | ============== | =============================== | ============================ | ================== | ======== |
+| survey    |                |                                 |                              |                    |          |
+
+In the form above the temp_F question is shown to the user and the temp_K question is hidden, just as they would be if trigger was not used.
+
+An important and powerful difference with regular calculations is that **the calculation value with a trigger may also be empty**, which serves to clear a value from the form. See example below:
+
+| type      | name            | label                                       | calculation                  | trigger            |
+| --------- | --------------- | ------------------------------------------- | ---------------------------- | ------------------ |
+| text      | name            | What is the name of the oldest person here? |                              |                    |                    
+| integer   | age             | How old is this person?                     |                              | ${name}            |
+| ========  | =============== | =========================================== | ============================ | ================== |
+| survey    |                 |                                             |                              |                    |
+
+If the respondent using this form has entered the name and age of person A and subsequently finds out there is an older person B, the age field will be cleared as soon as the name of person B has been entered.
 
 ## Required
 
@@ -821,22 +860,24 @@ The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., OD
 
 ## Default
 
-Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
+Adding a default field means that a question will be pre-populated with an answer when the user first sees the question. This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected. See the example below.
 
-| type              | name        | label          | default          |
-| ----------------- | ----------- | -------------- | ---------------- |
-| today             | today       |                |                  |
-| date              | survey_date | Survey date?   | 2010-06-15       |
-| ================= | ======      | ============== | ================ |
-| survey            |             |                |                  |
+| type              | name        | label                         | default          |
+| ----------------- | ----------- | ----------------------------- | ---------------- |
+| date              | survey_date | Survey date?                  | 2010-06-15       |
+| decimal           | weight      | Respondent's weight? (in kgs) | 51.3             |
+| ================= | ======      | ============================= | ================ |
+| survey            |             |                               |                  |
 
-In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tapping in the answer field and inputting another answer.
+The respondent can simply change the answer by tapping in the answer field and entering another answer.
 
-| type              | name   | label                         | default          |
-| ----------------- | ------ | ----------------------------- | ---------------- |
-| decimal           | weight | Respondent's weight? (in kgs) | 51.3             |
-| ================= | ====== | ==============                | ================ |
-| survey            |        |                               |                  |
+You can also add a default calculation, which will only be calculated only once when the form loads or - if the question is inside a [repeat](#repeats) - when the repeat is added.
+
+| type              | name   | label                              | default          |
+| ----------------- | ------ | ---------------------------------- | ---------------- |
+| date              | d      | Enter the date the event occurred? | today()          |           
+| ================= | ====== | ================================== | ================ |
+| survey            |        |                                    |                  |
 
 ## Read only
 
