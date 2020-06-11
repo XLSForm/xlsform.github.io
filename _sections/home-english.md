@@ -66,7 +66,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
 | select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
-| note                      | Display a note on the screen, takes no input.                                                |
+| note                      | Display a note on the screen, takes no input. Shorthand for type=text with readonly=true.    |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
 | geotrace                  | Record a line of two or more GPS coordinates.                                                |
 | geoshape                  | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
@@ -78,7 +78,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
-| calculate                 | Perform a calculation; see the **Calculation** section below.                                |
+| calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                    |
 | acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
 | hidden                    | A field with no associated UI element                                                        |
 | xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                               |
@@ -471,9 +471,7 @@ Your survey can perform calculations using the values of preceding questions. In
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
 
-The calculate type uses the **text** type but calculations can also be added to any other question type. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. Note that using non-text question types has no effect on using the calculation result within the form itself. 
-
-**If no label nor hint is included, the calculation will be hidden.** Therefore, the following 2 forms are exactly the same:
+The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. **If no label nor hint is included, the calculation will be hidden.** See example below:
 
  | type      | name     | label        | hint                   | calculation                  |
  | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -481,7 +479,7 @@ The calculate type uses the **text** type but calculations can also be added to 
  | ========  | ======== | ===================================== | ============================ |
  | survey    |          |              |                        |                              |
 
-And the equivalent:
+And the exact equivalent:
 
  | type      | name     | label        | hint                   | calculation                  |
  | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -497,25 +495,19 @@ And the equivalent:
  | ========  | ======== | ===================================== | ============================ |
  | survey    |          |              |                        |                              |
 
-If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions (or a **note**, which is shorthand for a readonly text question) to avoid re-calculating (erasing) a user-entered value. See below for 2 examples that produce exactly the same form:
+**Note that using non-text calculation types has no effect on using the calculation result within the form itself.** 
+
+If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions to avoid re-calculating (erasing) a user-entered value. See example below:
 
  | type      | name     | label                              | readonly   | calculation        |
  | --------- | -------- | -----------------------------------| ---------- | ------------------ |
  | decimal   | amount   | What was the price of the meal?    |            |                    |
  | note      | display  | 18% tip for your meal is:          |            | ${amount} * 0.18   |
+ | date      | today    | Today's date is:                   |  true      | today()            |
  | ========  | ======== | ================================== | ========== | ================== |
  | survey    |          |                                    |            |                    |
 
-And:
-
- | type      | name     | label                              | readonly   | calculation        |
- | --------- | -------- | ---------------------------------- | ---------- | ------------------ |
- | decimal   | amount   | What was the price of the meal?    |            |                    |
- | text      | display  | 18% tip for your meal is:          | true       | ${amount} * 0.18   |
- | ========  | ======== | ================================== | ========== | ================== |
- | survey    |          |                                    |            |                    |
-
-Note the difference with the first form in this section is how the calculated value is displayed. In the first example it was shown in the label and in the last examples it is shown inside input fields.
+Note the difference with the first form in this section is how the calculated tip value is displayed. In the first example it was shown in the label and in the last example it is shown inside a readonly input field.
 
 ## Required
 
