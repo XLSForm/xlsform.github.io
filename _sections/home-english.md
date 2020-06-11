@@ -459,8 +459,7 @@ technically inclined, the underlying XForms specification is the actual source d
 
 ## Calculation
 
-Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
-
+Your survey can perform calculations using the values of preceding questions. In most cases using a **calculate** type question is appropriate. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
  | type      | name     | label                                 | calculation                  |
  | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -471,6 +470,52 @@ Your survey can perform calculations using the values of preceding questions. In
  | survey    |          |                                       |                              |
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
+
+The calculate type uses the **text** type but calculations can also be added to any other question type. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. Note that using non-text question types has no effect on using the calculation result within the form itself. 
+
+**If no label nor hint is included, the calculation will be hidden.** Therefore, the following 2 forms are exactly the same:
+
+ | type      | name     | label        | hint                   | calculation                  |
+ | --------- | -------- | ------------------------------------- | ---------------------------- |
+ | calculate | a        |              |                        | 1+1                          |
+ | ========  | ======== | ===================================== | ============================ |
+ | survey    |          |              |                        |                              |
+
+And the equivalent:
+
+ | type      | name     | label        | hint                   | calculation                  |
+ | --------- | -------- | ------------------------------------- | ---------------------------- |
+ | text      | a        |              |                        | 1+1                          |
+ | ========  | ======== | ===================================== | ============================ |
+ | survey    |          |              |                        |                              |
+
+ And this is an example when a non-text type is needed because of data analysis requirements:
+
+ | type      | name     | label        | hint                   | calculation                  |
+ | --------- | -------- | ------------------------------------- | ---------------------------- |
+ | date      | day      |              |                        | today()                      |
+ | ========  | ======== | ===================================== | ============================ |
+ | survey    |          |              |                        |                              |
+
+If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions (or a **note**, which is shorthand for a readonly text question) to avoid re-calculating (erasing) a user-entered value. See below for 2 examples that produce exactly the same form:
+
+ | type      | name     | label                              | readonly   | calculation        |
+ | --------- | -------- | -----------------------------------| ---------- | ------------------ |
+ | decimal   | amount   | What was the price of the meal?    |            |                    |
+ | note      | display  | 18% tip for your meal is:          |            | ${amount} * 0.18   |
+ | ========  | ======== | ================================== | ========== | ================== |
+ | survey    |          |                                    |            |                    |
+
+And:
+
+ | type      | name     | label                              | readonly   | calculation        |
+ | --------- | -------- | ---------------------------------- | ---------- | ------------------ |
+ | decimal   | amount   | What was the price of the meal?    |            |                    |
+ | text      | display  | 18% tip for your meal is:          | true       | ${amount} * 0.18   |
+ | ========  | ======== | ================================== | ========== | ================== |
+ | survey    |          |                                    |            |                    |
+
+Note the difference with the first form in this section is how the calculated value is displayed. In the first example it was shown in the label and in the last examples it is shown inside input fields.
 
 ## Required
 
