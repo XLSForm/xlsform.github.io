@@ -474,7 +474,7 @@ Note that the **${tip}** in the last line will be replaced with the actual tip a
 
 ## Trigger
 
-A trigger column can be used to run a calculation only **when another question changes**. See a simple but very useful example below:
+A trigger column can be used to run a calculation only **when another question that is shown in the form changes**. This means that the question that is referred to in the trigger column **has to have a label or a hint**. See a simple but very useful example below:
 
 | type      | name           | label                                 | calculation                  | trigger            |
 | --------- | -------------- | ------------------------------------- | ---------------------------- | ------------------ |
