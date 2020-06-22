@@ -7,7 +7,7 @@ lang: en
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
 
-The XLSForm is then converted to an [ODK XForm](https://opendatakit.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms. 
+The XLSForm is then converted to an [ODK XForm](https://getodk.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms. 
 
 ## Basic format
 Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below. 
@@ -324,7 +324,7 @@ This example below would collect the precise GPS location every 180 seconds and 
 | ========================= | ============ | ===   | ============================================================================== |
 | survey                    |              |       |                                                                                |
 
-See [this page](https://docs.opendatakit.org/form-audit-log/) in the ODK Collect documentation for full details about the **audit** metaquestion, available location tracking parameters, and the format of the **audit.csv** log file created for each submission. 
+See [this page](https://docs.getodk.org/form-audit-log/) in the ODK Collect documentation for full details about the **audit** metaquestion, available location tracking parameters, and the format of the **audit.csv** log file created for each submission. 
 
 ### External XML data
 
@@ -378,7 +378,7 @@ One way to ensure data quality is to add constraints to the data fields in your 
 
 In this example, the formula ```. <= 150``` is saying that the value entered ``.`` for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.
 
-Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/). Look under the **Operators** section.
+Other useful expressions to use in the **constraint** column can be found [here](https://docs.getodk.org/form-logic/). Look under the **Operators** section.
 
 ### Constraint message
 
@@ -454,8 +454,8 @@ Note that you must include **other** as an answer choice in the **choices** work
 
 Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.  
 
-Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.opendatakit.org/form-operators-functions/). For the
-technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://opendatakit.github.io/xforms-spec/#xpath-functions).
+Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.getodk.org/form-operators-functions/). For the
+technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://getodk.github.io/xforms-spec/#xpath-functions).
 
 ## Calculation
 
@@ -505,7 +505,7 @@ For any question type that shows a **list of choices** the shown order of the ch
 | ==================  | ============== | ===== | ========= |
 | survey              |                |       |           |
 
-For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://opendatakit.github.io/xforms-spec/#fn:randomize).
+For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://getodk.github.io/xforms-spec/#fn:randomize).
 
 | type                | parameters                 | name | label       | calculation                    |
 | ------------------- | -------------------------- | ---- | ----------- | ------------------------------ |
@@ -798,7 +798,7 @@ See below an example of the choices worksheet:
 
 Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
 <br>
-There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://opendatakit.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
+There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://getodk.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
 
 ## Cascading selects
 
@@ -907,7 +907,7 @@ To encrypt XLS forms, add the **public_key** column to the **settings** workshee
 | ======  | ============== | 
 | settings   |         |     
 
-For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](https://docs.opendatakit.org/encrypted-forms/) and at [this example form](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing).
+For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](https://docs.getodk.org/encrypted-forms/) and at [this example form](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing).
 
 ### Specify alternative server
 
@@ -1002,7 +1002,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 
 It is possible to use XLSForm to create XForms with custom or experimental features. This is great for custom applications with a specific feature that is not suitable for the larger community. 
 
-The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::**, **body::**) that add attributes to the XForm output, either in the _primary instance_, _bind_, or _form control_. To learn more about XForms visit the [ODK XForms Specification](https://opendatakit.github.io/xforms-spec/). The example below adds a custom "hxl" attribute to the primary instance node of a question.
+The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::**, **body::**) that add attributes to the XForm output, either in the _primary instance_, _bind_, or _form control_. To learn more about XForms visit the [ODK XForms Specification](https://getodk.github.io/xforms-spec/). The example below adds a custom "hxl" attribute to the primary instance node of a question.
 
 | type      | name       | label                    | instance::hxl |
 | --------- | ---------- | ------------------------ | ------------- |
@@ -1010,7 +1010,7 @@ The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::
 | ========= | ========   | ======================== | ============= |
 | survey    |            |                          |               |
 
-The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/opendatakit/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
 
 | title     | namespaces                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -1028,13 +1028,13 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | survey    |              |                          |                        |               |
 
 ## Tools that support XLSForms
-* [Ona](http://ona.io)
-* [Enketo](http://enketo.org)
-* [Open Data Kit (ODK)](http://opendatakit.org)
-* [Kobo ToolBox](http://kobotoolbox.org)
-* [CommCare](http://commcarehq.org)
-* [SurveyCTO](http://www.surveycto.com/)
-* [DataWinners](https://www.datawinners.com/en/home/)
+* [Ona](https://ona.io)
+* [Enketo](https://enketo.org)
+* [ODK](https://getodk.org)
+* [KoBoToolBox](https://kobotoolbox.org)
+* [CommCare](https://commcarehq.org)
+* [SurveyCTO](https://www.surveycto.com/)
+* [DataWinners](https://www.datawinners.com/)
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
 * [Survey123 for ArcGIS](https://survey123.arcgis.com/)
@@ -1044,12 +1044,10 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 
 The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
 
-* Form guidelines: [http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines](http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines)
-* Form design tutorial: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
-* Sample forms: [http://code.google.com/p/opendatakit/source/browse/?repo=forms](http://code.google.com/p/opendatakit/source/browse/?repo=forms)
-* [Formhub University](http://formhub.org/formhub_u)
-* [Ona Form Gallery](http://ona.io)
-* XForms as supported by JavaRosa: [https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat)
+* [XForms as supported by the ODK ecosytem](https://getodk.github.io/xforms-spec/)
+* [ODK Form design guidelines](https://docs.getodk.org/form-design-intro/)
+* [Ona Form design overview](https://help.ona.io/knowledge-base/guide-creating-surveys/)
+* [KoBoToolbox form design help center](https://support.kobotoolbox.org/en/collections/443818-creating-forms)
 
 ## About this site
 
@@ -1059,5 +1057,5 @@ If you want to contribute to or improve this documentation, please visit our [pr
 
 ## History
 
-The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
+The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
 
