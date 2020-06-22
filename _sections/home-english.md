@@ -1031,7 +1031,7 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [Ona](https://ona.io)
 * [Enketo](https://enketo.org)
 * [ODK](https://getodk.org)
-* [Kobo ToolBox](https://kobotoolbox.org)
+* [KoBoToolBox](https://kobotoolbox.org)
 * [CommCare](https://commcarehq.org)
 * [SurveyCTO](https://www.surveycto.com/)
 * [DataWinners](https://www.datawinners.com/)
@@ -1057,5 +1057,5 @@ If you want to contribute to or improve this documentation, please visit our [pr
 
 ## History
 
-The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
+The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
 
