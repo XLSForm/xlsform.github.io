@@ -1,0 +1,2951 @@
+I"�l
+<h2 id="what-is-an-xlsform">What is an XLSForm?</h2>
+
+<p>XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.</p>
+
+<p>The XLSForm is then converted to an <a href="https://opendatakit.github.io/xforms-spec/">ODK XForm</a>, a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.</p>
+
+<h2 id="basic-format">Basic format</h2>
+<p>Each Excel workbook usually has two worksheets: <strong>survey</strong> and <strong>choices</strong>. A third optional worksheet called <strong>settings</strong> can add additional specifications to your form and is described below.</p>
+
+<h3 id="the-survey-worksheet">The survey worksheet</h3>
+<p>This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features described below that you can add to the form to improve the user experience.</p>
+
+<h3 id="the-choices-worksheet">The choices worksheet</h3>
+<p>This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same <strong>list name</strong> are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).</p>
+
+<p>Both of these worksheets have a set of mandatory columns that must be present for the form to work. Additionally, each worksheet has a set of optional columns that allow further control over the behavior of each entry in the form, but are not essential to have. Every entry must have values for each of the mandatory columns, but the optional columns may be left blank.</p>
+
+<ul>
+  <li>The <strong>survey</strong> worksheet has 3 mandatory columns: <strong>type</strong>, <strong>name</strong>, and <strong>label</strong>.
+    <ul>
+      <li>The <strong>type</strong> column specifies the type of entry you are adding.</li>
+      <li>The <strong>name</strong> column specifies the unique variable name for that entry. No two entries can have the same name. Names have to start with a letter or an underscore. Names can only contain letters, digits, hyphens, underscores, and periods. Names are case-sensitive.</li>
+      <li>The <strong>label</strong> column contains the actual text you see in the form. Alternatively, <a href="#language">label translation columns</a> can be used.</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>today</td>
+      <td>today</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_one gender</td>
+      <td>gender</td>
+      <td>Respondent's gender?</td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Respondent's age?</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<ul>
+  <li>The <strong>choices</strong> worksheet has 3 mandatory columns as well: <strong>list name</strong>, <strong>name</strong>, and <strong>label</strong>.
+    <ul>
+      <li>The <strong>list name</strong> column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.</li>
+      <li>The <strong>name</strong> column specifies the unique variable name for that answer choice.</li>
+      <li>The <strong>label</strong> column shows the answer choice exactly as you want it to appear on the form. Alternatively, <a href="#language">label translation columns</a> can be used.</li>
+    </ul>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>list_name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>gender</td>
+      <td>transgender</td>
+      <td>Transgender</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>female</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>male</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <td>gender</td>
+      <td>other</td>
+      <td>Other</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.</p>
+
+<p>One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write <strong>Choices</strong> or <strong>choice</strong> instead of <strong>choices</strong>, the form won't work.</p>
+
+<h2 id="question-types">Question types</h2>
+<p>XLSForm supports a number of question types. These are just some of the options you can enter in the <strong>type</strong> column in the <strong>survey</strong> worksheet in your XLSForm:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question type</th>
+      <th>Answer input</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>Integer (i.e., whole number) input.</td>
+    </tr>
+    <tr>
+      <td>decimal</td>
+      <td>Decimal input.</td>
+    </tr>
+    <tr>
+      <td>range</td>
+      <td><a href="#range">Range</a> input (including rating)</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>Free text response.</td>
+    </tr>
+    <tr>
+      <td>select_one [options]</td>
+      <td><a href="#multiple-choice">Multiple choice</a> question; only one answer can be selected.</td>
+    </tr>
+    <tr>
+      <td>select_multiple [options]</td>
+      <td><a href="#multiple-choice">Multiple choice</a> question; multiple answers can be selected.</td>
+    </tr>
+    <tr>
+      <td>select_one_from_file [file]</td>
+      <td><a href="#multiple-choice-from-file">Multiple choice from file</a>; only one answer can be selected.</td>
+    </tr>
+    <tr>
+      <td>select_multiple_from_file [file]</td>
+      <td><a href="#multiple-choice-from-file">Multiple choice from file</a>; multiple answers can be selected.</td>
+    </tr>
+    <tr>
+      <td>rank [options]</td>
+      <td><a href="#rank">Rank</a> question; order a list.</td>
+    </tr>
+    <tr>
+      <td>note</td>
+      <td>Display a note on the screen, takes no input.</td>
+    </tr>
+    <tr>
+      <td>geopoint</td>
+      <td>Collect a <a href="#gps">single GPS coordinate</a>.</td>
+    </tr>
+    <tr>
+      <td>geotrace</td>
+      <td>Record a line of two or more GPS coordinates.</td>
+    </tr>
+    <tr>
+      <td>geoshape</td>
+      <td>Record a polygon of multiple GPS coordinates; the last point is the same as the first point.</td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td>Date input.</td>
+    </tr>
+    <tr>
+      <td>time</td>
+      <td>Time input.</td>
+    </tr>
+    <tr>
+      <td>dateTime</td>
+      <td>Accepts a date and a time input.</td>
+    </tr>
+    <tr>
+      <td>image</td>
+      <td>Take a picture or upload an <a href="#image">image file</a>.</td>
+    </tr>
+    <tr>
+      <td>audio</td>
+      <td>Take an audio recording or upload an audio file.</td>
+    </tr>
+    <tr>
+      <td>video</td>
+      <td>Take a video recording or upload a video file.</td>
+    </tr>
+    <tr>
+      <td>file</td>
+      <td>Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)</td>
+    </tr>
+    <tr>
+      <td>barcode</td>
+      <td>Scan a barcode, requires the barcode scanner app to be installed.</td>
+    </tr>
+    <tr>
+      <td>calculate</td>
+      <td>Perform a calculation; see the <strong>Calculation</strong> section below.</td>
+    </tr>
+    <tr>
+      <td>acknowledge</td>
+      <td>Acknowledge prompt that sets value to "OK" if selected.</td>
+    </tr>
+    <tr>
+      <td>hidden</td>
+      <td>A field with no associated UI element</td>
+    </tr>
+    <tr>
+      <td>xml-external</td>
+      <td>Adds a reference to an <a href="#external-xml-data">external XML data</a> file</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="gps">GPS</h3>
+<p>For example, to collect the name and GPS coordinates of a store, you would write the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>store_name</td>
+      <td>What is the name of this store?</td>
+    </tr>
+    <tr>
+      <td>geopoint</td>
+      <td>store_gps</td>
+      <td>Collect the GPS coordinates of this store.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>See the <a href="https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing">question_types XLSForm</a> for a look at each question type being used in a form.</p>
+
+<h3 id="gps-with-accuracythreshold">GPS with accuracyThreshold</h3>
+
+<p>When recording GPS coordinates in ODK Collect, ODK collect automatically collects the gps when an accuracy level of 5 meters or less is reached. You can change this default behaviour by specifying an <strong>accuracyThreshold</strong>; this could be less than 5m or more than 5m. You will need to add a column with heading <strong>body::accuracyThreshold</strong> on the survey sheet of your XLSForm. Then specify your preferred accuracy threshold value for this column on your geopoint question, as in the example shown below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>body::accuracyThreshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>geopoint</td>
+      <td>store_gps</td>
+      <td>Collect the GPS coordinates of this store.</td>
+      <td>1.5</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>See <a href="https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing">gps_accuracy_threshold</a> form for an example that uses this attribute.</p>
+
+<h3 id="multiple-choice">Multiple choice</h3>
+
+<p>XLSForm supports both <strong>select_one</strong> (select only one answer) and <strong>select_multiple</strong> (select multiple answers) questions. Writing a multiple choice question requires adding a <strong>choices</strong> worksheet to your Excel workbook. Here is an example of a <strong>select_one</strong> question:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>likes_pizza</td>
+      <td>Do you like pizza?</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>yes_no</td>
+      <td>yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>yes_no</td>
+      <td>no</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Note that the <strong>yes_no</strong> in the <strong>survey</strong> worksheet must match the <strong>yes_no</strong> in the <strong>list name</strong> column in the <strong>choices</strong> worksheet. This ensures that the form displays the correct list of answer choices for a particular question.</p>
+
+<p>We can also add multiple choice questions that allow multiple answers to be selected, like so:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_multiple pizza_toppings</td>
+      <td>favorite_toppings</td>
+      <td>What are your favorite pizza toppings?</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>cheese</td>
+      <td>Cheese</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>pepperoni</td>
+      <td>Pepperoni</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>sausage</td>
+      <td>Sausage</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4 id="choice-names">Choice names</h4>
+
+<p>The text in the name column of the choices sheet is what will be saved when that choice is selected by a data collector. That means it is the value that will be used in analysis. Choice names for <strong>select_multiple</strong> questions are not allowed to contain spaces because when multiple answers are selected, those are separated by spaces. Choice names for <strong>select_one</strong> questions may contain spaces but avoiding them may make analysis easier and leaves the door open for converting the question to a <strong>select_multiple</strong>.</p>
+
+<p>In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a <a href="#cascading-selects">cascading select</a> and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the <code class="highlighter-rouge">allow_choice_duplicates</code> setting:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>allow_choice_duplicates</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>yes</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+    </tr>
+  </tfoot>
+</table>
+
+<h4 id="specify-other">Specify other</h4>
+
+<p>For multiple choice questions, surveys often include an option of marking <strong>other</strong> when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including <strong>or_other</strong> after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_multiple pizza_toppings or_other</td>
+      <td>favorite_topping</td>
+      <td>What are your favorite pizza toppings?</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>list name</td>
+      <td>name</td>
+      <td>label</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>cheese</td>
+      <td>Cheese</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>pepperoni</td>
+      <td>Pepperoni</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>sausage</td>
+      <td>Sausage</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Click on the link to look at the complete <a href="https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing">pizza_questionnaire</a>.</p>
+
+<p><strong>Caveat</strong><br />
+When you export data using this <strong>or_other</strong> option, in the <strong>favorite_topping</strong> column, you will see a value <strong>other</strong>. A separate column will have the answer for the questions in which the user selected <strong>other</strong>. This makes data analysis more cumbersome, so we do not recommend the <strong>or_other</strong> construct for large scale data collection efforts. See the <strong>Relevant</strong> section below for an alternative method more appropriate for large scale projects.</p>
+
+<h3 id="multiple-choice-from-file">Multiple choice from file</h3>
+
+<p>The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Two types of files are supported: CSV and XML files. See usage examples below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>choice_filter</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_multiple_from_file country.csv</td>
+      <td>liv</td>
+      <td>In which countries did you live?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_one_from_file countries.xml</td>
+      <td>cou</td>
+      <td>In which country do you live now?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_one_from_file countries.xml</td>
+      <td>cit</td>
+      <td>What is the closest city?</td>
+      <td>name=${cou}</td>
+    </tr>
+    <tr>
+      <td>select_one_from_file households.csv</td>
+      <td>hh</td>
+      <td>Select household number</td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The files require a specific format. A CSV file requires a <code class="highlighter-rouge">name</code> and <code class="highlighter-rouge">label</code> column which represent the value and label of the options. An XML file requires a structure as shown below:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;root&gt;
+  &lt;item&gt;
+    &lt;name/&gt;
+    &lt;label/&gt;
+    ...
+  &lt;/item&gt;
+&lt;/root&gt;
+</code></pre></div></div>
+
+<p>Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.</p>
+
+<p>Note that this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using <a href="#external-selects">External Selects</a> or <a href="#dynamic-selects-from-pre-loaded-data">Dynamic selects from preloaded data</a> if your data collection application supports it.</p>
+
+<h3 id="rank">Rank</h3>
+
+<p>The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>rank pizza_toppings</td>
+      <td>toppings</td>
+      <td>Order pizza toppings with your favorite on top</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>cheese</td>
+      <td>Cheese</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>pepperoni</td>
+      <td>Pepperoni</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>sausage</td>
+      <td>Sausage</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>To prevent bias it is often recommended to use the <a href="#randomize-choices">randomize feature</a> in conjunction with this widget.</p>
+
+<h3 id="range">Range</h3>
+
+<p>To restrict integer or decimal inputs to a specific range, you can use the <strong>range</strong> question. This question can be used with 3 optional space-separated parameters: <strong>start</strong>, <strong>end</strong>, and <strong>step</strong> in a <strong>parameters</strong> column. The default values are 0, 10, and 1 respectively. The example below will create a question that allows input from 0 until 17 with a step of 1. Using a decimal step will result in decimal values being collected.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>range</td>
+      <td>amount</td>
+      <td>What is the age of the child?</td>
+      <td>start=0 end=17 step=1</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>To display a range question as a <strong>rating widget</strong> using stars, you can add the rating appearance as shown below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>appearance</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>range</td>
+      <td>rated</td>
+      <td>What rating do you give?</td>
+      <td>rating</td>
+      <td>start=1 end=5 step=1</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h3 id="image">Image</h3>
+
+<p>To upload an image file the <strong>image</strong> question type can be used. To ensure the images are not too large, you can optionally set the <strong>max-pixels</strong> parameter which will automatically downsize the uploaded image to match the largest side of the image with the pixel value provided.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>image</td>
+      <td>img</td>
+      <td>Upload an image</td>
+      <td>max-pixels=1000</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h3 id="metadata">Metadata</h3>
+
+<p>XLSForm has a number of data type options available for meta data collection:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Metadata type</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>start</td>
+      <td>Start date and time of the survey.</td>
+    </tr>
+    <tr>
+      <td>end</td>
+      <td>End date and time of the survey.</td>
+    </tr>
+    <tr>
+      <td>today</td>
+      <td>Day of the survey.</td>
+    </tr>
+    <tr>
+      <td>deviceid</td>
+      <td>IMEI (International Mobile Equipment Identity)</td>
+    </tr>
+    <tr>
+      <td>subscriberid</td>
+      <td>IMSI (International Mobile Subscriber Identity)</td>
+    </tr>
+    <tr>
+      <td>simserial</td>
+      <td>SIM serial number.</td>
+    </tr>
+    <tr>
+      <td>phonenumber</td>
+      <td>Phone number (if available).</td>
+    </tr>
+    <tr>
+      <td>username</td>
+      <td>Username configured (if available).</td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>Email address configured (if available).</td>
+    </tr>
+    <tr>
+      <td>audit</td>
+      <td>Log enumerator behavior during data entry</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Note that some metadata fields only apply for mobile phone-based forms.</p>
+
+<p>For example, if you wanted to collect all of these types of metadata, put the following in your form (typically at the beginning, but can be at any point of your form):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>start</td>
+      <td>start</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end</td>
+      <td>end</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>today</td>
+      <td>today</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>deviceid</td>
+      <td>deviceid</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>subscriberid</td>
+      <td>subscriberid</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>simserial</td>
+      <td>simserial</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>phonenumber</td>
+      <td>phonenumber</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>username</td>
+      <td>username</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>email</td>
+      <td>email</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>audit</td>
+      <td>audit</td>
+      <td> </td>
+      <td>[optional, see below]</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
+The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing">Tutorial XLSForm</a> shows how metadata is used in a form.</p>
+
+<p><strong>Audit enumerator behavior and location tracking</strong></p>
+
+<p><em>Note: For now this feature is only available in Collect, but not in Enketo webforms.</em></p>
+
+<p>The <strong>audit</strong> metaquestion will enable ODK Collect to log how people navigate through a form during data entry. For example, this can be used to measure how much time an enumerator took to fill in a question, responses that were edited later on, or when the form was saved.</p>
+
+<p>Optionally, the <strong>audit</strong> metaquestion can be configured to also record the location of the enumerator throughout the interview. This may be useful for quality control or to record exact paths taken between each respondents. To do this, add a column called <strong>parameters</strong> to your form and enter three required parameters: <strong>location-priority</strong>, <strong>location-min-interval</strong>, and <strong>location-max-age</strong>.</p>
+
+<p>This example below would collect the precise GPS location every 180 seconds and will discard coordinates collected more than 300 seconds ago.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>audit</td>
+      <td>audit</td>
+      <td> </td>
+      <td>location-priority=high-accuracy location-min-interval=180 location-max-age=300</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>See <a href="https://docs.opendatakit.org/form-audit-log/">this page</a> in the ODK Collect documentation for full details about the <strong>audit</strong> metaquestion, available location tracking parameters, and the format of the <strong>audit.csv</strong> log file created for each submission.</p>
+
+<h3 id="external-xml-data">External XML data</h3>
+
+<p>For advanced users, who need to perform complex queries on external data without restrictions, an external XML data file can be added with question type <strong>xml-external</strong>. The value in the <strong>name</strong> column can be used to refer to this data in any formula (e.g. for a calculation, constraint, relevant, or choice_filter) using the <strong>instance('name')</strong> function. A file with the same name and the <strong>.xml</strong> extension should be uploaded with the form. See below for an example that requires uploading a file called houses.xml with the form.</p>
+
+<p>If your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using <a href="#external-selects">External Selects</a> instead if your data collection application supports this.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>calculation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>xml-external</td>
+      <td>houses</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>rooms</td>
+      <td>How many rooms?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>calculate</td>
+      <td>count</td>
+      <td> </td>
+      <td>count(instance('houses')/house[rooms = current()/../rooms ])</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="hints">Hints</h2>
+
+<h3 id="regular-hints">Regular hints</h3>
+
+<p>Sometimes you want to add a small hint to a question on your form, instructing the user how to answer the question, but you don't want the hint to be part of the question itself. It’s easy to add hints to questions in XLSForms.  Simply add a <strong>hint</strong> column and add your hint message. See below for an example.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>hint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>What is the name of this store?</td>
+      <td>Look on the signboard if the store has a signboard.</td>
+    </tr>
+    <tr>
+      <td>geopoint</td>
+      <td>geopoint</td>
+      <td>Collect the GPS coordinates of this store.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The <a href="https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing">Tutorial XLSForm</a> provides more examples of questions with hints.</p>
+
+<h3 id="guidance-hints">Guidance hints</h3>
+
+<p>There is a special kind of hint that is normally not shown in the form. It is only shown in special views. An example would to show these hints on print-outs or during a training for enumerators. These hints are called <em>guidance hints</em> and can be added in the <strong>guidance_hint</strong> column. See below for an example.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>guidance_hint</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Age?</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Name?</td>
+      <td>This will only be shown for age &gt; 18.</td>
+      <td>${age} &gt; 18</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="constraints">Constraints</h2>
+
+<p>One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called <strong>constraint</strong>, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the <code class="highlighter-rouge">.</code> in the formula refers back to the question variable.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>constraint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>How old are you?</td>
+      <td>. &lt;= 150</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In this example, the formula <code class="highlighter-rouge">. &lt;= 150</code> is saying that the value entered <code class="highlighter-rouge">.</code> for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.</p>
+
+<p>Other useful expressions to use in the <strong>constraint</strong> column can be found <a href="http://opendatakit.org/help/form-design/binding/">here</a>. Look under the <strong>Operators</strong> section.</p>
+
+<h3 id="constraint-message">Constraint message</h3>
+
+<p>If you want to include a message with your constraint, telling the user why the answer is not accepted, you can add a <strong>constraint_message</strong> column to your form.  See the example below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>constraint</th>
+      <th>constraint_message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>respondent_age</td>
+      <td>Respondent's age</td>
+      <td>. &gt;=18</td>
+      <td>Respondent must be 18 or older to complete the survey.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In this example, if the user enters an age less than 18, then the error message in the <strong>constraint_message</strong> column appears. More examples on constraints have been illustrated in this <a href="https://docs.google.com/spreadsheets/d/1g12xGrOsnNYezG6WtTfeusxzypRT1JHeUC2uNbe03sc/edit?usp=sharing">XLSForm</a>.</p>
+
+<h2 id="relevant">Relevant</h2>
+
+<p>One great feature of XLSForm is the ability to skip a question or make an additional question appear based on the response to a previous question. Below is an example of how to do this by adding a <strong>relevant</strong> column for a <strong>select_one</strong> question, using our pizza topping example from before:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>likes_pizza</td>
+      <td>Do you like pizza?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_multiple pizza_toppings or_other</td>
+      <td>favorite_topping</td>
+      <td>Favorite toppings</td>
+      <td>${likes_pizza} = 'yes'</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In this example, the respondent is asked, “Do you like pizza?” If the answer is <strong>yes</strong>, then the pizza topping question appears below. Note the <code class="highlighter-rouge">${ }</code> around the variable <strong>likes_pizza</strong>.  These are required in order for the form to reference the variable from the previous question.</p>
+
+<p>In the next example, below, we use relevant syntax for a <strong>select_multiple</strong> question, which is slightly different from the <strong>select_one</strong> question example above.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>likes_pizza</td>
+      <td>Do you like pizza?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_multiple pizza_toppings or_other</td>
+      <td>favorite_topping</td>
+      <td>Favorite toppings</td>
+      <td>${likes_pizza} = 'yes'</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>favorite_cheese</td>
+      <td>What is your favorite type of cheese?</td>
+      <td>selected(${favorite_topping}, 'cheese')</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>cheese</td>
+      <td>Cheese</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>pepperoni</td>
+      <td>Pepperoni</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>sausage</td>
+      <td>Sausage</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Since the pizza topping question allows multiple responses, we have to use the <code class="highlighter-rouge">selected(${favorite_topping}, 'cheese')</code> expression, because we want the cheese question to appear every time the user selects <strong>cheese</strong> as one of the answers (regardless of whether additional answers are selected).</p>
+
+<p>Earlier we mentioned there was an alternative method for specifying other for multiple choice questions which is more appropriate for large scale surveys. This can be done using the same relevant syntax from the example above:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_multiple pizza_toppings</td>
+      <td>favorite_toppings</td>
+      <td>What are your favorite pizza toppings?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>favorite_toppings_other</td>
+      <td>Specify other:</td>
+      <td>selected(${favorite_toppings}, 'other')</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>cheese</td>
+      <td>Cheese</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>pepperoni</td>
+      <td>Pepperoni</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>sausage</td>
+      <td>Sausage</td>
+    </tr>
+    <tr>
+      <td>pizza_toppings</td>
+      <td>other</td>
+      <td>Other</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Note that you must include <strong>other</strong> as an answer choice in the <strong>choices</strong> worksheet.</p>
+
+<h2 id="formulas">Formulas</h2>
+
+<p>Formulas are used in the constraint, relevant and calculation columns. You've already seen some examples in the and <strong>Constraint</strong> and <strong>Relevant</strong> sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.</p>
+
+<p>Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the <a href="https://docs.opendatakit.org/form-operators-functions/">ODK documentation</a>. For the
+technically inclined, the underlying XForms specification is the actual source document for the supported <a href="https://opendatakit.github.io/xforms-spec/#xpath-functions">functions</a>.</p>
+
+<h2 id="calculation">Calculation</h2>
+
+<p>Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a <strong>calculate</strong> question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>calculation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>decimal</td>
+      <td>amount</td>
+      <td>What was the price of the meal?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>calculate</td>
+      <td>tip</td>
+      <td> </td>
+      <td>${amount} * 0.18</td>
+    </tr>
+    <tr>
+      <td>note</td>
+      <td>display</td>
+      <td>18% tip for your meal is: ${tip}</td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Note that the <strong>${tip}</strong> in the last line will be replaced with the actual tip amount when viewing and filling out the form.</p>
+
+<h2 id="required">Required</h2>
+
+<p>It's simple to mark certain questions as required in your form.  Marking them as required means the user will not be able to move on to the next question or submit the form without entering an answer for that question.</p>
+
+<p>To make questions required, add a <strong>required</strong> column to your survey worksheet. Under that column, mark questions as required by writing <strong>yes</strong>.  See the example below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>constraint</th>
+      <th>required</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>How old are you?</td>
+      <td>. &lt;= 150</td>
+      <td>yes</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h3 id="required-message">Required message</h3>
+
+<p>If you want to customize the message displayed to users when they leave a required question blank, you can add a <strong>required_message</strong> column to your form.
+See the example below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>required</th>
+      <th>required_message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>respondent_age</td>
+      <td>Respondent's age</td>
+      <td>yes</td>
+      <td>Sorry, this answer is required.</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="randomize-choices">Randomize Choices</h2>
+
+<p>For any question type that shows a <strong>list of choices</strong> the shown order of the choices displayed to the user can be randomized with the <strong>parameters</strong> column. See below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>parameters</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one toppings</td>
+      <td>randomize=true</td>
+      <td>top</td>
+      <td>Favorite?</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>For reproducible randomization, a <strong>seed</strong> can be explicitly provided as shown below. To learn more about the randomization algorithm used, see <a href="https://opendatakit.github.io/xforms-spec/#fn:randomize">here</a>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>parameters</th>
+      <th>name</th>
+      <th>label</th>
+      <th>calculation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>calculate</td>
+      <td> </td>
+      <td>sd</td>
+      <td> </td>
+      <td>once(decimal-date-time(now()))</td>
+    </tr>
+    <tr>
+      <td>select_one toppings</td>
+      <td>randomize=true, seed=${sd}</td>
+      <td>top</td>
+      <td>Favorite?</td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Note that <code class="highlighter-rouge">once()</code> is used to prevent re-randomizing for example when a draft record is loaded for editing.</p>
+
+<h2 id="grouping-questions">Grouping questions</h2>
+
+<p>To create a group of questions in your form try the following:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin group</td>
+      <td>respondent</td>
+      <td>Respondent</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Enter the respondent’s name</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>position</td>
+      <td>Enter the respondent’s position within the school.</td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>This is a good way to group related questions for data export and analysis. Notice how <strong>end group</strong> doesn't require a name or label, because it is hidden in the form.</p>
+
+<h3 id="nesting-groups-within-groups">Nesting groups within groups</h3>
+
+<p>Groups of questions can be nested within one another:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin group</td>
+      <td>hospital</td>
+      <td>Hospital</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>What is the name of this hospital?</td>
+    </tr>
+    <tr>
+      <td>begin group</td>
+      <td>hiv_medication</td>
+      <td>HIV Medication</td>
+    </tr>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>have_hiv_medication</td>
+      <td>Does this hospital have HIV medication?</td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>You always have to end the most recent group that was created first. For instance, the first <strong>end group</strong> you see closes the HIV medication group, and the second one closes the beginning hospital group. When working with groups and you keep getting error messages when trying to upload your form, double-check that for each <strong>begin group</strong> you have one <strong>end group</strong>.</p>
+
+<h3 id="skipping">Skipping</h3>
+
+<p>One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with relevant syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>How old are you?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>begin group</td>
+      <td>child</td>
+      <td>Child</td>
+      <td>${age} &lt;= 5</td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>muac</td>
+      <td>Record this child’s mid-upper arm circumference.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>mrdt</td>
+      <td>Is the child’s rapid diagnostic test positive?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In this example, the two child group questions (<strong>muac</strong> and <strong>mrdt</strong>) will only appear if the child's <strong>age</strong> from the first question is less than or equal to five.</p>
+
+<h2 id="repeats">Repeats</h2>
+
+<p>A user can repeat questions by using the <strong>begin repeat</strong> and <strong>end repeat</strong> construct:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin repeat</td>
+      <td>child_repeat</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Child's name</td>
+    </tr>
+    <tr>
+      <td>decimal</td>
+      <td>birthweight</td>
+      <td>Child's birthweight</td>
+    </tr>
+    <tr>
+      <td>select_one male_female</td>
+      <td>sex</td>
+      <td>Child's sex</td>
+    </tr>
+    <tr>
+      <td>end repeat</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>male_female</td>
+      <td>male</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <td>male_female</td>
+      <td>female</td>
+      <td>Female</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In this example, the <strong>name</strong>, <strong>birthweight</strong>, and <strong>sex</strong> fields are grouped together in a repeat, and the user can collect the same information about multiple children by selecting the option in the form to add another repeat.</p>
+
+<p>The <strong>label</strong> column is optional for <strong>begin repeat</strong>.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form.</p>
+
+<p>When a repeat is shown in a table of contents, the label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values <code class="highlighter-rouge">Preity</code> for <code class="highlighter-rouge">first_name</code>, <code class="highlighter-rouge">Zinta</code> for <code class="highlighter-rouge">last_name</code> and <code class="highlighter-rouge">71</code> for <code class="highlighter-rouge">age</code>, that repeat will be summarized as "Preity Zinta - 71":</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin repeat</td>
+      <td>person_repeat</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>begin group</td>
+      <td>person</td>
+      <td>${first_name} ${last_name} - ${age}</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>first_name</td>
+      <td>First name</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>last_name</td>
+      <td>Last name</td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Age</td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end repeat</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The <a href="https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing">Delivery Outcome</a> XLSForm is another repeat example.</p>
+
+<h3 id="fixed-repeat-counts">Fixed repeat counts</h3>
+
+<p>Instead of allowing an infinite number of repeats, the form designer can specify an exact number of repeats by using the <strong>repeat_count</strong> column:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>repeat_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin repeat</td>
+      <td>child_repeat</td>
+      <td> </td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Child's name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>decimal</td>
+      <td>birthweight</td>
+      <td>Child's birthweight</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end repeat</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In the above example, exactly <strong>3</strong> child repeats will be created.</p>
+
+<h3 id="dynamic-repeat-counts">Dynamic repeat counts</h3>
+
+<p>The repeat count can be set to an expression that refers to other fields in the form. In the example below, the number that the user inputs for the <strong>num_hh_members</strong> field dictates the number of <strong>hh_member</strong> repeats added:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>repeat_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>num_hh_members</td>
+      <td>Number of household members?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>begin repeat</td>
+      <td>hh_member</td>
+      <td> </td>
+      <td>${num_hh_members}</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Age</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end repeat</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h3 id="only-add-repeats-in-certain-conditions">Only add repeats in certain conditions</h3>
+
+<p>Like <a href="#skipping">with groups</a>, all of the questions in a repeat can be skipped based on some condition. In the example below, the person filling out the form will only be given the opportunity to add children if they first indicate that there are children to add:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>relevant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one yes_no</td>
+      <td>has_child</td>
+      <td>Do any children live here?</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>begin repeat</td>
+      <td>child_repeat</td>
+      <td> </td>
+      <td>${has_child} = 'yes'</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Child's name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>decimal</td>
+      <td>birthweight</td>
+      <td>Child's birthweight</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end repeat</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>list_name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>yes_no</td>
+      <td>yes</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <td>yes_no</td>
+      <td>no</td>
+      <td>No</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h3 id="representing-zero-repeats">Representing zero repeats</h3>
+
+<p>By default, the person filling the form will see the questions corresponding to one repeat before getting the option to add more. To represent 0 repeats, there are three options:</p>
+<ul>
+  <li>teach the people filling out the form to delete the first repeat added</li>
+  <li>if the exact number of repeats is known ahead of time, <a href="#dynamic-repeat-counts">use a dynamic repeat count</a></li>
+  <li>if the exact number of repeats is not known ahead of time, <a href="#only-add-repeats-in-certain-conditions">use <code class="highlighter-rouge">relevant</code></a> to only prompt the user for repeats if there are some to add</li>
+</ul>
+
+<h2 id="multiple-language-support">Multiple language support</h2>
+
+<p>It’s easy to add multiple languages to a form. You simply have to name your <strong>label::language1 (code)</strong>,  <strong>label::language2 (code)</strong>, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection application (this may be located under the <strong>Menu</strong> key). For the form below, English and Español will show up as the possible options.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label::English (en)</th>
+      <th>label::Español (es)</th>
+      <th>constraint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>How old are you?</td>
+      <td>¿Cuántos años tienes?</td>
+      <td>. &lt;= 150</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>You can also add different language columns for hints and media files by using the same <code class="highlighter-rouge">::language (code)</code> construct, as shown in the example below. See also the <a href="./ref-table">XLSForm reference table</a>, which includes a list of all column headers that can accept a language modification.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>hint::English (en)</th>
+      <th>hint::Dutch (nl)</th>
+      <th>media::image::English (en)</th>
+      <th>media::image::Dutch (nl)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>a hint</td>
+      <td>een hint</td>
+      <td>old_person_cartoon.png</td>
+      <td>ouwe_strip.png</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Form language and user interface language may be the determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called <em>subtags</em> are published <a href="http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">here</a> (search the page with Ctrl-F or Cmd-F).</p>
+
+<h2 id="media">Media</h2>
+
+<p>You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the <strong>/odk/forms/formname-media</strong> folder on your phone, and then reference the exact file name in the <strong>media</strong> column in your form. See below for an example of how to do this.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>media::image</th>
+      <th>media::video</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>note</td>
+      <td>media_example</td>
+      <td>Media example</td>
+      <td>example.jpg</td>
+      <td>example.mp4</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Check out the <a href="https://docs.google.com/spreadsheets/d/1Rxft3H3xl3M9bLFGR2XhXzt1ucyFmd0qFmOQ6FaqJw4/edit?usp=sharing">Birds XLSForm</a> which illustrates the use of media files. You can also click on the link to see the <a href="https://enketo.ona.io/x/#Ynv3">Birds webform </a>.</p>
+
+<p>Media is translatable in the same way as labels and hints as explained in the <a href="#multiple-language-support">languages section</a>.</p>
+
+<h2 id="pre-loading-csv-data">Pre-loading CSV data</h2>
+
+<p>Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre- existing data in a specific survey form or any other source.  For example if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+To reference pre-existing data in a survey form:</p>
+
+<ul>
+  <li>Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the <a href="#media">Media</a> section).The first row of each .csv file should be a header that includes short:
+    <ul>
+      <li>unique names for each column</li>
+      <li>subsequent rows which should contain the data itself</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add <strong>_key</strong> to the end of the column name in the first row. Any columns with names ending in <strong>_key</strong> will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name_key</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mango</td>
+      <td>Mango</td>
+    </tr>
+    <tr>
+      <td>orange</td>
+      <td>Orange</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="how-to-pull-data-from-csv">How to pull data from CSV</h3>
+
+<p>You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time. 
+For each data field that you want to pull into your survey:</p>
+
+<ul>
+  <li>Add a <strong>calculate field</strong> to your survey.</li>
+  <li>Give that field a <strong>name</strong></li>
+  <li>Then in its <strong>calculation</strong> column, call the <strong>pulldata()</strong> function, indicating which field to pull from which row of which .csv file.</li>
+</ul>
+
+<p>See below for an example:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>calculation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>calculate</td>
+      <td>fruit</td>
+      <td> </td>
+      <td>pulldata('fruits', 'name', 'name_key', 'mango')</td>
+    </tr>
+    <tr>
+      <td>note</td>
+      <td>note_fruit</td>
+      <td>The fruit ${fruit} pulled from csv.</td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Once you have loaded .csv data into a survey field using the <strong>pulldata()</strong> function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user.</p>
+
+<p>Click on the link to see an example of a <a href="https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing">pre-loading sample form </a> and  the .csv file used with form can be found <a href="https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing">here</a></p>
+
+<p><strong>Important notes on usage of pre-loaded data</strong></p>
+
+<ul>
+  <li>Compress a large .csv file into a <strong>.zip archive</strong> before uploading it.</li>
+  <li>Save .csv file in <strong>UTF-8 format</strong> if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly.</li>
+  <li>Data fields pulled from a .csv file are considered to be text strings therefore use the <strong>int()</strong> or <strong>number()</strong> functions to convert a pre-loaded field into numeric form.</li>
+  <li>If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.</li>
+</ul>
+
+<h2 id="dynamic-selects-from-pre-loaded-data">Dynamic selects from pre-loaded data</h2>
+
+<p>If the recommended methods described in <a href="#multiple-choice-from-file">Multiple Choice from File</a> do not meet your requirements you can consider the method below if your data collection application supports it.</p>
+
+<p>Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for <strong>select_one</strong> and <strong>select_multiple</strong> fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the <a href="#multiple-choice">Multiple choice questions</a> section.</p>
+
+<p>The following should be done:</p>
+
+<ul>
+  <li>specify <strong>select_one listname</strong> or <strong>select_multiple listname</strong> in the type column (where <strong>listname</strong> is the name of your choice list)</li>
+  <li>specify any special <strong>appearance styles</strong> in the appearance column</li>
+  <li>include one or more rows for your listname on the choices worksheet.</li>
+</ul>
+
+<p>Below is an example of the <strong>survey worksheet</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>appearance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>select_one fruits</td>
+      <td>fruits</td>
+      <td>Select a fruit</td>
+      <td>search('fruits')</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:</p>
+
+<ul>
+  <li>In the appearance column:</li>
+  <li>Include a <strong>search() expression</strong> that specifies which .csv rows to include in the choice list.</li>
+  <li>If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a <strong>space</strong>, then the <strong>search() expression</strong>. [e.g., <strong>quick search()</strong>]</li>
+  <li>On the <strong>choices worksheet</strong>:</li>
+  <li>a row should indicate which .csv columns to use for the label and selected value. As follows:
+    <ul>
+      <li><strong>list_name</strong> column: specify the name of your choice list as you normally would.</li>
+      <li><strong>name</strong> column:  include the name of the .csv column to use for uniquely identifying selected choices.</li>
+      <li><strong>label</strong> column:  include the name of the .csv column to use for labeling the choices.
+<br />
+<strong>Note</strong>:
+<br />
+If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.</li>
+    </ul>
+  </li>
+  <li>In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column. 
+<br />
+<strong>Note</strong>:
+<br />
+If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
+<br />
+See below an example of the choices worksheet:
+<br /></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>list name</th>
+      <th>name</th>
+      <th>label</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>fruits</td>
+      <td>name_key</td>
+      <td>name</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>choices</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>Click on the link to see an example of a <a href="https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing">search-and-select sample form</a> and  the .csv file used with form can be found <a href="https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing">here</a>.
+<br />
+There are a series of options to indicate which .csv rows to include in the choice list using the <strong>search() expression</strong>, see this <a href="http://opendatakit.org/help/form-design/data-preloading/">post</a> for additional information on these search() expressions.</p>
+
+<h2 id="cascading-selects">Cascading selects</h2>
+
+<p>A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  » district » village).  Instead of adding a <strong>select_one</strong> field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a <strong>choice_filter</strong> column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm <a href="https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&amp;usp=sharing">here</a>.</p>
+
+<h2 id="external-selects">External selects</h2>
+
+<p>If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation if <a href="#multiple-choice-from-file">Multiple Choice from File</a> is used. The best workaround to this issue is to use external selects in those data collection applications (such as ODK Collect) that support it.</p>
+
+<p>Enabling external selects is straightforward.</p>
+<ul>
+  <li>Instead of <strong>select_one</strong> for the prompt type, use <strong>select_one_external</strong>.</li>
+  <li>Instead of the <strong>choices</strong> sheet, put external choices in the <strong>external_choices</strong> sheet.</li>
+</ul>
+
+<p>See <a href="https://docs.google.com/spreadsheets/d/12qZL34kuHSZGWDv0BBJ1qf7dSmml-d2VnMWH0Vtg-O4/edit?usp=sharing">select_one_external</a> form for an example that uses normal and external choices.</p>
+
+<p>When an XLSForm with external choices is converted to an XForm, two files will be produced, the <strong>XForm</strong> (e.g., form-filename.xml) with all the normal choices, and an <strong>itemsets.csv</strong> with the external choices.</p>
+
+<p>The <strong>itemsets.csv</strong> file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. Clients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.</p>
+
+<h2 id="default">Default</h2>
+
+<p>Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>today</td>
+      <td>today</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>date</td>
+      <td>survey_date</td>
+      <td>Survey date?</td>
+      <td>2010-06-15</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tapping in the answer field and inputting another answer.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>decimal</td>
+      <td>weight</td>
+      <td>Respondent's weight? (in kgs)</td>
+      <td>51.3</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="read-only">Read only</h2>
+
+<p>Adding a read only field means that a question can not be edited. Read only fields can be combined with default fields to deliver information back to a user.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>read_only</th>
+      <th>default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>num</td>
+      <td>Please patient is:</td>
+      <td>yes</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="appearance">Appearance</h2>
+
+<p>The <strong>appearance</strong> column allows you to change the appearance of questions in your form. The following table lists the possible appearance attributes and how the question appears in the form.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Appearance attribute</th>
+      <th>Question type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>multiline</td>
+      <td>text</td>
+      <td>Best if used with web clients, makes the text box multiple lines long.</td>
+    </tr>
+    <tr>
+      <td>minimal</td>
+      <td>select_one, select_multiple</td>
+      <td>Answer choices appear in a pull-down menu.</td>
+    </tr>
+    <tr>
+      <td>quick</td>
+      <td>select_one</td>
+      <td>Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.</td>
+    </tr>
+    <tr>
+      <td>no-calendar</td>
+      <td>date</td>
+      <td>For mobile devices only, used to suppress the calendar.</td>
+    </tr>
+    <tr>
+      <td>month-year</td>
+      <td>date</td>
+      <td>Select a month and year only for the date.</td>
+    </tr>
+    <tr>
+      <td>year</td>
+      <td>date</td>
+      <td>Select only a year for the date.</td>
+    </tr>
+    <tr>
+      <td>horizontal-compact</td>
+      <td>select_one, select_multiple</td>
+      <td>For web clients only, this displays the answer choices horizontally.</td>
+    </tr>
+    <tr>
+      <td>horizontal</td>
+      <td>select_one, select_multiple</td>
+      <td>For web clients only, this displays the answer choices horizontally, but in columns.</td>
+    </tr>
+    <tr>
+      <td>likert</td>
+      <td>select_one</td>
+      <td>Best if used with web clients, makes the answer choices appear as a Likert scale.</td>
+    </tr>
+    <tr>
+      <td>compact</td>
+      <td>select_one, select_multiple</td>
+      <td>Displays answer choices side by side with minimal padding and without radio buttons or checkboxes. Particularly useful with image choices.</td>
+    </tr>
+    <tr>
+      <td>quickcompact</td>
+      <td>select_one</td>
+      <td>Same as previous, but auto-advances to the next question (in mobile clients only).</td>
+    </tr>
+    <tr>
+      <td>field-list</td>
+      <td>groups</td>
+      <td>Entire group of questions appear on one screen (for mobile clients only).</td>
+    </tr>
+    <tr>
+      <td>label</td>
+      <td>select_one, select_multiple</td>
+      <td>Displays answer choice labels (and not inputs).</td>
+    </tr>
+    <tr>
+      <td>list-nolabel</td>
+      <td>select_one, select_multiple</td>
+      <td>Used in conjunction with <strong>label</strong> attribute above, displays the answer inputs without the labels (make sure to put <strong>label</strong> and <strong>list-nolabel</strong> fields inside a group with <strong>field-list</strong> attribute if using mobile client).</td>
+    </tr>
+    <tr>
+      <td>table-list</td>
+      <td>groups</td>
+      <td>An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).</td>
+    </tr>
+    <tr>
+      <td>signature</td>
+      <td>image</td>
+      <td>Allows you to trace your signature into your form (mobile clients only).</td>
+    </tr>
+    <tr>
+      <td>draw</td>
+      <td>image</td>
+      <td>Allows you to sketch a drawing with your finger on the mobile device screen.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>An XLSForm with all of the appearance attributes in this table is available <a href="https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing">here</a>.</p>
+
+<h2 id="settings-worksheet">Settings worksheet</h2>
+
+<p>The <strong>settings</strong> worksheet is optional, but it allows you to further customize your form, including encrypting your records or setting an overall style theme to your form, among others.</p>
+
+<p>An example <strong>settings</strong> worksheet is below:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>form_title</th>
+      <th>form_id</th>
+      <th>public_key</th>
+      <th>submission_url</th>
+      <th>default_language</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Example</td>
+      <td>ex_id</td>
+      <td>IIBIjANBg…</td>
+      <td>https://example.com/submission</td>
+      <td>English</td>
+      <td>2017021501</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The column headings in this example <strong>settings</strong> worksheet do the following:</p>
+
+<ul>
+  <li><strong>form_title</strong>: The title of the form that is shown to users. The form title is pulled from <strong>form_id</strong> if <strong>form_title</strong> is blank or missing.</li>
+  <li><strong>form_id</strong>: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if <strong>form_id</strong> is blank or missing.</li>
+  <li><strong>public_key</strong>: For encryption-enabled forms, this is where the public key is copied and pasted.</li>
+  <li><strong>submission_url</strong>: This url can be used to override the default server where finalized records are submitted to.</li>
+  <li><strong>default_language</strong>: In localized forms, this sets which language should be used as the default.</li>
+  <li><strong>version</strong>: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.</li>
+</ul>
+
+<h3 id="encrypted-forms">Encrypted forms</h3>
+
+<p>Encryption-enabled forms provide a mechanism to keep <em>finalized</em> records private at all times. This includes the time <em>after a record is marked as final</em> that it is stored on the device and server as well as during transport, even when http is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.</p>
+
+<p>To encrypt XLS forms, add the <strong>public_key</strong> column to the <strong>settings</strong> worksheet and paste the base64-encoded public RSA key as its value.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>form_id</th>
+      <th>public_key</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mysurvey</td>
+      <td>IIBIjANBgklawWEserewrwesgdreewrwe32serfserfewrwerewtwer23sgfrqjwerk3423432…</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>For more information on encrypted forms and how to generate the RSA keys have a look at the <a href="https://docs.opendatakit.org/encrypted-forms/">ODK documentation</a> and at <a href="https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing">this example form</a>.</p>
+
+<h3 id="specify-alternative-server">Specify alternative server</h3>
+
+<p>It is possible to specify an alternative server to send your submissions to in the <strong>submission_url</strong> column on the <strong>settings</strong> worksheet. Make sure to use the full URL that submissions should be sent to <em>including the path</em>.</p>
+
+<p>If this column is left out or kept empty, submissions will go the default destination for the provider you are using for your surveys.</p>
+
+<h3 id="specify-form-submission-name">Specify form submission name</h3>
+
+<p>In the <strong>settings</strong> worksheet, you can specify a unique name for each form submission using fields filled in by the user during the survey.  On the settings worksheet, add a column called <strong>instance_name</strong>.  Write in the expression that defines the unique form instance name using fields from the survey worksheet.</p>
+
+<p>Check out this <a href="https://docs.google.com/a/ona.io/spreadsheets/d/1Bapi05GYITV6D0THvs9RaOSEjqb1-FWIhfjSTXtvl8I/edit#gid=1932003628">example XLSForm</a> that calculates the instance name as the user's last and first names coupled with the form submission uuid.</p>
+
+<h3 id="multiple-webpage-forms">Multiple webpage forms</h3>
+
+<p>Web forms can be split into multiple pages using the style theme <strong>pages</strong>.</p>
+
+<p>An example of a form divided into multiple pages can be seen on the <a href="https://enketo.ona.io/x/#YjeC">Widgets on Pages</a> webform.</p>
+
+<p>In the <strong>settings</strong> tab, create a column called <strong>style</strong> and set it to <strong>pages</strong>, as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>form_title</th>
+      <th>form_id</th>
+      <th>style</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>example title</td>
+      <td>example_id</td>
+      <td>pages</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In your <strong>survey</strong> tab, group together the questions you would like to appear on each page and then set the appearance for the group to <strong>field-list</strong>. See the example below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>appearance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>type</td>
+      <td>name</td>
+      <td>label</td>
+      <td>appearance</td>
+    </tr>
+    <tr>
+      <td>begin group</td>
+      <td>group1</td>
+      <td> </td>
+      <td>field-list</td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Respondent's name</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Respondent's age</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>address</td>
+      <td>Respondent's address</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>See this <a href="http://blog.enketo.org/pages/">blog post</a> for more information on creating multi-page web forms.  The XLSForm source is <a href="https://docs.google.com/spreadsheets/d/1yZqG2Xt0I4duVxPqx-Sny0t86OiKtjHuBKXTRzCht6E/edit?usp=sharing.">here</a>.</p>
+
+<h3 id="grid-theme-forms">Grid theme forms</h3>
+
+<p>The <strong>theme-grid</strong> style allows your form to mimic the look of traditional paper surveys by compacting multiple questions into one row. This style is best used with larger screens (e.g., computers or tablets).  It also makes a nice print out!</p>
+
+<p>Please click on the link to see an example of a <a href="https://enketo.ona.io/x/#Yn4R">Grid theme webform</a>.</p>
+
+<p>To create a Grid form, in the <strong>settings</strong> tab, under the <strong>style</strong> column, write <strong>theme-grid</strong>, as follows:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>form_title</th>
+      <th>form_id</th>
+      <th>style</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>example title</td>
+      <td>example_id</td>
+      <td>theme-grid</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>In your <strong>survey</strong> tab, group together the questions you would like to appear in each section and then set the appearance for each field according to the desired width (the default width is 4). See the example below.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>appearance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>begin group</td>
+      <td>group1</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>name</td>
+      <td>Respondent's name</td>
+      <td>w3</td>
+    </tr>
+    <tr>
+      <td>integer</td>
+      <td>age</td>
+      <td>Respondent's age</td>
+      <td>w1</td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td>address</td>
+      <td>Respondent's address</td>
+      <td>w4</td>
+    </tr>
+    <tr>
+      <td>end group</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>See this <a href="http://blog.enketo.org/gorgeous-grid/">blog post</a> for more information on creating Grid forms. The Grid theme XLSForm example is <a href="https://docs.google.com/spreadsheets/d/1Z4gHZQTr5FibRK-Aj198WlNdMZghEBZlyWhmPZXjzJQ/edit?usp=sharing">here</a>.</p>
+
+<h2 id="styling-prompts">Styling prompts</h2>
+
+<p>Markdown support in XLSForm allows for increased emphasis through bold and italics, different sized headers, various fonts and colors, and clickable web links in ODK Collect 1.4.9 and Enketo.</p>
+
+<ul>
+  <li><em>emphasize</em> words by wrapping them inside <code class="highlighter-rouge">_</code> or <code class="highlighter-rouge">*</code></li>
+  <li><strong>strongly emphasize</strong> words by wrapping them inside <code class="highlighter-rouge">__</code> or <code class="highlighter-rouge">**</code></li>
+  <li>add a link by using <code class="highlighter-rouge">[name of link](url)</code></li>
+  <li>add various sized headers by prepending # (<big>biggest</big>) to ###### (<small>smallest</small>) to header text</li>
+  <li>style text for color or font with span tags (e.g., <code class="highlighter-rouge">&lt;span style="color:#f58a1f"&gt;</code><span style="color:#f58a1f">orange</span><code class="highlighter-rouge">&lt;/span&gt;</code>, <code class="highlighter-rouge">&lt;span style="color:red; font-family:cursive"&gt;</code><span style="color:red; font-family:cursive;">red and cursive</span><code class="highlighter-rouge">&lt;/span&gt;</code>)</li>
+  <li>add a line break where you want it with Ctrl-Enter or Ctrl-Alt-Enter (may be different key combination for some spreadsheet software)</li>
+  <li>add your favorite emojis 😍📋😍!</li>
+  <li>use superscript with the <code class="highlighter-rouge">&lt;sup&gt;</code> tag (e.g. <code class="highlighter-rouge">100 m&lt;sup&gt;2&lt;/sup&gt;</code> turns into 100 m<sup>2</sup>)</li>
+  <li>use subscript with the <code class="highlighter-rouge">&lt;sub&gt;</code> tag (e.g. <code class="highlighter-rouge">H&lt;sub&gt;2&lt;/sub&gt;O</code> turns into H<sub>2</sub>O)</li>
+  <li>use the <code class="highlighter-rouge">\</code> character before <code class="highlighter-rouge">#</code>, <code class="highlighter-rouge">*</code>, <code class="highlighter-rouge">_</code>, and <code class="highlighter-rouge">\</code> to prevent special styling effects to be triggered by these characters</li>
+</ul>
+
+<h2 id="advanced-use-and-extensibility">Advanced use and extensibility</h2>
+
+<p>It is possible to use XLSForm to create XForms with custom or experimental features. This is great for custom applications with a specific feature that is not suitable for the larger community.</p>
+
+<p>The <strong>survey</strong> sheet has support for 3 column prefixes (<strong>instance::</strong>, <strong>bind::</strong>, <strong>body::</strong>) that add attributes to the XForm output, either in the <em>primary instance</em>, <em>bind</em>, or <em>form control</em>. To learn more about XForms visit the <a href="https://opendatakit.github.io/xforms-spec/">ODK XForms Specification</a>. The example below adds a custom "hxl" attribute to the primary instance node of a question.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>instance::hxl</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>integer</td>
+      <td>population</td>
+      <td>How many people present?</td>
+      <td>#population</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p>The <strong>settings</strong> sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the <strong>namespaces</strong> column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with <a href="https://github.com/opendatakit/xforms-spec#specification-changes">your organisation's own namespace</a>. See example below that adds 2 additional namespaces and uses them to add custom attributes:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>title</th>
+      <th>namespaces</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>My Form</td>
+      <td>esri="http://esri.com/xforms" enk="http://enketo.org/xforms</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>settings</td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<p />
+
+<table>
+  <thead>
+    <tr>
+      <th>type</th>
+      <th>name</th>
+      <th>label</th>
+      <th>bind::esri:fieldLength</th>
+      <th>bind::enk:for</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>text</td>
+      <td>desc</td>
+      <td>Describe</td>
+      <td>50</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>desc_comment</td>
+      <td>Comments</td>
+      <td> </td>
+      <td>${a}</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>survey</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tfoot>
+</table>
+
+<h2 id="tools-that-support-xlsforms">Tools that support XLSForms</h2>
+<ul>
+  <li><a href="http://ona.io">Ona</a></li>
+  <li><a href="http://enketo.org">Enketo</a></li>
+  <li><a href="http://opendatakit.org">Open Data Kit (ODK)</a></li>
+  <li><a href="http://kobotoolbox.org">Kobo ToolBox</a></li>
+  <li><a href="http://commcarehq.org">CommCare</a></li>
+  <li><a href="http://www.surveycto.com/">SurveyCTO</a></li>
+  <li><a href="https://www.datawinners.com/en/home/">DataWinners</a></li>
+  <li><a href="http://www.securedatakit.com">Secure Data Kit (SDK)</a></li>
+  <li><a href="http://tattara.com/">Tattara</a></li>
+  <li><a href="https://survey123.arcgis.com/">Survey123 for ArcGIS</a></li>
+</ul>
+
+<h2 id="more-resources">More resources</h2>
+
+<p>The <a href="https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&amp;usp=sharing">XLSform standard document</a> can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:</p>
+
+<ul>
+  <li>Form guidelines: <a href="http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines">http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines</a></li>
+  <li>Form design tutorial: <a href="https://bitbucket.org/javarosa/javarosa/wiki/buildxforms">https://bitbucket.org/javarosa/javarosa/wiki/buildxforms</a></li>
+  <li>Sample forms: <a href="http://code.google.com/p/opendatakit/source/browse/?repo=forms">http://code.google.com/p/opendatakit/source/browse/?repo=forms</a></li>
+  <li><a href="http://formhub.org/formhub_u">Formhub University</a></li>
+  <li><a href="http://ona.io">Ona Form Gallery</a></li>
+  <li>XForms as supported by JavaRosa: <a href="https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat">https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat</a></li>
+</ul>
+
+<h2 id="about-this-site">About this site</h2>
+
+<p>XLSForm.org is a community-supported project aiming to create a common reference point for the XLSForm standard.</p>
+
+<p>If you want to contribute to or improve this documentation, please visit our <a href="https://github.com/XLSForm/xlsform.github.io">project's GitHub repo</a>.</p>
+
+<h2 id="history">History</h2>
+
+<p>The XLSForm was originally developed by Andrew Marder and Alex Dorey of the <a href="http://sel.columbia.edu">Sustainable Engineering Lab at Columbia University</a>.  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  <a href="https://github.com/XLSForm/pyxform">PyXForm</a>, the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.</p>
+
+:ET
