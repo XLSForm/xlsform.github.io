@@ -14,12 +14,12 @@ Column headers,,,,,,
 ,read_only,Whether a question response can be edited,✔,✔,,"Allowed values: yes, no, TRUE, FALSE, true(), false(); or a statement that evaluates as true or false"
 ,calculation,Only relevant for calculate questions: a mathematical expression that can be referenced elsewhere,✔,✔,,
 ,repeat_count,"Number of repeats for a repeat group",✔,✔,repeat-count,
-,media::image,An image to be shown with a question,✔,✔,,
-,media::audio,Audio to be included with a question,✔,✔,,
-,media::video,A video to be included with a question,✔,✔,,
-,media::image::language,,✔,✔,,::[language] is optional
-,media::audio::language,,✔,✔,,::[language] is optional
-,media::video::language,,✔,✔,,::[language] is optional
+,image,An image to be shown with a question,✔,✔,,
+,audio,Audio to be included with a question,✔,✔,,
+,video,A video to be included with a question,✔,✔,,
+,image::language,,✔,✔,media::image::language,::[language] is optional
+,audio::language,,✔,✔,media::audio::language,::[language] is optional
+,video::language,,✔,✔,media::video::language,::[language] is optional
 ,appearance,"Defines the way questions are displayed (widgets), see below",✔,✔,,
 ,instance::attribute,include custom XML content for the data instance,depends,depends,,
 ,bind::attribute,include custom XML content for the bind attribute,depends,depends,,
@@ -76,15 +76,15 @@ select_one / select_multiple,,,,,,
 ,minimal,Spinner widget - click button to provide a response,✔,✔,,
 ,label,Table of answers,✔,✔,,
 ,list-nolabel,"Goes with label, no label on answer just radios",✔,✔,,
-,autocomplete,Autocomplete widget,✔,✔,search,
-,likert,Shows question as likert widget,✔,✕,,
+,autocomplete,Autocomplete widget,✔,✔,search,Not supported on select_multiple in Enketo
+,likert,Shows question as likert widget,✔,✔,,
 ,horizontal,Displays choices horizontally and automatically creates neat columns for multiple rows,✔,✔,,
 ,compact,Displays choices horizontally as compact as possible,✔,✔,horizontal-compact,
 ,compact-n,"Grid widget with max n columns where n is a number from 1 to 10, e.g. use compact-2 or compact-3",✔,✔,,
-,quick,Auto advance to next question upon selection,✔,✕,,
-,quickcompact,Displays choices horizontally as compact as possible. Auto advance to next question upon selection,✔,✕,quick compact,
+,quick,Auto advance to next question upon selection,✕,✔,,
+,quickcompact,Displays choices horizontally as compact as possible. Auto advance to next question upon selection,✕,✔,quick compact,
 ,image-map,"When used in conjunction with an SVG media label, the select question will be presented as a clickable image.",✔,✔,,The choices with a value that have a matching id attribute value on a <path> or <g> element in the SVG image are selectable in the presented image
-text,numbers,Show the number keyboard on the device,✔,✔,In Enketo some browsers may not support this,
+text,numbers,Show the number keyboard on the device,✔,✔,,Enketo: not all browsers provide support
 ,multiline,Creates a larger text entry field,✔,✕,,
 ,url,Shows button to launch a website to stored URL,✔,✔,,
 ,printer,Interface with an external (Zebra barcode) printer,✕,✔,,

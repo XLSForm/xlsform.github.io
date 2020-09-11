@@ -8,9 +8,3 @@ default_language,"If form uses multiple languages, this one sets which to use by
 style,Separate questions groups into pages (on Enketo). Switch to a different theme.,✔,✕,,"Allowed values: pages, theme-grid, theme-formhub"
 version,,✔,✔,,
 instance_name,Allows user to create a dynamic naming convention for each submitted instance,✔,✔,,"for example, concat(${lname}, ‘-‘, ${fname}, ‘-‘, uuid())"
-sms_keyword,,✕,?,,
-sms_separator,,✕,?,,
-sms_allow_medias,,✕,?,,
-sms_date_format,,✕,?,,
-sms_datetime_format,,✕,?,,
-sms_response,,✕,?,,
