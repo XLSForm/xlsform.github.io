@@ -287,9 +287,7 @@ XLSForm has a number of data type options available for meta data collection:
 | start         | Start date and time of the survey.              |
 | end           | End date and time of the survey.                |
 | today         | Day of the survey.                              |
-| deviceid      | IMEI (International Mobile Equipment Identity)  |
-| subscriberid  | IMSI (International Mobile Subscriber Identity) |
-| simserial     | SIM serial number.                              |
+| deviceid      | Unique client identifier. Can be user-reset.    |
 | phonenumber   | Phone number (if available).                    |
 | username      | Username configured (if available).             |
 | email         | Email address configured (if available).        |
@@ -305,8 +303,6 @@ For example, if you wanted to collect all of these types of metadata, put the fo
 | end                       | end          |       |                       |
 | today                     | today        |       |                       |
 | deviceid                  | deviceid     |       |                       |
-| subscriberid              | subscriberid |       |                       |
-| simserial                 | simserial    |       |                       |
 | phonenumber               | phonenumber  |       |                       |
 | username                  | username     |       |                       |
 | email                     | email        |       |                       |
