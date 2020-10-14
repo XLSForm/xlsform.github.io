@@ -66,7 +66,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
 | select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
-| note                      | Display a note on the screen, takes no input.                                                |
+| note                      | Display a note on the screen, takes no input. Shorthand for type=text with readonly=true.    |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
 | geotrace                  | Record a [line of two or more GPS coordinates](#gps).                                                |
 | geoshape                  | Record a [polygon of multiple GPS coordinates](#gps); the last point is the same as the first point. |
@@ -78,7 +78,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
-| calculate                 | Perform a calculation; see the **Calculation** section below.                                |
+| calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                    |
 | acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
 | hidden                    | A field with no associated UI element which can be used to store a constant                  |
 | xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                          |
@@ -287,9 +287,7 @@ XLSForm has a number of data type options available for meta data collection:
 | start         | Start date and time of the survey.              |
 | end           | End date and time of the survey.                |
 | today         | Day of the survey.                              |
-| deviceid      | IMEI (International Mobile Equipment Identity)  |
-| subscriberid  | IMSI (International Mobile Subscriber Identity) |
-| simserial     | SIM serial number.                              |
+| deviceid      | Unique client identifier. Can be user-reset.    |
 | phonenumber   | Phone number (if available).                    |
 | username      | Username configured (if available).             |
 | email         | Email address configured (if available).        |
@@ -305,8 +303,6 @@ For example, if you wanted to collect all of these types of metadata, put the fo
 | end                       | end          |       |                       |
 | today                     | today        |       |                       |
 | deviceid                  | deviceid     |       |                       |
-| subscriberid              | subscriberid |       |                       |
-| simserial                 | simserial    |       |                       |
 | phonenumber               | phonenumber  |       |                       |
 | username                  | username     |       |                       |
 | email                     | email        |       |                       |
@@ -468,18 +464,49 @@ Note that you must include **other** as an answer choice in the **choices** work
 
 ## Calculation
 
-Your survey can perform calculations using the values of preceding questions. In most cases this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
+Your survey can perform calculations using the values of preceding questions. In most cases using a **calculate** type question is appropriate. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
-
- | type      | name     | label                                 | calculation                  |
- | --------- | -------- | ------------------------------------- | ---------------------------- |
- | decimal   | amount   | What was the price of the meal?       |                              |
- | calculate | tip      |                                       | ${amount} * 0.18             |
- | note      | display  | 18% tip for your meal is: ${tip}      |                              |
- | ========  | ======== | ===================================== | ============================ |
- | survey    |          |                                       |                              |
+| type      | name     | label                                 | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| decimal   | amount   | What was the price of the meal?       |                              |
+| calculate | tip      |                                       | ${amount} * 0.18             |
+| note      | display  | 18% tip for your meal is: ${tip}      |                              |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |                                       |                              |
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
+
+The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. **If no label and no hint is included, the calculation will be hidden.** See example below which is the equivalent of the previous form:
+
+| type      | name     | label        | hint                   | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| decimal   | amount   | What was the price of the meal?  |    |                              |
+| text      | tip      |              |                        | ${amount} * 0.18             |
+| note      | display  | 18% tip for your meal is: ${tip} |    |                              |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |              |                        |                              |
+
+And this is an example when a non-text type is needed because of data analysis requirements:
+
+| type      | name     | label        | hint                   | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| date      | day      |              |                        | today()                      |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |              |                        |                              |
+
+**Note that using non-text calculation types has no effect on using the calculation result within the form itself.** This is a common misunderstanding.
+
+If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions to avoid re-calculating (erasing) a user-entered value. See example below:
+
+| type      | name     | label                              | readonly   | calculation        |
+| --------- | -------- | -----------------------------------| ---------- | ------------------ |
+| decimal   | amount   | What was the price of the meal?    |            |                    |
+| note      | display  | 18% tip for your meal is:          |            | ${amount} * 0.18   |
+| date      | today    | Today's date is:                   |  true      | today()            |
+| ========  | ======== | ================================== | ========== | ================== |
+| survey    |          |                                    |            |                    |
+
+Note the difference with the first form in this section is how the calculated tip value is displayed. In the first example it was shown in the label and in the last example it is shown inside a readonly input field.
 
 ## Trigger
 
