@@ -75,6 +75,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | dateTime                  | Accepts a date and a time input.                                                             |
 | image                     | Take a picture or upload an [image file](#image).                                            |
 | audio                     | Take an audio recording or upload an audio file.                                             |
+| background-audio          | Audio is recorded in the background while filling the form.                                  |
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
@@ -276,6 +277,17 @@ To upload an image file the **image** question type can be used. To ensure the i
 | image | img  | Upload an image | max-pixels=1000 |
 | ===   | ==== | =============== | =============== |
 | survey|      |                 |                 |
+
+
+### Audio recording quality
+
+Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low` and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
+
+| type              | name          | parameters     |
+| ----------------- | ------------- | -------------  |
+| audio             | animal_sound  | quality=normal |
+| ================= | ===========   | ============   |
+| survey            |               |                |
 
 
 ### Metadata
