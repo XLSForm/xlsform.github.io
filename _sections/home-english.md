@@ -965,15 +965,15 @@ An XLSForm with all of the appearance attributes in this table is available [her
 
 ## Settings worksheet
 
-The **settings** worksheet is optional, but it is highly recommended to specify **form_title**, **form_id** and **version** at a minimum. Other settings allow you to further customize your form, including encrypting your records or setting an overall style theme to your form, among others.
+The **settings** worksheet is optional, but it is highly recommended to specify **form_title**, **form_id** and **version** at a minimum. Other settings allow you to further customize your form, including setting an overall style theme or encrypting your records.
 
 An example **settings** worksheet is below:
 
-| form_title | form_id | version      | instance_name                          |default_language   | public_key     | submission_url                  |
-| ---------- | ------- | ------------ | -------------------------------------- | ----------------- | -------------- | ------------------------------- |
-| Example    | ex_id   | 2017021501   | concat(${firstname}, ' ', ${lastname}) | English (en)      | IIBIjANBg...   | https://example.com/submission  |
-| ========   | ======  | ============ | =======================================| ================= | ============== | ================                |
-| settings   |         |              |                                        |                   |                |                                 |
+| form_title | form_id | version      | instance_name                          |default_language   | public_key     |
+| ---------- | ------- | ------------ | -------------------------------------- | ----------------- | -------------- |
+| Example    | ex_id   | 2017021501   | concat(${firstname}, ' ', ${lastname}) | English (en)      | IIBIjANBg...   |
+| ========   | ======  | ============ | =======================================| ================= | ============== |
+| settings   |         |              |                                        |                   |                |
 
 The settings column headings available are:
 
