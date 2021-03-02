@@ -75,6 +75,7 @@ XLSForm supports a number of question types. These are just some of the options 
 | dateTime                  | Accepts a date and a time input.                                                             |
 | image                     | Take a picture or upload an [image file](#image).                                            |
 | audio                     | Take an audio recording or upload an audio file.                                             |
+| background-audio          | Audio is recorded in the background while filling the form.                                  |
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
@@ -276,6 +277,17 @@ To upload an image file the **image** question type can be used. To ensure the i
 | image | img  | Upload an image | max-pixels=1000 |
 | ===   | ==== | =============== | =============== |
 | survey|      |                 |                 |
+
+
+### Audio recording quality
+
+Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low` and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
+
+| type              | name          | parameters     |
+| ----------------- | ------------- | -------------  |
+| audio             | animal_sound  | quality=normal |
+| ================= | ===========   | ============   |
+| survey            |               |                |
 
 
 ### Metadata
@@ -953,24 +965,27 @@ An XLSForm with all of the appearance attributes in this table is available [her
 
 ## Settings worksheet
 
-The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your records or setting an overall style theme to your form, among others.
+The **settings** worksheet is optional, but it is highly recommended to specify **form_title**, **form_id** and **version** at a minimum. Other settings allow you to further customize your form, including setting an overall style theme or encrypting your records.
 
 An example **settings** worksheet is below:
 
-| form_title | form_id | public_key     | submission_url                                       | default_language  | version      |
-| ---------- | ------- | -------------- | ---------------------------------------------------- | ----------------- | ------------ |
-| Example    | ex_id   | IIBIjANBg...   | https://example.com/submission                       | English (en)      | 2017021501   |
-| ========   | ======  | ============== | ================                                     | ================= | ============ |
-| settings   |         |                |                                                      |                   |              |
+| form_title | form_id | version      | instance_name                          |default_language   | public_key     |
+| ---------- | ------- | ------------ | -------------------------------------- | ----------------- | -------------- |
+| Example    | ex_id   | 2017021501   | concat(${firstname}, ' ', ${lastname}) | English (en)      | IIBIjANBg...   |
+| ========   | ======  | ============ | =======================================| ================= | ============== |
+| settings   |         |              |                                        |                   |                |
 
-The column headings in this example **settings** worksheet do the following:
+The settings column headings available are:
 
 * **form_title**: The title of the form that is shown to users. The form title is pulled from **form_id** if **form_title** is blank or missing.
 * **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
-* **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted.
-* **submission_url**: This url can be used to override the default server where finalized records are submitted to.
-* **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
 * **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
+* **instance_name**: Expression using form fields to identify for each form submission. [Learn more](#specify-form-submission-name).
+* **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
+* **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted. [Learn more](#encrypted-forms).
+* **submission_url**: This url can be used to override the default server where finalized records are submitted to. [Learn more](#specify-alternative-server).
+* **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
+* **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
 
 ### Encrypted forms
 
@@ -1000,7 +1015,7 @@ Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d
 
 ### Specify XForms root node name
 
-In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
+In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
 
 ### Multiple webpage forms
 
