@@ -5,6 +5,7 @@ Column headers,,,,,,
 ,name,"Unique ID (name) of the question, is saved to XML",✔,✔,,
 ,label::[language],"Question or group label if using only one survey language, is displayed on screen",✔,✔,,::[language] is optional
 ,hint::[language],Hint for a question if using only one language,✔,✔,,::[language] is optional
+,guidance_hint::[language],"Special kind of hint that is normally not shown in the form, only in special views.",✔,✔,,::[language] is optional
 ,constraint,Define the allowed values to a response,✔,✔,,
 ,constraint_message::[language],The message a user is shown if the response was not valid,✔,✔,constraint-msg,::[language] is optional
 ,required,Whether a question has to be answered in order for the form to continue/be saved,✔,✔,bind::required,"Allowed values: yes, no, TRUE, FALSE, true(), false(); or a statement that evaluates as true or false"
