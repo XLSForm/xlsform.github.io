@@ -224,6 +224,16 @@ The files require a specific format. A CSV file requires a `name` and `label` co
 
 Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.
 
+If the CSV or XML files use different names for the choice `name` and `label`, add a column to the survey sheet named `parameters`, and specify the custom names with the `value` and `label` parameters. See usage examples below:
+
+| type                                    | name | label                             | parameters      |
+| --------------------------------------- | ---- | --------------------------------- | --------------- |
+| select_multiple_from_file country.csv   | liv  | In which countries did you live?  | value=ccode     |
+| select_one_from_file countries.xml      | cou  | In which country do you live now? | label=cname     |
+| select_one_from_file households.csv     | hh   | Select household number           | value=housenum, label=housename |
+| ======================================= | ==== | ==================================|=================|
+| survey                                  |      |                                   |                 |
+
 Note that this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
