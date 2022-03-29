@@ -397,8 +397,8 @@ There is a special kind of hint that is normally not shown in the form. It is on
 
 Formulas are used in the [constraint](#constraints), [relevant](#relevant), [calculation](#calculation), and [trigger](#trigger) columns and optionally also in the [default](#default), and [required](#required) columns. Formulas allow you to add additional functionality and data quality measures to your forms.  
 
-Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.opendatakit.org/form-operators-functions/). For the
-technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://opendatakit.github.io/xforms-spec/#xpath-functions).
+Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.getodk.org/form-operators-functions/). For the
+technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://getodk.github.io/xforms-spec/#xpath-functions).
 
 ## Constraints
 
