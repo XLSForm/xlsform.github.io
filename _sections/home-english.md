@@ -47,7 +47,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 | =================== | ========    | ==================== |
 | choices             |             |                      |
 
-The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
+The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Rows or columns may be left blank to aid readability, but data after 20 adjacent blank columns or rows on a sheet will not be processed. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
 
 One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
 
