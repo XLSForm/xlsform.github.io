@@ -1000,7 +1000,9 @@ The **appearance** column allows you to change the appearance of questions in yo
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
 | signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
 | draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.                                                                                                                                                    |
-
+| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many locations on a map 
+                                                                                                                             |
+                                                                                                                             
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
 ## Settings worksheet
