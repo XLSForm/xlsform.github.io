@@ -222,7 +222,7 @@ The options in a multiple choice question can also be taken from a separate file
 | select_one_from_file households.csv     | hh   | Select household number        |                 |
 | ======================================= | ==== | ===============================|=================|
 | survey                                  |      |                                |                 |
-Caption: CSV and XLM usage
+Caption: CSV and XML usage
 
 | type                                          | name | label                               | appearance   |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ |
@@ -999,7 +999,8 @@ The **appearance** column allows you to change the appearance of questions in yo
 | list-nolabel         | select_one, select_multiple | Used in conjunction with **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
 | signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
-| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.                                                                                                                                                    |
+| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
+| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many locations on a map |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
