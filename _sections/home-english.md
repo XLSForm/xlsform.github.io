@@ -226,7 +226,7 @@ Caption: CSV and XML usage
 
 | type                                          | name | label                               | appearance   |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ |
-| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   maps       |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       |
 | ============================================= | ==== | ====================================|==============|
 | survey                                        |      |                                     |              |
 Caption: GeoJSON usage
@@ -259,12 +259,12 @@ Caption: CSV and XML usage
 
 | type                                          | name | label                               | appearance   | parameters               |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
-| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   maps       | value = id, label = name |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
 | ============================================= | ==== | ====================================|==============| ======================== |
 | survey                                        |      |                                     |              |                          |                     
 Caption: GeoJSON usage
 
-Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If the form is too slow for CSV or XML files, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
+Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
@@ -1000,7 +1000,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
 | signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
 | draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
-| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many locations on a map |
+| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
