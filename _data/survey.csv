@@ -45,6 +45,7 @@ Regular questions,,,,,,
 ,select_one_from_file [file],User can choose one of several choices from an external file,✔,✔,,"Optional settings in parameters column: 'value' (string, default = 'name') for the choice value column in the external file, 'label' (string, default = 'label') for the choice label column in the external file, 'randomize' (bool, default = 'false') to activate choice randomization, and 'seed' (number, default = none) to set the randomization seed value."
 ,select_multiple_from_file [file],User can choose one or more of several choices from an external file,✔,✔,,"Optional settings in parameters column: 'value' (string, default = 'name') for the choice value column in the external file, 'label' (string, default = 'label') for the choice label column in the external file, 'randomize' (bool, default = 'false') to activate choice randomization, and 'seed' (number, default = none) to set the randomization seed value."
 ,select_one_external,,✕,✔,,
+,rank [choices],User can rank a list of choices,✔,✔,,
 ,text,User can enter a text response,✔,✔,,
 ,integer,User can enter an integer,✔,✔,,
 ,decimal,User can enter a decimal number,✔,✔,,
