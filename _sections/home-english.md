@@ -7,10 +7,10 @@ lang: en
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
 
-The XLSForm is then converted to an [ODK XForm](https://getodk.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms. 
+The XLSForm is then converted to an [ODK XForm](https://getodk.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality, like skip logic, in a consistent way across a number of web and mobile data collection platforms. 
 
 ## Basic format
-Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below. 
+Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet, called **settings**, can add additional specifications to your form and is described [below](https://xlsform.org/en/#settings-worksheet). 
 
 ### The survey worksheet
 This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features described below that you can add to the form to improve the user experience.
@@ -18,12 +18,14 @@ This worksheet gives your form its overall structure and contains most of the co
 ### The choices worksheet
 This worksheet is used to specify the answer choices for multiple choice questions. Each row represents an answer choice. Answer choices with the same **list name** are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
+### Setting up your worksheets
+
 Both of these worksheets have a set of mandatory columns that must be present for the form to work. Additionally, each worksheet has a set of optional columns that allow further control over the behavior of each entry in the form, but are not essential to have. Every entry must have values for each of the mandatory columns, but the optional columns may be left blank.
 
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
-  * The **type** column specifies the type of entry you are adding.
+  * The **type** column specifies the type of entry you are expecting for the question.
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name. Names have to start with a letter or an underscore. Names can only contain letters, digits, hyphens, underscores, and periods. Names are case-sensitive.
-  * The **label** column contains the actual text you see in the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
+  * The **label** column contains the actual text you see for the question in the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
 
 | type                | name     | label                |
 | ------------------- | -------- | -------------------- |
@@ -47,10 +49,9 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 | =================== | ========    | ==================== |
 | choices             |             |                      |
 
-The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Rows or columns may be left blank to aid readability, but data after 20 adjacent blank columns or rows on a sheet will not be processed. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
+The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Rows or columns may be left blank to aid readability, but data after 20 adjacent blank columns or rows on a sheet will not be processed. All .xlsx file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
 
 One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
-
 
 ## Question types
 XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
