@@ -990,7 +990,7 @@ The settings column headings available are:
 
 * **form_title**: The title of the form that is shown to users. The form title is pulled from **form_id** if **form_title** is blank or missing.
 * **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
-* **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
+* **version**: String that represents this version. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
 * **instance_name**: Expression using form fields to identify for each form submission. [Learn more](#specify-form-submission-name).
 * **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
 * **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted. [Learn more](#encrypted-forms).
