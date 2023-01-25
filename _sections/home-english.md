@@ -163,7 +163,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 
 The `name` column of the choices sheet defines the values that will be saved when each choice is selected during data collection. Choice names for **select_multiple** must not contain spaces because spaces are used as a separator when an answer with multiple selected choices is saved. Choice names for **select_one** questions may contain spaces. However, we recommend avoiding them to make analysis easier. Additionally, this makes it possible to convert the question to a **select_multiple** in a future form version.
 
-In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects) and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
 
 | allow_choice_duplicates |
 | ----------------------  |
@@ -173,7 +173,7 @@ In general, choice names should be unique within a single choice list. If two ch
 
 #### Specify other
 
-For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
+For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 
 | type                                    | name             | label                                       |
@@ -198,9 +198,22 @@ Click on the link to look at the complete [pizza_questionnaire](https://docs.goo
 **Caveat**  
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large scale projects.
 
+#### Location widget
+A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
+
+| list name      | name       | label                     | geometry                  |
+| -------------- | ---------- | ------------------------- | ------------------------- | 
+| list name      | name       | label                     | geometry                  |
+| site           | shofco     | Shofco                    | 36.7965483 -1.3182517 0 0 |
+| site           | gemkam     | Gemkam Medical Clinic     | 36.7967088 -1.3170903 0 0 |
+| site           | silanga    | Silanga Pharmacy          | 36.7955008 -1.3167834 0 0 |
+| site           | undugu     | Undugu Medical Clinic     | 36.7990986 -1.3179328 0 0 |
+| ============   | ========== | ========================= | ========================= |
+| choices        |            |                           |                           |
+
 ### Multiple choice from file
 
-The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Two types of files are supported: CSV and XML files. See usage examples below:
+The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
@@ -210,6 +223,14 @@ The options in a multiple choice question can also be taken from a separate file
 | select_one_from_file households.csv     | hh   | Select household number        |                 |
 | ======================================= | ==== | ===============================|=================|
 | survey                                  |      |                                |                 |
+Caption: CSV and XML usage
+
+| type                                          | name | label                               | appearance   |
+| --------------------------------------------- | ---- | ----------------------------------- | ------------ |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       |
+| ============================================= | ==== | ====================================|==============|
+| survey                                        |      |                                     |              |
+Caption: GeoJSON usage
 
 The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
 
@@ -222,10 +243,11 @@ The files require a specific format. A CSV file requires a `name` and `label` co
   </item>
 </root>
 ```
+A GeoJSON requires each feature, or point, to have an id and title property, or an attribute of the point. The GeoJSON must be defined by a single top-level FeatureCollection, and it currently only works for point geometry, as noted in detail on the [ODK documentation site](https://docs.getodk.org/form-datasets/#selects-from-geojson).
 
-Both CSV and XML files may have additional columns and XML nodes as long as the above-mentioned basic requirements are met.
+CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
 
-If the CSV or XML files use different names for the choice `name` and `label`, add a column to the survey sheet named `parameters`, and specify the custom names with the `value` and `label` parameters. See usage examples below:
+If the CSV, XML, or GeoJSON files use different names for the choice `name` and `label`, add a column to the survey sheet named `parameters`, and specify the custom names with the `value` and `label` parameters. See usage examples below:
 
 | type                                    | name | label                             | parameters      |
 | --------------------------------------- | ---- | --------------------------------- | --------------- |
@@ -234,8 +256,16 @@ If the CSV or XML files use different names for the choice `name` and `label`, a
 | select_one_from_file households.csv     | hh   | Select household number           | value=housenum, label=housename |
 | ======================================= | ==== | ==================================|=================|
 | survey                                  |      |                                   |                 |
+Caption: CSV and XML usage
 
-Note that this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
+| type                                          | name | label                               | appearance   | parameters               |
+| --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
+| ============================================= | ==== | ====================================|==============| ======================== |
+| survey                                        |      |                                     |              |                          |                     
+Caption: GeoJSON usage
+
+Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
@@ -970,7 +1000,8 @@ The **appearance** column allows you to change the appearance of questions in yo
 | list-nolabel         | select_one, select_multiple | Used in conjunction with **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
 | signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
-| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.                                                                                                                                                    |
+| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
+| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
