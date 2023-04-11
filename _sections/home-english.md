@@ -223,14 +223,14 @@ The options in a multiple choice question can also be taken from a separate file
 | select_one_from_file households.csv     | hh   | Select household number        |                 |
 | ======================================= | ==== | ===============================|=================|
 | survey                                  |      |                                |                 |
-Caption: CSV and XML usage
+
+<p/>
 
 | type                                          | name | label                               | appearance   |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ |
 | select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       |
 | ============================================= | ==== | ====================================|==============|
 | survey                                        |      |                                     |              |
-Caption: GeoJSON usage
 
 The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
 
@@ -256,14 +256,14 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 | select_one_from_file households.csv     | hh   | Select household number           | value=housenum, label=housename |
 | ======================================= | ==== | ==================================|=================|
 | survey                                  |      |                                   |                 |
-Caption: CSV and XML usage
+
+<p/>
 
 | type                                          | name | label                               | appearance   | parameters               |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
 | select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
 | ============================================= | ==== | ====================================|==============| ======================== |
 | survey                                        |      |                                     |              |                          |                     
-Caption: GeoJSON usage
 
 Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
