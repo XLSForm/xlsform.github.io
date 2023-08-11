@@ -6,11 +6,10 @@ lang: en
 ## What is an XLSForm?
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human-readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
-
-The XLSForm is then converted to an [ODK XForm](https://opendatakit.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality like skip logic in a consistent way across a number of web and mobile data collection platforms.
+The XLSForm is then converted to an [ODK XForm](https://getodk.github.io/xforms-spec/), a popular open form standard, that allows you to author a form with complex functionality, like skip logic, in a consistent way across a number of web and mobile data collection platforms. 
 
 ## Basic format
-Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet called **settings** can add additional specifications to your form and is described below.
+Each Excel workbook usually has two worksheets: **survey** and **choices**. A third optional worksheet, called **settings**, can add additional specifications to your form and is described [below](https://xlsform.org/en/#settings-worksheet). 
 
 ### The survey worksheet
 This worksheet gives your form its overall structure and contains most of the content of the form. It contains the full list of questions and information about how they should appear in the form. Each row usually represents one question; however, there are certain other features described below that you can add to the form to improve the user experience.
@@ -18,12 +17,14 @@ This worksheet gives your form its overall structure and contains most of the co
 ### The choices worksheet
 This worksheet is used to specify the answer choices for multiple-choice questions. Each row represents an answer choice. Answer choices with the same **list name** are considered part of a related set of choices and will appear together for a question. This also allows a set of choices to be reused for multiple questions (for example, yes/no questions).
 
+### Setting up your worksheets
+
 Both of these worksheets have a set of mandatory columns that must be present for the form to work. Additionally, each worksheet has a set of optional columns that allow further control over the behavior of each entry in the form, but are not essential to have. Every entry must have values for each of the mandatory columns, but the optional columns may be left blank.
 
 * The **survey** worksheet has 3 mandatory columns: **type**, **name**, and **label**.
-  * The **type** column specifies the type of entry you are adding.
+  * The **type** column specifies the type of entry you are expecting for the question.
   * The **name** column specifies the unique variable name for that entry. No two entries can have the same name. Names have to start with a letter or an underscore. Names can only contain letters, digits, hyphens, underscores, and periods. Names are case-sensitive.
-  * The **label** column contains the actual text you see in the form. Alternatively, <a href="#language">label translation columns</a> can be used.
+  * The **label** column contains the actual text you see for the question in the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
 
 | type                | name     | label                |
 | ------------------- | -------- | -------------------- |
@@ -36,7 +37,7 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 * The **choices** worksheet has 3 mandatory columns as well: **list name**, **name**, and **label**.
   * The **list name** column lets you group together a set of related answer choices, i.e., answer choices that should appear together under a question.
   * The **name** column specifies the unique variable name for that answer choice.
-  * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, <a href="#language">label translation columns</a> can be used.
+  * The **label** column shows the answer choice exactly as you want it to appear on the form. Alternatively, [label translation columns](#multiple-language-support) can be used.
 
 | list_name           | name        | label                |
 | ------------------- | ----------- | -------------------- |
@@ -47,10 +48,9 @@ Both of these worksheets have a set of mandatory columns that must be present fo
 | =================== | ========    | ==================== |
 | choices             |             |                      |
 
-The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Any number of rows may be left blank. All .xls file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
+The columns you add to your Excel workbook, whether they are mandatory or optional, may appear in any order. Optional columns may be left out completely. Rows or columns may be left blank to aid readability, but data after 20 adjacent blank columns or rows on a sheet will not be processed. All .xlsx file formatting is ignored, so you can use dividing lines, shading, and other font formatting to make the form more readable.
 
 One thing to keep in mind when authoring forms in Excel is that the syntax you use must be precise. For example, if you write **Choices** or **choice** instead of **choices**, the form won't work.
-
 
 ## Question types
 XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
@@ -63,27 +63,29 @@ XLSForm supports a number of question types. These are just some of the options 
 | text                      | Free text response.                                                                          |
 | select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
 | select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
+| select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
+| select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
 | rank [options]            | [Rank](#rank) question; order a list.                                                        |
-| note                      | Display a note on the screen, takes no input.                                                |
+| note                      | Display a note on the screen, takes no input. Shorthand for type=text with readonly=true.    |
 | geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
-| geotrace                  | Record a line of two or more GPS coordinates.                                                |
-| geoshape                  | Record a polygon of multiple GPS coordinates; the last point is the same as the first point. |
+| geotrace                  | Record a [line of two or more GPS coordinates](#gps).                                                |
+| geoshape                  | Record a [polygon of multiple GPS coordinates](#gps); the last point is the same as the first point. |
 | date                      | Date input.                                                                                  |
 | time                      | Time input.                                                                                  |
 | dateTime                  | Accepts a date and a time input.                                                             |
 | image                     | Take a picture or upload an [image file](#image).                                            |
 | audio                     | Take an audio recording or upload an audio file.                                             |
+| background-audio          | Audio is recorded in the background while filling the form.                                  |
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
 | barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
-| calculate                 | Perform a calculation; see the **Calculation** section below.                                |
-| acknowledge               | Acknowledge prompt that sets the value to "OK" if selected.                                      |
-| hidden                    | A field with no associated UI element                                                        |
-| xml-external              | Adds a reference to an [external XML data](#xml-external) file                               |
+| calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                    |
+| acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
+| hidden                    | A field with no associated UI element which can be used to store a constant                  |
+| xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                          |
 
 ### GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
-
 
 | type       | name         | label                                        |
 | ---------- | ------------ | -------------------------------------------- |
@@ -91,6 +93,15 @@ For example, to collect the name and GPS coordinates of a store, you would write
 | geopoint   | store_gps    | Collect the GPS coordinates of this store.   |
 | ========== | ============ | ============================================ |
 | survey     |              |                                              |
+
+To collect a line or shape of GPS coordinates, you can use one of the following:
+
+| type       | name         | label   | hint                                                                           |
+| ---------- | ------------ | ---------------------------------------------------------------------------------------  |
+| geotrace   | pipe         | Pipeline| Please walk along the pipeline and record the coordinates of each corner point |
+| geoshape   | border       | Border  | Please walk along the border and record the coordinates of each corner point   |
+| ========== | ============ | ======================================================================================== |
+| survey     |              |         |                                                                                |
 
 See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
 
@@ -105,6 +116,7 @@ When recording GPS coordinates in ODK Collect, ODK Collect automatically collect
 | survey     |              |                                             |                           |
 
 See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing) form for an example that uses this attribute.
+
 
 ### Multiple choice
 
@@ -146,9 +158,21 @@ We can also add multiple choice questions that allow multiple answers to be sele
 | ============   | ============= | ========================= |
 | choices        |               |                           |
 
-### Specify other
+#### Choice names
 
-For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
+The `name` column of the choices sheet defines the values that will be saved when each choice is selected during data collection. Choice names for **select_multiple** must not contain spaces because spaces are used as a separator when an answer with multiple selected choices is saved. Choice names for **select_one** questions may contain spaces. However, we recommend avoiding them to make analysis easier. Additionally, this makes it possible to convert the question to a **select_multiple** in a future form version.
+
+In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+
+| allow_choice_duplicates |
+| ----------------------  |
+| yes                     |
+| ===========             |
+| settings                |
+
+#### Specify other
+
+For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 
 | type                                    | name             | label                                       |
@@ -172,6 +196,75 @@ Click on the link to look at the complete [pizza_questionnaire](https://docs.goo
 
 **Caveat**
 When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large-scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large-scale projects.
+
+#### Location widget
+A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
+
+| list name      | name       | label                     | geometry                  |
+| -------------- | ---------- | ------------------------- | ------------------------- | 
+| list name      | name       | label                     | geometry                  |
+| site           | shofco     | Shofco                    | 36.7965483 -1.3182517 0 0 |
+| site           | gemkam     | Gemkam Medical Clinic     | 36.7967088 -1.3170903 0 0 |
+| site           | silanga    | Silanga Pharmacy          | 36.7955008 -1.3167834 0 0 |
+| site           | undugu     | Undugu Medical Clinic     | 36.7990986 -1.3179328 0 0 |
+| ============   | ========== | ========================= | ========================= |
+| choices        |            |                           |                           |
+
+### Multiple choice from file
+
+The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
+
+| type                                    | name | label                          | choice_filter   |
+| --------------------------------------- | ---- | ------------------------------ | --------------- |
+| select_multiple_from_file country.csv   | liv  | In which countries did you live?  |                 |
+| select_one_from_file countries.xml      | cou  | In which country do you live now? |                 |
+| select_one_from_file countries.xml      | cit  | What is the closest city?      | name=${cou}     |
+| select_one_from_file households.csv     | hh   | Select household number        |                 |
+| ======================================= | ==== | ===============================|=================|
+| survey                                  |      |                                |                 |
+
+<p/>
+
+| type                                          | name | label                               | appearance   |
+| --------------------------------------------- | ---- | ----------------------------------- | ------------ |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       |
+| ============================================= | ==== | ====================================|==============|
+| survey                                        |      |                                     |              |
+
+The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
+
+```
+<root>
+  <item>
+    <name/>
+    <label/>
+    ...
+  </item>
+</root>
+```
+A GeoJSON requires each feature, or point, to have an id and title property, or an attribute of the point. The GeoJSON must be defined by a single top-level FeatureCollection, and it currently only works for point geometry, as noted in detail on the [ODK documentation site](https://docs.getodk.org/form-datasets/#selects-from-geojson).
+
+CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
+
+If the CSV, XML, or GeoJSON files use different names for the choice `name` and `label`, add a column to the survey sheet named `parameters`, and specify the custom names with the `value` and `label` parameters. See usage examples below:
+
+| type                                    | name | label                             | parameters      |
+| --------------------------------------- | ---- | --------------------------------- | --------------- |
+| select_multiple_from_file country.csv   | liv  | In which countries did you live?  | value=ccode     |
+| select_one_from_file countries.xml      | cou  | In which country do you live now? | label=cname     |
+| select_one_from_file households.csv     | hh   | Select household number           | value=housenum, label=housename |
+| ======================================= | ==== | ==================================|=================|
+| survey                                  |      |                                   |                 |
+
+<p/>
+
+| type                                          | name | label                               | appearance   | parameters               |
+| --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
+| ============================================= | ==== | ====================================|==============| ======================== |
+| survey                                        |      |                                     |              |                          |                     
+
+Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
@@ -226,6 +319,17 @@ To upload an image file the **image** question type can be used. To ensure the i
 | survey|      |                 |                 |
 
 
+### Audio recording quality
+
+Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low` and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
+
+| type              | name          | parameters     |
+| ----------------- | ------------- | -------------  |
+| audio             | animal_sound  | quality=normal |
+| ================= | ===========   | ============   |
+| survey            |               |                |
+
+
 ### Metadata
 
 XLSForm has a number of data type options available for metadata collection:
@@ -235,33 +339,49 @@ XLSForm has a number of data type options available for metadata collection:
 | start         | Start date and time of the survey.              |
 | end           | End date and time of the survey.                |
 | today         | Day of the survey.                              |
-| deviceid      | IMEI (International Mobile Equipment Identity)  |
-| subscriberid  | IMSI (International Mobile Subscriber Identity) |
-| simserial     | SIM serial number.                              |
+| deviceid      | Unique client identifier. Can be user-reset.    |
 | phonenumber   | Phone number (if available).                    |
 | username      | Username configured (if available).             |
 | email         | Email address configured (if available).        |
+| audit         | Log enumerator behavior during data entry       |
 
 Note that some metadata fields only apply for mobile phone-based forms.
 
-If I wanted my survey to collect all of these metadata, I would put the following at the beginning of the survey:
+For example, if you wanted to collect all of these types of metadata, put the following in your form (typically at the beginning, but can be at any point of your form):
 
-| type                      | name         | label |
-| ------------------------- | ------------ | ----- |
-| start                     | start        |       |
-| end                       | end          |       |
-| today                     | today        |       |
-| deviceid                  | deviceid     |       |
-| subscriberid              | subscriberid |       |
-| simserial                 | simserial    |       |
-| phonenumber               | phonenumber  |       |
-| username                  | username     |       |
-| email                     | email        |       |
-| ========================= | ============ | ===   |
-| survey                    |              |       |
+| type                      | name         | label | parameters |
+| ------------------------- | ------------ | ----- | --------------------- |
+| start                     | start        |       |                       |
+| end                       | end          |       |                       |
+| today                     | today        |       |                       |
+| deviceid                  | deviceid     |       |                       |
+| phonenumber               | phonenumber  |       |                       |
+| username                  | username     |       |                       |
+| email                     | email        |       |                       |
+| audit                     | audit        |       | [optional, see below] |
+| ========================= | ============ | ===   | ===================== |
+| survey                    |              |       |                       |
 
 Notice that there are no labels associated with the metadata question types.  This is because the phone captures these variables automatically. These questions will not appear on the screen of the phone, but you will see them when viewing your submitted survey data.
 The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC4-gn2bhZ4hOm2gCtIEyszw0NRo/edit?usp=sharing) shows how metadata is used in a form.
+
+**Audit enumerator behavior and location tracking**
+
+*Note: For now this feature is only available in Collect, but not in Enketo webforms.*
+
+The **audit** metaquestion will enable ODK Collect to log how people navigate through a form during data entry. For example, this can be used to measure how much time an enumerator took to fill in a question, responses that were edited later on, or when the form was saved. 
+
+Optionally, the **audit** metaquestion can be configured to also record the location of the enumerator throughout the interview. This may be useful for quality control or to record exact paths taken between each respondents. To do this, add a column called **parameters** to your form and enter three required parameters: **location-priority**, **location-min-interval**, and **location-max-age**. 
+
+This example below would collect the precise GPS location every 180 seconds and will discard coordinates collected more than 300 seconds ago.  
+
+| type                      | name         | label | parameters                                                                     |
+| ------------------------- | ------------ | ----- | ------------------------------------------------------------------------------ |
+| audit                     | audit        |       | location-priority=high-accuracy location-min-interval=180 location-max-age=300 |
+| ========================= | ============ | ===   | ============================================================================== |
+| survey                    |              |       |                                                                                |
+
+See [this page](https://docs.getodk.org/form-audit-log/) in the ODK Collect documentation for full details about the **audit** metaquestion, available location tracking parameters, and the format of the **audit.csv** log file created for each submission. 
 
 ### External XML data
 
@@ -301,6 +421,13 @@ There is a special kind of hint that is normally not shown in the form. It is on
 | ======== | ======== | ========== | ===================================== | =========== |
 | survey   |          |            |                                       |             |
 
+## Formulas
+
+Formulas are used in the [constraint](#constraints), [relevant](#relevant), [calculation](#calculation), and [trigger](#trigger) columns and optionally also in the [default](#default), and [required](#required) columns. Formulas allow you to add additional functionality and data quality measures to your forms.  
+
+Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.getodk.org/form-operators-functions/). For the
+technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://getodk.github.io/xforms-spec/#xpath-functions).
+
 ## Constraints
 
 One way to ensure data quality is to add constraints to the data fields in your form.  For example, when asking for a person's age, you want to avoid impossible answers, like -22 or 200.  Adding data constraints in your form is easy to do.  You simply add a new column, called **constraint**, and type in the formula specifying the limits on the answer.  In the example below, the answer for the person's age must be less than or equal to 150. Note how the ``.`` in the formula refers back to the question variable.
@@ -313,7 +440,7 @@ One way to ensure data quality is to add constraints to the data fields in your 
 
 In this example, the formula ```. <= 150``` is saying that the value entered ``.`` for the question must be less than or equal to 150. If the user puts 151 or above as the answer, s/he will not be allowed to move on to the next question or submit the form.
 
-Other useful expressions to use in the **constraint** column can be found [here](http://opendatakit.org/help/form-design/binding/). Look under the **Operators** section.
+Other useful expressions to use in the **constraint** column can be found [here](https://docs.getodk.org/form-logic/). Look under the **Operators** section.
 
 ### Constraint message
 
@@ -385,27 +512,90 @@ Earlier we mentioned there was an alternative method for specifying other for mu
 
 Note that you must include **other** as an answer choice in the **choices** worksheet.
 
-## Formulas
-
-Formulas are used in the constraint, relevant, and calculation columns. You've already seen some examples in the **Constraint** and **Relevant** sections above.  Formulas allow you to add additional functionality and data quality measures to your forms.
-
-Formulas are composed of functions and operators (+, *, div, etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.opendatakit.org/form-operators-functions/). For the
-technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://opendatakit.github.io/xforms-spec/#xpath-functions).
-
 ## Calculation
 
-Your survey can perform calculations using the values of the preceding questions. In most cases, this will require inserting a **calculate** question. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
+Your survey can perform calculations using the values of preceding questions. In most cases using a **calculate** type question is appropriate. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
-
- | type      | name     | label                                 | calculation                  |
- | --------- | -------- | ------------------------------------- | ---------------------------- |
- | decimal   | amount   | What was the price of the meal?       |                              |
- | calculate | tip      |                                       | ${amount} * 0.18             |
- | note      | display  | 18% tip for your meal is: ${tip}      |                              |
- | ========  | ======== | ===================================== | ============================ |
- | survey    |          |                                       |                              |
+| type      | name     | label                                 | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| decimal   | amount   | What was the price of the meal?       |                              |
+| calculate | tip      |                                       | ${amount} * 0.18             |
+| note      | display  | 18% tip for your meal is: ${tip}      |                              |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |                                       |                              |
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
+
+The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. **If no label and no hint is included, the calculation will be hidden.** See example below which is the equivalent of the previous form:
+
+| type      | name     | label        | hint                   | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| decimal   | amount   | What was the price of the meal?  |    |                              |
+| text      | tip      |              |                        | ${amount} * 0.18             |
+| note      | display  | 18% tip for your meal is: ${tip} |    |                              |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |              |                        |                              |
+
+And this is an example when a non-text type is needed because of data analysis requirements:
+
+| type      | name     | label        | hint                   | calculation                  |
+| --------- | -------- | ------------------------------------- | ---------------------------- |
+| date      | day      |              |                        | today()                      |
+| ========  | ======== | ===================================== | ============================ |
+| survey    |          |              |                        |                              |
+
+**Note that using non-text calculation types has no effect on using the calculation result within the form itself.** This is a common misunderstanding.
+
+If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions to avoid re-calculating (erasing) a user-entered value. See example below:
+
+| type      | name     | label                              | readonly   | calculation        |
+| --------- | -------- | -----------------------------------| ---------- | ------------------ |
+| decimal   | amount   | What was the price of the meal?    |            |                    |
+| note      | display  | 18% tip for your meal is:          |            | ${amount} * 0.18   |
+| date      | today    | Today's date is:                   |  true      | today()            |
+| ========  | ======== | ================================== | ========== | ================== |
+| survey    |          |                                    |            |                    |
+
+Note the difference with the first form in this section is how the calculated tip value is displayed. In the first example it was shown in the label and in the last example it is shown inside a readonly input field.
+
+## Trigger
+
+A trigger column can be used to run a calculation only **when another visible question in the form changes**. This means that the question that is serving as the trigger **has to have a label or a hint** (otherwise it will be hidden). See a simple but very useful example below:
+
+| type      | name           | label                                 | calculation                  | trigger            |
+| --------- | -------------- | ------------------------------------- | ---------------------------- | ------------------ |
+| integer   | temp           | Enter the current temperature         |                              |                    |
+| dateTime  | temp_ts        |                                       | now()                        | ${temp}            |
+| ========  | ============== | ===================================== | ============================ | ================== |
+| survey    |                |                                       |                              |                    |
+
+This will calculate a timestamp immediately after a respondent enters a temperature. If the user goes back and changes the temperate, the timestamp will be re-calculated.
+
+All the regular [calculation features](#calculation) apply to these special value-change-triggered calculations as well. So you can e.g. use a label or hint to display the calculation question on the form to the user.
+
+Multiple questions may have the same trigger. See this example, where two calculations are triggered by the temperature question (one is hidden, and the other is shown):
+
+| type      | name           | label                           | calculation                  | trigger            | readonly |
+| --------- | -------------- | ------------------------------- | ---------------------------- | ------------------ | -------- |         
+| integer   | temp           | Enter temperature in Celsius    |                              |                    |          |
+| dateTime  | temp_ts        |                                 | now()                        | ${temp}            |          |
+| text      | temp_F         | Temperature in Fahrenheit       | 32 + 1.8 * ${temp}           | ${temp}            | true     |
+| calculate | temp_K         |                                 | 273.15 + ${temp}             | ${temp}            |          |
+| ========  | ============== | =============================== | ============================ | ================== | ======== |
+| survey    |                |                                 |                              |                    |          |
+
+In the form above the temp_F question is shown to the user and the temp_K question is hidden, just as they would be if trigger was not used.
+
+An important and powerful difference with regular calculations is that **the calculation value with a trigger may also be empty**, which serves to clear a value from the form. See example below:
+
+| type      | name            | label                                       | calculation                  | trigger            |
+| --------- | --------------- | ------------------------------------------- | ---------------------------- | ------------------ |
+| text      | name            | What is the name of the oldest person here? |                              |                    |                    
+| integer   | age             | How old is this person?                     |                              | ${name}            |
+| ========  | =============== | =========================================== | ============================ | ================== |
+| survey    |                 |                                             |                              |                    |
+
+If the respondent using this form has entered the name and age of person A and subsequently finds out there is an older person B, the age field will be cleared as soon as the name of person B has been entered.
 
 ## Required
 
@@ -440,7 +630,7 @@ For any question type that shows a **list of choices** the shown order of the ch
 | ==================  | ============== | ===== | ========= |
 | survey              |                |       |           |
 
-For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://opendatakit.github.io/xforms-spec/#fn:randomize).
+For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://getodk.github.io/xforms-spec/#fn:randomize).
 
 | type                | parameters                 | name | label       | calculation                    |
 | ------------------- | -------------------------- | ---- | ----------- | ------------------------------ |
@@ -500,9 +690,9 @@ One neat feature of XLSForm is the ability to skip a group of questions by combi
 
 In this example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
 
-### Repeats
+## Repeats
 
-A user can repeat a group of questions by using the **begin repeat** and **end repeat** construct:
+A user can repeat questions by using the **begin repeat** and **end repeat** construct:
 
  | type                   | name         | label               |
  | ---------------------- | ------------ | ------------------- |
@@ -523,36 +713,44 @@ A user can repeat a group of questions by using the **begin repeat** and **end r
 | =================== | =========== | =========== |
 | choices             |             |             |
 
-In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat group, and the user can repeat this group as many times as required by selecting the option in the form to start another repeat.
+In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat, and the user can collect the same information about multiple children by selecting the option in the form to add another repeat.
 
-The **label** column is optional for **begin repeat**.  Assigning a label to a repeat group will add the label as a title to the block of repeat questions in the form.
+The **label** column is optional for **begin repeat**.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form.
 
-The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm illustrates another repeat group example.
+When a repeat is shown in a table of contents, the label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values `Preity` for `first_name`, `Zinta` for `last_name` and `71` for `age`, that repeat will be summarized as "Preity Zinta - 71":
 
-Instead of allowing an infinite number of repeats, the user can specify an exact number of repeats by using the **repeat_count** column:
+| type                   | name         | label                                                   |
+| ---------------------- | ------------ | ------------------------------------------------------- |
+| begin repeat           | person_repeat|                                                         |
+| begin group            | person       | ${first_name} ${last_name} - ${age}                     |
+| text                   | first_name   | First name                                              |
+| text                   | last_name    | Last name                                               |
+| integer                | age          | Age                                                     |
+| end group              |              |                                                         |
+| end repeat             |              |                                                         |
+| =================      | ========     | ======================================================= |
+| survey
+
+The [Delivery Outcome](https://docs.google.com/spreadsheets/d/1_gCJml_FzJ4qiLU-yc67x1iu_GL-hfU3H8-HvINsIoE/edit?usp=sharing) XLSForm is another repeat example.
+
+### Fixed repeat counts
+
+Instead of allowing an infinite number of repeats, the form designer can specify an exact number of repeats by using the **repeat_count** column:
 
 | type                   | name         | label                | repeat_count |
 | ---------------------- | ------------ | -------------------- | ------------ |
 | begin repeat           | child_repeat |                      | 3            |
 | text                   | name         | Child's name         |              |
 | decimal                | birthweight  | Child's birthweight  |              |
-| select_one male_female | sex          | Child's sex          |              |
 | end repeat             |              |                      |              |
 | =================      | ========     | ==================== | ============ |
 | survey                 |              |                      |              |
 
-<p/>
+In the above example, exactly **3** child repeats will be created.
 
-| list name           | name        | label       |
-| ------------------- | ----------- | ----------- |
-| male_female         | male        | Male        |
-| male_female         | female      | Female      |
-| =================== | =========== | =========== |
-| choices             |             |             |
+### Dynamic repeat counts
 
-In the above example, the repeat group is restricted to **3** repeats.
-
-Some platforms also support dynamic repeat counts.  In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of times the **hh_member** group repeats:
+The repeat count can be set to an expression that refers to other fields in the form. In the example below, the number that the user inputs for the **num_hh_members** field dictates the number of **hh_member** repeats added:
 
 | type                   | name           | label                        | repeat_count      |
 | ---------------------- | -------------- | ---------------------------- | ----------------- |
@@ -560,24 +758,43 @@ Some platforms also support dynamic repeat counts.  In the example below, the nu
 | begin repeat           | hh_member      |                              | ${num_hh_members} |
 | text                   | name           | Name                         |                   |
 | integer                | age            | Age                          |                   |
-| select_one male_female | gender         | Gender                       |                   |
 | end repeat             |                |                              |                   |
 | =================      | ========       | ====================         | ============      |
 | survey                 |                |                              |                   |
 
+### Only add repeats in certain conditions
+
+Like [with groups](#skipping), all of the questions in a repeat can be skipped based on some condition. In the example below, the person filling out the form will only be given the opportunity to add children if they first indicate that there are children to add:
+
+ | type                   | name         | label                      | relevant            |
+ | ---------------------- | ------------ | ---------------------------|---------------------|
+ | select_one yes_no      | has_child    | Do any children live here? |                     |
+ | begin repeat           | child_repeat |                            | ${has_child} = 'yes'|
+ | text                   | name         | Child's name               |                     |
+ | decimal                | birthweight  | Child's birthweight        |                     |
+ | end repeat             |              |                            |                     |
+ | =================      | ========     | ========================== | =================== |
+ | survey                 |              |                            |                     |
+
 <p/>
 
-| list name           | name        | label       |
-| ------------------- | ----------- | ----------- |
-| male_female         | male        | Male        |
-| male_female         | female      | Female      |
-| =================== | =========== | =========== |
-| choices             |             |             |
+ | list_name    | name        | label    |
+ | ------------ | ----------- | -------- |
+ | yes_no       | yes         | Yes      |
+ | yes_no       | no          | No       |
+ | ============ | =========== | ======== |
+ | choices      |             |          |
 
+### Representing zero repeats
+
+By default, the person filling the form will see the questions corresponding to one repeat before getting the option to add more. To represent 0 repeats, there are three options:
+- teach the people filling out the form to delete the first repeat added
+- if the exact number of repeats is known ahead of time, [use a dynamic repeat count](#dynamic-repeat-counts)
+- if the exact number of repeats is not known ahead of time, [use `relevant`](#only-add-repeats-in-certain-conditions) to only prompt the user for repeats if there are some to add
 
 ## Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of the data collection application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
 
 | type              | name        | label::English (en) | label::Español (es)   | constraint |
 | ----------------- | ----------- | ------------------- | --------------------- | ---------- |
@@ -587,8 +804,8 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 
 You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
 
-| hint::English (en)  | hint::Dutch (nl)     | media::image::English (en) | media::image::Dutch (nl) |
-| ------------------- | -------------------- | -------------------------- | ------------------------ |
+| hint::English (en)  | hint::Dutch (nl)     | image::English (en)        | image::Dutch (nl)        |
+| ------------------- | -------------------- | -------------------------- | ------------------------ |  
 | a hint              | een hint             | old_person_cartoon.png     | ouwe_strip.png           |
 | ============        | ============         | ==========                 | =======                  |
 | survey              |                      |                            |                          |
@@ -599,7 +816,7 @@ Form language and user interface language may be determined separately by the ap
 
 You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
 
-| type              | name          | label         | media::image | media::video |
+| type              | name          | label         | image        |  video       |
 | ----------------- | ------------- | ------------- | ------------ | ------------ |
 | note              | media_example | Media example | example.jpg  | example.mp4  |
 | ================= | ===========   | ============  | ============ | ==========   |
@@ -654,7 +871,11 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
 
+
 ## Dynamic selects from pre-loaded data
+
+If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection application supports it.
+
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
 The following should be done:
@@ -700,49 +921,17 @@ See below an example of the choices worksheet:
 | ================= | ======   | ============== |
 | choices           |          |                |
 
-Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing), and the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
-<be>
-
-For the **search() expression**, there are a series of options to indicate which .csv rows to include in the choice list:
-
- 1. **search(csvName)**: The single-parameter search expression includes all distinct rows as choices (e.g., "search('hhplotdata')").
- All rows in the specified .csv file will be considered as choices, but only distinct rows -- those with unique selection values --
- will be listed for the user. In other words, duplicates will be automatically filtered from the list shown to users.
-
- 2. **search(csvName, "contains", columnsToSearch, searchText)**: This search expression includes all distinct rows that contain the
- specified text in the specified column(s) (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
- in any specified column will be included.
-
- 3. **search(csvName, "startswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that start with
- the specified text in the specified column(s) (e.g., "search('hhplotdata', 'startswith', 'respondentname', ${nameprefix})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches in
- any specified column will be included.
-
- 4. **search(csvName, "endswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that end with the
-    specified text in the specified column(s) (e.g., "search('hhplotdata', 'endswith', 'respondentname', ${namesuffix})"). The third
-    parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
-    in any specified column will be included.
-
- 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
-    
- 6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
-
-For an example, see the [advanced search-and-select sample form here](https://drive.google.com/drive/folders/1Wx09ZFOJuiWmy0XKKtpxzGsZHfxeTO9c?usp=sharing).
-
-Additional notes on usage:
-
-1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
-2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
-choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric.
+Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
+<br>
+There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://getodk.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
 
 ## Cascading selects
 
-A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFVpOWVBVWREUGdNVWZKbUl2akhfWkE&usp=sharing).
+A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
 
 ## External selects
 
-If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation in clients like ODK Collect. The best workaround to this issue is to use external selects.
+If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation if [Multiple Choice from File](#multiple-choice-from-file) is used. The best workaround to this issue is to use external selects in those data collection applications (such as ODK Collect) that support it. 
 
 Enabling external selects is straightforward.
  - Instead of **select_one** for the prompt type, use **select_one_external**.
@@ -756,22 +945,24 @@ The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., OD
 
 ## Default
 
-Adding a default field means that a question will be pre-populated with an answer when the user first sees the question.  This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected.  See the two examples below.
+Adding a default field means that a question will be pre-populated with an answer when the user first sees the question. This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected. See the example below.
 
-| type              | name        | label          | default          |
-| ----------------- | ----------- | -------------- | ---------------- |
-| today             | today       |                |                  |
-| date              | survey_date | Survey date?   | 2010-06-15       |
-| ================= | ======      | ============== | ================ |
-| survey            |             |                |                  |
+| type              | name        | label                         | default          |
+| ----------------- | ----------- | ----------------------------- | ---------------- |
+| date              | survey_date | Survey date?                  | 2010-06-15       |
+| decimal           | weight      | Respondent's weight? (in kgs) | 51.3             |
+| ================= | ======      | ============================= | ================ |
+| survey            |             |                               |                  |
 
-In the next example, the weight is automatically set to 51.3 kg.  You can simply change the answer by tapping in the answer field and inputting another answer.
+The respondent can simply change the answer by tapping in the answer field and entering another answer.
 
-| type              | name   | label                         | default          |
-| ----------------- | ------ | ----------------------------- | ---------------- |
-| decimal           | weight | Respondent's weight? (in kgs) | 51.3             |
-| ================= | ====== | ==============                | ================ |
-| survey            |        |                               |                  |
+You can also add a default calculation, which will only be calculated only once when the form loads or - if the question is inside a [repeat](#repeats) - when the repeat is added.
+
+| type              | name   | label                              | default          |
+| ----------------- | ------ | ---------------------------------- | ---------------- |
+| date              | d      | Enter the date the event occurred? | today()          |           
+| ================= | ====== | ================================== | ================ |
+| survey            |        |                                    |                  |
 
 ## Read only
 
@@ -805,30 +996,34 @@ The **appearance** column allows you to change the appearance of questions in yo
 | list-nolabel         | select_one, select_multiple | Used in conjunction with the **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
 | signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
-| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.                                                                                                                                                    |
+| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
+| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
 An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
 
 ## Settings worksheet
 
-The **settings** worksheet is optional, but it allows you to further customize your form, including encrypting your records or setting an overall style theme to your form, among others.
+The **settings** worksheet is optional, but it is highly recommended to specify **form_title**, **form_id** and **version** at a minimum. Other settings allow you to further customize your form, including setting an overall style theme or encrypting your records.
 
 An example **settings** worksheet is below:
 
-| form_title | form_id | public_key     | submission_url                                       | default_language  | version      |
-| ---------- | ------- | -------------- | ---------------------------------------------------- | ----------------- | ------------ |
-| Example    | ex_id   | IIBIjANBg...   | https://example.com/submission | English           | 2017021501   |
-| ========   | ======  | ============== | ================                                     | ================= | ============ |
-| settings   |         |                |                                                      |                   |              |
+| form_title | form_id | version      | instance_name                          |default_language   | public_key     |
+| ---------- | ------- | ------------ | -------------------------------------- | ----------------- | -------------- |
+| Example    | ex_id   | 2017021501   | concat(${firstname}, ' ', ${lastname}) | English (en)      | IIBIjANBg...   |
+| ========   | ======  | ============ | =======================================| ================= | ============== |
+| settings   |         |              |                                        |                   |                |
 
-The column headings in this example **settings** worksheet do the following:
+The settings column headings available are:
 
 * **form_title**: The title of the form that is shown to users. The form title is pulled from **form_id** if **form_title** is blank or missing.
 * **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
-* **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted.
-* **submission_url**: This URL can be used to override the default server where finalized records are submitted to.
-* **default_language**: In localized forms, this sets which language should be used as the default.
-* **version**: String of up to 10 numbers that describes this revision. Revised form definitions must have numerically greater versions than previous ones. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
+* **version**: String that represents this version. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
+* **instance_name**: Expression using form fields to identify for each form submission. [Learn more](#specify-form-submission-name).
+* **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
+* **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted. [Learn more](#encrypted-forms).
+* **submission_url**: This url can be used to override the default server where finalized records are submitted to. [Learn more](#specify-alternative-server).
+* **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
+* **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
 
 ### Encrypted forms
 
@@ -842,7 +1037,7 @@ To encrypt XLS forms, add the **public_key** column to the **settings** workshee
 | ======  | ============== |
 | settings   |         |
 
-For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](https://docs.opendatakit.org/encrypted-forms/) and at [this example form](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing).
+For more information on encrypted forms and how to generate the RSA keys have a look at the [ODK documentation](https://docs.getodk.org/encrypted-forms/) and at [this example form](https://docs.google.com/spreadsheets/d/1O2VW5dNxXeyr-V_GB3spS6QPX4rtqtt7ijqP_uZLU3I/edit?usp=sharing).
 
 ### Specify an alternative server
 
@@ -855,6 +1050,10 @@ If this column is left out or kept empty, submissions will go to the default des
 In the **settings** worksheet, you can specify a unique name for each form submission using fields filled in by the user during the survey.  On the settings worksheet, add a column called **instance_name**.  Write in the expression that defines the unique form instance name using fields from the survey worksheet.
 
 Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d/1Bapi05GYITV6D0THvs9RaOSEjqb1-FWIhfjSTXtvl8I/edit#gid=1932003628) that calculates the instance name as the user's last and first names coupled with the form submission uuid.
+
+### Specify XForms root node name
+
+In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
 
 ### Multiple webpage forms
 
@@ -879,7 +1078,7 @@ In your **survey** tab, group together the questions you would like to appear on
 | begin group | group1   |                      | field-list |
 | text        | name     | Respondent's name    |            |
 | integer     | age      | Respondent's age     |            |
-| string      | address  | Respondent's address |            |
+| text        | address  | Respondent's address |            |
 | end group   |          |                      |            |
 | =========   | ======== | ======               | ====       |
 | survey      |          |                      |            |
@@ -907,7 +1106,7 @@ In your **survey** tab, group together the questions you would like to appear in
 | begin group | group1   |                      |            |
 | text        | name     | Respondent's name    | w3         |
 | integer     | age      | Respondent's age     | w1         |
-| string      | address  | Respondent's address | w4         |
+| text        | address  | Respondent's address | w4         |
 | end group   |          |                      |            |
 | =========   | ======== | ======               | ====       |
 | survey      |          |                      |            |
@@ -933,7 +1132,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 
 It is possible to use XLSForm to create XForms with custom or experimental features. This is great for custom applications with a specific feature that is not suitable for the larger community.
 
-The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::**, **body::**) that add attributes to the XForm output, either in the _primary instance_, _bind_, or _form control_. To learn more about XForms visit the [ODK XForms Specification](https://opendatakit.github.io/xforms-spec/). The example below adds a custom "hxl" attribute to the primary instance node of a question.
+The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::**, **body::**) that add attributes to the XForm output, either in the _primary instance_, _bind_, or _form control_. To learn more about XForms visit the [ODK XForms Specification](https://getodk.github.io/xforms-spec/). The example below adds a custom "hxl" attribute to the primary instance node of a question.
 
 | type      | name       | label                    | instance::hxl |
 | --------- | ---------- | ------------------------ | ------------- |
@@ -941,7 +1140,7 @@ The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::
 | ========= | ========   | ======================== | ============= |
 | survey    |            |                          |               |
 
-The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example, to properly define a custom attribute with [your organisation's own namespace](https://github.com/opendatakit/xforms-spec#specification-changes). See the example below that adds 2 additional namespaces and uses them to add custom attributes:
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
 
 | title     | namespaces                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -959,27 +1158,27 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | survey    |              |                          |                        |               |
 
 ## Tools that support XLSForms
-* [Ona](http://ona.io)
-* [Enketo](http://enketo.org)
-* [Open Data Kit (ODK)](http://opendatakit.org)
-* [Kobo ToolBox](http://kobotoolbox.org)
-* [CommCare](http://commcarehq.org)
-* [SurveyCTO](http://www.surveycto.com/)
-* [DataWinners](https://www.datawinners.com/en/home/)
+* [Ona](https://ona.io)
+* [Enketo](https://enketo.org)
+* [ODK](https://getodk.org)
+* [KoBoToolBox](https://kobotoolbox.org)
+* [CommCare](https://commcarehq.org)
+* [SurveyCTO](https://www.surveycto.com/)
+* [DataWinners](https://www.datawinners.com/)
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
 * [Tattara](http://tattara.com/)
 * [Survey123 for ArcGIS](https://survey123.arcgis.com/)
+* [Community Health Toolkit](https://communityhealthtoolkit.org/)
+* [CyberTracker](https://cybertrackerwiki.org/xlsform/)
 
 ## More resources
 
 The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
 
-* Form guidelines: [http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines](http://code.google.com/p/opendatakit/wiki/XFormDesignGuidelines)
-* Form design tutorial: [https://bitbucket.org/javarosa/javarosa/wiki/buildxforms](https://bitbucket.org/javarosa/javarosa/wiki/buildxforms)
-* Sample forms: [http://code.google.com/p/opendatakit/source/browse/?repo=forms](http://code.google.com/p/opendatakit/source/browse/?repo=forms)
-* [Formhub University](http://formhub.org/formhub_u)
-* [Ona Form Gallery](http://ona.io)
-* XForms as supported by JavaRosa: [https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat](https://bitbucket.org/javarosa/javarosa/wiki/xform-jr-compat)
+* [XForms as supported by the ODK ecosytem](https://getodk.github.io/xforms-spec/)
+* [ODK Form design guidelines](https://docs.getodk.org/form-design-intro/)
+* [Ona Form design overview](https://help.ona.io/knowledge-base/guide-creating-surveys/)
+* [KoBoToolbox form design help center](https://support.kobotoolbox.org/en/collections/443818-creating-forms)
 
 ## About this site
 
@@ -989,4 +1188,5 @@ If you want to contribute to or improve this documentation, please visit our [pr
 
 ## History
 
-The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team at the University of Washington to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and Kobo.
+The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
+

@@ -5,3 +5,4 @@ name,"ID (name) of the specific choice, will be saved to XML",✔,✔,,
 label::[language],"Choice label, will be displayed on screen. Allows adding a translation of choice labels, showing [language] in the interface",✔,✔,label::[language],
 media,,✔,✔,,optional
 [filter_category_name],Allows setting a specific parent category for choice filters (cascading questions),✔,✔,,"Column name is specified by user, e.g. ‘country’"
+geometry,Special column name used by the `map` appearance,✕,✔,,
