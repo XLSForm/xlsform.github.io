@@ -162,7 +162,7 @@ We can also add multiple choice questions that allow multiple answers to be sele
 
 The `name` column of the choices sheet defines the values that will be saved when each choice is selected during data collection. Choice names for **select_multiple** must not contain spaces because spaces are used as a separator when an answer with multiple selected choices is saved. Choice names for **select_one** questions may contain spaces. However, we recommend avoiding them to make analysis easier. Additionally, this makes it possible to convert the question to a **select_multiple** in a future form version.
 
-In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+In general, choice names should be unique within a single-choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
 
 | allow_choice_duplicates |
 | ----------------------  |
@@ -172,7 +172,7 @@ In general, choice names should be unique within a single choice list. If two ch
 
 #### Specify other
 
-For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
+For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 
 | type                                    | name             | label                                       |
@@ -212,7 +212,7 @@ A user may want to select a location from a map view during data collection. To 
 
 ### Multiple choice from file
 
-The options in a multiple choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
+The options in a multiple-choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
@@ -264,7 +264,7 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 | ============================================= | ==== | ====================================|==============| ======================== |
 | survey                                        |      |                                     |              |                          |                     
 
-Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
+Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest-spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
@@ -321,7 +321,7 @@ To upload an image file the **image** question type can be used. To ensure the i
 
 ### Audio recording quality
 
-Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low` and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
+Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low`, and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
 
 | type              | name          | parameters     |
 | ----------------- | ------------- | -------------  |
@@ -345,7 +345,7 @@ XLSForm has a number of data type options available for metadata collection:
 | email         | Email address configured (if available).        |
 | audit         | Log enumerator behavior during data entry       |
 
-Note that some metadata fields only apply for mobile phone-based forms.
+Note that some metadata fields only apply to mobile phone-based forms.
 
 For example, if you wanted to collect all of these types of metadata, put the following in your form (typically at the beginning, but can be at any point of your form):
 
@@ -371,7 +371,7 @@ The [Tutorial XLSForm](https://docs.google.com/spreadsheets/d/1OPBXLH8XAVPfyOjoC
 
 The **audit** metaquestion will enable ODK Collect to log how people navigate through a form during data entry. For example, this can be used to measure how much time an enumerator took to fill in a question, responses that were edited later on, or when the form was saved. 
 
-Optionally, the **audit** metaquestion can be configured to also record the location of the enumerator throughout the interview. This may be useful for quality control or to record exact paths taken between each respondents. To do this, add a column called **parameters** to your form and enter three required parameters: **location-priority**, **location-min-interval**, and **location-max-age**. 
+Optionally, the **audit** metaquestion can be configured to also record the location of the enumerator throughout the interview. This may be useful for quality control or to record the exact paths taken between each respondent. To do this, add a column called **parameters** to your form and enter three required parameters: **location-priority**, **location-min-interval**, and **location-max-age**. 
 
 This example below would collect the precise GPS location every 180 seconds and will discard coordinates collected more than 300 seconds ago.  
 
@@ -514,7 +514,7 @@ Note that you must include **other** as an answer choice in the **choices** work
 
 ## Calculation
 
-Your survey can perform calculations using the values of preceding questions. In most cases using a **calculate** type question is appropriate. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
+Your survey can perform calculations using the values of the preceding questions. In most cases using a **calculate** type question is appropriate. For example, in the survey below, we have calculated the tip for a meal and displayed it to the user:
 
 | type      | name     | label                                 | calculation                  |
 | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -526,7 +526,7 @@ Your survey can perform calculations using the values of preceding questions. In
 
 Note that the **${tip}** in the last line will be replaced with the actual tip amount when viewing and filling out the form.
 
-The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g if a date or date-time is calculated. **If no label and no hint is included, the calculation will be hidden.** See example below which is the equivalent of the previous form:
+The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g. if a date or date-time is calculated. **If no label and no hint are included, the calculation will be hidden.** See the example below which is the equivalent of the previous form:
 
 | type      | name     | label        | hint                   | calculation                  |
 | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -536,7 +536,7 @@ The calculate type calculates **text** but calculations can also be added to any
 | ========  | ======== | ===================================== | ============================ |
 | survey    |          |              |                        |                              |
 
-And this is an example when a non-text type is needed because of data analysis requirements:
+And this is an example of when a non-text type is needed because of data analysis requirements:
 
 | type      | name     | label        | hint                   | calculation                  |
 | --------- | -------- | ------------------------------------- | ---------------------------- |
@@ -546,7 +546,7 @@ And this is an example when a non-text type is needed because of data analysis r
 
 **Note that using non-text calculation types has no effect on using the calculation result within the form itself.** This is a common misunderstanding.
 
-If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions to avoid re-calculating (erasing) a user-entered value. See example below:
+If a label or hint is included, the question will be visible on the form and the calculated value will be shown in the input field or widget. This is generally only recommended for **readonly** questions to avoid re-calculating (erasing) a user-entered value. See the example below:
 
 | type      | name     | label                              | readonly   | calculation        |
 | --------- | -------- | -----------------------------------| ---------- | ------------------ |
@@ -584,9 +584,9 @@ Multiple questions may have the same trigger. See this example, where two calcul
 | ========  | ============== | =============================== | ============================ | ================== | ======== |
 | survey    |                |                                 |                              |                    |          |
 
-In the form above the temp_F question is shown to the user and the temp_K question is hidden, just as they would be if trigger was not used.
+In the form above the temp_F question is shown to the user and the temp_K question is hidden, just as they would be if the trigger was not used.
 
-An important and powerful difference with regular calculations is that **the calculation value with a trigger may also be empty**, which serves to clear a value from the form. See example below:
+An important and powerful difference with regular calculations is that **the calculation value with a trigger may also be empty**, which serves to clear a value from the form. See the example below:
 
 | type      | name            | label                                       | calculation                  | trigger            |
 | --------- | --------------- | ------------------------------------------- | ---------------------------- | ------------------ |
@@ -794,7 +794,7 @@ By default, the person filling the form will see the questions corresponding to 
 
 ## Multiple language support
 
-It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of data collection application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
+It’s easy to add multiple languages to a form. You simply have to name your **label::language1 (code)**,  **label::language2 (code)**, etc., and your forms will be available in multiple languages. See the example below. Select a different form language from the pulldown menu of the data collection application (this may be located under the **Menu** key). For the form below, English and Español will show up as the possible options.
 
 | type              | name        | label::English (en) | label::Español (es)   | constraint |
 | ----------------- | ----------- | ------------------- | --------------------- | ---------- |
@@ -828,10 +828,10 @@ Media is translatable in the same way as labels and hints as explained in the [l
 
 ## Pre-loading CSV data
 
-Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from a pre-existing data in a specific survey form or any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
 To reference pre-existing data in a survey form:
 
-* Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
+ * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
   * unique names for each column
   * subsequent rows which should contain the data itself
 
@@ -870,7 +870,6 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly.
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
-
 
 ## Dynamic selects from pre-loaded data
 
@@ -923,7 +922,39 @@ See below an example of the choices worksheet:
 
 Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
 <br>
-There are a series of options to indicate which .csv rows to include in the choice list using the **search() expression**, see this [post](http://getodk.org/help/form-design/data-preloading/) for additional information on these search() expressions. 
+
+For the **search() expression**, there are a series of options to indicate which .csv rows to include in the choice list:
+
+ 1. **search(csvName)**: The single-parameter search expression includes all distinct rows as choices (e.g., "search('hhplotdata')").
+ All rows in the specified .csv file will be considered as choices, but only distinct rows -- those with unique selection values --
+ will be listed for the user. In other words, duplicates will be automatically filtered from the list shown to users.
+
+ 2. **search(csvName, "contains", columnsToSearch, searchText)**: This search expression includes all distinct rows that contain the
+ specified text in the specified column(s) (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind})"). The third
+ parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+ in any specified column will be included.
+
+ 3. **search(csvName, "startswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that start with
+ the specified text in the specified column(s) (e.g., "search('hhplotdata', 'startswith', 'respondentname', ${nameprefix})"). The third
+ parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches in
+ any specified column will be included.
+
+ 4. **search(csvName, "endswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that end with the
+    specified text in the specified column(s) (e.g., "search('hhplotdata', 'endswith', 'respondentname', ${namesuffix})"). The third
+    parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+    in any specified column will be included.
+
+ 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
+    
+ 6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
+
+For an example, see the [advanced search-and-select sample form here](https://drive.google.com/drive/folders/1Wx09ZFOJuiWmy0XKKtpxzGsZHfxeTO9c?usp=sharing).
+
+Additional notes on usage:
+
+1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
+2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
+choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric. 
 
 ## Cascading selects
 
