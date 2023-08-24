@@ -59,8 +59,8 @@ XLSForm supports a number of question types. These are just some of the options 
 | ------------------------- | -------------------------------------------------------------------------------------------- |
 | integer                   | Integer (i.e., whole number) input.                                                          |
 | decimal                   | Decimal input.                                                                               |
-| range                     | [Range](#range) input (including rating)                                                     |
-| text                      | Free text response.                                                                          |
+| range                     | [Range](#range) Restrict integer or decimal inputs to a specific range.                      |
+| text                      | Free text response. Maximum of 255 characters.                                               |
 | select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
 | select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
 | select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
@@ -75,14 +75,16 @@ XLSForm supports a number of question types. These are just some of the options 
 | dateTime                  | Accepts a date and a time input.                                                             |
 | image                     | Take a picture or upload an [image file](#image).                                            |
 | audio                     | Take an audio recording or upload an audio file.                                             |
-| background-audio          | Audio is recorded in the background while filling the form.                                  |
+| background-audio          | Audio is recorded in the background while filling out the form.                              |
 | video                     | Take a video recording or upload a video file.                                               |
 | file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
-| barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
+| barcode                   | Scan a barcode; requires the barcode scanner app to be installed.                            |
 | calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                    |
-| acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
-| hidden                    | A field with no associated UI element which can be used to store a constant                  |
+| acknowledge               | Acknowledge prompt that sets the value to "OK" if selected.                                  |
+| hidden                    | A field with no associated UI element that can be used to store a constant                   |
 | xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                          |
+
+An XLSForm showing all of the Question Types is available [here](https://docs.google.com/spreadsheets/d/1igg3Vu04-mi17SSNRYTeAuo3InDoroTB/edit?usp=drive_link&ouid=108929154735070334700&rtpof=true&sd=true).
 
 ### GPS
 For example, to collect the name and GPS coordinates of a store, you would write the following:
@@ -231,7 +233,7 @@ The options in a multiple-choice question can also be taken from a separate file
 | ============================================= | ==== | ====================================|==============|
 | survey                                        |      |                                     |              |
 
-The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
+The files require a specific format. A CSV file requires a name and label column which represents the value and label of the options. An XML file requires a structure as shown below:
 
 ```
 <root>
@@ -242,7 +244,7 @@ The files require a specific format. A CSV file requires a `name` and `label` co
   </item>
 </root>
 ```
-A GeoJSON requires each feature, or point, to have an id and title property, or an attribute of the point. The GeoJSON must be defined by a single top-level FeatureCollection, and it currently only works for point geometry, as noted in detail on the [ODK documentation site](https://docs.getodk.org/form-datasets/#selects-from-geojson).
+A GeoJSON requires each feature, or point, to have an id and title property or an attribute of the point. The GeoJSON must be defined by a single top-level FeatureCollection, and it currently only works for point geometry, as noted in detail on the[ODK documentation site](https://docs.getodk.org/form-datasets/#selects-from-geojson).
 
 CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
 
@@ -266,9 +268,32 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 
 Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest-spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
+## Randomize Choices
+
+For any question type that shows a **list of choices** the shown order of the choices displayed to the user can be randomized with the **parameters** column. See below:
+
+| type                | parameters     | name  | label     |
+| ------------------- | -------------- | ----- | --------- |
+| select_one toppings | randomize=true | top   | Favorite? |
+| ==================  | ============== | ===== | ========= |
+| survey              |                |       |           |
+
+For reproducible randomization, a **seed** can be explicitly provided. It is often preferable to pick one order that the choices will always be displayed in for a given filled form. This can be accomplished by setting an integer seed for the randomization as shown below.
+
+| type                | parameters                 | name | label       | calculation                    |
+| ------------------- | -------------------------- | ---- | ----------- | ------------------------------ |
+| calculate           |                            | sd   |             | once(decimal-date-time(now())) |
+| select_one toppings | randomize=true, seed=${sd} | top  | Favorite?   |                                |
+| ==================  | ========================== | ==== | =========== | ============================== |
+| survey              |                            |      |             |                                |
+
+Note that `once()` is used to prevent re-randomizing for example when a draft record is loaded for editing.
+
+To learn more about the randomization algorithm used, see [here](https://getodk.github.io/xforms-spec/#fn:randomize).
+
 ### Rank
 
-The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.
+The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions, where the choice options are listed on the choices worksheet. 
 
 | type                    | name             | label                                         |
 | ----------------------- | ---------------- | --------------------------------------------- |
@@ -286,12 +311,12 @@ The rank widget can be used to let respondents order a list of options. The answ
 | ============   | ========== | ========================= |
 | choices        |            |                           |
 
-To prevent bias it is often recommended to use the [randomize feature](#randomize-choices) in conjunction with this widget.
+To prevent bias it is recommended to use the [randomize feature](#randomize-choices) with this widget.
 
 
 ### Range
 
-To restrict integer or decimal inputs to a specific range, you can use the **range** question. This question can be used with 3 optional space-separated parameters: **start**, **end**, and **step** in a **parameters** column. The default values are 0, 10, and 1 respectively. The example below will create a question that allows input from 0 until 17 with a step of 1. Using a decimal step will result in decimal values being collected.
+To restrict integer or decimal inputs to a specific range, you can use the **range question**. This question type can be used with 3 optional space-separated parameters: **start**, **end**, and **step** in the **parameters** column. The default values are 0, 10, and 1 respectively. The example below will create a question that allows input from 0 until 17 with a step of 1. Using a decimal step will result in decimal values being collected.
 
 | type                      | name         | label                         | parameters            |
 | ------------------------- | ------------ | ----------------------------- | --------------------- |
@@ -310,7 +335,7 @@ To display a range question as a **rating widget** using stars, you can add the 
 
 ### Image
 
-To upload an image file the **image** question type can be used. To ensure the images are not too large, you can optionally set the **max-pixels** parameter which will automatically downsize the uploaded image to match the largest side of the image with the pixel value provided.
+The image question type can be used to upload an **image** file. To ensure the images are not too large, you can optionally set the **max-pixels** parameter, which will automatically downsize the uploaded image to match the largest side of the image with the pixel value provided. 
 
 | type  | name |  label          | parameters      |
 | ----- | ---- | --------------- | --------------- |
@@ -318,10 +343,11 @@ To upload an image file the **image** question type can be used. To ensure the i
 | ===   | ==== | =============== | =============== |
 | survey|      |                 |                 |
 
+The image question type can be used with different types of appearances for different uses, including adding a signature, annotating the picture, or drawing a picture. Refer to the [XLSForm Reference table](https://xlsform.org/en/ref-table/) under image question type appearances for more.
 
 ### Audio recording quality
 
-Certain clients use a value for **quality** in the **parameters** column to configure audio recording quality for question types **audio** or **background-audio**. Both question types accept **quality** values `voice-only`, `low`, and `normal`. **audio** additionally accepts a **quality** of `external` to specify that an external application should be used for recording.
+Use a value for **quality** in the **parameters** column to configure **audio** recording quality for the question types: **audio** or **background-audio**. Both question types accept **quality** values *voice-only*, *low*, and *normal*. The **audio** question type also accepts a **quality** value of *external* to specify an external application that should be used for recording.
 
 | type              | name          | parameters     |
 | ----------------- | ------------- | -------------  |
@@ -619,27 +645,6 @@ See the example below.
 | integer  | respondent_age | Respondent's age | yes        | Sorry, this answer is required. |
 | ======== | ========       | ============     | ========== | =============================== |
 | survey   |                |                  |            |                                 |
-
-## Randomize Choices
-
-For any question type that shows a **list of choices** the shown order of the choices displayed to the user can be randomized with the **parameters** column. See below:
-
-| type                | parameters     | name  | label     |
-| ------------------- | -------------- | ----- | --------- |
-| select_one toppings | randomize=true | top   | Favorite? |
-| ==================  | ============== | ===== | ========= |
-| survey              |                |       |           |
-
-For reproducible randomization, a **seed** can be explicitly provided as shown below. To learn more about the randomization algorithm used, see [here](https://getodk.github.io/xforms-spec/#fn:randomize).
-
-| type                | parameters                 | name | label       | calculation                    |
-| ------------------- | -------------------------- | ---- | ----------- | ------------------------------ |
-| calculate           |                            | sd   |             | once(decimal-date-time(now())) |
-| select_one toppings | randomize=true, seed=${sd} | top  | Favorite?   |                                |
-| ==================  | ========================== | ==== | =========== | ============================== |
-| survey              |                            |      |             |                                |
-
-Note that `once()` is used to prevent re-randomizing for example when a draft record is loaded for editing.
 
 ## Grouping questions
 
@@ -1011,26 +1016,28 @@ The **appearance** column allows you to change the appearance of questions in yo
 
 | Appearance attribute | Question type               | Description                                                                                                                                                                                                                     |
 | -------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| multiline            | text                        | Best if used with web clients, makes the text box multiple lines long.                                                                                                                                                          |
-| minimal              | select_one, select_multiple | Answer choices appear in a pull-down menu.                                                                                                                                                                                      |
-| quick                | select_one                  | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.                                                                                                       |
-| no-calendar          | date                        | For mobile devices only, used to suppress the calendar.                                                                                                                                                                         |
-| month-year           | date                        | Select a month and year only for the date.                                                                                                                                                                                      |
-| year                 | date                        | Select only a year for the date.                                                                                                                                                                                                |
-| horizontal-compact   | select_one, select_multiple | For web clients only, this displays the answer choices horizontally.                                                                                                                                                            |
-| horizontal           | select_one, select_multiple | For web clients only, this displays the answer choices horizontally, but in columns.                                                                                                                                            |
-| likert               | select_one                  | Best if used with web clients, makes the answer choices appear as a Likert scale.                                                                                                                                               |
-| compact              | select_one, select_multiple | Displays answer choices side by side with minimal padding and without radio buttons or checkboxes. Particularly useful with image choices.                                                                                      |
-| quickcompact         | select_one                  | Same as previous, but auto-advances to the next question (in mobile clients only).                                                                                                                                              |
-| field-list           | groups                      | Entire group of questions appear on one screen (for mobile clients only).                                                                                                                                                       |
-| label                | select_one, select_multiple | Displays answer choice labels (and not inputs).                                                                                                                                                                                 |
-| list-nolabel         | select_one, select_multiple | Used in conjunction with the **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
-| table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
-| signature            | image                       | Allows you to trace your signature into your form (mobile clients only).                                                                                                                                                        |
-| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
-| map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
+| multiline            | text                        | Best if used with web clients, makes the text box multiple lines long.| 
+| minimal              | select_one, select_multiple {list_name} | Answer choices appear in a pull-down menu.|                                                      
+| quick                | select_one {list_name}      | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.|                                                                                   
+| no-calendar          | date                        | For mobile devices only, used to suppress the calendar.|                                                                                                                              
+| month-year           | date                        | Select a month and year only for the date.|                                                                                                                                     
+| year                 | date                        | Select only a year for the date.|                                                 
+| horizontal-compact   | select_one, select_multiple {list_name} | For web clients only, this displays the answer choices horizontally.|                                                                                                                                          
+| horizontal           | select_one, select_multiple {list_name} | For web clients only, this displays the answer choices horizontally, but in columns.|
+| likert               | select_one {list_name}      | Best if used with web clients, makes the answer choices appear as a Likert scale.|                                                                                                                                
+| compact              | select_one, select_multiple {list_name} | Displays answer choices side by side with minimal padding and without radio buttons or checkboxes. Particularly useful with image choices.|                                                                    
+| quickcompact         | select_one {list_name}      | Same as previous, but auto-advances to the next question (in mobile clients only).|                                                                                                                               
+| field-list           | groups                      | Entire group of questions appear on one screen (for mobile clients only).|
+| label                | select_one, select_multiple {list_name} | Displays answer choice labels (and not inputs).|
+| list-nolabel         | select_one, select_multiple {list_name} | Used in conjunction with the **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client).|
+| table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).|
+| signature            | image                       | Allows you to trace your signature into your form (mobile clients only).|
+| draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.|
+| map, quick map       | select_one {list_name}, select_one_from_file | Allows a user to select a choice from many features on a map.|
 
-An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
+An XLSForm showing some of the appearance attributes is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
+
+See this [Reference Table](https://xlsform.org/en/ref-table/) for all the appearance attributes.
 
 ## Settings worksheet
 
