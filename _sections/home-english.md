@@ -831,8 +831,11 @@ Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3
 
 Media is translatable in the same way as labels and hints as explained in the [languages section](#multiple-language-support).
 
-## Pre-loading CSV data
+## Appendix: Alternatives for loading CSVs
 
+{% include alerts/warning.html content="These approaches may not work with all data collection clients. We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices." %}
+
+### Database-backed data preloading
 Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
 To reference pre-existing data in a survey form:
 
@@ -847,7 +850,7 @@ Each csv file should contain at least one column that can be used to uniquely id
 | mango    | Mango  |
 | orange   | Orange |
 
-### How to pull data from CSV
+#### How to pull data from CSV
 
 You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
 For each data field that you want to pull into your survey:
@@ -871,14 +874,13 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
 **Important notes on usage of pre-loaded data**
 
- * Compress a large .csv file into a **.zip archive** before uploading it.
  * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly.
  * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
 
-## Dynamic selects from pre-loaded data
+#### Dynamic selects from pre-loaded data
 
-If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection application supports it.
+{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
 
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
@@ -953,17 +955,15 @@ For the **search() expression**, there are a series of options to indicate which
     
  6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
 
-For an example, see the [advanced search-and-select sample form here](https://drive.google.com/drive/folders/1Wx09ZFOJuiWmy0XKKtpxzGsZHfxeTO9c?usp=sharing).
-
 Additional notes on usage:
 
 1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
 2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
 choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric. 
 
-## External selects
+## Database-backed "fast external itemsets"
 
-If a form has selects with a large number of choices (e.g., hundreds or thousands), that form can slow down form loading and navigation if [Multiple Choice from File](#multiple-choice-from-file) is used. The best workaround to this issue is to use external selects in those data collection applications (such as ODK Collect) that support it. 
+{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
 
 Enabling external selects is straightforward.
  - Instead of **select_one** for the prompt type, use **select_one_external**.
