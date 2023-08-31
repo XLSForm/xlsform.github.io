@@ -215,7 +215,7 @@ To show select choices on a map, add the **map** or **quick map** appearance att
 
 #### Multiple choice from file
 
-The options in a multiple-choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
+The options in a multiple-choice question can be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
@@ -831,150 +831,6 @@ Check out the [Birds XLSForm](https://docs.google.com/spreadsheets/d/1Rxft3H3xl3
 
 Media is translatable in the same way as labels and hints as explained in the [languages section](#multiple-language-support).
 
-## Appendix: Alternatives for loading CSVs
-
-{% include alerts/warning.html content="These approaches may not work with all data collection clients. We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices." %}
-
-### Database-backed data preloading
-Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
-To reference pre-existing data in a survey form:
-
- * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
-  * unique names for each column
-  * subsequent rows which should contain the data itself
-
-Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
-
-| name_key | name   |
-| -------- | ------ |
-| mango    | Mango  |
-| orange   | Orange |
-
-#### How to pull data from CSV
-
-You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
-For each data field that you want to pull into your survey:
-
- * Add a **calculate field** to your survey.
- * Give that field a **name**
- * Then in its **calculation** column, call the **pulldata()** function, indicating which field to pull from which row of which .csv file.
-
-See below for an example:
-
-| type      | name       | label                               | calculation                                     |
-| --------- | ---------- | ----------------------------------- | ----------------------------------------------- |
-| calculate | fruit      |                                     | pulldata('fruits', 'name', 'name_key', 'mango') |
-| note      | note_fruit | The fruit ${fruit} pulled from csv. |                                                 |
-| ========= | ========== | =================================== | =============================================== |
-| survey    |            |                                     |                                                 |
-
-Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user.
-
-Click on the link to see an example of a [pre-loading sample form ](https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing)
-
-**Important notes on usage of pre-loaded data**
-
- * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly.
- * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
- * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
-
-#### Dynamic selects from pre-loaded data
-
-{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
-
-Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
-
-The following should be done:
-
-* specify **select_one listname** or **select_multiple listname** in the type column (where **listname** is the name of your choice list)
-* specify any special **appearance styles** in the appearance column
-* include one or more rows for your listname on the choices worksheet.
-
-Below is an example of the **survey worksheet**:
-
-| type              | name   | label          | appearance       |
-| ----------------- | ------ | -------------- | ---------------- |
-| select_one fruits | fruits | Select a fruit | search('fruits') |
-| ================= | ====== | ============== | ================ |
-| survey            |        |                |                  |
-
-There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
-
-* In the appearance column:
- * Include a **search() expression** that specifies which .csv rows to include in the choice list.
- * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a **space**, then the **search() expression**. [e.g., **quick search()**]
-* On the **choices worksheet**:
- * a row should indicate which .csv columns to use for the label and selected value. As follows:
-   * **list_name** column: specify the name of your choice list as you normally would.
-    * **name** column:  include the name of the .csv column to use for uniquely identifying selected choices.
-    * **label** column:  include the name of the .csv column to use for labeling the choices.
-<br>
-**Note**:
-<br>
-If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.
-* In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column.
-<br>
-**Note**:
-<br>
-If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
-<br>
-See below an example of the choices worksheet:
-<br>
-
-| list name         | name     | label          |
-| ----------------- | -------- | -------------- |
-| fruits            | name_key | name           |
-| ================= | ======   | ============== |
-| choices           |          |                |
-
-Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
-<br>
-
-For the **search() expression**, there are a series of options to indicate which .csv rows to include in the choice list:
-
- 1. **search(csvName)**: The single-parameter search expression includes all distinct rows as choices (e.g., "search('hhplotdata')").
- All rows in the specified .csv file will be considered as choices, but only distinct rows -- those with unique selection values --
- will be listed for the user. In other words, duplicates will be automatically filtered from the list shown to users.
-
- 2. **search(csvName, "contains", columnsToSearch, searchText)**: This search expression includes all distinct rows that contain the
- specified text in the specified column(s) (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
- in any specified column will be included.
-
- 3. **search(csvName, "startswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that start with
- the specified text in the specified column(s) (e.g., "search('hhplotdata', 'startswith', 'respondentname', ${nameprefix})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches in
- any specified column will be included.
-
- 4. **search(csvName, "endswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that end with the
-    specified text in the specified column(s) (e.g., "search('hhplotdata', 'endswith', 'respondentname', ${namesuffix})"). The third
-    parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
-    in any specified column will be included.
-
- 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
-    
- 6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
-
-Additional notes on usage:
-
-1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
-2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
-choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric. 
-
-## Database-backed "fast external itemsets"
-
-{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
-
-Enabling external selects is straightforward.
- - Instead of **select_one** for the prompt type, use **select_one_external**.
- - Instead of the **choices** sheet, put external choices in the **external_choices** sheet.
-
-See [select_one_external](https://docs.google.com/spreadsheets/d/12qZL34kuHSZGWDv0BBJ1qf7dSmml-d2VnMWH0Vtg-O4/edit?usp=sharing) form for an example that uses normal and external choices.
-
-When an XLSForm with external choices is converted to an XForm, two files will be produced, the **XForm** (e.g., form-filename.xml) with all the normal choices and an **itemsets.csv** with the external choices.
-
-The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. Clients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
-
 ## Default
 
 Adding a default field means that a question will be pre-populated with an answer when the user first sees the question. This can help save time if the answer is one that is commonly selected or it can serve to show the user what type of answer choice is expected. See the example below.
@@ -1203,6 +1059,150 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [Community Health Toolkit](https://communityhealthtoolkit.org/)
 * [CyberTracker](https://cybertrackerwiki.org/xlsform/)
 
+## Appendix: loading big CSVs
+
+{% include alerts/warning.html content="These approaches may not work with all data collection clients. We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices." %}
+
+### Database-backed data preloading
+Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+To reference pre-existing data in a survey form:
+
+ * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
+  * unique names for each column
+  * subsequent rows which should contain the data itself
+
+Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
+
+| name_key | name   |
+| -------- | ------ |
+| mango    | Mango  |
+| orange   | Orange |
+
+#### How to pull data from CSV
+
+You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
+For each data field that you want to pull into your survey:
+
+ * Add a **calculate field** to your survey.
+ * Give that field a **name**
+ * Then in its **calculation** column, call the **pulldata()** function, indicating which field to pull from which row of which .csv file.
+
+See below for an example:
+
+| type      | name       | label                               | calculation                                     |
+| --------- | ---------- | ----------------------------------- | ----------------------------------------------- |
+| calculate | fruit      |                                     | pulldata('fruits', 'name', 'name_key', 'mango') |
+| note      | note_fruit | The fruit ${fruit} pulled from csv. |                                                 |
+| ========= | ========== | =================================== | =============================================== |
+| survey    |            |                                     |                                                 |
+
+Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user.
+
+Click on the link to see an example of a [pre-loading sample form ](https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing)
+
+**Important notes on usage of pre-loaded data**
+
+ * Save .csv file in **UTF-8 format** if pre-loaded data contains non-English fonts or special characters this enables your Android device to render the text correctly.
+ * Data fields pulled from a .csv file are considered to be text strings therefore use the **int()** or **number()** functions to convert a pre-loaded field into numeric form.
+ * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
+
+#### Dynamic selects from pre-loaded data
+
+{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
+
+Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
+
+The following should be done:
+
+* specify **select_one listname** or **select_multiple listname** in the type column (where **listname** is the name of your choice list)
+* specify any special **appearance styles** in the appearance column
+* include one or more rows for your listname on the choices worksheet.
+
+Below is an example of the **survey worksheet**:
+
+| type              | name   | label          | appearance       |
+| ----------------- | ------ | -------------- | ---------------- |
+| select_one fruits | fruits | Select a fruit | search('fruits') |
+| ================= | ====== | ============== | ================ |
+| survey            |        |                |                  |
+
+There are three differences when the choice list should be pulled from one of your pre-loaded .csv files:
+
+* In the appearance column:
+ * Include a **search() expression** that specifies which .csv rows to include in the choice list.
+ * If the field should use a non-default appearance style. The non-default appearance style goes into the column first, followed by a **space**, then the **search() expression**. [e.g., **quick search()**]
+* On the **choices worksheet**:
+ * a row should indicate which .csv columns to use for the label and selected value. As follows:
+   * **list_name** column: specify the name of your choice list as you normally would.
+    * **name** column:  include the name of the .csv column to use for uniquely identifying selected choices.
+    * **label** column:  include the name of the .csv column to use for labeling the choices.
+<br>
+**Note**:
+<br>
+If you wish to include multiple columns in the labels,  include a comma-separated list of all columns to include. The name column will be dynamically populated based on the column name you put there, and the label column will be dynamically populated based on the column name(s) you put there.
+* In your choices worksheet row, you may also include a .csv column name in the image column. If you do, the image filename to use will be pulled from the specified .csv column.
+<br>
+**Note**:
+<br>
+If you refer to image files in this way, you must always upload those image files as media file attachments when you upload your form to the server.
+<br>
+See below an example of the choices worksheet:
+<br>
+
+| list name         | name     | label          |
+| ----------------- | -------- | -------------- |
+| fruits            | name_key | name           |
+| ================= | ======   | ============== |
+| choices           |          |                |
+
+Click on the link to see an example of a [search-and-select sample form](https://docs.google.com/spreadsheets/d/1Y0vW0cjl1nbkZczXRmcTC71Pso8dRbouPSYWGBdvBWU/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing).
+<br>
+
+For the **search() expression**, there are a series of options to indicate which .csv rows to include in the choice list:
+
+ 1. **search(csvName)**: The single-parameter search expression includes all distinct rows as choices (e.g., "search('hhplotdata')").
+ All rows in the specified .csv file will be considered as choices, but only distinct rows -- those with unique selection values --
+ will be listed for the user. In other words, duplicates will be automatically filtered from the list shown to users.
+
+ 2. **search(csvName, "contains", columnsToSearch, searchText)**: This search expression includes all distinct rows that contain the
+ specified text in the specified column(s) (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind})"). The third
+ parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+ in any specified column will be included.
+
+ 3. **search(csvName, "startswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that start with
+ the specified text in the specified column(s) (e.g., "search('hhplotdata', 'startswith', 'respondentname', ${nameprefix})"). The third
+ parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches in
+ any specified column will be included.
+
+ 4. **search(csvName, "endswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that end with the
+    specified text in the specified column(s) (e.g., "search('hhplotdata', 'endswith', 'respondentname', ${namesuffix})"). The third
+    parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+    in any specified column will be included.
+
+ 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
+
+ 6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
+
+Additional notes on usage:
+
+1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
+2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
+choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric.
+
+### Database-backed "fast external itemsets"
+
+{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
+
+Enabling external selects is straightforward.
+ - Instead of **select_one** for the prompt type, use **select_one_external**.
+ - Instead of the **choices** sheet, put external choices in the **external_choices** sheet.
+
+See [select_one_external](https://docs.google.com/spreadsheets/d/12qZL34kuHSZGWDv0BBJ1qf7dSmml-d2VnMWH0Vtg-O4/edit?usp=sharing) form for an example that uses normal and external choices.
+
+When an XLSForm with external choices is converted to an XForm, two files will be produced, the **XForm** (e.g., form-filename.xml) with all the normal choices and an **itemsets.csv** with the external choices.
+
+The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. Clients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
+
 ## More resources
 
 The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
@@ -1221,4 +1221,3 @@ If you want to contribute to or improve this documentation, please visit our [pr
 ## History
 
 The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
-
