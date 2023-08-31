@@ -103,7 +103,7 @@ To collect a line or shape of GPS coordinates, you can use one of the following:
 | ========== | ============ | ======================================================================================== |
 | survey     |              |         |                                                                                |
 
-See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
+See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1af_Sl8A_L8_EULbhRLHVl8OclCfco09Hq2tqb9CslwQ) for a look at each question type being used in a form.
 
 ### GPS with accuracyThreshold
 
@@ -1030,7 +1030,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 | draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
 | map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
-An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
+An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/1af_Sl8A_L8_EULbhRLHVl8OclCfco09Hq2tqb9CslwQ).
 
 ## Settings worksheet
 
