@@ -172,7 +172,9 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 #### Specify other
 
-For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. This is possible through XLSForm by including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
+{% include alerts/warning.html content="This shortcut for specifying an **other** choice only works for single-language surveys and selects without **choice_filter**s. It uses the default value of **other** as the choice name that will be visible in collected data, and the default text of \"Specify other\" for the follow-up question displayed to the user. We generally recommend using [relevance](#relevant) to specify your own **other** choice." %}
+
+For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. XLSForm has a shortcut for doing this by adding **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 
 | type                                    | name             | label                                       |
@@ -193,9 +195,6 @@ For multiple-choice questions, surveys often include an option of marking **othe
 | choices        |            |                           |
 
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
-
-**Caveat**
-When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large-scale data collection efforts. See the **Relevant** section below for an alternative method more appropriate for large-scale projects.
 
 #### Location widget
 A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
@@ -468,7 +467,7 @@ One great feature of XLSForm is the ability to skip a question or make an additi
 
 In this example, the respondent is asked, “Do you like pizza?” If the answer is **yes**, then the pizza topping question appears below. Note the ``${ }`` around the variable **likes_pizza**.  These are required in order for the form to reference the variable from the previous question.
 
-In the next example, below, we use relevant syntax for a **select_multiple** question, which is slightly different from the **select_one** question example above.
+Setting relevance based on the value of a **select_multiple** question is slightly different from the **select_one** question example above:
 
 | type                                    | name             | label                                 | relevant                                |
 | --------------------------------------- | ---------------- | ------------------------------------- | --------------------------------------- |
@@ -490,12 +489,12 @@ In the next example, below, we use relevant syntax for a **select_multiple** que
 
 Since the pizza topping question allows multiple responses, we have to use the ``selected(${favorite_topping}, 'cheese')`` expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
 
-Earlier we mentioned there was an alternative method for specifying other for multiple-choice questions which is more appropriate for large-scale surveys. This can be done using the same relevant syntax from the example above:
+Earlier we mentioned that relevance could be used to specify a free-text "other" option for multiple-choice questions. The advantages of doing this over using the **or_other** shortcut are that you get control over the choice name, you get to specify the text that the user sees, and it works with multi-language forms. Here is an example:
 
 | type                           | name                    | label                                  | relevant                                |
 | ------------------------------ | ----------------------- | -------------------------------------- | --------------------------------------- |
 | select_multiple pizza_toppings | favorite_toppings       | What are your favorite pizza toppings? |                                         |
-| text                           | favorite_toppings_other | Specify other:                         | selected(${favorite_toppings}, 'other') |
+| text                           | favorite_toppings_other | What other toppings do you like?       | selected(${favorite_toppings}, 'other') |
 | =============================  | ==================      | =====================================  | ======================================= |
 | survey                         |                         |                                        |                                         |
 
