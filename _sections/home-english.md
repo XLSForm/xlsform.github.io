@@ -193,7 +193,6 @@ For multiple-choice questions, surveys often include an option of marking **othe
 
 | list name      | name       | label                     |
 | -------------- | ---------- | ------------------------- |
-| list name      | name       | label                     |
 | pizza_toppings | cheese     | Cheese                    |
 | pizza_toppings | pepperoni  | Pepperoni                 |
 | pizza_toppings | sausage    | Sausage                   |
@@ -202,12 +201,11 @@ For multiple-choice questions, surveys often include an option of marking **othe
 
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
 
-#### Location widget
-A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
+#### Select from map
+To show select choices on a map, add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
 
 | list name      | name       | label                     | geometry                  |
 | -------------- | ---------- | ------------------------- | ------------------------- | 
-| list name      | name       | label                     | geometry                  |
 | site           | shofco     | Shofco                    | 36.7965483 -1.3182517 0 0 |
 | site           | gemkam     | Gemkam Medical Clinic     | 36.7967088 -1.3170903 0 0 |
 | site           | silanga    | Silanga Pharmacy          | 36.7955008 -1.3167834 0 0 |
@@ -215,7 +213,7 @@ A user may want to select a location from a map view during data collection. To 
 | ============   | ========== | ========================= | ========================= |
 | choices        |            |                           |                           |
 
-### Multiple choice from file
+#### Multiple choice from file
 
 The options in a multiple-choice question can also be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
@@ -223,7 +221,7 @@ The options in a multiple-choice question can also be taken from a separate file
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
 | select_multiple_from_file country.csv   | liv  | In which countries did you live?  |                 |
 | select_one_from_file countries.xml      | cou  | In which country do you live now? |                 |
-| select_one_from_file countries.xml      | cit  | What is the closest city?      | name=${cou}     |
+| select_one_from_file cities.xml         | cit  | What is the closest city?      | country=${cou}     |
 | select_one_from_file households.csv     | hh   | Select household number        |                 |
 | ======================================= | ==== | ===============================|=================|
 | survey                                  |      |                                |                 |
@@ -247,9 +245,13 @@ The files require a specific format. A CSV file requires a `name` and `label` co
   </item>
 </root>
 ```
-A GeoJSON requires each feature, or point, to have an id and title property, or an attribute of the point. The GeoJSON must be defined by a single top-level FeatureCollection, and it currently only works for point geometry, as noted in detail on the [ODK documentation site](https://docs.getodk.org/form-datasets/#selects-from-geojson).
+A GeoJSON requires each feature to have an id and a title property. The GeoJSON must be defined by a single top-level FeatureCollection. Learn more from [the ODK documentation](https://docs.getodk.org/form-datasets/#selects-from-geojson).
 
 CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
+
+This question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest-spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it.
+
+#### Specify custom columns for label and value
 
 If the CSV, XML, or GeoJSON files use different names for the choice `name` and `label`, add a column to the survey sheet named `parameters`, and specify the custom names with the `value` and `label` parameters. See usage examples below:
 
@@ -257,7 +259,7 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 | --------------------------------------- | ---- | --------------------------------- | --------------- |
 | select_multiple_from_file country.csv   | liv  | In which countries did you live?  | value=ccode     |
 | select_one_from_file countries.xml      | cou  | In which country do you live now? | label=cname     |
-| select_one_from_file households.csv     | hh   | Select household number           | value=housenum, label=housename |
+| select_one_from_file households.csv     | hh   | Select household number           | value=housenum label=housename |
 | ======================================= | ==== | ==================================|=================|
 | survey                                  |      |                                   |                 |
 
@@ -265,11 +267,9 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 
 | type                                          | name | label                               | appearance   | parameters               |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
-| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map        | value=id label=name |
 | ============================================= | ==== | ====================================|==============| ======================== |
 | survey                                        |      |                                     |              |                          |                     
-
-Note that, this question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest-spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it. 
 
 ### Rank
 
