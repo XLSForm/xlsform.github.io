@@ -170,6 +170,12 @@ In general, choice names should be unique within a single-choice list. If two ch
 | ===========             |
 | settings                |
 
+#### Cascading selects
+
+It's common to have multiple connected select questions where earlier ones filter the options for later ones. For example, a form might start out by asking the respondent's state, then their district, and finally their city. An alternative would be to directly have the user select their city name from a list of all cities, but the city list would be very long and wouldn't work for city names that are repeated in different districts or states.
+
+To chain or cascade selects, you will need to create a **choice_filter** column in your survey worksheet. The expression in this column will be used to filter down the list of choices for the corresponding select. Any choice for which the expression is **true** will be included. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
+
 #### Specify other
 
 {% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
@@ -954,10 +960,6 @@ Additional notes on usage:
 1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
 2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
 choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric. 
-
-## Cascading selects
-
-A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
 
 ## External selects
 
