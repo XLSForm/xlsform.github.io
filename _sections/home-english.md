@@ -140,7 +140,7 @@ XLSForm supports both **select_one** (select only one answer) and **select_multi
 
 Note that the **yes_no** in the **survey** worksheet must match the **yes_no** in the **list name** column in the **choices** worksheet. This ensures that the form displays the correct list of answer choices for a particular question.
 
-We can also add multiple choice questions that allow multiple answers to be selected, like so:
+We can also add multiple choice questions that allow multiple answers to be selected.  The responses for select multiple question will be the space-separated choices made by the user, in the order that they were selected:
 
 | type                           | name              | label                                       |
 | ------------------------------ | ----------------- | ------------------------------------------- |
@@ -162,7 +162,8 @@ We can also add multiple choice questions that allow multiple answers to be sele
 
 The `name` column of the choices sheet defines the values that will be saved when each choice is selected during data collection. Choice names for **select_multiple** must not contain spaces because spaces are used as a separator when an answer with multiple selected choices is saved. Choice names for **select_one** questions may contain spaces. However, we recommend avoiding them to make analysis easier. Additionally, this makes it possible to convert the question to a **select_multiple** in a future form version.
 
-In general, choice names should be unique within a single-choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you do need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+In general, choice names should be unique within a single choice list. If two choices from the same list have the same name, they will be impossible to tell apart in analysis. If you have duplicate choice names, you will get an error, and your form will not be converted. However, it may sometimes be appropriate to have duplicate choice names. An example would be if you use a [cascading select](#cascading-selects), and the choices with the same name are differentiated by a preceding question. If you need to use duplicate choice names, you can suppress the error by using the `allow_choice_duplicates` setting:
+
 
 | allow_choice_duplicates |
 | ----------------------  |
@@ -172,10 +173,33 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 #### Specify other
 
-{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
+For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, respondents are usually asked to specify the other option. There are two possible ways to specify other
 
-For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. XLSForm has a shortcut for doing this by adding **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
+### Specify other using a relevant function (recommended)
+You can add Other as choice option for the multiple choice question. Then, you can add a text question for other choice option and use skip logic with the [relevant](#relevant) column to show the text question when the Other option is selected:
 
+| type                           | name             | label                                  | relevant
+| -------------------------------| ---------------- | ---------------------------------------| ------------------
+| select_multiple pizza_toppings | pizza_topping    | What are your favorite pizza toppings? | 
+| text                           | topping_other    | Specify other pizza toppings           | selected(${pizza_topping},'other')
+| ============================== | ===============  | ====================================== |
+| survey                         |                  |                                        |
+
+<p/>
+
+| list name      | name       | label                     |
+| -------------- | ---------- | ------------------------- |
+| list name      | name       | label                     |
+| pizza_toppings | cheese     | Cheese                    |
+| pizza_toppings | pepperoni  | Pepperoni                 |
+| pizza_toppings | sausage    | Sausage  
+| pizza_toppings | other      | Other
+| ============   | ========== | ========================= |
+| choices        |            |                           |
+
+
+### Specify other using or_other
+Another option to include an Other option is including **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
 | type                                    | name             | label                                       |
 | --------------------------------------- | ---------------- | ------------------------------------------- |
@@ -195,6 +219,9 @@ For multiple-choice questions, surveys often include an option of marking **othe
 | choices        |            |                           |
 
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
+
+**Caveat**
+When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value  **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. Therefore, we recommend using the[relevant](#relevant) function for specifying the other option.
 
 #### Location widget
 A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
