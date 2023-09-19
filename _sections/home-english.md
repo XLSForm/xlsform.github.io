@@ -186,12 +186,12 @@ For multiple choice questions, surveys often include an option of marking **othe
 ### Specify other using a relevant function (recommended)
 You can add Other as choice option for the multiple choice question. Then, you can add a text question for other choice option and use skip logic with the [relevant](#relevant) column to show the text question when the Other option is selected:
 
-| type                           | name             | label                                  | relevant
-| -------------------------------| ---------------- | ---------------------------------------| ------------------
-| select_multiple pizza_toppings | pizza_topping    | What are your favorite pizza toppings? | 
-| text                           | topping_other    | Specify other pizza toppings           | selected(${pizza_topping},'other')
-| ============================== | ===============  | ====================================== |
-| survey                         |                  |                                        |
+| type                           | name          | label                                  | relevant                          |
+| -------------------------------| ------------- | -------------------------------------- | --------------------------------- |
+| select_multiple pizza_toppings | pizza_topping | What are your favorite pizza toppings? |                                   |
+| text                           | topping_other | Specify other pizza toppings           | selected(${pizza_topping},'other')|
+| ============================== | ============= | ====================================== | ================================= |
+| survey                         |               |                                        |                                   |
 
 <p/>
 
@@ -200,8 +200,8 @@ You can add Other as choice option for the multiple choice question. Then, you c
 | list name      | name       | label                     |
 | pizza_toppings | cheese     | Cheese                    |
 | pizza_toppings | pepperoni  | Pepperoni                 |
-| pizza_toppings | sausage    | Sausage  
-| pizza_toppings | other      | Other
+| pizza_toppings | sausage    | Sausage                   |
+| pizza_toppings | other      | Other                     |
 | ============   | ========== | ========================= |
 | choices        |            |                           |
 
@@ -304,11 +304,11 @@ Note that, this question type is generally the preferred way of building select 
 
 The rank widget can be used to let respondents order a list of options. The answer is saved as an ordered, space-separated list of option values where all options are always included. The syntax is very similar to multiple-choice questions.
 
-| type                    | name             | label                                         |
-| ----------------------- | ---------------- | --------------------------------------------- |
+| type                    | name             | label                                          |
+| ----------------------- | ---------------- | ---------------------------------------------- |
 | rank pizza_toppings     | toppings         | Order pizza toppings with your favorite on top |
-| ======================= | ============     | ============================================= |
-| survey                  |                  |                                               |
+| ======================= | ================ | ============================================== |
+| survey                  |                  |                                                |
 
 <p/>
 
