@@ -286,7 +286,7 @@ If the CSV, XML, or GeoJSON files use different names for the choice `name` and 
 
 | type                                          | name | label                               | appearance   | parameters               |
 | --------------------------------------------- | ---- | ----------------------------------- | ------------ | ------------------------ |
-| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map       | value = id, label = name |
+| select_one_from_file health_facility.geojson  | site | Select the health facility visited  |   map        | value = id, label = name | 
 | ============================================= | ==== | ====================================|==============| ======================== |
 | survey                                        |      |                                     |              |                          |                     
 
@@ -554,20 +554,20 @@ Note that the **${tip}** in the last line will be replaced with the actual tip a
 
 The calculate type calculates **text** but calculations can also be added to any other question types. Non-text types can be useful for data analysis, e.g. if a date or date-time is calculated. **If no label and no hint are included, the calculation will be hidden.** See the example below which is the equivalent of the previous form:
 
-| type      | name     | label        | hint                   | calculation                  |
-| --------- | -------- | ------------------------------------- | ---------------------------- |
-| decimal   | amount   | What was the price of the meal?  |    |                              |
-| text      | tip      |              |                        | ${amount} * 0.18             |
-| note      | display  | 18% tip for your meal is: ${tip} |    |                              |
-| ========  | ======== | ===================================== | ============================ |
-| survey    |          |              |                        |                              |
+| type      | name     | label                            | hint                   | calculation                  |
+| --------- | -------- | -------------------------------- |----------------------- | ---------------------------- |
+| decimal   | amount   | What was the price of the meal?  |                        |                              |
+| text      | tip      |                                  |                        | ${amount} * 0.18             |
+| note      | display  | 18% tip for your meal is: ${tip} |                        |                              |
+| ========  | ======== | ================================ | ====================== | ============================ |
+| survey    |          |                                  |                        |                              |
 
 And this is an example of when a non-text type is needed because of data analysis requirements:
 
 | type      | name     | label        | hint                   | calculation                  |
-| --------- | -------- | ------------------------------------- | ---------------------------- |
+| --------- | -------- | ------------ | ---------------------- | ---------------------------- |
 | date      | day      |              |                        | today()                      |
-| ========  | ======== | ===================================== | ============================ |
+| ========= | ======== | ============ | ====================== | ============================ |
 | survey    |          |              |                        |                              |
 
 **Note that using non-text calculation types has no effect on using the calculation result within the form itself.** This is a common misunderstanding.
@@ -614,12 +614,12 @@ In the form above the temp_F question is shown to the user and the temp_K questi
 
 An important and powerful difference with regular calculations is that **the calculation value with a trigger may also be empty**, which serves to clear a value from the form. See the example below:
 
-| type      | name            | label                                       | calculation                  | trigger            |
-| --------- | --------------- | ------------------------------------------- | ---------------------------- | ------------------ |
-| text      | name            | What is the name of the oldest person here? |                              |                    |                    
-| integer   | age             | How old is this person?                     |                              | ${name}            |
-| ========  | =============== | =========================================== | ============================ | ================== |
-| survey    |                 |                                             |                              |                    |
+| type      | name            | label                                       | calculation                  | trigger          |
+| --------- | --------------- | ------------------------------------------- | ---------------------------- | ---------------- |
+| text      | name            | What is the name of the oldest person here? |                              |                  |
+| integer   | age             | How old is this person?                     |                              | ${name}          |
+| ========  | =============== | =========================================== | ============================ | ================ |
+| survey    |                 |                                             |                              |                  |
 
 If the respondent using this form has entered the name and age of person A and subsequently finds out there is an older person B, the age field will be cleared as soon as the name of person B has been entered.
 
