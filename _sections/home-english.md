@@ -172,7 +172,7 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 #### Specify other
 
-{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the "Specify other" choice which cannot be customized." %}
+{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
 
 For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. XLSForm has a shortcut for doing this by adding **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
