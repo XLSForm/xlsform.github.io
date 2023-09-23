@@ -172,7 +172,7 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 #### Specify other
 
-{% include alerts/warning.html content="This shortcut for specifying an **other** choice only works for single-language surveys and selects without **choice_filter**s. It uses the default value of **other** as the choice name that will be visible in collected data, and the default text of \"Specify other\" for the follow-up question displayed to the user. We generally recommend using [relevance](#relevant) to specify your own **other** choice." %}
+{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the "Specify other" choice which cannot be customized." %}
 
 For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. XLSForm has a shortcut for doing this by adding **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
@@ -489,7 +489,7 @@ Setting relevance based on the value of a **select_multiple** question is slight
 
 Since the pizza topping question allows multiple responses, we have to use the ``selected(${favorite_topping}, 'cheese')`` expression, because we want the cheese question to appear every time the user selects **cheese** as one of the answers (regardless of whether additional answers are selected).
 
-Earlier we mentioned that relevance could be used to specify a free-text "other" option for multiple-choice questions. The advantages of doing this over using the **or_other** shortcut are that you get control over the choice name, you get to specify the text that the user sees, and it works with multi-language forms. Here is an example:
+In the [Specify Other](https://xlsform.org/en/#specify-other) section it is mentioned that relevance could be used to specify a free-text "other" option for multiple-choice questions. The advantages of doing this over using the **or_other** shortcut are that you get control over the choice name, you get to specify the text that the user sees, and it works with multi-language forms. Here is an example:
 
 | type                           | name                    | label                                  | relevant                                |
 | ------------------------------ | ----------------------- | -------------------------------------- | --------------------------------------- |
