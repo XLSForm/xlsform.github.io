@@ -3,22 +3,9 @@ ref: ref-table
 lang: en
 ---
 
-This page is a work-in-progress reference for all available functions in XLS Forms. It is divided into the three possible sheets: [survey](#survey), [choices](#choices), and [settings](#settings).
+It can be helpful to use a template to build an XLSForm rather than starting from a blank document. The template provided below includes some helpful styling rules as well as extensive reference that is kept updated as XLSForm and the tools that use it evolve. You can use it to see which functionality is supported by Collect and Enketo and get ideas on how to meet your form design goals.
 
-### [survey](#survey)
+* [Google Sheets](https://docs.google.com/spreadsheets/d/1v9Bumt3R0vCOGEKQI6ExUf2-8T72-XXp_CbKKTACuko/edit#gid=1052905058) (use `File > Make a copy`)
+* [XLSX file](https://github.com/getodk/xlsform-template/raw/main/ODK%20XLSForm%20Template.xlsx)
 
-This sheet is mandatory in all XLSForms. 
-
-{% include table.html sheet="survey" %} 
-
-### [choices](#choices)
-
-The choices sheet is optional and only required if there are any select_one or select_multiple questions in the file.
-
-{% include table.html sheet="choices" %}
-
-### [settings](#settings)
-
-The settings sheet and all of its items are optional.
-
-{% include table.html sheet="settings" %}
+💡 Add the document to your templates in your spreadsheet software to make it easier to find. Don't forget to check back occasionally for updates!

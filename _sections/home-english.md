@@ -801,7 +801,7 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 | ================= | =========== | ============        | ============          | ========== |
 | survey            |             |                     |                       |            |
 
-You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
+You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference](./ref-table), which includes a list of all column headers that can accept a language modification.
 
 | hint::English (en)  | hint::Dutch (nl)     | image::English (en)        | image::Dutch (nl)        |
 | ------------------- | -------------------- | -------------------------- | ------------------------ |  
