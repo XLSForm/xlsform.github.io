@@ -2,7 +2,7 @@
 layout: fullpage
 lang: en
 ref: ref-table
-title: XLSForm Reference Table
+title: Reference and Template
 ---
 ## {{page.title}}
 {% include content.html %}
