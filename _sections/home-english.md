@@ -1193,22 +1193,20 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [ODK](https://getodk.org)
 * [KoBoToolBox](https://kobotoolbox.org)
 * [CommCare](https://commcarehq.org)
-* [SurveyCTO](https://www.surveycto.com/)
-* [DataWinners](https://www.datawinners.com/)
+* [SurveyCTO](https://www.surveycto.com)
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
-* [Tattara](http://tattara.com/)
-* [Survey123 for ArcGIS](https://survey123.arcgis.com/)
-* [Community Health Toolkit](https://communityhealthtoolkit.org/)
-* [CyberTracker](https://cybertrackerwiki.org/xlsform/)
+* [Survey123 for ArcGIS](https://survey123.arcgis.com)
+* [Community Health Toolkit](https://communityhealthtoolkit.org)
+* [CyberTracker](https://cybertrackerwiki.org/xlsform)
 
 ## More resources
 
-The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
+If you want to dig in deeper to understand XForms and go beyond the XLSForms information on this site, here are some resources:
 
 * [XForms as supported by the ODK ecosytem](https://getodk.github.io/xforms-spec/)
 * [ODK Form design guidelines](https://docs.getodk.org/form-design-intro/)
 * [Ona Form design overview](https://help.ona.io/knowledge-base/guide-creating-surveys/)
-* [KoBoToolbox form design help center](https://support.kobotoolbox.org/en/collections/443818-creating-forms)
+* [KoBoToolbox form design help center](https://support.kobotoolbox.org/getting_started_xlsform.html)
 
 ## About this site
 
