@@ -173,6 +173,8 @@ In general, choice names should be unique within a single choice list. If two ch
 
 #### Specify other
 
+{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
+
 For multiple choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, respondents are usually asked to specify the other option. There are two possible ways to specify other
 
 ### Specify other using a relevant function (recommended)
@@ -220,8 +222,6 @@ Another option to include an Other option is including **or_other** after the an
 
 Click on the link to look at the complete [pizza_questionnaire](https://docs.google.com/spreadsheets/d/1y9LcFUaJ_MDRpqbzHVxkD_k6YzSQCllqh3Excy4iffg/edit?usp=sharing).
 
-**Caveat**
-When you export data using this **or_other** option, in the **favorite_topping** column, you will see a value  **other**. A separate column will have the answer for the questions in which the user selected **other**. This makes data analysis more cumbersome, so we do not recommend the **or_other** construct for large scale data collection efforts. Therefore, we recommend using the[relevant](#relevant) function for specifying the other option.
 
 #### Location widget
 A user may want to select a location from a map view during data collection. To enable this feature, you need to add the **map** or **quick map** appearance attribute to a **select_one** question. The choices sheet will also need a **geometry** column added for the list_name noted in the select_one questions. The geometry must be specified using the [ODK format](https://docs.getodk.org/form-question-types/#location-widgets). This feature is only currently available on ODK Collect. See below:
