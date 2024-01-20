@@ -109,11 +109,13 @@ You can learn more on the geopoint widget in the [ODK documentation](https://doc
 
 #### Specifying a target accuracy at which to capture location
 
-For `geopoint` questions, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or better is reached. You can change this default behaviour by specifying a value for the **capture-accuracy** `parameter`. For example, to automatically capture points with an accuracy of 10m or better:
+For `geopoint` questions, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or better is reached. You can change this default behaviour by specifying a value for the **capture-accuracy** `parameter`. You can also include a **warning-accuracy** parameter (defaults to 100 meters). When the accuracy is that value or worse, the dialog will turn red and add a warning message stating that the accuracy is unacceptable.
+
+For example, to automatically capture points with an accuracy of 10m or better while warning when accuracy is worse than 10m:
 
 | type       | name         | label                                       | parameters   |
 | ---------- | ------------ | ------------------------------------------- | ------------------------- |
-| geopoint   | store_gps    | Collect the GPS coordinates of this store.  | capture-accuracy=10       |
+| geopoint   | store_gps    | Collect the GPS coordinates of this store.  | capture-accuracy=10 warning-accuracy=10     |
 | ========== | ============ | =========================================== | ========================= |
 | survey     |              |                                             |                           |
 
@@ -1216,4 +1218,3 @@ If you want to contribute to or improve this documentation, please visit our [pr
 ## History
 
 The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
-
