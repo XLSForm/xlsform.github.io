@@ -109,9 +109,9 @@ You can learn more on the geopoint widget in the [ODK documentation](https://doc
 
 #### Specifying a target accuracy at which to capture location
 
-For `geopoint` questions, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or better is reached. You can change this default behaviour by specifying a value for the **capture-accuracy** `parameter`. You can also include a **warning-accuracy** parameter to turn the dialog red and add a warning message when accuracy matches or goes below that value. 
+For `geopoint` questions, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or better is reached. You can change this default behaviour by specifying a value for the **capture-accuracy** `parameter`. You can also include a **warning-accuracy** parameter (defaults to 100 meters). When the accuracy is that value or worse, the dialog will turn red and add a warning message stating that the accuracy is unacceptable.
 
-For example, to automatically capture points with an accuracy of 10m or better while warning when accuracy is below 10m:
+For example, to automatically capture points with an accuracy of 10m or better while warning when accuracy is worse than 10m:
 
 | type       | name         | label                                       | parameters   |
 | ---------- | ------------ | ------------------------------------------- | ------------------------- |
