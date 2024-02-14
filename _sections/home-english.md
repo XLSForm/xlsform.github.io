@@ -1188,6 +1188,109 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
 
+## Use cases for common problems
+
+1. Multiple choice constraint
+A **select_multiple** question should have a constraint preventing the selection of more than one option in certain instances. For example, if we have a **select_multiple** question with the following options:
+
+| list name      | name         | label     |
+| -------------- | ------------ | --------- |
+| pizza_toppings | cheese       | Cheese    |
+| pizza_toppings | pepperoni    | Pepperoni |
+| pizza_toppings | sausage      | Sausage   |
+| pizza_toppings | none         | None      |
+| ============== | ============ | ========= |
+| choices        |              |           |
+
+We wouldn’t want None selected with any other option. The constraint expression would then be:
+
+| type                                    | name             | label              | constraint                                           |
+| --------------------------------------- | ---------------- | ------------------ | ---------------------------------------------------- |
+| select_one yes_no                       | likes_pizza      | Do you like pizza? |                                                      |
+| select_multiple pizza_toppings or_other | favorite_topping | Favorite toppings  | not(count-selected(.) >1 and selected(.,'none'))     |
+| ========                                | ========         | =================  | ==================================================== |
+| survey                                  |                  |                    |                                                      |
+
+The constraint logic **not(count-selected(.)>1)** specifies that if the user selects the answer choice name none, then only this answer can be selected 
+
+2. Using the **if()** function
+The **if()** function can be used to check for empty fields before carrying out a calculation. This prevents errors or calculated values displaying as NaN. The **if()** function has three parameters written as if(condition, true, false). Below are two examples using the **if()** function:
+
+| type                | name      | label                      | calculation                                          |
+| --------------------| ----------| -------------------------- | ---------------------------------------------------- |
+| integer             | male      | Number of male trainees    |                                                      |
+| integer             | female    | Number of female trainees  |                                                      |
+| calculation         | sum       |                            | if(${male}="" and ${female}="",0,${male}+${female})  |
+| ========            | ========  | =========================  | ==================================================== |
+| survey              |           |                            |                                                      |
+
+In the above example, the calculation is carried out within the if statement if the fields male and female are not empty.
+
+| type                | name        | label                      | calculation                                          |
+| --------------------| ------------| -------------------------- | ---------------------------------------------------- |
+| integer             | male        | Number of male trainees    |                                                      |
+| integer             | female      | Number of female trainees  |                                                      |
+| calculation         | male_calc   |                            | if(${male}>0, ${male},0)                             |
+| calculation         | female_calc |                            | if(${female}>0, ${female},0)                         |
+| calculation         | sum         |                            | ${male_calc} + ${female_calc}                        |
+| ========            | ==========  | =========================  | ==================================================== |
+| survey              |             |                            |                                                      |
+
+In the example above, the **if()** function has been used to first check if the fields male and female have values greater than zero. The calculation is then performed using the output of the if statement.
+
+3. Move choices to pre-loaded **.csv** files
+If you have a large number of choices on your choices worksheet (e.g., over 1,000), you should consider moving longer lists to pre-loaded **.csv** files. That will move those lists out of memory and will, in general, perform much better. 
+You can use select_one_external and the [search()](#dynamic-selects-from-pre-loaded-data) function if data will be collected via ODK Collect and **select_one_from_file** or **select_multiple_from_file** if data will be collected via Enketo.
+
+4. When there’s a question like First reason, Second reason, Third reason or First source of income, Second source of income, Third source of income, you can create three questions using the same list then use the **choice_filter** to filter out/remove any choice selected in previous questions.
+
+| type                    | name                             | label                      | choice_filter                                        |
+| ------------------------| ---------------------------------| -------------------------- | ---------------------------------------------------- |
+| select_multiple reasons | main_reasons | Please select 3 main reasons for leaving your job     |                        |
+| select_one reasons      | reason1 | Select the first reason  |  selected(${main_reasons}, cf)  |
+| select_one reasons      | reason2 | Select the second reason |  selected(${main_reasons}, cf) and not(selected(${reason1}, name)) |
+| select_one reasons | reason3 | Select the third reason  | selected(${main_reasons}, cf) and not(selected(${reason1}, name)) and no(selected(${reason2}, name)) |
+| =================  | ==========  | =========================  | ==================================================== |
+| survey             |             |                            |                                                      |
+
+Add a **select_multiple** question listing all the answers. Then, add 3 separate questions, one for each of the answers selected in the first question. The choice_filter is used as shown above to only show answers selected in the first question and to also “remove” an answer after it’s been selected in the previous questions.
+
+| list name         | name    | label                                                   |
+| ----------------- | --------| ------------------------------------------------------- |
+| reasons           | 1       | Your values no longer align with the company mission    |
+| reasons           | 2       | You'd like additional compensation                      |
+| reasons           | 3       | The company you worked for went out of business         |
+| reasons           | 4       | You feel undervalued in your current role               |
+| reasons           | 5       | You are looking for a new challenge                     |
+| reasons           | 6       | You want a job with better career growth opportunities  |
+| ================= | ======= | ======================================================= |
+| choices           |         |                                                         |
+
+The choices worksheet would be designed as shown above
+
+5. Repeating Repeat group as long as a condition is met - If a user does not know how many repetitions are needed ahead of time, they can avoid the "**Add** …?" dialog by using the answer to a question to decide whether another repeat instance should be added. The example below shows repeated questions about shoes will be asked as long as the user answers "yes" to the last question.
+
+| type          | name           | label                      | calculation     |   repeat_count                            |
+| --------------| -------------- | -------------------------- | --------------- | ----------------------------------------  |
+| calculate     | count          |                            |  count(${shoe}) |                                           |
+| begin repeat  | shoe           | Shoe                       |                 | if(${count})=0 or ${shoe}[position()=${count}]/more_shoes='yes', ${count}+1,${count} |
+| text          | colour         | Colour                     |                 |                       |
+| integer       | estimated_size | Estimated size             |                 |                       |
+| select_one yes_no   | more_shoes | Are there more shoes in this house? |                 |                       |
+| end repeat    |             |                            |                                    |                       |
+| ===========   | ==========  | =========================  | =================================== | ===================== |
+| survey        |             |                            |                                     |                       |
+
+
+| list name         | name      | label       |
+| ----------------- | ----------| ----------- |
+| yes_no            | yes       | Yes         |
+| yes_no            | no        | No          |
+| ================= | ========= | =========== |
+| choices           |           |             |
+
+This works by maintaining a **count()** of the existing repetitions or by making **repeat_count** one more than that if the continuing condition is met or maintaining the **repeat_count** the same if the ending condition is met.
+
 ## Tools that support XLSForms
 * [Ona](https://ona.io)
 * [Enketo](https://enketo.org)
