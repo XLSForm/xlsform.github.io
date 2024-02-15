@@ -1188,6 +1188,107 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
 
+
+
+## Best Practices
+
+1. **Be consistent with your variables**
+
+When naming the variables under the name column, please be consistent with the text and symbols used. For instance, you can decide to use the question number(underscore)(concat of question text). If this was my question 1, “What products are you aware of?” I can have this as my variable name `q1_products_aware_of`.
+
+2. **Start small and grow as the form becomes complex** 
+
+It’s always good to start with the basic structure, i.e. the two sheets (survey and choices) and the basic columns (type, name, label in survey sheet and list_name, name, label in choices sheet). The next column you will need after this on the survey sheet is mostly **relevant**, then **constraint, calculation, choice_filter**…. This arrangement of columns will save you time since you won’t have to keep scrolling left and right to supply arguments to the appropriate columns.
+
+3. **Make questions [required](#relevant)**
+
+This prevents from having unclear missing values. Additional options can be provided to questions to ensure none goes unanswered e.g. Refused to answer/No response for *select_one* and *select_multiple* questions and a value like -99 to stand for refused to answer/No response for numeric fields.
+
+4. **Add [constraints](#constraints) to questions**
+
+**Numeric fields** -
+Every number question should have a constraint to at least prevent from getting negative responses i.e. .>0 or .>=0 depending on the question. For instance, for a question on age, you may want to have a lower and upper limit like .>0 and .<=100, while for a question on the number of people in a household, you may use the constraint .>=1 since you cannot have 0 people in a household. 
+
+**Date fields** -
+Date questions should also be validated to make sure no future or past dates are selected based on the context e.g. for a question on the interview date, the constraint `.=today() `ensures the present date is selected.
+
+**Regular expressions** -
+Always use a regular expression to validate mobile phone numbers, email addresses and URLs. For example, to validate for a 10 digit phone number, use the expression `regex(.,'^[0-9]{10}$')`. Look up more details on using regular expressions in XLSForms [here](https://docs.opendatakit.org/form-operators-functions/?highlight=regex#regex).
+
+Also ensure to include constraint messages; this prevents from showing the default constraint message which might not be enough to guide the monitor on where the error is.
+
+5. **Use select questions instead of text where possible**
+
+Using select options helps restrict the answers users can provide. Adding other as one of the choices ensures you get answers not thought about at form design. Predefined lists make data cleaning and analysis work a lot easier.
+
+6. **Using the if() function** 
+
+The `if()` function can be used to check for empty fields before carrying out a calculation, this prevents from getting an error or the calculated value displaying as NaN. The `if()` function has three parameters written as **if(condition, true, false)**. Below are two examples using the `if()` function:
+
+| type                | name      | label                              | calculation                                                 |
+| ------------------- | --------- | ---------------------------------- | ----------------------------------------------------------- |
+| integer             | male      | Number of male trainees            |                                                             |
+| integer             | female    | Number of female trainees          |                                                             |
+| calculation         | sum       |                                    | if(${male}="" and ${female}="",0,${male}+${female})         |
+| note                | sum_note  | ${sum} Trainees were in attendence |                                                             |
+| ===============     | ========  | =================================  | =========================================================== |
+| survey              |           |                                    |                                                             |
+
+In the above example, the calculation is carried out within the if statement if the fields male and female are not empty.
+
+| type                | name        | label                              | calculation                                          |
+| --------------------| ------------| ---------------------------------- | ---------------------------------------------------- |
+| integer             | male        | Number of male trainees            |                                                      |
+| integer             | female      | Number of female trainees          |                                                      |
+| calculation         | male_calc   |                                    | if(${male}>0, ${male},0)                             |
+| calculation         | female_calc |                                    | if(${female}>0, ${female},0)                         |
+| calculation         | sum         |                                    | ${male_calc} + ${female_calc}                        |
+| note                | sum_note    | ${sum} Trainees were in attendence |                                                      |
+| ========            | ==========  | =================================  | ==================================================== |
+| survey              |             |                                    |                                                      |
+
+In the example above, the `if()` function has been used to first check if the fields male and female have values greater than zero. The calculation is then performed using the output of the if statement
+
+7. **Avoid using the field-list attribute where possible**
+
+The field-list appearance attribute when used in a group, displays all the questions in the group on one screen (in ODK Collect). Field lists should be avoided unless there is good reason to use them. They are visually complicated and many data validations are not initiated until the swipe at the end of the field-list, resulting in the enumerator having to jump back to questions already passed by. 
+
+8. **Use of cascading lists**
+
+Long lists can be filtered using the `choice_filter` to make them manageable. The `choice_filter` allows you to filter choice options based on the value of a previous question. For example, if the form has the questions state, district and village, the choice filter can be used to filter districts based on the selected state and filter villages based on the selected district. Follow this [guide](https://docs.opendatakit.org/form-logic/?highlight=cascading#filtering-options-in-select-questions) for more information on cascading lists.
+
+9. **Use the relevant column to show relevant questions**
+
+Using the relevant column to only show relevant questions prevents from collecting inconsistent data. For instance, you may want to skip a question on what the monthly income is when the response to a previous question is that the respondent has no source of income. Follow this [guide](https://docs.opendatakit.org/form-logic/#conditionally-showing-questions) for more information on relevant expressions.
+
+10. **Add explanations to calculations**
+
+Calculations don’t require a label for them to work, but it’s good practice to add an explanation of what the calculation does on the label column. This will make it easier for you to remember what you did and also if you happen to share your form with someone else, they can easily understand what you did.
+
+11. **Add group name on the begin and end group constructs**
+
+Mostly you will find that you have a name on `begin_group` construct, but when you close the group using `end_group` construct, you leave it blank. It’s good to have name of the group you are closing for easier troubleshooting or reference.
+
+12. **Use different font or background colors**
+
+When using different constructs in your form, it’s good to use different font colors or background colors. For instance, you could use red fonts for calculations, yellow backgrounds for groups, green fonts for choice filter...etc.
+This will help you to navigate your form easily if you need to update something.
+
+13. Use the metadata fields start, end and today to automatically get the survey start and end time and a log of the current date.
+
+14. **Keep the same pattern when naming answer choices**
+
+ Whenever you have similar labels such as “other” or “do not know”, it is highly recommended to use the same names for them. Consistency in the naming of the options across a given survey facilitates the analysis of the data collected.
+
+15. **A list can be reused as many times as necessary in the form**
+
+If you have to use the same list of answers several times throughout your survey, there’s no need to create a new list of options specifically for those questions. You can use that same list as many times as needed.
+
+16. In the choices worksheet, a gap or (blank row) can be left after each set of answers. This makes it much easier to navigate the form.
+
+17. Do not leave a space after your “type” or “name” variables, e.g. “end group ” instead of “end group”. It is an invisible error that will likely cause the form to malfunction.
+
+
 ## Tools that support XLSForms
 * [Ona](https://ona.io)
 * [Enketo](https://enketo.org)
