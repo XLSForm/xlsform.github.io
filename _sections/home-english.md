@@ -828,14 +828,14 @@ Media is translatable in the same way as labels and hints as explained in the [l
 
 ## Pre-loading CSV data
 
-Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the form you are now authoring), from pre-existing data in a specific survey form, or any other source. A good example is if you have pre-existing data from a household survey, and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form. 
 To reference pre-existing data in a survey form:
 
  * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
   * unique names for each column
   * subsequent rows which should contain the data itself
 
-Each csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
+EEach csv file should contain at least one column that can be used to uniquely identify each row. Such columns will be used, at survey time, to look up which row's data to pull into the survey. For the columns that will be used for looking up rows, add **_key** to the end of the column name in the first row. Any columns with names ending in **_key** will be indexed for faster look-ups on your survey devices. See below an example of the columns on a .csv file:
 
 | name_key | name   |
 | -------- | ------ |
@@ -844,8 +844,7 @@ Each csv file should contain at least one column that can be used to uniquely id
 
 ### How to pull data from CSV
 
-You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
-For each data field that you want to pull into your survey:
+You can be able to pull data from a .csv file by including one or more .csv files in your form during data collection. For each data field that you want to pull into your survey:
 
  * Add a **calculate field** to your survey.
  * Give that field a **name**
@@ -860,7 +859,7 @@ See below for an example:
 | ========= | ========== | =================================== | =============================================== |
 | survey    |            |                                     |                                                 |
 
-Once you have loaded .csv data into a survey field using the **pulldata()** function, you can reference that field in later relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user.
+Once you have loaded the .csv data into a survey field using the pulldata() function, you can reference that field later in relevance conditions, constraints, and labels, just as you would reference any other field that was filled in by the user.
 
 Click on the link to see an example of a [pre-loading sample form ](https://docs.google.com/spreadsheets/d/1evieF8RW8CMlhbhksgfikXAYvK6uXh3DS5c50ejTSEw/edit?usp=sharing) and  the .csv file used with form can be found [here](https://docs.google.com/spreadsheets/d/1gprb7ocTYlT_seOBFY5CuoxyodcXwWOuVxmp38OX1dE/edit?usp=sharing)
 
@@ -875,7 +874,7 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
 If the recommended methods described in [Multiple Choice from File](#multiple-choice-from-file) do not meet your requirements you can consider the method below if your data collection application supports it.
 
-Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
+Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one, and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
 The following should be done:
 
