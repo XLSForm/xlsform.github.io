@@ -713,11 +713,13 @@ A user can repeat questions by using the **begin repeat** and **end repeat** con
 | =================== | =========== | =========== |
 | choices             |             |             |
 
-In this example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat, and the user can collect the same information about multiple children by selecting the option in the form to add another repeat.
+In the above example, the **name**, **birthweight**, and **sex** fields are grouped together in a repeat, and the user can collect the same information about multiple children by selecting the option in the form to add another repeat.
 
-The **label** column is optional for **begin repeat**.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form.
+The **label** column is optional for **begin repeat**.  Assigning a label to a repeat will add the label as a title to the block of repeat questions in the form. A meaningful label will help enumerators and participants navigate the form as intended. We generally recommend using a singular noun or noun phrase such as *observation* or *household member*.
 
-When a repeat is shown in a table of contents, the label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values `Preity` for `first_name`, `Zinta` for `last_name` and `71` for `age`, that repeat will be summarized as "Preity Zinta - 71":
+This interaction may be confusing to users the first time they see it. If enumerators know the number of repetitions ahead of time, consider using a [dynamically defined repeat count](https://xlsform.org/en/#dynamic-repeat-counts).
+
+When a repeat is shown in a table of contents, the label used to represent each repeat is the label of the first group inside that repeat. In the example below, if a repeat is filled out with values *Preity* for `first_name`, *Zinta* for `last_name` and *71* for `age`, that repeat will be summarized as **Preity Zinta - 71**:
 
 | type                   | name         | label                                                   |
 | ---------------------- | ------------ | ------------------------------------------------------- |
@@ -788,9 +790,9 @@ Like [with groups](#skipping), all of the questions in a repeat can be skipped b
 ### Representing zero repeats
 
 By default, the person filling the form will see the questions corresponding to one repeat before getting the option to add more. To represent 0 repeats, there are three options:
-- teach the people filling out the form to delete the first repeat added
+- train the people filling out the form to delete the first repeat added
 - if the exact number of repeats is known ahead of time, [use a dynamic repeat count](#dynamic-repeat-counts)
-- if the exact number of repeats is not known ahead of time, [use `relevant`](#only-add-repeats-in-certain-conditions) to only prompt the user for repeats if there are some to add
+- if the exact number of repeats is not known ahead of time, [use relevant](#only-add-repeats-in-certain-conditions) to only prompt the user for repeats if there are some to add
 
 ## Multiple language support
 
