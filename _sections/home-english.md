@@ -1013,6 +1013,17 @@ The **appearance** column allows you to change the appearance of questions in yo
 | -------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | multiline            | text                        | Best if used with web clients, makes the text box multiple lines long.                                                                                                                                                          |
 | minimal              | select_one, select_multiple | Answer choices appear in a pull-down menu.                                                                                                                                                                                      |
+| ex:*                 | text                        | Answer choices appear in a pull-down menu.
+
+ 
+ |
+| ex:*                 | integer:decimal             | Launch an external app and receive an integer or decimal from the external app as input. If the specified external app is not available, then a manual input is prompted.
+
+ |
+  |
+| ex:*                 | file                        | Launches an external app and receives an arbitrary file back from the external app.
+
+ |
 | quick                | select_one                  | Relevant for mobile clients only, this attribute auto-advances the form to the next question after an answer is selected.                                                                                                       |
 | no-calendar          | date                        | For mobile devices only, used to suppress the calendar.                                                                                                                                                                         |
 | month-year           | date                        | Select a month and year only for the date.                                                                                                                                                                                      |
@@ -1022,7 +1033,9 @@ The **appearance** column allows you to change the appearance of questions in yo
 | likert               | select_one                  | Best if used with web clients, makes the answer choices appear as a Likert scale.                                                                                                                                               |
 | compact              | select_one, select_multiple | Displays answer choices side by side with minimal padding and without radio buttons or checkboxes. Particularly useful with image choices.                                                                                      |
 | quickcompact         | select_one                  | Same as previous, but auto-advances to the next question (in mobile clients only).                                                                                                                                              |
-| field-list           | groups                      | Entire group of questions appear on one screen (for mobile clients only).                                                                                                                                                       |
+
+| image-map            | select_one                  | Consider adding a link to [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics)                                                                                    |
+| field-list           | groups                      | Entire group of questions appears on one screen (for mobile clients only).                                                                                                                                                       |
 | label                | select_one, select_multiple | Displays answer choice labels (and not inputs).                                                                                                                                                                                 |
 | list-nolabel         | select_one, select_multiple | Used in conjunction with the **label** attribute above, displays the answer inputs without the labels (make sure to put **label** and **list-nolabel** fields inside a group with **field-list** attribute if using mobile client). |
 | table-list           | groups                      | An easier way to achieve the same appearance as above, apply this attribute to the entire group of questions (might slow down the form a bit).                                                                                  |
@@ -1030,7 +1043,9 @@ The **appearance** column allows you to change the appearance of questions in yo
 | draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
 | map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
-An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/1af_Sl8A_L8_EULbhRLHVl8OclCfco09Hq2tqb9CslwQ).
+The external app widget is displayed when the appearance attribute begins with **ex:**. The rest of the appearance string after the **:** specifies the application to launch. The attribute launches an external app and receives a string input back from the external app launched. 
+
+An XLSForm with all the appearance attributes in this table is available [here](https://xlsform.org/en/ref-table/#appearances).
 
 ## Settings worksheet
 
