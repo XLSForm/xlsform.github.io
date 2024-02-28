@@ -931,20 +931,20 @@ For the **search() expression**, there are a series of options to indicate which
 
  2. **search(csvName, "contains", columnsToSearch, searchText)**: This search expression includes all distinct rows that contain the
  specified text in the specified column(s) (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+ parameter specifies either a single column name to search or a comma-separated list of column names to search. Rows with matches
  in any specified column will be included.
 
  3. **search(csvName, "startswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that start with
  the specified text in the specified column(s) (e.g., "search('hhplotdata', 'startswith', 'respondentname', ${nameprefix})"). The third
- parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches in
+ parameter specifies either a single column name to search or a comma-separated list of column names to search. Rows with matches in
  any specified column will be included.
 
  4. **search(csvName, "endswith", columnsToSearch, searchText)**: This search expression includes all distinct rows that end with the
     specified text in the specified column(s) (e.g., "search('hhplotdata', 'endswith', 'respondentname', ${namesuffix})"). The third
-    parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with matches
+    parameter specifies either a single column name to search or a comma-separated list of column names to search. Rows with matches
     in any specified column will be included.
 
- 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search, or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
+ 5. **search(csvName, "matches", columnsToSearch, searchText)**: This search expression includes all distinct rows that exactly contain the specified text in the specified column(s) (e.g., "search('hhplotdata', 'matches', 'respondentname', ${nametofind})"). The third parameter specifies either a single column name to search or a comma-separated list of column names to search. Rows with exact matches in any specified column will be included.
     
  6. **search(csvName, searchType, columnsToSearch, searchText, columnToFilter, filterText)**: Finally, any of the four search types above can be further filtered to only include a subset of .csv data. Simply add two extra parameters to any of the search types above, with the first extra parameter being the column name to filter and the second extra parameter being the exact value to filter. For whichever search is specified in the first four parameters, only rows exactly containing the sixth parameter value in the column named by the fifth parameter will be included (e.g., "search('hhplotdata', 'contains', 'respondentname', ${nametofind}, 'villageid', ${villageid})" to list all matching names within a particular village).
 
