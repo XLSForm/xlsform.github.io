@@ -1047,18 +1047,18 @@ An example **settings** worksheet is below:
 The settings column headings available are:
 
 * **form_title**: The title of the form that is shown to users. The form title is pulled from **form_id** if **form_title** is blank or missing.
-* **form_id**: The name used to uniquely identify the form on the server. The form id is pulled from the XLS file name if **form_id** is blank or missing.
+* **form_id**: The name used to uniquely identify the form on the server. The form ID is pulled from the XLS file name if **form_id** is blank or missing.
 * **version**: String that represents this version. A common convention is to use strings of the form 'yyyymmddrr'. For example, 2017021501 is the 1st revision from Feb 15th, 2017.
-* **instance_name**: Expression using form fields to identify for each form submission. [Learn more](#specify-form-submission-name).
+* **instance_name**: Expression using form fields to identify each form submission. [Learn more](#specify-form-submission-name).
 * **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
 * **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted. [Learn more](#encrypted-forms).
-* **submission_url**: This url can be used to override the default server where finalized records are submitted to. [Learn more](#specify-alternative-server).
+* **submission_url**: This url can be used to override the default server where finalized records are submitted. [Learn more](#specify-alternative-server).
 * **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
 * **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
 
 ### Encrypted forms
 
-Encryption-enabled forms provide a mechanism to keep _finalized_ records private at all times. This includes the time _after a record is marked as final_ that it is stored on the device and server as well as during transport, even when http is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.
+Encryption-enabled forms provide a mechanism to keep _finalized_ records private at all times. This includes the time _after a record is marked as final_ that it is stored on the device and server as well as during transport, even when HTTP is used for communication. Encrypted records including their uploaded files, such as photos, are completely inaccessible to anyone not possessing the private key.
 
 To encrypt XLS forms, add the **public_key** column to the **settings** worksheet and paste the base64-encoded public RSA key as its value.
 
@@ -1084,7 +1084,7 @@ Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d
 
 ### Specify XForms root node name
 
-In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
+In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a column called **name**. By default, the XForms root node name is `data`.
 
 ### Multiple webpage forms
 
