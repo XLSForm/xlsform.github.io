@@ -958,7 +958,7 @@ choices, as you normally would, on the choices worksheet. These can appear befor
 
 ## Cascading selects
 
-A lot of forms start out by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. In order to use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
+A lot of forms start by asking the location of the  respondent, with each location selection specifying what the subsequent location choices will be (e.g., state  >> district >> village).  Instead of adding a **select_one** field for each location option, you can use cascade select. To use cascade selects, you will need to create a **choice_filter** column in your survey worksheet and add the location attribute columns in your choices worksheet. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
 
 ## External selects
 
@@ -972,7 +972,7 @@ See [select_one_external](https://docs.google.com/spreadsheets/d/12qZL34kuHSZGWD
 
 When an XLSForm with external choices is converted to an XForm, two files will be produced, the **XForm** (e.g., form-filename.xml) with all the normal choices and an **itemsets.csv** with the external choices.
 
-The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. Clients like ODK Collect load media files from the SD card and so your form with a large number of choices will now load very quickly.
+The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., ODK Aggregate) as a media file. It will be downloaded to any ODK-compatible (e.g., ODK Collect) like any other media file and saved to the [form-filename]-media folder. A tool like ODK Collect loads media files from the SD card, so a form with a large number of choices will now load very quickly.
 
 ## Default
 
@@ -987,17 +987,20 @@ Adding a default field means that a question will be pre-populated with an answe
 
 The respondent can simply change the answer by tapping in the answer field and entering another answer.
 
-You can also add a default calculation, which will only be calculated only once when the form loads or - if the question is inside a [repeat](#repeats) - when the repeat is added.
+Defaults can either be fixed values (static defaults) or the result of some expression (dynamic defaults). 
+
+**Dynamic defaults** are evaluated once on record creation. If you put a default calculation in the default column for a question, that expression will be evaluated once when the form loads or - if the question is inside a[repeat](#repeats) - when the repeat is added. This allows you to use values from outside the form, for instance, the current date. 
+
 
 | type              | name   | label                              | default          |
 | ----------------- | ------ | ---------------------------------- | ---------------- |
-| date              | d      | Enter the date the event occurred? | today()          |           
+| date              | d      | Enter the date the event occurred. | today()          |           
 | ================= | ====== | ================================== | ================ |
 | survey            |        |                                    |                  |
 
 ## Read only
 
-Adding a read only field means that a question can not be edited. Read-only fields can be combined with default fields to deliver information back to a user.
+Adding a read-only field means that a question can not be edited. Read-only fields can be combined with default fields to deliver information back to a user. The default response is often calculated based on previous responses in the survey.
 
 | type      | name   | label              | read_only        | default |
 | --------- | ------ | ------------------ | ---------------- | ------- |
