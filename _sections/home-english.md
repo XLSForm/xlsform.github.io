@@ -1084,7 +1084,7 @@ Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d
 
 ### Specify XForms root node name
 
-In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
+In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a column called **name**. By default, the XForms root node name is `data`.
 
 ### Multiple webpage forms
 
@@ -1157,7 +1157,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * add your favorite emojis 😍📋😍!
 * use superscript with the `<sup>` tag (e.g. `100 m<sup>2</sup>` turns into 100 m<sup>2</sup>)
 * use subscript with the `<sub>` tag (e.g. `H<sub>2</sub>O` turns into H<sub>2</sub>O)
-* use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects to be triggered by these characters
+* use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects from being triggered by these characters
 
 ## Advanced use and extensibility
 
@@ -1167,11 +1167,11 @@ The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::
 
 | type      | name       | label                    | instance::hxl |
 | --------- | ---------- | ------------------------ | ------------- |
-| integer   | population | How many people present? | #population   |
+| integer   | population | How many people are present? | #population   |
 | ========= | ========   | ======================== | ============= |
 | survey    |            |                          |               |
 
-The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example, to properly define a custom attribute with [your organization's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See the example below that adds 2 additional namespaces and uses them to add custom attributes:
 
 | title     | namespaces                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -1204,7 +1204,7 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 
 If you want to dig in deeper to understand XForms and go beyond the XLSForms information on this site, here are some resources:
 
-* [XForms as supported by the ODK ecosytem](https://getodk.github.io/xforms-spec/)
+* [XForms as supported by the ODK ecosystem](https://getodk.github.io/xforms-spec/)
 * [ODK Form design guidelines](https://docs.getodk.org/form-design-intro/)
 * [Ona Form design overview](https://help.ona.io/knowledge-base/guide-creating-surveys/)
 * [KoBoToolbox form design help center](https://support.kobotoolbox.org/getting_started_xlsform.html)
@@ -1217,4 +1217,4 @@ If you want to contribute to or improve this documentation, please visit our [pr
 
 ## History
 
-The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
+The XLSForm was originally developed by Andrew Marder and Alex Dorey of the [Sustainable Engineering Lab at Columbia University](http://sel.columbia.edu).  As XLSForms became adopted by the ODK Community, SEL worked with the ODK Team to develop the current specification.  [PyXForm](https://github.com/XLSForm/pyxform), the library used to convert XLSForms to XForms, is an open-source project supported by members of ODK, SEL, Ona, SurveyCTO, and KoBoToolbox.
