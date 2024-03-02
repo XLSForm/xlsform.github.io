@@ -1055,6 +1055,7 @@ The settings column headings available are:
 * **submission_url**: This url can be used to override the default server where finalized records are submitted to. [Learn more](#specify-alternative-server).
 * **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
 * **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
+* **clean_text_values**: This column can be used with values `yes` or `no` to control whether whitespace in the Survey sheet is collapsed (defaults to `yes`).
 
 ### Encrypted forms
 
@@ -1171,7 +1172,7 @@ The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::
 | ========= | ========   | ======================== | ============= |
 | survey    |            |                          |               |
 
-The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example, to properly define a custom attribute with [your organization's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See the example below that adds 2 additional namespaces and uses them to add custom attributes:
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example, to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). Note that the column name prefix has *2* colons (e.g. `bind::`), while the namespace prefix has *1* colon (e.g. `esri:`). See example below that adds 2 additional namespaces and uses them to add custom attributes:
 
 | title     | namespaces                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -1187,6 +1188,22 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | text      | desc_comment | Comments                 |                        | ${a}          |
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
+
+The **settings** sheet has support for 1 column prefix (**attribute::**) that adds attributes to the XForm output in the main instance element (named `data` by default). For example, the below would appear in the XForm output like: `<data id="my_form" xyz="1234"/>`.
+
+| title     | attribute::xyz |
+| --------- | -------------- |
+| My Form   | 1234           |
+| ========= | ============== |
+| settings  |               
+
+As with the above **survey** columns, the **attribute::** setting can be combined with the `namespaces` setting to add a namespaced attribute. For example, the below would appear in the XForm output like: `<data id="my_form" abc:xyz="1234"/>`.
+
+| title     | attribute::abc:xyz |
+| --------- | ------------------ |
+| My Form   | 1234               |
+| ========= | ================== |
+| settings  |               
 
 ## Tools that support XLSForms
 * [Ona](https://ona.io)
