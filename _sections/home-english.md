@@ -172,7 +172,7 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 #### Cascading selects
 
-It's common to have multiple connected select questions where earlier ones filter the options for later ones. For example, a form might start out by asking the respondent's state, then their district, and finally their city. An alternative would be to directly have the user select their city name from a list of all cities, but the city list would be very long and wouldn't work for city names that are repeated in different districts or states.
+If you want question responses to filter the options available in later questions, use a cascading select. For example, if you want to ask which city the respondent lives in, instead of choosing from all cities in the world, you could first ask for their country. Then you could filter the list of states to only show the ones in the selected country, filter districts to only show the ones in the selected state, then filter cities to only show the ones in that district.
 
 To chain or cascade selects, you will need to create a **choice_filter** column in your survey worksheet. The expression in this column will be used to filter down the list of choices for the corresponding select. Any choice for which the expression is **true** will be included. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
 
@@ -234,7 +234,9 @@ The options in a multiple-choice question can be taken from a separate file inst
 | ============================================= | ==== | ====================================|==============|
 | survey                                        |      |                                     |              |
 
-The files require a specific format. A CSV file requires a `name` and `label` column which represent the value and label of the options. An XML file requires a structure as shown below:
+The files require a specific format. A CSV file require column which represent the value and label of the options. If you use the column names `name` and `label`, these will be used automatically. You can also [specify the columns to use](#pecify-custom-columns-for-label-and-value).
+
+An XML file requires a structure as shown below:
 
 ```
 <root>
@@ -249,7 +251,7 @@ A GeoJSON requires each feature to have an id and a title property. The GeoJSON 
 
 CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
 
-This question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, if your external data file consists of many thousands of lines, please test carefully whether the performance is satisfactory on the lowest-spec device you intend to use. If it is too slow, consider using [External Selects](#external-selects) or [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it.
+This question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, selects from files with tens of thousands of options can affect the responsiveness of the form. If you have long choice lists, check whether your form is adequately responsive on the lowest performance device that your data collection team will use. If it is too slow, consider using [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it.
 
 #### Specify custom columns for label and value
 
@@ -1061,9 +1063,8 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 
 ## Appendix: loading big CSVs
 
-{% include alerts/warning.html content="These approaches may not work with all data collection clients. We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices." %}
+### Data preloading
 
-### Database-backed data preloading
 Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
 To reference pre-existing data in a survey form:
 
@@ -1107,6 +1108,8 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
  * If the .csv file contains sensitive data that you may not want to upload to the server, upload a blank .csv file as part of your form, then replace it with the real .csv file by hand-copying the file onto each of your devices.
 
 #### Dynamic selects from pre-loaded data
+
+{% include alerts/warning.html content="Use [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50 thousand options, or will be collecting data on old or low performance devices. The approaches in this section may not work with all data collection clients." %}
 
 {% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
 
