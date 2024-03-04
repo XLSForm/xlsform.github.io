@@ -120,7 +120,9 @@ See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WON
 
 ### Multiple choice
 
-XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. Writing a multiple-choice question requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
+XLSForm supports both **select_one** (select only one answer) and **select_multiple** (select multiple answers) questions. You can define choices for multiple choice questions directly in the form or, for very long choice lists or ones that need to be updated by an external process, [in attached files](#multiple-choice-from-file).
+
+Defining choices in your form requires adding a **choices** worksheet to your Excel workbook. Here is an example of a **select_one** question:
 
 
 | type              | name          | label                     |
@@ -176,6 +178,10 @@ If you want question responses to filter the options available in later question
 
 To chain or cascade selects, you will need to create a **choice_filter** column in your survey worksheet. The expression in this column will be used to filter down the list of choices for the corresponding select. Any choice for which the expression is **true** will be included. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
 
+#### Look up values in a choice list
+
+You can add additional columns to the **choices** sheet and then look up values for those columns using the [`instance` function](#look-up-values-in-choice-lists-or-attached-files).
+
 #### Specify other
 
 {% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
@@ -215,7 +221,7 @@ To show select choices on a map, add the **map** or **quick map** appearance att
 
 #### Multiple choice from file
 
-The options in a multiple-choice question can be taken from a separate file instead of the choices sheet. This is particularly useful if the options are dynamic or if the list of options is used in multiple surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
+The options in a multiple-choice question can be taken from a separate file instead of the choices sheet. This is particularly useful if the list of options is used in multiple surveys, needs to be changed separately from the form, or comes from an external system. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
@@ -249,7 +255,7 @@ An XML file requires a structure as shown below:
 ```
 A GeoJSON requires each feature to have an id and a title property. The GeoJSON must be defined by a single top-level FeatureCollection. Learn more from [the ODK documentation](https://docs.getodk.org/form-datasets/#selects-from-geojson).
 
-CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
+CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met. You can 
 
 This question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, selects from files with tens of thousands of options can affect the responsiveness of the form. If you have long choice lists, check whether your form is adequately responsive on the lowest performance device that your data collection team will use. If it is too slow, consider using [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it.
 
@@ -390,18 +396,6 @@ This example below would collect the precise GPS location every 180 seconds and 
 
 See [this page](https://docs.getodk.org/form-audit-log/) in the ODK Collect documentation for full details about the **audit** metaquestion, available location tracking parameters, and the format of the **audit.csv** log file created for each submission. 
 
-### External XML data
-
-For advanced users, who need to perform complex queries on external data without restrictions, an external XML data file can be added with question type **xml-external**. The value in the **name** column can be used to refer to this data in any formula (e.g. for a calculation, constraint, relevant, or choice_filter) using the **instance('name')** function. A file with the same name and the **.xml** extension should be uploaded with the form. See below for an example that requires uploading a file called houses.xml with the form.
-
-| type                      | name         | label           | calculation                                                  |
-| ------------------------- | ------------ | --------------- | ------------------------------------------------------------ |
-| xml-external              | houses       |                 |                                                              |
-| integer                   | rooms        | How many rooms? |                                                              |
-| calculate                 | count        |                 | count(instance('houses')/house[rooms = current()/../rooms ]) |
-| ========================= | ============ | ==========      | ============================================================ |
-| survey                    |              |                 |                                                              |
-
 ## Hints
 
 ### Regular hints
@@ -434,6 +428,58 @@ Formulas are used in the [constraint](#constraints), [relevant](#relevant), [cal
 
 Formulas are composed of functions and operators (+,*,div,etc.). A well-documented full list of operators and functions can be found in the [ODK documentation](https://docs.getodk.org/form-operators-functions/). For the
 technically inclined, the underlying XForms specification is the actual source document for the supported [functions](https://getodk.github.io/xforms-spec/#xpath-functions).
+
+### Look up values in choice lists or attached files
+
+You can look up values from lists defined in the choices sheet, attached CSVs, attached geoJSON files and attached XML files by using the `instance` function. You will use this general structure:
+
+`instance('list_name')/root/item[filter expression]/desired_property`
+
+The instance function needs the name of the list that you want to look up a value in. For lists specified in the choices sheet, this is the `list_name`. For attached files, use the filename without the extension. For example:
+
+* To look values up in a `fruits` list defined on the choices sheet, use `instance('fruits')`
+* To look values up in a `participants.csv` file, use `instance('participants')`
+* To look values up in a `places.geojson` file, use `instance('places')`
+
+The next part of the expression is `/root/item[filter expression]`. `/root/item` says to look at every item in the list and the provided filter expression will be used to include items for which the expression is `true` and exclude items for which the expression is `false`. This is the same kind of expression used in the [choice_filter](#cascading-selects) column. The most common kind of filter expression looks for an exact match on the `name` of an item:
+
+* To get the item in `participants.csv` with `name` that matches a scanned barcode: `instance('participants')/root/item[name=${barcode_id}]`
+* To get the item in `participants.csv` with `name` that matches a value picked from a select: `instance('participants')/root/item[name=${participant}]`
+
+The last part of the expression is a property or column name to access for the item(s) that match the filter expression.
+
+* To get the age of a participant whose id card was scanned: `instance('participants')/root/item[name=${barcode_id}]/age`
+* To get the first name of a participant selected from a list: `instance('participants')/root/item[name=${participant}]/fname`
+
+#### External CSV data
+
+If you want to attach a CSV file to your form so that you can look values up in it, you have a few options. If you need to build a select from values in that CSV, you can use [select_one_from_file](#multiple-choice-from-file). This will attach the CSV to your form and also allow you to look values up in it as described above.
+
+If you don't need to build a select from values in your CSV, you can use the type **csv-external** and specify the name of the file without extension:
+
+| type                      | name         | label           | calculation                                                      |
+| ------------------------- | ------------ | --------------- | ---------------------------------------------------------------- |
+| csv-external              | participants |                 |                                                                  |
+| barcode                   | id           | Scan id         |                                                                  |
+| calculate                 | first_name   |                 | instance('participants')/root/item[participant_id=${id}]/fname |
+| ========================= | ============ | ==========      | ================================================================ |
+| survey                    |              |                 |                                                                  |
+
+The sample form above attaches the `participants.csv` list to the form. It then asks for a barcode scan and uses the scanned value to look up the participant with matching id in the `participant_id` column. The value in that participant's `fname` column is stored in the `first_name` calculate.
+
+#### External XML data
+
+For users who need to perform complex queries on external data without restrictions, an external XML data file can be added with question type **xml-external**. The value in the **name** column can be used to refer to this data in any formula (e.g. for a calculation, constraint, relevant, or choice_filter) using the **instance('name')** function. A file with the same name and the **.xml** extension should be uploaded with the form. See below for an example that requires uploading a file called houses.xml with the form.
+
+| type                      | name         | label           | calculation                                                  |
+| ------------------------- | ------------ | --------------- | ------------------------------------------------------------ |
+| xml-external              | houses       |                 |                                                              |
+| integer                   | rooms        | How many rooms? |                                                              |
+| calculate                 | count        |                 | count(instance('houses')/house[rooms = current()/../rooms ]) |
+| ========================= | ============ | ==========      | ============================================================ |
+| survey                    |              |                 |                                                              |
+
+Note that XML files can have any structure so `instance` calls to look up values in an XML file may not be followed `/root/item`.
 
 ## Constraints
 
@@ -1061,7 +1107,9 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 * [Community Health Toolkit](https://communityhealthtoolkit.org/)
 * [CyberTracker](https://cybertrackerwiki.org/xlsform/)
 
-## Appendix: loading big CSVs
+## Appendix - loading big CSVs
+
+{% include alerts/warning.html content="This section describes less general alternatives to [select_one_from_file](#multiple-choice-from-file) and the [`instance` function](#look-up-values-in-choice-lists-or-attached-files). They may be more performant in some tools that allow filling XLSForms but may not work in others." %}
 
 ### Data preloading
 
@@ -1080,6 +1128,8 @@ Each csv file should contain at least one column that can be used to uniquely id
 | orange   | Orange |
 
 #### How to pull data from CSV
+
+{% include alerts/warning.html content="If you use [select_one_from_file](#multiple-choice-from-file) to show select options from a file, you should generally use the [`instance` function](#look-up-values-in-choice-lists-or-attached-files) to look values up in that file rather than `pulldata`." %}
 
 You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
 For each data field that you want to pull into your survey:
@@ -1109,9 +1159,7 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
 #### Dynamic selects from pre-loaded data
 
-{% include alerts/warning.html content="Use [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50 thousand options, or will be collecting data on old or low performance devices. The approaches in this section may not work with all data collection clients." %}
-
-{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
+{% include alerts/warning.html content="Use [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50 thousand options, or will be collecting data on old or low performance devices. This approach is not supported by Enketo web forms." %}
 
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
@@ -1189,8 +1237,7 @@ For the **search() expression**, there are a series of options to indicate which
 Additional notes on usage:
 
 1. Choices will be ordered, by default, in the order that they appear in your .csv file. If you want to specify a different ordering, include a numeric column in your .csv file named sortby; choices will be ordered numerically, according to the sortby column (if present).
-2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static
-choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric.
+2. You can include one or more static choice options, in addition to the dynamic ones loaded from your .csv file. Simply include static choices, as you normally would, on the choices worksheet. These can appear before and/or after the row that indicates the columns to use for your dynamic choices. The one restriction is that the values you specify for your static choices in the name column must be numeric.
 
 ### Database-backed "fast external itemsets"
 
