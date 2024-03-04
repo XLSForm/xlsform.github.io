@@ -221,7 +221,7 @@ To show select choices on a map, add the **map** or **quick map** appearance att
 
 #### Multiple choice from file
 
-The options in a multiple-choice question can be taken from a separate file instead of the choices sheet. This is particularly useful if the list of options is used in multiple surveys, needs to be changed separately from the form, or comes from an external system. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
+If you want to provide the options for a multiple-choice question in a separate file, use the **select_one_from_file** or **select_mutliple_from_file** question type. Using separate files can make it easier to manage longer option lists, and to re-use option lists between surveys. Three types of files are supported: CSV, XML, and GeoJSON files. See usage examples below:
 
 | type                                    | name | label                          | choice_filter   |
 | --------------------------------------- | ---- | ------------------------------ | --------------- |
