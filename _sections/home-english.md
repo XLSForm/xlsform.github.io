@@ -874,6 +874,16 @@ You can also add different language columns for hints and media files by using t
 
 Form language and user interface language may be determined separately by the application and may not match. To facilitate matching both (in the future), it is recommended, though optional, to add a 2-character language code after the language name. The official 2-character language codes, called _subtags_ are published [here](http://www.iana.org/assignments/language-subtag-registry/language-subtag-registry) (search the page with Ctrl-F or Cmd-F).
 
+If your form defines multiple languages and you want to set one language for data collection, set an explicit default language. This is done on the XLSForm's **settings** sheet by specifying the language in the **default_language** column. In the example [le below, the default language will be French.
+
+
+| form_id             |  version             | default_language       |
+| ------------------- | -------------------- | -----------------------| 
+| test_form           | 101                  | French (fr)            |
+| ============        | ============         | ==========             |         
+| settings            |                      |                        |              
+
+
 ## Media
 
 You can include questions in your form that display images or that play video or audio files. If using the ODK mobile client for form submission, you need to put the media files that you want to include in the **/odk/forms/formname-media** folder on your phone, and then reference the exact file name in the **media** column in your form. See below for an example of how to do this.
