@@ -240,7 +240,7 @@ If you want to provide the options for a multiple-choice question in a separate 
 | ============================================= | ==== | ====================================|==============|
 | survey                                        |      |                                     |              |
 
-The files require a specific format. A CSV file require column which represent the value and label of the options. If you use the column names `name` and `label`, these will be used automatically. You can also [specify the columns to use](#pecify-custom-columns-for-label-and-value).
+The files require a specific format. A CSV file requires columns which represent the value and label of the options. If you use the column names `name` and `label`, these will be used automatically. You can also [specify the columns to use](#specify-custom-columns-for-label-and-value).
 
 An XML file requires a structure as shown below:
 
@@ -255,7 +255,7 @@ An XML file requires a structure as shown below:
 ```
 A GeoJSON requires each feature to have an id and a title property. The GeoJSON must be defined by a single top-level FeatureCollection. Learn more from [the ODK documentation](https://docs.getodk.org/form-datasets/#selects-from-geojson).
 
-CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met. You can 
+CSV, XML, and GeoJSON files may have additional columns, XML nodes, or features and custom properties as long as the above-mentioned basic requirements are met.
 
 This question type is generally the preferred way of building select questions from external data as it is the most versatile and works across applications. However, selects from files with tens of thousands of options can affect the responsiveness of the form. If you have long choice lists, check whether your form is adequately responsive on the lowest performance device that your data collection team will use. If it is too slow, consider using [Dynamic selects from preloaded data](#dynamic-selects-from-pre-loaded-data) if your data collection application supports it.
 
@@ -446,10 +446,14 @@ The next part of the expression is `/root/item[filter expression]`. `/root/item`
 * To get the item in `participants.csv` with `name` that matches a scanned barcode: `instance('participants')/root/item[name=${barcode_id}]`
 * To get the item in `participants.csv` with `name` that matches a value picked from a select: `instance('participants')/root/item[name=${participant}]`
 
-The last part of the expression is a property or column name to access for the item(s) that match the filter expression.
+The last part of the expression is a property or column name to access for the item(s) that match the filter expression:
 
 * To get the age of a participant whose id card was scanned: `instance('participants')/root/item[name=${barcode_id}]/age`
 * To get the first name of a participant selected from a list: `instance('participants')/root/item[name=${participant}]/fname`
+
+This is generally the preferred way of looking values up in attached files as it is the most versatile and works across applications. However, looking up values in files with many tens of thousands of options can affect the responsiveness of the form. If you have long choice lists, check whether your form is adequately responsive on the lowest performance device that your data collection team will use. If it is too slow, consider using [`pulldata()`](#how-to-pull-data-from-csv) if your data collection application supports it.
+
+💡 These expressions use a subset of [XPath 1.0](https://developer.mozilla.org/en-US/docs/Web/XPath). The filter expression in square brackets can be any expression that evaluates to true or false, including using functions.
 
 #### External CSV data
 
@@ -1113,7 +1117,8 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 
 ### Data preloading
 
-Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can be able to reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source.  For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can be able to reference the household survey data in your survey form.
+Pre-loading data is done when one wants to reference pre-existing data in a survey form. You can reference data in your survey form (the survey you are now authoring), from pre-existing data in a specific survey form or from any other source. For example, if you have pre-existing data from a household survey and you want to collect follow-up data about the household occupants. You can reference the household survey data in your survey form.
+
 To reference pre-existing data in a survey form:
 
  * Upload one or more .csv files as support files when you upload your form definition (the same way you upload media support files as explained in the [Media](#media) section). The first row of each .csv file should be a header that includes short:
