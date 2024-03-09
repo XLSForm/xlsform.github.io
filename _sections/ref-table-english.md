@@ -3,22 +3,20 @@ ref: ref-table
 lang: en
 ---
 
-This page is a work-in-progress reference for all available functions in XLS Forms. It is divided into the three possible sheets: [survey](#survey), [choices](#choices), and [settings](#settings).
+It can be helpful to use a template to build an XLSForm rather than starting from a blank document. The template provided below includes some helpful styling rules as well as extensive reference that is kept updated as XLSForm and the tools that use it evolve. You can use it to see which functionality is supported by Collect and Enketo and get ideas on how to meet your form design goals.
 
-### [survey](#survey)
+* [Google Sheets](https://docs.google.com/spreadsheets/d/1v9Bumt3R0vCOGEKQI6ExUf2-8T72-XXp_CbKKTACuko/edit#gid=1052905058) (use `File > Make a copy`)
+* [Microsoft Excel (XLSX)](https://github.com/getodk/xlsform-template/raw/main/ODK%20XLSForm%20Template.xlsx)
 
-This sheet is mandatory in all XLSForms. 
+💡 Add the document to your templates in your spreadsheet software to make it easier to find. Don't forget to check back occasionally for updates!
 
-{% include table.html sheet="survey" %} 
+The [types](#types), [appearances](#appearances), and [additional columns](#additional-columns) from the template are available below for quick reference. You can use your browser's search feature to find what you're looking for.
 
-### [choices](#choices)
+<a name="types"></a>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaRWo-0HZ7gSLkSbmdEhYrHau-pOiGXeI02hCOQtdul4WvrEugbM7hnIr33fyLLywlUDRImZxyV63/pubhtml?gid=970638218&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600px"></iframe>
 
-The choices sheet is optional and only required if there are any select_one or select_multiple questions in the file.
+<a name="appearances"></a>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaRWo-0HZ7gSLkSbmdEhYrHau-pOiGXeI02hCOQtdul4WvrEugbM7hnIr33fyLLywlUDRImZxyV63/pubhtml?gid=750745522&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600px"></iframe>
 
-{% include table.html sheet="choices" %}
-
-### [settings](#settings)
-
-The settings sheet and all of its items are optional.
-
-{% include table.html sheet="settings" %}
+<a name="additional-columns"></a>
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSTaRWo-0HZ7gSLkSbmdEhYrHau-pOiGXeI02hCOQtdul4WvrEugbM7hnIr33fyLLywlUDRImZxyV63/pubhtml?gid=136067855&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="600px"></iframe>

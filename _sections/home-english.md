@@ -84,8 +84,10 @@ XLSForm supports a number of question types. These are just some of the options 
 | hidden                    | A field with no associated UI element which can be used to store a constant                  |
 | xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                          |
 
-### GPS
-For example, to collect the name and GPS coordinates of a store, you would write the following:
+You can find a full list of question types and the appearances that can modify them in the [template and reference](./ref-table).
+
+### Capturing GPS location
+A question of type `geopoint` captures the current geolocation from a device. To collect the name and GPS coordinates of a store, you would write the following in your form:
 
 | type       | name         | label                                        |
 | ---------- | ------------ | -------------------------------------------- |
@@ -103,20 +105,19 @@ To collect a line or shape of GPS coordinates, you can use one of the following:
 | ========== | ============ | ======================================================================================== |
 | survey     |              |         |                                                                                |
 
-See the [question_types XLSForm](https://docs.google.com/spreadsheets/d/1P4roHU0iC_Xx0028oKK656FvH4MBWecIw-HJ7JRwrYs/edit?usp=sharing) for a look at each question type being used in a form.
+You can learn more on the geopoint widget in the [ODK documentation](https://docs.getodk.org/form-question-types/#geopoint-widget).
 
-### GPS with accuracyThreshold
+#### Specifying a target accuracy at which to capture location
 
-When recording GPS coordinates in ODK Collect, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or less is reached. You can change this default behaviour by specifying an **accuracyThreshold**; this could be less than 5m or more than 5m. You will need to add a column with the heading **body::accuracyThreshold** on the survey sheet of your XLSForm. Then specify your preferred accuracy threshold value for this column on your geopoint question, as in the example shown below:
+For `geopoint` questions, ODK Collect automatically collects the GPS when an accuracy level of 5 meters or better is reached. You can change this default behaviour by specifying a value for the **capture-accuracy** `parameter`. You can also include a **warning-accuracy** parameter (defaults to 100 meters). When the accuracy is that value or worse, the dialog will turn red and add a warning message stating that the accuracy is unacceptable.
 
-| type       | name         | label                                       | body::accuracyThreshold   |
+For example, to automatically capture points with an accuracy of 10m or better while warning when accuracy is worse than 10m:
+
+| type       | name         | label                                       | parameters   |
 | ---------- | ------------ | ------------------------------------------- | ------------------------- |
-| geopoint   | store_gps    | Collect the GPS coordinates of this store.  | 1.5                       |
+| geopoint   | store_gps    | Collect the GPS coordinates of this store.  | capture-accuracy=10 warning-accuracy=10     |
 | ========== | ============ | =========================================== | ========================= |
 | survey     |              |                                             |                           |
-
-See [gps_accuracy_threshold](https://docs.google.com/spreadsheets/d/1kdV-UF65WONU251Zh7ngdPiQ_VrEKTNmgOHyNonSsGw/edit?usp=sharing) form for an example that uses this attribute.
-
 
 ### Multiple choice
 
@@ -859,7 +860,7 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 | ================= | =========== | ============        | ============          | ========== |
 | survey            |             |                     |                       |            |
 
-You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference table](./ref-table), which includes a list of all column headers that can accept a language modification.
+You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference](./ref-table), which includes a list of all column headers that can accept a language modification.
 
 | hint::English (en)  | hint::Dutch (nl)     | image::English (en)        | image::Dutch (nl)        |
 | ------------------- | -------------------- | -------------------------- | ------------------------ |  
@@ -939,7 +940,7 @@ The **appearance** column allows you to change the appearance of questions in yo
 | draw                 | image                       | Allows you to sketch a drawing with your finger on the mobile device screen.     |
 | map, quick map       | select_one, select_one_from_file | Allows a user to select a choice from many features on a map |
 
-An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/159tf1wNeKGRccgizZBlU3arrOM--OpxWo26UvZcDEMU/edit?usp=sharing).
+An XLSForm with all of the appearance attributes in this table is available [here](https://docs.google.com/spreadsheets/d/1af_Sl8A_L8_EULbhRLHVl8OclCfco09Hq2tqb9CslwQ).
 
 ## Settings worksheet
 
@@ -964,6 +965,7 @@ The settings column headings available are:
 * **submission_url**: This url can be used to override the default server where finalized records are submitted to. [Learn more](#specify-alternative-server).
 * **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
 * **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
+* **clean_text_values**: This column can be used with values `yes` or `no` to control whether whitespace in the Survey sheet is collapsed (defaults to `yes`).
 
 ### Encrypted forms
 
@@ -993,7 +995,7 @@ Check out this [example XLSForm](https://docs.google.com/a/ona.io/spreadsheets/d
 
 ### Specify XForms root node name
 
-In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a collumn called **name**. By default, the XForms root node name is `data`.
+In some rare cases, it may be helpful to explicitly specify a [root node name](https://getodk.github.io/xforms-spec/#primary-instance) for the generated XForm. For example, this may be necessary if updating a form that was converted with an older form converter that used a root node name other than `data`. In the **settings** worksheet, you can specify an identifier to use for the XForms root node name by adding a column called **name**. By default, the XForms root node name is `data`.
 
 ### Multiple webpage forms
 
@@ -1066,7 +1068,7 @@ Markdown support in XLSForm allows for increased emphasis through bold and itali
 * add your favorite emojis 😍📋😍!
 * use superscript with the `<sup>` tag (e.g. `100 m<sup>2</sup>` turns into 100 m<sup>2</sup>)
 * use subscript with the `<sub>` tag (e.g. `H<sub>2</sub>O` turns into H<sub>2</sub>O)
-* use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects to be triggered by these characters
+* use the `\` character before `#`, `*`, `_`, and `\` to prevent special styling effects from being triggered by these characters
 
 ## Advanced use and extensibility
 
@@ -1076,11 +1078,11 @@ The **survey** sheet has support for 3 column prefixes (**instance::**, **bind::
 
 | type      | name       | label                    | instance::hxl |
 | --------- | ---------- | ------------------------ | ------------- |
-| integer   | population | How many people present? | #population   |
+| integer   | population | How many people are present? | #population   |
 | ========= | ========   | ======================== | ============= |
 | survey    |            |                          |               |
 
-The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). See example below that adds 2 additional namespaces and uses them to add custom attributes:
+The **settings** sheet has support for defining (multiple space-separated) additional custom namespaces and namespace prefixes using the **namespaces** column. You'll then be able to use those namespaces in the survey sheet, for example, to properly define a custom attribute with [your organisation's own namespace](https://github.com/getodk/xforms-spec#specification-changes). Note that the column name prefix has *2* colons (e.g. `bind::`), while the namespace prefix has *1* colon (e.g. `esri:`). See example below that adds 2 additional namespaces and uses them to add custom attributes:
 
 | title     | namespaces                                                   |
 | --------- | ------------------------------------------------------------ |
@@ -1097,19 +1099,33 @@ The **settings** sheet has support for defining (multiple space-separated) addit
 | ========= | ============ | ======================== | ====================== | ============= |
 | survey    |              |                          |                        |               |
 
+The **settings** sheet has support for 1 column prefix (**attribute::**) that adds attributes to the XForm output in the main instance element (named `data` by default). For example, the below would appear in the XForm output like: `<data id="my_form" xyz="1234"/>`.
+
+| title     | attribute::xyz |
+| --------- | -------------- |
+| My Form   | 1234           |
+| ========= | ============== |
+| settings  |               
+
+As with the above **survey** columns, the **attribute::** setting can be combined with the `namespaces` setting to add a namespaced attribute. For example, the below would appear in the XForm output like: `<data id="my_form" abc:xyz="1234"/>`.
+
+| title     | attribute::abc:xyz |
+| --------- | ------------------ |
+| My Form   | 1234               |
+| ========= | ================== |
+| settings  |               
+
 ## Tools that support XLSForms
 * [Ona](https://ona.io)
 * [Enketo](https://enketo.org)
 * [ODK](https://getodk.org)
 * [KoBoToolBox](https://kobotoolbox.org)
 * [CommCare](https://commcarehq.org)
-* [SurveyCTO](https://www.surveycto.com/)
-* [DataWinners](https://www.datawinners.com/)
+* [SurveyCTO](https://www.surveycto.com)
 * [Secure Data Kit (SDK)](http://www.securedatakit.com)
-* [Tattara](http://tattara.com/)
-* [Survey123 for ArcGIS](https://survey123.arcgis.com/)
-* [Community Health Toolkit](https://communityhealthtoolkit.org/)
-* [CyberTracker](https://cybertrackerwiki.org/xlsform/)
+* [Survey123 for ArcGIS](https://survey123.arcgis.com)
+* [Community Health Toolkit](https://communityhealthtoolkit.org)
+* [CyberTracker](https://cybertrackerwiki.org/xlsform)
 
 ## Appendix - loading big CSVs
 
@@ -1260,12 +1276,12 @@ The **itemsets.csv** file can be uploaded to any ODK-compatible server (e.g., OD
 
 ## More resources
 
-The [XLSform standard document](https://docs.google.com/spreadsheet/ccc?key=0AjZ4hMHTat-YdFZSY3BOZWtGeTdxWGQ1clZoVEZkamc&usp=sharing) can guide you through the specific input types, column headers, and so on that are legitimate syntax in XLSForms. If you want to dig in deeper to understand XForms and go beyond XLSForms, here are some resources to understand them:
+If you want to dig in deeper to understand XForms and go beyond the XLSForms information on this site, here are some resources:
 
-* [XForms as supported by the ODK ecosytem](https://getodk.github.io/xforms-spec/)
+* [XForms as supported by the ODK ecosystem](https://getodk.github.io/xforms-spec/)
 * [ODK Form design guidelines](https://docs.getodk.org/form-design-intro/)
 * [Ona Form design overview](https://help.ona.io/knowledge-base/guide-creating-surveys/)
-* [KoBoToolbox form design help center](https://support.kobotoolbox.org/en/collections/443818-creating-forms)
+* [KoBoToolbox form design help center](https://support.kobotoolbox.org/getting_started_xlsform.html)
 
 ## About this site
 
