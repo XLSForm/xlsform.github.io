@@ -701,7 +701,7 @@ Note that `once()` is used to prevent re-randomizing for example when a draft re
 
 ## Grouping questions
 
-To create a group of questions in your form try the following:
+To create a group of questions in your form, use the **begin_group**...**end_group** syntax.
 
 | type        | name       | label                                               |
 | ----------- | ---------- | --------------------------------------------------- |
@@ -714,6 +714,8 @@ To create a group of questions in your form try the following:
 
 
 This is a good way to group related questions for data export and analysis. Notice how **end group** doesn't require a name or label, because it is hidden in the form.
+
+​​In your form, you can use the field-list appearance on a group to display multiple questions on the same screen.
 
 ### Nesting groups within groups
 
@@ -734,7 +736,7 @@ You always have to end the most recent group that was created first. For instanc
 
 ### Skipping
 
-One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with relevant syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
+One neat feature of XLSForm is the ability to skip a group of questions by combining the group feature with [relevant](#relevant) syntax. If you want to skip a group of questions all at once, put the relevant attribute at the beginning of a group like follows:
 
 | type              | name     | label                                             | relevant     |
 | ----------------- | -------- | ------------------------------------------------- | ------------ |
@@ -746,7 +748,7 @@ One neat feature of XLSForm is the ability to skip a group of questions by combi
 | ================= | ======== | ================================================= | ============ |
 | survey            |          |                                                   |              |
 
-In this example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
+In the above example, the two child group questions (**muac** and **mrdt**) will only appear if the child's **age** from the first question is less than or equal to five.
 
 ## Repeats
 
