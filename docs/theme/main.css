@@ -552,7 +552,7 @@ table tr td {
   display: flex !important;
 }
 
-.alert {
+.admonition {
   position: relative;
   padding: .75rem 1.25rem;
   margin-bottom: 1rem;
@@ -560,7 +560,7 @@ table tr td {
   border-radius: .25rem;
 }
 
-.alert-warning {
+.warning {
   color: #856404;
   background-color: #fff3cd;
   border-color: #ffeeba;
@@ -568,4 +568,15 @@ table tr td {
 
 .align-items-center {
   align-items: center !important;
+}
+
+.admonition.warning > .admonition-title::before {
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: .5em;
+  background: currentColor;
+  -webkit-mask: url("../warning.svg") center / contain no-repeat;
+  mask: url("../warning.svg") center / contain no-repeat;
 }

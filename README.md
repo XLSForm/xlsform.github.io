@@ -5,17 +5,45 @@ Website for the XLSForm spec published on [xlsform.org](http://xlsform.org).
 
 ### Develop
 
-Install [Jekyll](https://jekyllrb.com/) and run with `jekyll serve` on http://localhost:4000.
+
+```bash
+# Get a copy of the repository.
+mkdir -P ~/repos/xlsform-docs
+cd ~/repos/xlsform-docs
+git clone https://github.com/XLSForm/xlsform.github.io.git repo
+
+# Create and activate a virtual environment for the install.
+python -m venv venv
+source venv/bin/activate
+
+# Install pyodk and its production dependencies.
+cd ~/repos/xlsform-docs/repo
+pip install -r requirements.txt
+
+# Build and locally serve the docs to preview while editing.
+mkdocs serve
+
+# Leave the virtualenv.
+deactivate
+```
+
+*Deployment*
+
+A GitHub actions workflow to publish the docs site is run when a pull request is merged.
+
 
 ### Edit
 
-All content is in the `_sections` and `_data` folders. 
+All content is in the `docs` folder.
 
-### Add a translation
+- assets: extra files such as example XLSForms.
+- theme: custom theme template and theme assets.
+- index.md: the main docs page
+  - the only page to add or modify.
+  - the theme javascript enables custom Markdown table syntax which mimics spreadsheet document tabs. To use this, add a row where each cell contains `===`, then another row where the first column is the "active" sheet name ("survey", "choices", or "settings").  
+- reference.md: links / previews of the reference template XLSForm in Google Sheets.
 
-1. Copy the file in `_sections` that you are translating (and give it a new filename - there are no filename rules, but it's helpful to include the language name, e.g. `home-french.md`).
-2. Change the 2-character `lang` value at the top to the new file (e.g. `fr`) and translate the content of the file.
-3. Add language columns to the 3 CSV files in the `_data` folder with `::fr` added to the translated columns. Any columns without language tags are included in all languages (ie. the columns "Enketo?", "ODK?"). It is best to not translate those columns.
-4. Copy the `en` folder and rename it to the language you are adding, e.g. `fr`. 
-5. In the new folder, change the `lang` and `title` values at the top of each file.
-6. Finally add a translated site description in [_config.yml](./_config.yml)
+
+*Localisation*
+
+This documentation is not localised - please open an issue if that is something you or your team would find useful (and can help maintain!).

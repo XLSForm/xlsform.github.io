@@ -1,8 +1,3 @@
----
-ref: home
-lang: en
----
-
 ## What is an XLSForm?
 
 XLSForm is a form standard created to help simplify the authoring of forms in Excel.  Authoring is done in a human-readable format using a familiar tool that almost everyone knows - Excel.  XLSForms provide a practical standard for sharing and collaborating on authoring forms.  They are simple to get started with but allow for the authoring of complex forms by someone familiar with the syntax described below.
@@ -55,36 +50,36 @@ One thing to keep in mind when authoring forms in Excel is that the syntax you u
 ## Question types
 XLSForm supports a number of question types. These are just some of the options you can enter in the **type** column in the **survey** worksheet in your XLSForm:
 
-| Question type             | Answer input                                                                                 |
-| ------------------------- | -------------------------------------------------------------------------------------------- |
-| integer                   | Integer (i.e., whole number) input.                                                          |
-| decimal                   | Decimal input.                                                                               |
-| range                     | [Range](#range) input (including rating)                                                     |
-| text                      | Free text response.                                                                          |
-| select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.               |
-| select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.              |
-| select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.      |
-| select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.|
-| rank [options]            | [Rank](#rank) question; order a list.                                                        |
-| note                      | Display a note on the screen, takes no input. Shorthand for type=text with readonly=true.    |
-| geopoint                  | Collect a [single GPS coordinate](#gps).                                                     |
-| geotrace                  | Record a [line of two or more GPS coordinates](#gps).                                                |
-| geoshape                  | Record a [polygon of multiple GPS coordinates](#gps); the last point is the same as the first point. |
-| date                      | Date input.                                                                                  |
-| time                      | Time input.                                                                                  |
-| dateTime                  | Accepts a date and a time input.                                                             |
-| image                     | Take a picture or upload an [image file](#image).                                            |
-| audio                     | Take an audio recording or upload an audio file.                                             |
-| background-audio          | Audio is recorded in the background while filling the form.                                  |
-| video                     | Take a video recording or upload a video file.                                               |
-| file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                |
-| barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                            |
-| calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                    |
-| acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                      |
-| hidden                    | A field with no associated UI element which can be used to store a constant                  |
-| xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                          |
+| Question type             | Answer input                                                                                         |
+| ------------------------- |------------------------------------------------------------------------------------------------------|
+| integer                   | Integer (i.e., whole number) input.                                                                  |
+| decimal                   | Decimal input.                                                                                       |
+| range                     | [Range](#range) input (including rating)                                                             |
+| text                      | Free text response.                                                                                  |
+| select_one [options]      | [Multiple choice](#multiple-choice) question; only one answer can be selected.                       |
+| select_multiple [options] | [Multiple choice](#multiple-choice) question; multiple answers can be selected.                      |
+| select_one_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); only one answer can be selected.           |
+| select_multiple_from_file [file]| [Multiple choice from file](#multiple-choice-from-file); multiple answers can be selected.     |
+| rank [options]            | [Rank](#rank) question; order a list.                                                                |
+| note                      | Display a note on the screen, takes no input. Shorthand for type=text with readonly=true.            |
+| geopoint                  | Collect a [single GPS coordinate](#capturing-gps-location)                                           |
+| geotrace                  | Record a [line of two or more GPS coordinates](#capturing-gps-location).                             |
+| geoshape                  | Record a [polygon of multiple GPS coordinates](#capturing-gps-location); the last point is the same as the first point. |
+| date                      | Date input.                                                                                          |
+| time                      | Time input.                                                                                          |
+| dateTime                  | Accepts a date and a time input.                                                                     |
+| image                     | Take a picture or upload an [image file](#image).                                                    |
+| audio                     | Take an audio recording or upload an audio file.                                                     |
+| background-audio          | Audio is recorded in the background while filling the form.                                          |
+| video                     | Take a video recording or upload a video file.                                                       |
+| file                      | Generic file input (txt, pdf, xls, xlsx, doc, docx, rtf, zip)                                        |
+| barcode                   | Scan a barcode, requires the barcode scanner app to be installed.                                    |
+| calculate                 | Perform a calculation; see the [Calculation](#calculation) section below.                            |
+| acknowledge               | Acknowledge prompt that sets value to "OK" if selected.                                              |
+| hidden                    | A field with no associated UI element which can be used to store a constant                          |
+| xml-external              | Adds a reference to an [external XML data](#external-xml-data) file                                  |
 
-You can find a full list of question types and the appearances that can modify them in the [template and reference](./ref-table).
+You can find a full list of question types and the appearances that can modify them in the [template and reference](./reference.md).
 
 ### Capturing GPS location
 A question of type `geopoint` captures the current geolocation from a device. To collect the name and GPS coordinates of a store, you would write the following in your form:
@@ -98,12 +93,12 @@ A question of type `geopoint` captures the current geolocation from a device. To
 
 To collect a line or shape of GPS coordinates, you can use one of the following:
 
-| type       | name         | label   | hint                                                                           |
-| ---------- | ------------ | ---------------------------------------------------------------------------------------  |
-| geotrace   | pipe         | Pipeline| Please walk along the pipeline and record the coordinates of each corner point |
-| geoshape   | border       | Border  | Please walk along the border and record the coordinates of each corner point   |
-| ========== | ============ | ======================================================================================== |
-| survey     |              |         |                                                                                |
+| type       | name         | label    | hint                                                                           |
+| ---------- | ------------ | -------- | ------------------------------------------------------------------------------ |
+| geotrace   | pipe         | Pipeline | Please walk along the pipeline and record the coordinates of each corner point |
+| geoshape   | border       | Border   | Please walk along the border and record the coordinates of each corner point   |
+| ========== | ============ | ======== | ============================================================================== |
+| survey     |              |          |                                                                                |
 
 You can learn more on the geopoint widget in the [ODK documentation](https://docs.getodk.org/form-question-types/#geopoint-widget).
 
@@ -177,7 +172,7 @@ In general, choice names should be unique within a single-choice list. If two ch
 
 If you want question responses to filter the options available in later questions, use a cascading select. For example, if you want to ask which city the respondent lives in, instead of choosing from all cities in the world, you could first ask for their country. Then you could filter the list of states to only show the ones in the selected country, filter districts to only show the ones in the selected state, then filter cities to only show the ones in that district.
 
-To chain or cascade selects, you will need to create a **choice_filter** column in your survey worksheet. The expression in this column will be used to filter down the list of choices for the corresponding select. Any choice for which the expression is **true** will be included. Check out an example XLSForm [here](/assets/xlsx/cascading_select.xlsx).
+To chain or cascade selects, you will need to create a **choice_filter** column in your survey worksheet. The expression in this column will be used to filter down the list of choices for the corresponding select. Any choice for which the expression is **true** will be included. Check out an example XLSForm [here](assets/xlsx/cascading_select.xlsx).
 
 #### Look up values in a choice list
 
@@ -185,7 +180,9 @@ You can add additional columns to the **choices** sheet and then look up values 
 
 #### Specify other
 
-{% include alerts/warning.html content="We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized." %}
+!!! warning
+
+    We generally recommend using [relevance](#relevant) to specify your own **other** choice. The shortcut described in this section only works for selects without translations or **choice_filter**s. It uses English for the \"Specify other\" choice which cannot be customized.
 
 For multiple-choice questions, surveys often include an option of marking **other** when their answer choice is not listed. Then, they are usually asked to specify the other option. XLSForm has a shortcut for doing this by adding **or_other** after the answer choice list name in the survey worksheet. The choices worksheet stays the same. See below:
 
@@ -866,7 +863,7 @@ It’s easy to add multiple languages to a form. You simply have to name your **
 | ================= | =========== | ============        | ============          | ========== |
 | survey            |             |                     |                       |            |
 
-You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference](./ref-table), which includes a list of all column headers that can accept a language modification.
+You can also add different language columns for hints and media files by using the same `::language (code)` construct, as shown in the example below. See also the [XLSForm reference](./reference.md), which includes a list of all column headers that can accept a language modification.
 
 | hint::English (en)  | hint::Dutch (nl)     | image::English (en)        | image::Dutch (nl)        |
 | ------------------- | -------------------- | -------------------------- | ------------------------ |  
@@ -979,7 +976,7 @@ The settings column headings available are:
 * **instance_name**: Expression using form fields to identify each form submission. [Learn more](#specify-form-submission-name).
 * **default_language**: In localized forms, this sets which language should be used as the default. The same format as described for [adding translations](#multiple-language-support) should be used, including the language code.
 * **public_key**: For encryption-enabled forms, this is where the public key is copied and pasted. [Learn more](#encrypted-forms).
-* **submission_url**: This url can be used to override the default server where finalized records are submitted. [Learn more](#specify-alternative-server).
+* **submission_url**: This url can be used to override the default server where finalized records are submitted. [Learn more](#specify-an-alternative-server).
 * **style**: For web forms, specify the form style. [Learn more](#multiple-webpage-forms).
 * **name**: XForms root node name. This is rarely needed, [learn more](#specify-xforms-root-node-name).
 * **clean_text_values**: This column can be used with values `yes` or `no` to control whether whitespace in the Survey sheet is collapsed (defaults to `yes`).
@@ -1146,7 +1143,9 @@ As with the above **survey** columns, the **attribute::** setting can be combine
 
 ## Appendix - loading big CSVs
 
-{% include alerts/warning.html content="This section describes less general alternatives to [select_one_from_file](#multiple-choice-from-file) and the [`instance` function](#look-up-values-in-choice-lists-or-attached-files). They may be more performant in some tools that allow filling XLSForms but may not work in others." %}
+!!! warning
+
+    This section describes less general alternatives to [select_one_from_file](#multiple-choice-from-file) and the [`instance` function](#look-up-values-in-choice-lists-or-attached-files). They may be more performant in some tools that allow filling XLSForms but may not work in others.
 
 ### Data preloading
 
@@ -1167,7 +1166,9 @@ Each csv file should contain at least one column that can be used to uniquely id
 
 #### How to pull data from CSV
 
-{% include alerts/warning.html content="If you use [select_one_from_file](#multiple-choice-from-file) to show select options from a file, you should generally use the [`instance` function](#look-up-values-in-choice-lists-or-attached-files) to look values up in that file rather than `pulldata`." %}
+!!! warning
+
+    If you use [select_one_from_file](#multiple-choice-from-file) to show select options from a file, you should generally use the [`instance` function](#look-up-values-in-choice-lists-or-attached-files) to look values up in that file rather than `pulldata`.
 
 You can be able to pull data from .csv file by including one or more .csv files in your form during the survey time.
 For each data field that you want to pull into your survey:
@@ -1197,7 +1198,9 @@ Click on the link to see an example of a [pre-loading sample form ](https://docs
 
 #### Dynamic selects from pre-loaded data
 
-{% include alerts/warning.html content="Use [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50 thousand options, or will be collecting data on old or low performance devices. This approach is not supported by Enketo web forms." %}
+!!! warning
+
+    Use [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50 thousand options, or will be collecting data on old or low performance devices. This approach is not supported by Enketo web forms.
 
 Once your form has one or more pre-loaded .csv files, you can dynamically pull the choice lists for **select_one** and **select_multiple** fields from those .csv files.  Multiple-choice fields with dynamic choice lists follow the same general syntax as regular, static select_one and select_multiple fields as previously covered in the [Multiple choice questions](#multiple-choice) section.
 
@@ -1279,7 +1282,9 @@ Additional notes on usage:
 
 ### Database-backed "fast external itemsets"
 
-{% include alerts/warning.html content="We generally recommend using [select_one_from_file](multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms." %}
+!!! warning
+
+    We generally recommend using [select_one_from_file](#multiple-choice-from-file) unless you need to use more than 50k rows or very old devices. This approach is not supported by Enketo web forms.
 
 Enabling external selects is straightforward.
  - Instead of **select_one** for the prompt type, use **select_one_external**.
